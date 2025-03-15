@@ -7,7 +7,7 @@
         case "guardaryeditar":
             if(empty($_POST["usu_id"])){
                 
-                $usuario->insert_usuario($_POST["usu_nom"],$_POST["usu_ape"],$_POST["usu_correo"],$_POST["usu_pass"],$_POST["rol_id"]);  
+                $usuario->insert_usuario($_POST["usu_nom"],$_POST["usu_ape"],$_POST["usu_correo"],$_POST["usu_pass"],$_POST["rol_id"],$_POST["area_id"]);  
             }else{
                 $usuario->update_usuario($_POST["usu_id"],$_POST["usu_nom"],$_POST["usu_ape"],$_POST["usu_correo"],$_POST["usu_pass"],$_POST["rol_id"]);
             }
@@ -28,6 +28,15 @@
                 }else{
                     $sub_array[] = '<span class="label label-pill label-info aquamarine">Soporte</span>';
                 }
+
+                // if($row["area_id"]==1){
+                //     $sub_array[] = '<span class="label label-pill label-primary">Sistemas</span>';
+                // }else if($row["area_id"]==2){
+                //     $sub_array[] = '<span class="label label-pill label-primary">Trafico</span>';
+                // }else if($row["area_id"]==3){
+                //     $sub_array[] = '<span class="label label-pill label-primary">Contabilidad</span>';
+                // }
+                $sub_array[] = $row["area_nom"];
                 
                 $sub_array[] = '<button type="button" onClick="editar('.$row["usu_id"].');"  id="'.$row["usu_id"].'" class="btn btn-inline btn-warning btn-sm ladda-button"><i class="fa fa-edit"></i></button>';
                 $sub_array[] = '<button type="button" onClick="eliminar('.$row["usu_id"].');"  id="'.$row["usu_id"].'" class="btn btn-inline btn-danger btn-sm ladda-button"><i class="fa fa-trash"></i></button>';
@@ -57,7 +66,7 @@
                     $output["usu_correo"] = $row["usu_correo"];
                     $output["usu_pass"] = $row["usu_pass"];
                     $output["rol_id"] = $row["rol_id"];
-                    
+                    $output["area_id"] = $row["area_id"];
                 }
                 echo json_encode($output);
             }   

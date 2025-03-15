@@ -29,7 +29,7 @@
     
                     <div class="form-group">
                         <label class="form-label" for="usu_pass">Contraseña</label>
-                        <input type="password" class="form-control" id="usu_pass" name="usu_pass" placeholder="Contraseña" required>
+                        <input type="text" class="form-control" id="usu_pass" name="usu_pass" placeholder="Contraseña" required>
                     </div>
     
                     <div class="form-group">
@@ -37,6 +37,15 @@
                         <select class="select2" id="rol_id" name="rol_id">
                             <option value="1">Usuario</option>
                             <option value="2">Soporte</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="area_id">Area</label>
+                        <select class="select2" id="area_id" name="area_id">
+                            <option value="1">Sistemas</option>
+                            <option value="2">Trafico</option>
+                            <option value="3">Contabilidad</option>
                         </select>
                     </div>
                     

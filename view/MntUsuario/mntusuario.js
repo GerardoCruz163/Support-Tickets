@@ -98,6 +98,7 @@ function editar(usu_id){
         $('#usu_correo').val(data.usu_correo);
         $('#usu_pass').val(data.usu_pass);
         $('#rol_id').val(data.rol_id).trigger('change');
+        $('#area_id').val(data.area_id).trigger('change');
     });
     $('#modalmantenimiento').modal('show');
 }

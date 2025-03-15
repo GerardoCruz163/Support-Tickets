@@ -46,6 +46,7 @@
 							<th class="d-none d-sm-table-cell" style="width: 8%;">Correo electronico</th>
 							<th class="d-none d-sm-table-cell" style="width: 4%;">Contraseña</th>
 							<th class="d-none d-sm-table-cell" style="width: 10%;">Tipo de cuenta</th>
+							<th class="d-none d-sm-table-cell" style="width: 5%;">Area</th>
 							<th class="d-none d-sm-table-cell" style="width: 5%;"></th>
 							<th class="d-none d-sm-table-cell" style="width: 5%;"></th>
 							
