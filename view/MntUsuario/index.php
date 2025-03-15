@@ -52,13 +52,19 @@
 						</tr>
 					</thead>
 					<tbody>
-
-					</tbody>
-				</table>
+						
+						</tbody>
+					</table>
+					<button id="btnnuevo" type="button" class="btn btn-inline btn-primary">
+						<i class="fa fa-user-plus" aria-hidden="true"></i>	
+						Nuevo
+					</button>
 			</div>
 		</div><!--.container-fluid-->
 	</div><!--.page-content-->
 
+
+	<?php require_once("modalmantenimiento.php");?>
 	<?php require_once("../MainJs/js.php");?>
 	<script type="text/javascript" src="mntusuario.js"></script>
 	
