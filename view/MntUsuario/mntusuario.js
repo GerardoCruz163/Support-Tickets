@@ -24,7 +24,7 @@ function guardaryeditar(e){
 
             swal({
                 title: "TLA Support Tracing",
-                text: "Se registro un nuevo usuario correctamente.",
+                text: "Se registro correctamente.",
                 type: "success",
                 confirmButtonClass: "btn-success"
             });

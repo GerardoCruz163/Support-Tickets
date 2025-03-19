@@ -66,6 +66,7 @@
             $sql->bindValue(4, $usu_pass);
             $sql->bindValue(5, $rol_id);
             $sql->bindValue(6, $usu_id);
+            
             $sql->execute();
             return $resultado=$sql->fetchAll();
         }
