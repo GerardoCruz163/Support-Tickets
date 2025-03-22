@@ -1,6 +1,5 @@
 var tabla;
 
-
 function init(){
     $("#usuario_form").on("submit",function(e){
         guardaryeditar(e);
@@ -102,9 +101,6 @@ function editar(usu_id){
     });
     $('#modalmantenimiento').modal('show');
 }
-
-
-
 
 function eliminar(usu_id){
     swal(

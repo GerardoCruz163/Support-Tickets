@@ -29,13 +29,6 @@
                     $sub_array[] = '<span class="label label-pill label-info aquamarine">Soporte</span>';
                 }
 
-                // if($row["area_id"]==1){
-                //     $sub_array[] = '<span class="label label-pill label-primary">Sistemas</span>';
-                // }else if($row["area_id"]==2){
-                //     $sub_array[] = '<span class="label label-pill label-primary">Trafico</span>';
-                // }else if($row["area_id"]==3){
-                //     $sub_array[] = '<span class="label label-pill label-primary">Contabilidad</span>';
-                // }
                 $sub_array[] = $row["area_nom"];
                 
                 $sub_array[] = '<button type="button" onClick="editar('.$row["usu_id"].');"  id="'.$row["usu_id"].'" class="btn btn-inline btn-warning btn-sm ladda-button"><i class="fa fa-edit"></i></button>';

@@ -35,7 +35,7 @@
 									if($_SESSION['rol_id']==1){
 										echo 'Consultar mis Tickets';
 									}else{
-										echo 'Consultar ticket';
+										echo 'Consultar tickets';
 									}
 								?>
                             </span>
