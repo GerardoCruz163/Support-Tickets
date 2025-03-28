@@ -20,7 +20,7 @@
 	<div class="page-content">
 		<div class="container-fluid">
 
-		<header class="section-header">
+			<header class="section-header">
 				<div class="tbl">
 					<div class="tbl-row">
 						<div class="tbl-cell">
@@ -40,29 +40,29 @@
 					<div class="row">
 						<div class="col-sm-4">
 							<article class="statistic-box green">
-	                            <div>
-	                                <div class="number" id="lbltotal"></div>
-	                                <div class="caption"><div>Total de Tickets</div></div>
-	                            </div>
-	                        </article>
+								<div>
+									<div class="number" id="lbltotal"></div>
+									<div class="caption"><div>Tickets en total</div></div>
+								</div>
+							</article>
 						</div>
 
 						<div class="col-sm-4">
 							<article class="statistic-box yellow">
-	                            <div>
-	                                <div class="number" id="lbltotalabiertos"></div>
-	                                <div class="caption"><div>Tickets Abiertos</div></div>
-	                            </div>
-	                        </article>
+								<div>
+									<div class="number" id="lbltotalabiertos"></div>
+									<div class="caption"><div>Tickets Abiertos</div></div>
+								</div>
+							</article>
 						</div>
 
 						<div class="col-sm-4">
 							<article class="statistic-box red">
-	                            <div>
-	                                <div class="number" id="lbltotalcerrados"></div>
-	                                <div class="caption"><div>Tickets Cerrados</div></div>
-	                            </div>
-	                        </article>
+								<div>
+									<div class="number" id="lbltotalcerrados"></div>
+									<div class="caption"><div>Tickets Cerrados</div></div>
+								</div>
+							</article>
 						</div>
 					</div>
 				</div>
