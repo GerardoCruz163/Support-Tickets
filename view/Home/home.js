@@ -54,7 +54,6 @@ $(document).ready(function(){
 
         $.post("../../controller/ticket.php?op=grafico",function (data) {
             data = JSON.parse(data);
-            console.log(data);
     
             new Morris.Bar({
                 element: 'divgrafico',
