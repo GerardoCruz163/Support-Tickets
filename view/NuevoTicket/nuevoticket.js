@@ -41,6 +41,13 @@ function guardaryeditar(e){
     if ($('#tick_descrip').summernote('isEmpty') || $('#tick_titulo').val()==''){
         swal("¡Advertencia!", "Campos vacios", "warning");
     }else{
+
+        var totalFiles = $('#fileElem').val().length;
+
+        for(var i = 0; i<totalFiles; i++){
+            formData.append("files[]", $('#fileElem')[0].files[i]);
+        }
+
         $.ajax({
             url: "../../controller/ticket.php?op=insert",
             type: "POST",
@@ -48,7 +55,7 @@ function guardaryeditar(e){
             contentType: false,
             processData: false,
             success: function(datos){
-                console.log("Ticket guardado");
+                console.log(datos);
                 $('#tick_titulo').val('');
                 $('#tick_descrip').summernote('reset');
                 swal("¡Listo!", "Se ha guardado tu ticket correctamente.", "success");
