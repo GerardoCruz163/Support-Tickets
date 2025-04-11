@@ -6,8 +6,8 @@
     <div class="container-fluid">
 
         <a href="#" class="site-logo">
-            <img class="hidden-md-down" src="../../public/img/SUTRA.png" alt="">
-            <img class="hidden-lg-up" src="../../public/img/SUTRA RED.png" alt="">
+            <img class="hidden-md-down" src="../../public/img/SUTRAT.png" alt="">
+            <img class="hidden-lg-up" src="../../public/img/SUTRA REDT.png" alt="">
         </a>
 
         <button id="show-hide-sidebar-toggle" class="show-hide-sidebar">

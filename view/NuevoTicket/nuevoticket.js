@@ -1,15 +1,15 @@
 function init(){
+
     $("#ticket_form").on("submit",function(e){
         guardaryeditar(e);
-        console.log("OK");
     });
+
 }
 
 $(document).ready(function() {
 	$('#tick_descrip').summernote({
         height: 150,
         lang: "es-ES",
-
         callbacks: {
             onImageUpload: function(image) {
                 console.log("Image detect...");
@@ -41,9 +41,7 @@ function guardaryeditar(e){
     if ($('#tick_descrip').summernote('isEmpty') || $('#tick_titulo').val()==''){
         swal("¡Advertencia!", "Campos vacios", "warning");
     }else{
-
         var totalFiles = $('#fileElem').val().length;
-
         for(var i = 0; i<totalFiles; i++){
             formData.append("files[]", $('#fileElem')[0].files[i]);
         }
@@ -54,14 +52,20 @@ function guardaryeditar(e){
             data: formData,
             contentType: false,
             processData: false,
-            success: function(datos){
-                console.log(datos);
+            success: function(data){
+                console.log(data);
+                data = JSON.parse(data);
+                console.log(data[0].tick_id); 
+
+                $.post("../../controller/email.php?op=ticket_abierto", {tick_id: data[0].tick_id}, function (data){
+
+                });
+                
                 $('#tick_titulo').val('');
                 $('#tick_descrip').summernote('reset');
                 swal("¡Listo!", "Se ha guardado tu ticket correctamente.", "success");
             }
         });
-
     }
 }
 

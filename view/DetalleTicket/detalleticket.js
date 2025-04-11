@@ -141,6 +141,9 @@ $(document).ready(function(){
                         
                     });
 
+                    $.post("../../controller/email.php?op=ticket_cerrado", {tick_id: tick_id}, function (data){
+
+                    });
                     listarDetalle(tick_id);
                     
                     swal({

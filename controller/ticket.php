@@ -12,25 +12,27 @@
     switch($_GET["op"]){
         case "insert":
             $datos=$ticket->insert_ticket($_POST["usu_id"],$_POST["cat_id"],$_POST["tick_titulo"],$_POST["tick_descrip"]);
-            if(is_array($datos) == true and count($datos)>0){
-                foreach($datos as $row){
+            if (is_array($datos)==true and count($datos)>0){
+                foreach ($datos as $row){
                     $output["tick_id"] = $row["tick_id"];
-                    if($_FILES['files']['name']==0){
+
+                    if (!isset($_FILES['files']) || empty($_FILES['files']['name'][0])){
 
                     }else{
                         $countfiles = count($_FILES['files']['name']);
-                        $ruta= "../public/document/".$output["tick_id"]."/";
+                        $ruta = "../public/document/".$output["tick_id"]."/";
                         $files_arr = array();
 
-                        if(!file_exists($ruta)){
+                        if (!file_exists($ruta)) {
                             mkdir($ruta, 0777, true);
                         }
 
-                        for($index = 0; $index<$countfiles; $index++){
+                        for ($index = 0; $index < $countfiles; $index++) {
                             $doc1 = $_FILES['files']['tmp_name'][$index];
-                            $destino=$ruta.$_FILES['files']['name'][$index];
+                            $destino = $ruta.$_FILES['files']['name'][$index];
 
-                            $documento->insert_documento($output["tick_id"], $_FILES['files']['name'][$index]);
+                            $documento->insert_documento( $output["tick_id"],$_FILES['files']['name'][$index]);
+
                             move_uploaded_file($doc1,$destino);
                         }
                     }
