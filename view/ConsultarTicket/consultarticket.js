@@ -159,4 +159,34 @@ function guardar(e){
     });
 }
 
+function CambiarEstado(tick_id){
+    swal({
+        title: "TLA Support Tracking",
+        text: "¿Estas segur@ de reabrir este ticket?",
+        type: "error",
+        showCancelButton: true,
+        confirmButtonClass: "btn-warning",
+        confirmButtonText: "Si",
+        cancelButtonText: "No",
+        closeOnConfirm: false
+    },
+    function(isConfirm) {   
+        if (isConfirm) {
+            $.post("../../controller/ticket.php?op=reabrir", {tick_id: tick_id, usu_id:usu_id}, function (data){
+                
+            });
+                
+            console.log(tick_id);
+            $('#ticket_data').DataTable().ajax.reload();
+            
+            swal({
+                title: "TLA Support Tracking",
+                text: "Ticket abierto.",
+                type: "success",
+                confirmButtonClass: "btn-success"
+            });
+        }
+    });
+}
+
 init();

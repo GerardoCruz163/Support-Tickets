@@ -80,7 +80,7 @@
 	<script type="text/javascript" src="consultarticket.js"></script>
 	
 
-<script src="js/app.js"></script>
+
 </body>
 </html>
 <?php

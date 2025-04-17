@@ -10,8 +10,9 @@
     $documento= new Documento();
 
     switch($_GET["op"]){
+
         case "insert":
-            $datos=$ticket->insert_ticket($_POST["usu_id"],$_POST["cat_id"],$_POST["tick_titulo"],$_POST["tick_descrip"]);
+            $datos=$ticket->insert_ticket($_POST["usu_id"],$_POST["cat_id"],$_POST["cats_id"],$_POST["tick_titulo"],$_POST["tick_descrip"]);
             if (is_array($datos)==true and count($datos)>0){
                 foreach ($datos as $row){
                     $output["tick_id"] = $row["tick_id"];
@@ -46,6 +47,11 @@
             $ticket->insert_ticketdetalle_cerrar($_POST["tick_id"], $_POST["usu_id"]);
         break;
 
+        case "reabrir":
+            $ticket->reabrir_ticket($_POST["tick_id"]);
+            $ticket->insert_ticketdetalle_cerrar_reabrir($_POST["tick_id"], $_POST["usu_id"]);
+        break;
+
         case "asignar":
             $ticket->update_ticket_asignacion($_POST["tick_id"],$_POST["usu_asig"]);
         break;
@@ -64,7 +70,7 @@
                 if($row["tick_estado"]=="Abierto"){
                     $sub_array[] = '<span class="label label-pill label-success">ABIERTO</span>';
                 }else{
-                    $sub_array[] = '<span class="label label-pill label-danger">CERRADO</span>';
+                    $sub_array[] = '<a onClick="CambiarEstado('.$row["tick_id"].')"><span class="label label-pill label-danger">CERRADO</span></a>';
                 }
 
                 if($row["fech_asig"]==null){
@@ -106,10 +112,11 @@
                 $sub_array[] = date("d/m/Y H:i", strtotime($row["fech_crea"]));
                 $sub_array[] = $row["usu_nom"].' '.$row["usu_ape"];
                 $sub_array[] = $row["area_nom"];
+
                 if($row["tick_estado"]=="Abierto"){
-                    $sub_array[] = '<span class="label label-pill label-success">ABIERTO</span>';
+                    $sub_array[] = '<span class ="label label-pill label-success">ABIERTO</span>';
                 }else{
-                    $sub_array[] = '<span class="label label-pill label-danger">CERRADO</span>';
+                    $sub_array[] = '<a onClick="CambiarEstado('.$row["tick_id"].')"><span class="label label-pill label-danger">CERRADO</span></a>';
                 }
 
                 if($row["fech_asig"]==null){
@@ -217,6 +224,7 @@
                     $output["usu_nom"] = $row["usu_nom"];
                     $output["usu_ape"] = $row["usu_ape"];
                     $output["cat_nom"] = $row["cat_nom"];
+                    $output["cats_nom"] = $row["cats_nom"];
                 }
                 echo json_encode($output);
             }   
@@ -265,6 +273,10 @@
         case "grafico";
             $datos=$ticket->get_ticket_grafico();  
             echo json_encode($datos);
+        break;
+
+        case "encuesta":
+            $datos=$ticket->insert_encuesta($_POST["tick_id"], $_POST["tick_estre"],$_POST["tick_coment"]);  
         break;
     }
 ?>

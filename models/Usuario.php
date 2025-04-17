@@ -104,6 +104,24 @@
             return $resultado=$sql->fetchAll();
         }
 
+        public function get_usuario_x_area_cat($cat_id){
+            $conectar= parent::conexion();
+            parent::set_names();
+            $sql="SELECT 
+            tm_usuario.usu_nom, 
+            tm_usuario.usu_ape
+            FROM tm_usuario
+            JOIN tm_categoria 
+            ON tm_usuario.area_id = tm_categoria.area_id
+            WHERE tm_categoria.cat_id = ?
+            and tm_usuario.est = 1 
+            and tm_categoria.est =1";
+            $sql=$conectar->prepare($sql);
+            $sql->bindValue(1, $cat_id);
+            $sql->execute();
+            return $resultado=$sql->fetchAll();
+        }
+
         public function get_usuario_x_id($usu_id){
             $conectar= parent::conexion();
             parent::set_names();
