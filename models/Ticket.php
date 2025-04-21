@@ -62,6 +62,8 @@
             tm_ticket.tick_descrip,
             tm_ticket.tick_estado,
             tm_ticket.fech_crea,
+            tm_ticket.tick_estre,
+            tm_ticket.tick_coment,
             tm_area.area_nom,
             tm_usuario.usu_nom,
             tm_usuario.usu_ape,

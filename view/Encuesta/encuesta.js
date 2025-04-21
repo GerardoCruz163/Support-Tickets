@@ -29,7 +29,7 @@ function listarDetalle(tick_id){
         $('#tick_titulo').val(data.tick_titulo);
 
         if (data.tick_estado_texto=='Abierto') {
-            window.open('http://localhost:90/PERSONAL_HelpDesk/','_self');
+            window.open('http://localhost:80/HelpDesk_Tecno/','_self');
         }else{
             if (data.tick_estre==null){
 
@@ -38,7 +38,7 @@ function listarDetalle(tick_id){
             }
         }
     });
-}
+} 
 
 var getUrlParameter = function getUrlParameter(sParam) {
     var sPageURL = decodeURIComponent(window.location.search.substring(1)),
@@ -62,5 +62,6 @@ $(document).on("click","#btnguardar",function(){
     var tick_coment =$('#tick_coment').val();
     $.post("../../controller/ticket.php?op=encuesta", { tick_id : tick_id, tick_estre : tick_estre, tick_coment : tick_coment }, function (data){
         console.log(data);
+        swal("Listo", "Gracias por darnos tu opinion.", "success");
     });
 });

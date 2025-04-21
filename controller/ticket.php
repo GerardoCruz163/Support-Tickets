@@ -225,6 +225,8 @@
                     $output["usu_ape"] = $row["usu_ape"];
                     $output["cat_nom"] = $row["cat_nom"];
                     $output["cats_nom"] = $row["cats_nom"];
+                    $output["tick_estre"] = $row["tick_estre"];
+                    $output["tick_coment"] = $row["tick_coment"];
                 }
                 echo json_encode($output);
             }   
