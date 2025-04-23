@@ -65,7 +65,7 @@
 
 						<div class="col-lg-4">
 							<fieldset class="form-group">
-								<label class="form-label semibold" for="exampleInput">Subategoría</label>
+								<label class="form-label semibold" for="exampleInput">Subcategoría</label>
 								<select id="cats_id" name="cats_id" class="form-control" data_placeholder="Seleccionar">
 									<option label="Seleccionar"></option>
 								</select>
@@ -73,7 +73,15 @@
 							</fieldset>
 						</div>
 
-						
+						<div class="col-lg-4">
+							<fieldset class="form-group">
+								<label class="form-label semibold" for="usu_asig">Asignar a</label>
+								<select id="usu_asig" name="usu_asig" class="form-control" data_placeholder="Seleccionar">
+									<option label="Seleccionar"></option>
+								</select>
+							
+							</fieldset>
+						</div>
 
 						<div class="col-lg-4">
 							<fieldset class="form-group">

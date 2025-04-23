@@ -117,6 +117,19 @@
                 echo $html;
             }
         break;
+
+
+        case "combo_soporte":
+            $datos = $usuario->get_usuario_x_area_cat($_POST["cat_id"]);
+            $html = "<option label='Seleccionar'></option>";
+            if(is_array($datos) && count($datos) > 0){
+                foreach($datos as $row){
+                    $html .= "<option value='".$row['usu_id']."'>".$row['usu_nom']." ".$row['usu_ape']."</option>";
+                }
+            }
+            echo $html;
+        break;
+        
         //CONTROLLER PARA ACTUALIZAR LA CONTRASENA
         case "password":
             $usuario->update_usuario_pass($_POST["usu_id"], $_POST["usu_pass"]);

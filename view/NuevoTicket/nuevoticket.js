@@ -40,6 +40,9 @@ $(document).ready(function() {
         $.post("../../controller/subcategoria.php?op=combo",{cat_id : cat_id},function(data, status){
             $('#cats_id').html(data);
         });
+        $.post("../../controller/usuario.php?op=combo_soporte", { cat_id: cat_id }, function(data){
+            $('#usu_asig').html(data); 
+        });
     })
 });
 

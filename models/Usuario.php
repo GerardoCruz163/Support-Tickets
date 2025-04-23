@@ -108,6 +108,7 @@
             $conectar= parent::conexion();
             parent::set_names();
             $sql="SELECT 
+            tm_usuario.usu_id,
             tm_usuario.usu_nom, 
             tm_usuario.usu_ape
             FROM tm_usuario
