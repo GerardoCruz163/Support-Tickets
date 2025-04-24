@@ -1,11 +1,11 @@
 <?php
     class Ticket extends Conectar{
 
-        public function insert_ticket($usu_id, $cat_id, $cats_id, $tick_titulo, $tick_descrip, $usu_asig){
+        public function insert_ticket($usu_id, $cat_id, $cats_id, $tick_titulo, $tick_descrip, $usu_asig, $prio_id){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="INSERT INTO tm_ticket (usu_id, cat_id, cats_id, tick_titulo, tick_descrip, tick_estado, fech_crea, usu_asig, fech_asig, est) 
-            VALUES (?,?,?,?,?,'Abierto',now(),?,NULL,'1');";
+            $sql="INSERT INTO tm_ticket (usu_id, cat_id, cats_id, tick_titulo, tick_descrip, tick_estado, fech_crea, usu_asig, fech_asig, prio_id,est) 
+            VALUES (?,?,?,?,?,'Abierto',now(),?,now(),?,'1');";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1,$usu_id);
             $sql->bindValue(2,$cat_id);
@@ -13,6 +13,7 @@
             $sql->bindValue(4,$tick_titulo);
             $sql->bindValue(5,$tick_descrip);
             $sql->bindValue(6,$usu_asig);
+            $sql->bindValue(7,$prio_id);
             $sql->execute();
 
             $sql1="select last_insert_id() as 'tick_id';";
@@ -32,17 +33,21 @@
                 tm_ticket.tick_descrip,
                 tm_ticket.tick_estado,
                 tm_ticket.fech_crea,
+                tm_ticket.fech_cierre,
                 tm_ticket.usu_asig,
                 tm_ticket.fech_asig,
                 tm_usuario.usu_nom,
                 tm_usuario.usu_ape,
                 tm_area.area_nom,
-                tm_categoria.cat_nom
+                tm_categoria.cat_nom,
+                tm_ticket.prio_id,
+                tm_prioridad.prio_nom
                 FROM 
                 tm_ticket
                 INNER join tm_categoria on tm_ticket.cat_id = tm_categoria.cat_id
                 INNER join tm_usuario on tm_ticket.usu_id = tm_usuario.usu_id
                 INNER join tm_area on tm_usuario.area_id = tm_area.area_id
+                INNER join tm_prioridad on tm_ticket.prio_id = tm_prioridad.prio_id
                 WHERE
                 tm_ticket.est = 1
                 AND tm_usuario.usu_id=?";
@@ -64,6 +69,7 @@
             tm_ticket.tick_descrip,
             tm_ticket.tick_estado,
             tm_ticket.fech_crea,
+            tm_ticket.fech_cierre,
             tm_ticket.tick_estre,
             tm_ticket.tick_coment,
             tm_area.area_nom,
@@ -71,13 +77,16 @@
             tm_usuario.usu_ape,
             tm_usuario.usu_correo,
             tm_categoria.cat_nom,
-            tm_subcategoria.cats_nom
+            tm_subcategoria.cats_nom,
+            tm_ticket.prio_id,
+            tm_prioridad.prio_nom
             FROM 
             tm_ticket
             INNER join tm_categoria on tm_ticket.cat_id = tm_categoria.cat_id
             INNER join tm_subcategoria on tm_ticket.cats_id = tm_subcategoria.cats_id
             INNER join tm_usuario on tm_ticket.usu_id = tm_usuario.usu_id
             INNER join tm_area on tm_usuario.area_id = tm_area.area_id
+            INNER join tm_prioridad on tm_ticket.prio_id = tm_prioridad.prio_id
             WHERE
             tm_ticket.est = 1
             AND tm_ticket.tick_id = ?";
@@ -98,17 +107,22 @@
                 tm_ticket.tick_descrip,
                 tm_ticket.tick_estado,
                 tm_ticket.fech_crea,
+                tm_ticket.fech_cierre,
                 tm_ticket.usu_asig,
                 tm_ticket.fech_asig,
                 tm_usuario.usu_nom,
                 tm_usuario.usu_ape,
                 tm_area.area_nom,
-                tm_categoria.cat_nom
+                tm_categoria.cat_nom,
+                tm_ticket.prio_id,
+                tm_prioridad.prio_nom
                 FROM 
                 tm_ticket
                 INNER join tm_categoria on tm_ticket.cat_id = tm_categoria.cat_id
                 INNER join tm_usuario on tm_ticket.usu_id = tm_usuario.usu_id
                 INNER join tm_area on tm_usuario.area_id = tm_area.area_id
+                INNER join tm_prioridad on tm_ticket.prio_id = tm_prioridad.prio_id
+
                 WHERE
                 tm_ticket.est = 1";
             $sql=$conectar->prepare($sql);
@@ -181,7 +195,8 @@
             parent::set_names();
             $sql="update tm_ticket 
                 set	
-                    tick_estado = 'Cerrado'
+                    tick_estado = 'Cerrado',
+                    fech_cierre = now()
                 where
                     tick_id = ?";
             $sql=$conectar->prepare($sql);

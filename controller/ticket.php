@@ -12,7 +12,7 @@
     switch($_GET["op"]){
 
         case "insert":
-            $datos=$ticket->insert_ticket($_POST["usu_id"],$_POST["cat_id"],$_POST["cats_id"],$_POST["tick_titulo"],$_POST["tick_descrip"], $_POST["usu_asig"]);
+            $datos=$ticket->insert_ticket($_POST["usu_id"],$_POST["cat_id"],$_POST["cats_id"],$_POST["tick_titulo"],$_POST["tick_descrip"], $_POST["usu_asig"], $_POST["prio_id"]);
             if (is_array($datos)==true and count($datos)>0){
                 foreach ($datos as $row){
                     $output["tick_id"] = $row["tick_id"];
@@ -64,6 +64,16 @@
                 $sub_array[] = $row["tick_id"];
                 $sub_array[] = $row["cat_nom"];
                 $sub_array[] = $row["tick_titulo"];
+
+                
+                if($row["prio_nom"] == "Bajo"){
+                    $sub_array[] = '<span class="label label-pill label-success">Bajo</span>';
+                }else if($row["prio_nom"] == "Medio"){
+                    $sub_array[] = '<span class="label label-pill label-warning">Medio</span>';
+                }else if($row["prio_nom"] == "Alto"){
+                    $sub_array[] = '<span class="label label-pill label-danger">Alto</span>';
+                }
+
                 $sub_array[] = date("d/m/Y H:i", strtotime($row["fech_crea"]));
                 $sub_array[] = $row["usu_nom"].' '.$row["usu_ape"];
                 $sub_array[] = $row["area_nom"];
@@ -77,6 +87,11 @@
                     $sub_array[] = '<span class="label label-pill label-defualt">--/--/----</span>';
                 }else{
                     $sub_array[] = date("d/m/Y H:i", strtotime($row["fech_asig"]));
+                }
+                if($row["fech_cierre"]==null){
+                    $sub_array[] = '<span class ="label label-pill label-default">Sin cerrar</span>';
+                }else{
+                    $sub_array[] = date("d/m/Y H:i", strtotime($row["fech_cierre"]));
                 }
 
                 if($row["usu_asig"]==null){
@@ -109,6 +124,14 @@
                 $sub_array[] = $row["cat_nom"];
                 $sub_array[] = $row["tick_titulo"];
 
+                if($row["prio_nom"] == "Bajo"){
+                    $sub_array[] = '<span class="label label-pill label-success">Bajo</span>';
+                }else if($row["prio_nom"] == "Medio"){
+                    $sub_array[] = '<span class="label label-pill label-warning">Medio</span>';
+                }else if($row["prio_nom"] == "Alto"){
+                    $sub_array[] = '<span class="label label-pill label-danger">Alto</span>';
+                }
+
                 $sub_array[] = date("d/m/Y H:i", strtotime($row["fech_crea"]));
                 $sub_array[] = $row["usu_nom"].' '.$row["usu_ape"];
                 $sub_array[] = $row["area_nom"];
@@ -123,6 +146,11 @@
                     $sub_array[] = '--/--/---- --:--';
                 }else{
                     $sub_array[] = date("d/m/Y H:i", strtotime($row["fech_asig"]));
+                }
+                if($row["fech_cierre"]==null){
+                    $sub_array[] = '<span class ="label label-pill label-default">Sin cerrar</span>';
+                }else{
+                    $sub_array[] = date("d/m/Y H:i", strtotime($row["fech_cierre"]));
                 }
 
                 if($row["usu_asig"]==null){
@@ -221,12 +249,14 @@
                     $output["area_nom"] = $row["area_nom"];
 
                     $output["fech_crea"] = date("d/m/Y H:i", strtotime($row["fech_crea"]));
+                    $output["fech_cierre"] = date("d/m/Y H:i", strtotime($row["fech_cierre"]));
                     $output["usu_nom"] = $row["usu_nom"];
                     $output["usu_ape"] = $row["usu_ape"];
                     $output["cat_nom"] = $row["cat_nom"];
                     $output["cats_nom"] = $row["cats_nom"];
                     $output["tick_estre"] = $row["tick_estre"];
                     $output["tick_coment"] = $row["tick_coment"];
+                    $output["prio_nom"] = $row["prio_nom"];
                 }
                 echo json_encode($output);
             }   

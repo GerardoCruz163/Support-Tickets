@@ -42,6 +42,23 @@
                         </a>
                     </li>
 
+                    <?php
+                        if($_SESSION['rol_id']==1){
+                            echo '
+                                <li class="aquamarine">
+                                    <a href="..\NuevoTicket\">
+                                        <span>
+                                        <i class="fa fa-ticket" aria-hidden="true"></i>
+                                        </span>
+                                        <span class="lbl">Tickets Asignados</span>
+                                    </a>
+                                </li>
+                            ';
+                        }else{
+                            echo '';
+                        }
+					?>
+
                 </ul>
             
             </nav><!--.side-menu-->

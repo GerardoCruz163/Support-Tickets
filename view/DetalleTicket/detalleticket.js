@@ -176,6 +176,8 @@ $(document).ready(function(){
             $('#tick_titulo').val(data.tick_titulo);
             $('#tickd_descripusu').summernote('code', data.tick_descrip);
     
+            $('#prio_nom').val(data.prio_nom);
+
             if(data.tick_estado_texto == 'Cerrado'){
     
                 $('#pnldetalle').hide();

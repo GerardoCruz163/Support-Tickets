@@ -43,14 +43,18 @@ $(document).ready(function() {
         $.post("../../controller/usuario.php?op=combo_soporte", { cat_id: cat_id }, function(data){
             $('#usu_asig').html(data); 
         });
-    })
+    });
+
+    $.post("../../controller/prioridad.php?op=combo",function(data, status){
+        $('#prio_id').html(data);
+    });
 });
 
 
 function guardaryeditar(e){
     e.preventDefault();
     var formData = new FormData($("#ticket_form")[0]);
-    if ($('#tick_descrip').summernote('isEmpty') || $('#tick_titulo').val()=='' || $("#cats_id").val()==''){
+    if ($('#tick_descrip').summernote('isEmpty') || $('#tick_titulo').val()=='' || $("#cats_id").val()=='' || $("#usu_asig").val()=='' || $("#prio_id").val()==''){
         swal("¡Advertencia!", "Campos vacios", "warning");
     }else{
         var totalFiles = $('#fileElem').val().length;

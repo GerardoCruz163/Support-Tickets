@@ -57,11 +57,14 @@
 							<th style="width: 2%;">#</th>
 							<th style="width: 8%;">Categoria</th>
 							<th class="d-none d-sm-table-cell" style="width: 8%;">Titulo</th>
-							<th class="d-none d-sm-table-cell" style="width: 4%;">Fecha de creación</th>
-							<th class="d-none d-sm-table-cell" style="width: 10%;">Solicitante</th>
+							<th class="d-none d-sm-table-cell" style="width: 8%;">Prioridad</th>
+							<th class="d-none d-sm-table-cell" style="width: 4%;">Creación</th>
+							<th class="d-none d-sm-table-cell" style="width: 7%;">Solicitante</th>
 							<th class="d-none d-sm-table-cell" style="width: 5%;">Area</th>
 							<th class="d-none d-sm-table-cell" style="width: 5%;">Estado</th>
-							<th class="d-none d-sm-table-cell" style="width: 4%;">Fecha de asignacion</th>
+							<th class="d-none d-sm-table-cell" style="width: 2%;">Asignación</th>
+							<th class="d-none d-sm-table-cell" style="width: 2%;">Cierre</th>
+
 							<th class="d-none d-sm-table-cell" style="width: 4%;">Soporte</th>
 
 							<th class="text-center" style="width: 5%;"></th>
