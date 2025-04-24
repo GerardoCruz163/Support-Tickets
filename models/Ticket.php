@@ -96,6 +96,41 @@
             return $resultado=$sql->fetchAll();
         }
 
+        public function listar_ticket_asig_x_usu($usu_id){
+            $conectar= parent::conexion();
+            parent::set_names();
+            $sql="SELECT 
+                tm_ticket.tick_id,
+                tm_ticket.usu_id,
+                tm_ticket.cat_id,
+                tm_ticket.tick_titulo,
+                tm_ticket.tick_descrip,
+                tm_ticket.tick_estado,
+                tm_ticket.fech_crea,
+                tm_ticket.fech_cierre,
+                tm_ticket.usu_asig,
+                tm_ticket.fech_asig,
+                tm_usuario.usu_nom,
+                tm_usuario.usu_ape,
+                tm_area.area_nom,
+                tm_categoria.cat_nom,
+                tm_ticket.prio_id,
+                tm_prioridad.prio_nom
+                FROM 
+                tm_ticket
+                INNER join tm_categoria on tm_ticket.cat_id = tm_categoria.cat_id
+                INNER join tm_usuario on tm_ticket.usu_id = tm_usuario.usu_id
+                INNER join tm_area on tm_usuario.area_id = tm_area.area_id
+                INNER join tm_prioridad on tm_ticket.prio_id = tm_prioridad.prio_id
+                WHERE
+                tm_ticket.est = 1
+                AND tm_ticket.usu_asig=?";
+            $sql=$conectar->prepare($sql);
+            $sql->bindValue(1, $usu_id);
+            $sql->execute();
+            return $resultado=$sql->fetchAll();
+        }
+
         public function listar_ticket(){
             $conectar= parent::conexion();
             parent::set_names();
@@ -161,7 +196,12 @@
             $sql->bindValue(2, $usu_id);
             $sql->bindValue(3, $tickd_descrip);
             $sql->execute();
-            return $resultado=$sql->fetchAll();
+            // TODO: Devuelve el ultimo ID ticket ingresado
+            $sql1="select last_insert_id() as 'tickd_id';";
+            $sql1=$conectar->prepare($sql1);
+            $sql1->execute();
+            return $resultado=$sql1->fetchAll(pdo::FETCH_ASSOC);
+            
         }
 
         public function insert_ticketdetalle_cerrar($tick_id,$usu_id){

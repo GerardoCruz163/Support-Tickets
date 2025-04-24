@@ -36,7 +36,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="nombreCompleto">Fecha de Cierre</label>
-                            <input type="text" class="form-control" id="lblnomidticket" name="lblnomidticket" readonly>
+                            <input type="text" class="form-control" id="lblfechcierre" name="lblfechcierre" readonly>
                         </div>
                     </div>
                 </section>

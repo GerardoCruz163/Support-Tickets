@@ -13,7 +13,7 @@
 
         case "insert":
             $datos=$ticket->insert_ticket($_POST["usu_id"],$_POST["cat_id"],$_POST["cats_id"],$_POST["tick_titulo"],$_POST["tick_descrip"], $_POST["usu_asig"], $_POST["prio_id"]);
-            if (is_array($datos)==true and count($datos)>0){
+                {
                 foreach ($datos as $row){
                     $output["tick_id"] = $row["tick_id"];
 
@@ -263,7 +263,41 @@
         break;
 
         case "insertdetalle":
-            $ticket->insert_ticketdetalle($_POST["tick_id"],$_POST["usu_id"],$_POST["tickd_descrip"]);
+            $datos=$ticket->insert_ticketdetalle($_POST["tick_id"],$_POST["usu_id"],$_POST["tickd_descrip"]);
+            if (is_array($datos)==true and count($datos)>0){
+                foreach($datos as $row){
+                    //obtener tickd_id de $datos
+                    $output["tickd_id"] = $row["tickd_id"];
+                    //se verifica si hay archivos desde vista
+                    if (!isset($_FILES['files']) || empty($_FILES['files']['name'][0])){
+
+                    }else{
+                        //contar registros
+                        $countfiles = count($_FILES['files']['name']);
+                        //ruta de los documentos
+                        $ruta = "../public/document_detalle/".$output["tickd_id"]."/";
+                        //arreglo de archivos
+                        $files_arr = array();
+
+                        //verifica si la ruta existe
+                        if (!file_exists($ruta)) {
+                            //en caso de no existir, la crea
+                            mkdir($ruta, 0777, true);
+                        }
+
+                        //recorrer todos los registros
+                        for ($index = 0; $index < $countfiles; $index++) {
+                            $doc1 = $_FILES['files']['tmp_name'][$index];
+                            $destino = $ruta.$_FILES['files']['name'][$index];
+
+                            $documento->insert_documento_detalle( $output["tickd_id"],$_FILES['files']['name'][$index]);
+
+                            move_uploaded_file($doc1,$destino);
+                        }
+                    }
+                }
+            }
+            echo json_encode($datos);
         break;
 
         case "total";

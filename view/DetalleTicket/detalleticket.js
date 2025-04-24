@@ -8,7 +8,7 @@ $(document).ready(function(){
 
     listarDetalle(tick_id);
 
-
+ 
     $('#tickd_descrip').summernote({
         height: 150,
         lang: "es-ES",
@@ -112,6 +112,7 @@ $(document).ready(function(){
         }else{
 
             $.post("../../controller/ticket.php?op=insertdetalle", {tick_id: tick_id, usu_id: usu_id, tickd_descrip: tickd_descrip}, function (data){
+                console.log(data);
                 listarDetalle(tick_id);
                 // swal("Mensaje enviado", "Se ha enviado tu mensaje correctamente.","success");
                 $('#tickd_descrip').summernote('reset');
@@ -169,6 +170,9 @@ $(document).ready(function(){
             $('#lblnomusuario').html(data.usu_nom + ' ' + data.usu_ape);
             $('#lblarea').html(data.area_nom);
             $('#lblfechcrea').html(data.fech_crea);
+
+            $('#lblfechcierre').val(data.fech_cierre);
+
             $('#lblnomidticket').html("Detalle ticket: "+data.tick_id);
             
             $('#cat_nom').val(data.cat_nom);

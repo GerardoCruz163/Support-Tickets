@@ -23,6 +23,7 @@ function listarDetalle(tick_id){
         $('#lblestado').val(data.tick_estado_texto);
         $('#lblnomusuario').val(data.usu_nom +' '+data.usu_ape);
         $('#lblfechcrea').val(data.fech_crea);
+        $('#lblfechcierre').val(data.fech_cierre);
         $('#lblnomidticket').val(data.tick_id);
         $('#cat_nom').val(data.cat_nom);
         $('#cats_nom').val(data.cats_nom);
