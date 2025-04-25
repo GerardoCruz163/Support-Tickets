@@ -214,7 +214,50 @@
                                     <div class="time"><?php echo date("H:i", strtotime($row["fech_crea"])); ?></div>
                                     <div class="cont">
                                         <div class="cont-in">
-                                            <p><?php echo $row['tickd_descrip']?></p>								
+                                            <p>
+                                                <?php echo $row['tickd_descrip'];?>
+                                            </p>	
+
+                                            <br>
+                                            
+                                            <?php
+                                                $datos_det= $documento->get_documento_detalle_x_ticketd($row["tickd_id"]);
+                                                if(is_array($datos_det)==true and count($datos_det)>0){
+                                                    ?>
+                                                        <p><strong>Documentos adjuntos</strong></p>
+
+                                                        <p>
+                                                            <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th style="width: 60%;">Nombre</th>
+                                                                        <th style="width: 40%;"></th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <?php
+                                                                        foreach($datos_det as $row_det){
+
+                                                                        }
+                                                                    ?>
+                                                                    <td><i class="fa fa-paperclip" aria-hidden="true"></i>
+                                                                        <?php echo $row_det["det_nom"];?>
+                                                                    </td>
+                                                                    <td>
+                                                                        
+                                                                        <a href="../../public/document_detalle/<?php echo $row_det["tickd_id"];?>/<?php echo $row_det["det_nom"];?>" target="_blank" class="btn btn-inline btn-primary btn-sm">
+                                                                            <i class="fa fa-eye" aria-hidden="true"></i>
+                                                                            Ver
+                                                                        </a>
+                                                                    </td>
+
+                                                                </tbody>
+                                                            </table>
+                                                        </p>  
+                                                    <?php
+                                                }
+                                            ?>
+                                            
                                         </div>
                                     </div>
                                 </section><!--.activity-line-action-->
@@ -312,7 +355,7 @@
             }
         break;
 
-        case "totalabierto";
+        case "totalabierto":
             $datos=$ticket->get_ticket_totalabierto();  
             if(is_array($datos)==true and count($datos)>0){
                 foreach($datos as $row)
@@ -324,7 +367,7 @@
             }
         break;
 
-        case "totalcerrado";
+        case "totalcerrado":
             $datos=$ticket->get_ticket_totalcerrado();  
             if(is_array($datos)==true and count($datos)>0){
                 foreach($datos as $row)
@@ -336,7 +379,7 @@
             }
         break;
 
-        case "grafico";
+        case "grafico":
             $datos=$ticket->get_ticket_grafico();  
             echo json_encode($datos);
         break;

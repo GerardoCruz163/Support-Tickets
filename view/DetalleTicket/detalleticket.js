@@ -110,7 +110,6 @@ $(document).ready(function(){
         if ($('#tickd_descrip').summernote('isEmpty')){
             swal("¡Advertencia!", "No puedes dejar el campo vacio", "warning");
         }else{
-
             var formData = new FormData();
             formData.append('tick_id',tick_id);
             formData.append('usu_id',usu_id);
@@ -128,9 +127,10 @@ $(document).ready(function(){
                 processData: false,
                 success: function(data){
                     listarDetalle(tick_id);
-                    
+                    // LIMPIAR INPUTFILE
+                    $('#fileElem').val('');
                     $('#tickd_descrip').summernote('reset');
-                    swal("Listo", "ok","success")
+                    
                 }
             });
 
