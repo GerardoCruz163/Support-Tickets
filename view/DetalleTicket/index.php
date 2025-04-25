@@ -90,6 +90,7 @@
 								<p></p>
 							</div>
 							
+							
 						</fieldset>
 					</div>
 				</div>
@@ -114,6 +115,13 @@
 							</div>
 						</fieldset>
 					</div>
+
+					<div class="col-lg-12">
+							<fieldset class="form-group">
+									<label class="form-label semibold" for="fileElem">Adjuntar documento</label>
+									<input type="file" name="fileElem" id="fileElem" class="form-control" multiple>
+							</fieldset>
+						</div>
 					<div class="col-lg-12">
 						<button type="button" id="btnenviar" name="action" value="add" class="btn btn-rounded btn-inline btn_primary">
 						<i class="fa fa-paper-plane" aria-hidden="true"></i>	

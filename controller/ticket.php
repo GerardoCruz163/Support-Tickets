@@ -83,7 +83,7 @@
                     $sub_array[] = '<a onClick="CambiarEstado('.$row["tick_id"].')"><span class="label label-pill label-danger">CERRADO</span></a>';
                 }
 
-                if($row["fech_asig"]==null){
+                if($row["fech_asig"]==null){    
                     $sub_array[] = '<span class="label label-pill label-defualt">--/--/----</span>';
                 }else{
                     $sub_array[] = date("d/m/Y H:i", strtotime($row["fech_asig"]));
