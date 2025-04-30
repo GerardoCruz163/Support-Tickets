@@ -89,9 +89,7 @@ $(document).ready(function(){
         var usu_idt = $('#usu_id').val(); // se utiliza usu_idt para que no haga conflicto con la variable usu_id global
 
         listardatatable(tick_titulo, cat_id, prio_id, usu_idt);
-        
     }
-
 });
 
 function ver(tick_id){

@@ -89,11 +89,38 @@
                         </a>
                     </li>
                     <li class="aquamarine">
-                        <a href="..\MntUsuario\">
+                        <a href="..\MtnUsuario\">
                             <span>
                             <i class="fa fa-users" aria-hidden="true"></i>
                             </span>
                             <span class="lbl">Mantenimiento a usuarios</span>
+                        </a>
+                    </li>
+
+                    <li class="blue-darker">
+                        <a href="..\MtnCategoria\">
+                            <span>
+                            <i class="fa fa-tag" aria-hidden="true"></i>
+                            </span>
+                            <span class="lbl">Mantenimiento a categorias</span>
+                        </a>
+                    </li>
+
+                    <li class="blue-sky">
+                        <a href="..\MtnSubategoria\">
+                            <span>
+                            <i class="fa fa-tags" aria-hidden="true"></i>
+                            </span>
+                            <span class="lbl">Mantenimiento a subcategorias</span>
+                        </a>
+                    </li>
+
+                    <li class="red">
+                        <a href="..\MtnPrioridad\">
+                            <span>
+                            <i class="fa fa-tachometer" aria-hidden="true"></i>
+                            </span>
+                            <span class="lbl">Mantenimiento a prioridades</span>
                         </a>
                     </li>
                 </ul>

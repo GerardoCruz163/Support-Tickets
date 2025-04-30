@@ -48,15 +48,17 @@
             return $resultado=$sql->fetchAll();
         }
 
-        public function update_usuario($usu_id,$usu_nom,$usu_ape,$usu_correo,$usu_pass,$rol_id){
+        public function update_usuario($usu_id,$usu_nom,$usu_ape,$usu_correo,$usu_pass,$rol_id,$area_id){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="UPDATE tm_usuario set 
+            $sql="UPDATE tm_usuario 
+            SET 
                 usu_nom =?,
                 usu_ape =?, 
                 usu_correo =?, 
                 usu_pass =?, 
-                rol_id =?
+                rol_id =?,
+                area_id = ?
                 WHERE
                 usu_id =?";
             $sql=$conectar->prepare($sql);
@@ -65,8 +67,8 @@
             $sql->bindValue(3, $usu_correo);
             $sql->bindValue(4, $usu_pass);
             $sql->bindValue(5, $rol_id);
-            $sql->bindValue(6, $usu_id);
-            
+            $sql->bindValue(6, $area_id);
+            $sql->bindValue(7, $usu_id);
             $sql->execute();
             return $resultado=$sql->fetchAll();
         }
