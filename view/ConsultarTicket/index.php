@@ -51,29 +51,86 @@
 			</header>
 
 			<div class="box-typical box-typical-padding">
-				<table id="ticket_data" class="table table-bordered table-striped table-vcenter js-dataTable-full">
-					<thead>
-						<tr>
-							<th style="width: 2%;">#</th>
-							<th style="width: 8%;">Categoria</th>
-							<th class="d-none d-sm-table-cell" style="width: 8%;">Titulo</th>
-							<th class="d-none d-sm-table-cell" style="width: 8%;">Prioridad</th>
-							<th class="d-none d-sm-table-cell" style="width: 4%;">Creación</th>
-							<th class="d-none d-sm-table-cell" style="width: 7%;">Solicitante</th>
-							<th class="d-none d-sm-table-cell" style="width: 5%;">Area</th>
-							<th class="d-none d-sm-table-cell" style="width: 5%;">Estado</th>
-							<th class="d-none d-sm-table-cell" style="width: 2%;">Asignación</th>
-							<th class="d-none d-sm-table-cell" style="width: 2%;">Cierre</th>
 
-							<th class="d-none d-sm-table-cell" style="width: 4%;">Soporte</th>
+				<div class="row" id="viewuser">
+					<div class="col-lg-3">
+						<fieldset class="form-group">
+							<label class="form-label" for="tick_titulo">Titulo</label>
+							<input type="text" class="form-control" id="tick_titulo" name="tick_titulo" placeholder="Titulo" required>
+						</fieldset>
+					</div>
 
-							<th class="text-center" style="width: 5%;"></th>
-						</tr>
-					</thead>
-					<tbody>
+					<div class="col-lg-2">
+						<fieldset class="form-group">
+							<label class="form-label" for="cat_id">Categoria</label>
+							<select class="select2" id="cat_id" name="cat_id" data-placeholder="Seleccionar">
+								<option label="Seleccionar">Seleccionar</option>
+							</select>
+						</fieldset>
+					</div>
 
-					</tbody>
-				</table>
+					<div class="col-lg-2">
+						<fieldset class="form-group">
+							<label class="form-label" for="prio_id">Prioridad</label>
+							<select class="select2" id="prio_id" name="prio_id">
+								
+							</select>
+						</fieldset>
+					</div>
+
+					<div class="col-lg-2">
+						<fieldset class="form-group">
+							<label class="form-label" for="usu_id">Usuario</label>
+							<select class="select2" id="usu_id" name="usu_id">
+								
+							</select>
+						</fieldset>
+					</div>
+
+					<div class="col-lg-1">
+						<fieldset class="form-group">
+							<label class="form-label" for="btnfiltrar">&nbsp;</label>
+							<button type="submit" class="btn btn-rounded btn-primary btn-block" id="btnfiltrar" required>
+								Filtrar
+								
+							</button>
+						</fieldset>
+					</div>
+
+					<div class="col-lg-1">
+						<fieldset class="form-group">
+							<label class="form-label" for="btntodo">&nbsp;</label>
+							<button class="btn btn-rounded btn-primary btn-block" id="btntodo" required>Ver todo</button>
+						</fieldset>
+					</div>
+				</div>
+
+				<div class="box-typical box-typical-padding" id="table">
+					<table id="ticket_data" class="table table-bordered table-striped table-vcenter js-dataTable-full">
+						<thead>
+							<tr>
+								<th style="width: 2%;">#</th>
+								<th style="width: 8%;">Categoria</th>
+								<th class="d-none d-sm-table-cell" style="width: 8%;">Titulo</th>
+								<th class="d-none d-sm-table-cell" style="width: 8%;">Prioridad</th>
+								<th class="d-none d-sm-table-cell" style="width: 4%;">Creación</th>
+								<th class="d-none d-sm-table-cell" style="width: 7%;">Solicitante</th>
+								<th class="d-none d-sm-table-cell" style="width: 5%;">Area</th>
+								<th class="d-none d-sm-table-cell" style="width: 5%;">Estado</th>
+								<th class="d-none d-sm-table-cell" style="width: 2%;">Asignación</th>
+								<th class="d-none d-sm-table-cell" style="width: 2%;">Cierre</th>
+	
+								<th class="d-none d-sm-table-cell" style="width: 4%;">Soporte</th>
+	
+								<th class="text-center" style="width: 5%;"></th>
+							</tr>
+						</thead>
+						<tbody>
+	
+						</tbody>
+					</table>
+
+				</div>
 			</div>
 		</div><!--.container-fluid-->
 	</div><!--.page-content-->

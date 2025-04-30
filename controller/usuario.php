@@ -118,6 +118,16 @@
             }
         break;
 
+        case "combo_usuarios";
+            $datos = $usuario->get_usuario();
+            if(is_array($datos)==true and count($datos)>0){
+                $html.= "<option label='Seleccionar'></option>";
+                foreach($datos as $row){
+                    $html.= "<option value='".$row['usu_id']."'>".$row['usu_nom'].' '.$row['usu_ape']."</option>";
+                }
+                echo $html;
+            }
+        break;
 
         case "combo_soporte":
             $datos = $usuario->get_usuario_x_area_cat($_POST["cat_id"]);

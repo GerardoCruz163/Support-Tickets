@@ -1,7 +1,7 @@
 <?php
     if($_SESSION["rol_id"] == 1){ /**SI EL ROL ES USUARIO */
         ?>
-            <nav class="side-menu">
+            <nav class="side-menu ">
                 
                 <ul class="side-menu-list">
                     <li class="blue-dirty">
