@@ -10,44 +10,21 @@
 
             <form method="post" id="usuario_form">
                 <div class="modal-body">
-                    <input type="hidden" id="usu_id" name="usu_id">
+                    <input type="hidden" id="cats_id" name="cats_id">
     
                     <div class="form-group">
-                        <label class="form-label" for="usu_nom">Nombre/s</label>
-                        <input type="text" class="form-control" id="usu_nom" name="usu_nom" placeholder="Ingrese su/s nombre/s" required>
-                    </div>
-    
-                    <div class="form-group">
-                        <label class="form-label" for="usu_ape">Apellido/s</label>
-                        <input type="text" class="form-control" id="usu_ape" name="usu_ape" placeholder="Ingrese su/s apellido/s" required>
-                    </div>
-    
-                    <div class="form-group">
-                        <label class="form-label" for="usu_correo">Correo electronico</label>
-                        <input type="email" class="form-control" id="usu_correo" name="usu_correo" placeholder="ejemplo@tecnologisticaaduanal.com" required>
-                    </div>
-    
-                    <div class="form-group">
-                        <label class="form-label" for="usu_pass">Contraseña</label>
-                        <input type="text" class="form-control" id="usu_pass" name="usu_pass" placeholder="Contraseña" required>
-                    </div>
-    
-                    <div class="form-group">
-                        <label class="form-label" for="rol_id">Rol de usuario</label>
-                        <select class="select2" id="rol_id" name="rol_id">
-                            <option value="1">Usuario</option>
-                            <option value="2">Soporte</option>
+                        <label class="form-label" for="cat_id">Categoria</label>
+                        <select class="select2" id="cat_id" name="cat_id">
+                            
                         </select>
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label" for="area_id">Area</label>
-                        <select class="select2" id="area_id" name="area_id">
-                            <option value="1">Sistemas</option>
-                            <option value="2">Trafico</option>
-                            <option value="3">Contabilidad</option>
-                        </select>
+                        <label class="form-label" for="cats_nom">Nombre/s</label>
+                        <input type="text" class="form-control" id="cats_nom" name="cats_nom" placeholder="Ingrese nueva subcategoria" required>
                     </div>
+    
+                    
                     
                 </div>
                 <div class="modal-footer">

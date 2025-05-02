@@ -10,7 +10,7 @@ function guardaryeditar(e){
     e.preventDefault();
 	var formData = new FormData($("#usuario_form")[0]);
     $.ajax({
-        url: "../../controller/usuario.php?op=guardaryeditar",
+        url: "../../controller/subcategoria.php?op=guardaryeditar",
         type: "POST",
         data: formData,
         contentType: false,
@@ -46,7 +46,7 @@ $(document).ready(function(){
                 'pdfHtml5'
                 ],
         "ajax":{
-            url: '../../controller/usuario.php?op=listar',
+            url: '../../controller/subcategoria.php?op=listar',
             type : "post",
             dataType : "json",							
             error: function(e){
@@ -89,7 +89,7 @@ $(document).ready(function(){
 function editar(usu_id){
     $('#mdltitulo').html('Editar datos del usuario');
 
-    $.post("../../controller/usuario.php?op=mostrar", {usu_id: usu_id}, function (data){
+    $.post("../../controller/subcategoria.php?op=mostrar", {usu_id: usu_id}, function (data){
         data = JSON.parse(data);
         $('#usu_id').val(data.usu_id);
         $('#usu_nom').val(data.usu_nom);
@@ -117,7 +117,7 @@ function eliminar(usu_id){
         },
         function(isConfirm) {
             if (isConfirm) {
-                $.post("../../controller/usuario.php?op=eliminar", {usu_id: usu_id}, function (data){
+                $.post("../../controller/subcategoria.php?op=eliminar", {usu_id: usu_id}, function (data){
                     
                 });
 

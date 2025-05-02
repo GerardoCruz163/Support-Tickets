@@ -101,7 +101,7 @@ function eliminar(cat_id){
     swal(
         {
             title: "TLA Support Tracing",
-            text: "¿Estas segur@ de eliminar este usuario?",
+            text: "¿Estas segur@ de eliminar esta categoria?",
             type: "error",
             showCancelButton: true,
             confirmButtonClass: "btn-danger",
@@ -120,7 +120,7 @@ function eliminar(cat_id){
                 
                 swal({
                     title: "TLA Support Tracing",
-                    text: "Usuario eliminado.",
+                    text: "Categoria eliminada.",
                     type: "success",
                     confirmButtonClass: "btn-success"
                 });
