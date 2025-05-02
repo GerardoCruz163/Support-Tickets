@@ -22,8 +22,8 @@ function guardaryeditar(e){
             $('#usuario_data').DataTable().ajax.reload();
 
             swal({
-                title: "TLA Support Tracing",
-                text: "Se registro correctamente.",
+                title: "HelpDesk!",
+                text: "Completado.",
                 type: "success",
                 confirmButtonClass: "btn-success"
             });
@@ -31,7 +31,12 @@ function guardaryeditar(e){
     }); 
 }
 
-$(document).ready(function(){ 
+$(document).ready(function(){
+
+    $.post("../../controller/categoria.php?op=combo",function(data, status){
+        $('#cat_id').html(data);
+    });
+
     tabla=$('#usuario_data').dataTable({
         "aProcessing": true,
         "aServerSide": true,
@@ -48,7 +53,7 @@ $(document).ready(function(){
         "ajax":{
             url: '../../controller/subcategoria.php?op=listar',
             type : "post",
-            dataType : "json",							
+            dataType : "json",						
             error: function(e){
                 console.log(e.responseText);	
             }
@@ -85,56 +90,52 @@ $(document).ready(function(){
     }).DataTable(); 
 });
 
+function editar(cats_id){
+    $('#mdltitulo').html('Editar Registro');
 
-function editar(usu_id){
-    $('#mdltitulo').html('Editar datos del usuario');
-
-    $.post("../../controller/subcategoria.php?op=mostrar", {usu_id: usu_id}, function (data){
+    $.post("../../controller/subcategoria.php?op=mostrar", {cats_id : cats_id}, function (data) {
         data = JSON.parse(data);
-        $('#usu_id').val(data.usu_id);
-        $('#usu_nom').val(data.usu_nom);
-        $('#usu_ape').val(data.usu_ape);
-        $('#usu_correo').val(data.usu_correo);
-        $('#usu_pass').val(data.usu_pass);
-        $('#rol_id').val(data.rol_id).trigger('change');
-        $('#area_id').val(data.area_id).trigger('change');
+        $('#cats_id').val(data.cats_id);
+        $('#cat_id').val(data.cat_id).trigger('change');
+        $('#cats_nom').val(data.cats_nom);
     });
+
     $('#modalmantenimiento').modal('show');
 }
 
-function eliminar(usu_id){
-    swal(
-        {
-            title: "TLA Support Tracing",
-            text: "¿Estas segur@ de eliminar este usuario?",
-            type: "error",
-            showCancelButton: true,
-            confirmButtonClass: "btn-danger",
-            confirmButtonText: "Si",
-            cancelButtonText: "No",
-            closeOnConfirm: false,
-            
-        },
-        function(isConfirm) {
-            if (isConfirm) {
-                $.post("../../controller/subcategoria.php?op=eliminar", {usu_id: usu_id}, function (data){
-                    
-                });
+function eliminar(cats_id){
+    swal({
+        title: "HelpDesk",
+        text: "Esta seguro de Eliminar el registro?",
+        type: "error",
+        showCancelButton: true,
+        confirmButtonClass: "btn-danger",
+        confirmButtonText: "Si",
+        cancelButtonText: "No",
+        closeOnConfirm: false
+    },
+    function(isConfirm) {
+        if (isConfirm) {
+            $.post("../../controller/subcategoria.php?op=eliminar", {cats_id : cats_id}, function (data) {
 
-                $('#usuario_data').DataTable().ajax.reload();
-                
-                swal({
-                    title: "TLA Support Tracing",
-                    text: "Usuario eliminado.",
-                    type: "success",
-                    confirmButtonClass: "btn-success"
-                });
-            }
+            }); 
+
+            $('#usuario_data').DataTable().ajax.reload();	
+
+            swal({
+                title: "HelpDesk!",
+                text: "Registro Eliminado.",
+                type: "success",
+                confirmButtonClass: "btn-success"
+            });
         }
-    );
+    });
 }
-$(document).on("click","#btnnuevo",function(){
-    $('#mdltitulo').html('Nuevo Usuario');
+
+$(document).on("click","#btnnuevo", function(){
+    $('#cats_id').val('');
+    $('#cat_id').val('').trigger('change');
+    $('#mdltitulo').html('Nuevo Registro');
     $('#usuario_form')[0].reset();
     $('#modalmantenimiento').modal('show');
 });

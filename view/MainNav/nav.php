@@ -107,7 +107,7 @@
                     </li>
 
                     <li class="blue-sky">
-                        <a href="..\MtnSubategoria\">
+                        <a href="..\MtnSubcategoria\">
                             <span>
                             <i class="fa fa-tags" aria-hidden="true"></i>
                             </span>

@@ -41,7 +41,8 @@
 				<table id="usuario_data" class="table table-bordered table-striped table-vcenter js-dataTable-full">
 					<thead>
 						<tr>
-							<th style="width: 8%;">Nombre</th>
+							<th style="width: 8%;">Categoria</th>
+							<th style="width: 8%;">Subcategoria</th>
 							<th class="d-none d-sm-table-cell" style="width: 5%;"></th>
 							<th class="d-none d-sm-table-cell" style="width: 5%;"></th>
 							
@@ -62,7 +63,7 @@
 
 	<?php require_once("modalmantenimiento.php");?>
 	<?php require_once("../MainJs/js.php");?>
-	<script type="text/javascript" src="mtnsubcategorias.js"></script>
+	<script type="text/javascript" src="mtnsubcategoria.js"></script>
 	
 
 <script src="js/app.js"></script>

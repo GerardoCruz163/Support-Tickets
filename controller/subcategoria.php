@@ -1,20 +1,9 @@
 <?php
     require_once("../config/conexion.php");
     require_once("../models/Subcategoria.php");
-    $subcategoria=new Subcategoria();
+    $subcategoria = new Subcategoria();
 
     switch($_GET["op"]){
-        case "combo":
-            $datos= $subcategoria->get_subcategoria($_POST["cat_id"]);
-            if(is_array($datos)==true and count($datos)>0){
-                $html="<option></option>";
-                foreach($datos as $row)
-                {
-                    $html.= "<option value='".$row['cats_id']."'>".$row['cats_nom']."</option>";
-                }
-                echo $html;
-            }
-        break;
 
         case "guardaryeditar":
             if(empty($_POST["cats_id"])){
@@ -58,6 +47,19 @@
                     $output["cats_nom"] = $row["cats_nom"];
                 }
                 echo json_encode($output);
+            }
+            break;
+
+        case "combo":
+            $datos = $subcategoria->get_subcategoria($_POST["cat_id"]);
+            $html="";
+            $html.="<option label='Seleccionar'></option>";
+            if(is_array($datos)==true and count($datos)>0){
+                foreach($datos as $row)
+                {
+                    $html.= "<option value='".$row['cats_id']."'>".$row['cats_nom']."</option>";
+                }
+                echo $html;
             }
             break;
     }

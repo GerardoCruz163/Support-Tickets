@@ -24,8 +24,6 @@
                         <input type="text" class="form-control" id="cats_nom" name="cats_nom" placeholder="Ingrese nueva subcategoria" required>
                     </div>
     
-                    
-                    
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-rounded btn-default" data-dismiss="modal">Cerrar</button>
