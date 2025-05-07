@@ -21,6 +21,28 @@
         case "actualizar":
             $notificacion->update_notificacion_estado($_POST["not_id"]);
         break;
+
+        // case "leido":
+        //     $notificacion->update_notificacion_estado_read($_POST["not_id"]);
+        // break;
+
+        case "listar":
+            $datos=$notificacion->get_notificacion_x_usu2($_POST["usu_id"]);
+            $data= Array();
+            foreach($datos as $row){
+                $sub_array = array();
+                $sub_array[] = $row["not_mensaje"]. ' ' . $row["tick_id"]   ;
+                $sub_array[] = '<button type="button" onClick="ver('.$row["tick_id"].');"  id="'.$row["tick_id"].'" class="btn btn-inline btn-info btn-sm ladda-button"><i class="fa fa-eye"></i></button>';
+                $data[] = $sub_array;
+            }
+    
+            $results = array(
+                "sEcho"=>1,
+                "iTotalRecords"=>count($data),
+                "iTotalDisplayRecords"=>count($data),
+                "aaData"=>$data);
+            echo json_encode($results);
+        break;
     }
 
 ?>

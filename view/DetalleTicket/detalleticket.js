@@ -210,6 +210,8 @@ $(document).ready(function(){
                 $('#pnldetalle').hide();
             }
         });
+
+        
     }
 });
 

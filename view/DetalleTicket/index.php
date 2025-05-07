@@ -139,7 +139,7 @@
 
 	<?php require_once("../MainJs/js.php");?>
 	<script type="text/javascript" src="detalleticket.js"></script>
-	
+	<script type="text/javascript" src="../notificacion.js"></script>
 
 <script src="js/app.js"></script>
 </body>

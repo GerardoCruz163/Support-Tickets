@@ -13,7 +13,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	<title>Inicia sesion o Registrate: SUTRA</title>
+	<title>Inicia sesion: SuTra</title>
     
 	<link href="img/favicon.144x144.png" rel="apple-touch-icon" type="image/png" sizes="144x144">
 	<link href="img/favicon.114x114.png" rel="apple-touch-icon" type="image/png" sizes="114x114">
@@ -95,10 +95,10 @@
     </div><!--.page-center-->
 
 
-<script src="public/js/lib/jquery/jquery.min.js"></script>
-<script src="public/js/lib/tether/tether.min.js"></script>
-<script src="public/js/lib/bootstrap/bootstrap.min.js"></script>
-<script src="public/js/plugins.js"></script>
+    <script src="public/js/lib/jquery/jquery.min.js"></script>
+    <script src="public/js/lib/tether/tether.min.js"></script>
+    <script src="public/js/lib/bootstrap/bootstrap.min.js"></script>
+    <script src="public/js/plugins.js"></script>
     <script type="text/javascript" src="public/js/lib/match-height/jquery.matchHeight.min.js"></script>
     <script>
         $(function() {

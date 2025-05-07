@@ -22,7 +22,7 @@ function mostrar_notificacion(){
                     $.notify({
                         icon: 'glyphicon glyphicon-star',
                         message: data.not_mensaje,
-                        url: "http://localhost/HelpDesk_Tecno/view/DetalleTicket/?ID=" + data.tick_id //NOS REDIRIGE AL DETALLE DEL TICKET6
+                        url: "http://localhost/HelpDesk_Tecno/view/DetalleTicket/?ID=" + data.tick_id //NOS REDIRIGE AL DETALLE DEL TICKET
                     })
     
                     $.post("../../controller/notificacion.php?op=actualizar", {not_id: data.not_id}, function (data){
