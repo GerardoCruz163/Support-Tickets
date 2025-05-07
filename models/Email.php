@@ -12,8 +12,8 @@ require_once("../config/conexion.php");
 require_once("../Models/Ticket.php");
 
 class Email extends PHPMailer{
-    protected $gCorreo = 'logistica@tecnologisticaaduanal.com';
-    protected $gContrasena = 'Tecno*Julio';
+    protected $gCorreo = '';
+    protected $gContrasena = '';
 
     public function ticket_abierto($tick_id){
         $ticket = new Ticket();

@@ -118,6 +118,6 @@
     </script>
 <script src="public/js/app.js"></script>
 
-<script tyoe="text/javascript" src="index.js"></script>
+<script type="text/javascript" src="index.js"></script>
 </body>
 </html>
