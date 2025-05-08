@@ -28,8 +28,6 @@
 
     <link rel="stylesheet" href="../../public/css/main.css">
 
-	<script src="../../public/js/lib/jquery/jquery.min.js"></script>
-	<script src="../../public/js/lib/tether/tether.min.js"></script>
-	<script src="../../public/js/lib/bootstrap/bootstrap.min.js"></script>
+	
 
 </head>

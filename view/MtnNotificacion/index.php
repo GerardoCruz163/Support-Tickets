@@ -54,7 +54,7 @@
 		</div><!--.container-fluid-->
 	</div><!--.page-content-->
 
-	<?php require_once("../MainJs/js.php");?>
+	<?php require_once("../MainJS/js.php");?>
 	<script type="text/javascript" src="mtnnotificacion.js"></script>
 	<script type="text/javascript" src="../notificacion.js"></script>
 

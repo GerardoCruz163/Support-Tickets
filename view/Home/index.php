@@ -25,7 +25,7 @@
 			<header class="section-header">
 				<div class="tbl">
 					<div class="tbl-row">
-						<div class="tbl-cell">
+							<div class="tbl-cell">
 							<h3>Panel de inicio</h3>
 							<ol class="breadcrumb breadcrumb-simple">
 								<li><a href="#">Inicio</a></li>
@@ -83,7 +83,7 @@
 		</div><!--.container-fluid-->
 	</div><!--.page-content-->
 
-	<?php require_once("../MainJs/js.php");?>
+	<?php require_once("../MainJS/js.php");?>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
 	
