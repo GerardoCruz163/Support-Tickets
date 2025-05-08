@@ -60,7 +60,7 @@
 						</fieldset>
 					</div>
 
-					<div class="col-lg-2">
+					<div class="col-lg-3">
 						<fieldset class="form-group">
 							<label class="form-label" for="cat_id">Categoria</label>
 							<select class="select2" id="cat_id" name="cat_id" data-placeholder="Seleccionar">
@@ -77,33 +77,35 @@
 							</select>
 						</fieldset>
 					</div>
-
-					<div class="col-lg-2">
+					<div class="col-lg-3">
 						<fieldset class="form-group">
 							<label class="form-label" for="usu_id">Usuario</label>
 							<select class="select2" id="usu_id" name="usu_id">
 								
-							</select>
+								</select>
 						</fieldset>
 					</div>
-
-					<div class="col-lg-1">
+				</div>
+					
+				<div class="row" id="viewuser">
+					<div class="col-lg-2">
 						<fieldset class="form-group">
 							<label class="form-label" for="btnfiltrar">&nbsp;</label>
 							<button type="submit" class="btn btn-rounded btn-primary btn-block" id="btnfiltrar" required>
-								Filtrar
-								
+								Filtrar	
 							</button>
 						</fieldset>
 					</div>
 
-					<div class="col-lg-1">
+					<div class="col-lg-2">
 						<fieldset class="form-group">
 							<label class="form-label" for="btntodo">&nbsp;</label>
 							<button class="btn btn-rounded btn-primary btn-block" id="btntodo" required>Ver todo</button>
 						</fieldset>
 					</div>
+
 				</div>
+				
 
 				<div class="box-typical box-typical-padding" id="table">
 					<table id="ticket_data" class="table table-bordered table-striped table-vcenter js-dataTable-full">
