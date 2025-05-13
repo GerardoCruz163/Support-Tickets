@@ -3,6 +3,11 @@
     require_once("../models/Usuario.php");
     $usuario=new Usuario();
 
+    //ENCRIPTADO DE LA CONTRASEÑA 
+    $key = "mi_key_secret";
+    $cipher = "aes-256-cbc";
+    $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length($cipher));
+
     switch($_GET["op"]){
         case "guardaryeditar":
             if(empty($_POST["usu_id"])){
@@ -58,7 +63,12 @@
                     $output["usu_nom"] = $row["usu_nom"];
                     $output["usu_ape"] = $row["usu_ape"];
                     $output["usu_correo"] = $row["usu_correo"];
-                    $output["usu_pass"] = $row["usu_pass"];
+
+                    $iv_dec = substr(base64_decode($row["usu_pass"]), 0, openssl_cipher_iv_length($cipher));
+                    $cifradoSinIV = substr(base64_decode($row["usu_pass"]), openssl_cipher_iv_length($cipher));
+                    $descifrado = openssl_decrypt($cifradoSinIV, $cipher, $key, OPENSSL_RAW_DATA, $iv_dec);
+
+                    $output["usu_pass"] = $descifrado;
                     $output["rol_id"] = $row["rol_id"];
                     $output["area_id"] = $row["area_id"];
                 }
@@ -142,7 +152,10 @@
         
         //CONTROLLER PARA ACTUALIZAR LA CONTRASENA
         case "password":
-            $usuario->update_usuario_pass($_POST["usu_id"], $_POST["usu_pass"]);
+            $cifrado = openssl_encrypt($_POST["usu_pass"], $cipher, $key,OPENSSL_RAW_DATA, $iv);
+            $textoCifrado = base64_encode($iv . $cifrado);
+
+            $usuario->update_usuario_pass($_POST["usu_id"], $textoCifrado);
         break;
     }
 ?>

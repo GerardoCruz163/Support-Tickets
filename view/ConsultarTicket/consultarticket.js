@@ -10,7 +10,7 @@ function init(){
 
 $(document).ready(function(){
     
-    
+        
     $.post("../../controller/categoria.php?op=combo",function(data, status){
         $('#cat_id').html(data);
     });
@@ -92,9 +92,17 @@ $(document).ready(function(){
     }
 });
 
-function ver(tick_id){
-    window.open('http://localhost:80/HelpDesk_Tecno/view/DetalleTicket/?ID='+tick_id+'');
-}
+// function ver(tick_id){
+//     console.log(tick_id);
+//     // 
+// }
+
+// TODO: Link para ver detalle de ticket a otra ventana
+$(document).on("click",".btn-inline", function(){
+    const ciphertext = $(this).data("ciphertext");
+    console.log(ciphertext);
+    window.open('http://localhost:80/HelpDesk_Tecno/view/DetalleTicket/?ID='+ciphertext+'');
+});
 
 function asignar(tick_id){
     $.post("../../controller/ticket.php?op=mostrar", {tick_id : tick_id}, function (data){

@@ -87,24 +87,32 @@
 					</div>
 				</div>
 					
-				<div class="row" id="viewuser">
-					<div class="col-lg-2">
-						<fieldset class="form-group">
-							<label class="form-label" for="btnfiltrar">&nbsp;</label>
-							<button type="submit" class="btn btn-rounded btn-primary btn-block" id="btnfiltrar" required>
-								Filtrar	
-							</button>
-						</fieldset>
-					</div>
-
-					<div class="col-lg-2">
-						<fieldset class="form-group">
-							<label class="form-label" for="btntodo">&nbsp;</label>
-							<button class="btn btn-rounded btn-primary btn-block" id="btntodo" required>Ver todo</button>
-						</fieldset>
-					</div>
-
-				</div>
+				<?php
+					if($_SESSION['rol_id']==1){
+						echo '';
+					}else{
+						echo '
+						<div class="row" id="viewuser">
+							<div class="col-lg-2">
+								<fieldset class="form-group">
+									<label class="form-label" for="btnfiltrar">&nbsp;</label>
+									<button type="submit" class="btn btn-rounded btn-primary btn-block" id="btnfiltrar" required>
+										Filtrar	
+									</button>
+								</fieldset>
+							</div>
+		
+							<div class="col-lg-2">
+								<fieldset class="form-group">
+									<label class="form-label" for="btntodo">&nbsp;</label>
+									<button class="btn btn-rounded btn-primary btn-block" id="btntodo" required>Ver todo</button>
+								</fieldset>
+							</div>
+	
+						</div>';
+					}
+				?>
+				
 				
 
 				<div class="box-typical box-typical-padding" id="table">
@@ -128,7 +136,6 @@
 							</tr>
 						</thead>
 						<tbody>
-	
 						</tbody>
 					</table>
 

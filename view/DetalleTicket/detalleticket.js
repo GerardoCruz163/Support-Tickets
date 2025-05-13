@@ -4,10 +4,42 @@ function init(){
 }
 
 $(document).ready(function(){
-    var tick_id=getUrlParameter('ID');
+    
+    const url = window.location.href;
+    const params = new URLSearchParams(new URL(url).search);
+    const tick_id = params.get("ID");
+    const decoded_id =  decodeURIComponent(tick_id);
+    const id = decoded_id.replace(/\s/g, '+'); 
 
-    listarDetalle(tick_id);
+    $.post("../../controller/ticket.php?op=listardetalle", {tick_id: tick_id}, function (data){
+        console.log(data);
+    
+        $('#lbldetalle').html(data);
+    });
 
+    $.post("../../controller/ticket.php?op=mostrar", {tick_id: tick_id}, function (data){
+        data=JSON.parse(data);
+        $('#lblestado').html(data.tick_estado);
+        $('#lblnomusuario').html(data.usu_nom + ' ' + data.usu_ape);
+        $('#lblarea').html(data.area_nom);
+        $('#lblfechcrea').html(data.fech_crea);
+
+        $('#lblfechcierre').val(data.fech_cierre);
+
+        $('#lblnomidticket').html("Detalle ticket: "+data.tick_id);
+        
+        $('#cat_nom').val(data.cat_nom);
+        $('#cats_nom').val(data.cats_nom);
+        $('#tick_titulo').val(data.tick_titulo);
+        $('#tickd_descripusu').summernote('code', data.tick_descrip);
+
+        $('#prio_nom').val(data.prio_nom);
+
+        if(data.tick_estado_texto == 'Cerrado'){
+
+            $('#pnldetalle').hide();
+        }
+    });
  
     $('#tickd_descrip').summernote({
         height: 150,
@@ -181,53 +213,8 @@ $(document).ready(function(){
         );
     })
 
-    function listarDetalle(tick_id){
-        $.post("../../controller/ticket.php?op=listardetalle", {tick_id: tick_id}, function (data){
-        
-            $('#lbldetalle').html(data);
-        });
-
-        $.post("../../controller/ticket.php?op=mostrar", {tick_id: tick_id}, function (data){
-            data=JSON.parse(data);
-            $('#lblestado').html(data.tick_estado);
-            $('#lblnomusuario').html(data.usu_nom + ' ' + data.usu_ape);
-            $('#lblarea').html(data.area_nom);
-            $('#lblfechcrea').html(data.fech_crea);
-
-            $('#lblfechcierre').val(data.fech_cierre);
-
-            $('#lblnomidticket').html("Detalle ticket: "+data.tick_id);
-            
-            $('#cat_nom').val(data.cat_nom);
-            $('#cats_nom').val(data.cats_nom);
-            $('#tick_titulo').val(data.tick_titulo);
-            $('#tickd_descripusu').summernote('code', data.tick_descrip);
-    
-            $('#prio_nom').val(data.prio_nom);
-
-            if(data.tick_estado_texto == 'Cerrado'){
-    
-                $('#pnldetalle').hide();
-            }
-        });
-
-        
-    }
 });
 
-var getUrlParameter = function getUrlParameter(sParam) {
-    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
-        sURLVariables = sPageURL.split('&'),
-        sParameterName,
-        i;
 
-    for (i = 0; i < sURLVariables.length; i++) {
-        sParameterName = sURLVariables[i].split('=');
-
-        if (sParameterName[0] === sParam) {
-            return sParameterName[1] === undefined ? true : sParameterName[1];
-        }
-    }
-};
 
 init();

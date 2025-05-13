@@ -55,6 +55,9 @@ $(document).ready(function(){
     }).DataTable(); 
 });
 
-function ver(tick_id){
-    window.open('http://localhost:80/HelpDesk_Tecno/view/DetalleTicket/?ID='+tick_id+'');
-}
+// TODO: Link para ver detalle de ticket a otra ventana
+$(document).on("click",".btn-inline", function(){
+    const ciphertext = $(this).data("ciphertext");
+    
+    window.open('http://localhost:80/HelpDesk_Tecno/view/DetalleTicket/?ID='+ciphertext+'');
+});

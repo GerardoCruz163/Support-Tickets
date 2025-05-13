@@ -91,6 +91,8 @@ function editar(usu_id){
 
     $.post("../../controller/usuario.php?op=mostrar", {usu_id: usu_id}, function (data){
         data = JSON.parse(data);
+
+        console.log(data);
         $('#usu_id').val(data.usu_id);
         $('#usu_nom').val(data.usu_nom);
         $('#usu_ape').val(data.usu_ape);

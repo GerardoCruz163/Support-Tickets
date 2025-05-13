@@ -3,6 +3,10 @@
     require_once("../models/Notificacion.php");
     $notificacion=new Notificacion();
 
+    $key = "mi_key_secret";
+    $cipher = "aes-256-cbc";
+    $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length($cipher));
+
     switch($_GET["op"]){
         case "mostrar";
             $datos=$notificacion->get_notificacion_x_usu($_POST["usu_id"]);  
@@ -31,8 +35,12 @@
             $data= Array();
             foreach($datos as $row){
                 $sub_array = array();
-                $sub_array[] = $row["not_mensaje"]. ' ' . $row["tick_id"]   ;
-                $sub_array[] = '<button type="button" onClick="ver('.$row["tick_id"].');"  id="'.$row["tick_id"].'" class="btn btn-inline btn-info btn-sm ladda-button"><i class="fa fa-eye"></i></button>';
+                $sub_array[] = $row["not_mensaje"]. ' ' . $row["tick_id"];
+
+                $cifrado = openssl_encrypt($row["tick_id"], $cipher, $key,OPENSSL_RAW_DATA, $iv);
+                $textoCifrado = base64_encode($iv . $cifrado);
+
+                $sub_array[] = '<button type="button" data-ciphertext="'.$textoCifrado.'"  id="'.$textoCifrado.'" class="btn btn-inline btn-primary btn-sm ladda-button"><i class="fa fa-pencil"></i></button>';
                 $data[] = $sub_array;
             }
     
