@@ -79,7 +79,7 @@
                     </div>
                     <div class="form-group">
                         <div class="float-right reset">
-                            <a href="reset-password.html">Cambiar contraseña</a>
+                            <a href="view/ResetPassword/">Recuperar contraseña</a>
                         </div>
 
                         <div class="float-left reset">

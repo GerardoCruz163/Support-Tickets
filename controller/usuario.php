@@ -3,6 +3,9 @@
     require_once("../models/Usuario.php");
     $usuario=new Usuario();
 
+    require_once("../models/Email.php");
+    $email=new Email();
+
     //ENCRIPTADO DE LA CONTRASEÑA 
     $key = "mi_key_secret";
     $cipher = "aes-256-cbc";
@@ -138,7 +141,7 @@
                 echo $html;
             }
         break;
-
+        
         case "combo_soporte":
             $datos = $usuario->get_usuario_x_area_cat($_POST["cat_id"]);
             $html = "<option label='Seleccionar'></option>";
@@ -156,6 +159,15 @@
             $textoCifrado = base64_encode($iv . $cifrado);
 
             $usuario->update_usuario_pass($_POST["usu_id"], $textoCifrado);
+        break;
+
+        case "correo";
+            $datos=$usuario->get_usuario_x_correo($_POST["usu_correo"]);  
+            if(is_array($datos)==true and count($datos)>0){
+                echo "Existe";
+            }else{
+                echo "error";
+            }
         break;
     }
 ?>

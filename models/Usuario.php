@@ -247,5 +247,50 @@
             $sql->execute();
             return $resultado=$sql->fetchAll();
         }
+
+        public function get_usuario_x_correo($usu_correo){
+            $conectar= parent::conexion();
+            parent::set_names();
+            $sql="SELECT * FROM tm_usuario Where usu_correo = ?";
+            $sql=$conectar->prepare($sql);
+            $sql->bindValue(1, $usu_correo);
+            $sql->execute();
+            return $resultado=$sql->fetchAll();
+        }
+
+        public function get_cambiar_contra_recuperar($usu_correo){
+            $conectar= parent::conexion();
+            parent::set_names();
+            $sql="UPDATE tm_usuario SET 
+                usu_pass = CONCAT(SUBSTRING(MD5(RAND()),1,3),LPAD(FLOOR(RAND()*1000),3,'0'))
+                WHERE
+                usu_correo = ?";
+            $sql=$conectar->prepare($sql);
+            $sql->bindValue(1, $usu_correo);
+            $sql->execute();
+            return $resultado=$sql->fetchAll();
+        }
+
+        public function encriptar_nueva_contra($usu_id,$usu_pass){
+            //ENCRIPTADO DE LA CONTRASEÑA 
+            $key = "mi_key_secret";
+            $cipher = "aes-256-cbc";
+            $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length($cipher));
+            $cifrado = openssl_encrypt($usu_pass, $cipher, $key,OPENSSL_RAW_DATA, $iv);
+            $textoCifrado = base64_encode($iv . $cifrado);
+    
+            $conectar= parent::conexion();
+            parent::set_names();
+            $sql="UPDATE tm_usuario 
+            SET 
+                usu_pass =?
+                WHERE
+                usu_id =?";
+            $sql=$conectar->prepare($sql);
+            $sql->bindValue(1, $textoCifrado);
+            $sql->bindValue(2, $usu_id);
+            $sql->execute();
+            return $resultado=$sql->fetchAll();
+        }
     }
 ?>

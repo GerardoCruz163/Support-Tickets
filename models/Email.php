@@ -1,19 +1,25 @@
 <?php
 
-require('../vendor/autoload.php');
-$dotenv = Dotenv\Dotenv::createImmutable('../');
-$dotenv->load();
+// require('../vendor/autoload.php');
+// $dotenv = Dotenv\Dotenv::createImmutable('../');
+// $dotenv->load();
 /* librerias necesarias para que el proyecto pueda enviar emails */
-require('class.phpmailer.php');
-include("class.smtp.php");
+// require('class.phpmailer.php');
+// include("class.smtp.php");
+
+require '../include/vendor/autoload.php';
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
 /* llamada de las clases necesarias que se usaran en el envio del mail */
 require_once("../config/conexion.php");
 require_once("../Models/Ticket.php");
+require_once("../Models/Usuario.php");
 
 class Email extends PHPMailer{
-    protected $gCorreo = '';
-    protected $gContrasena = '';
+    protected $gCorreo = 'logistica@tecnologisticaaduanal.com';
+    protected $gContrasena = 'Tecno*Julio';
 
     public function ticket_abierto($tick_id){
         $ticket = new Ticket();
@@ -51,7 +57,13 @@ class Email extends PHPMailer{
 
         $this->Body = $cuerpo;
         $this->AltBody = strip_tags("Ticket Abierto");
-        return $this->Send();
+
+        try{
+            $this->Send();
+            return true;
+        }catch(Exception $e){
+            return false;
+        }
     }
 
     public function ticket_cerrado($tick_id){
@@ -90,7 +102,13 @@ class Email extends PHPMailer{
 
         $this->Body = $cuerpo;
         $this->AltBody = strip_tags("Ticket Cerrado");
-        return $this->Send();
+
+        try{
+            $this->Send();
+            return true;
+        }catch(Exception $e){
+            return false;
+        }
     }
 
     public function ticket_asignado($tick_id){
@@ -129,8 +147,64 @@ class Email extends PHPMailer{
 
         $this->Body = $cuerpo;
         $this->AltBody = strip_tags("Ticket Cerrado");
-        return $this->Send();
+
+        try{
+            $this->Send();
+            return true;
+        }catch(Exception $e){
+            return false;
+        }
     }
+
+    public function recuperar_contrasena($usu_correo){
+        $usuario = new Usuario();
+
+        $usuario->get_cambiar_contra_recuperar($usu_correo);
+
+        $datos = $usuario->get_usuario_x_correo($usu_correo);
+        foreach($datos as $row){
+            $usu_id = $row["usu_id"];
+            $usu_ape = $row["usu_ape"];
+            $usu_nom = $row["usu_nom"];
+            $correo=$row["usu_correo"];
+            $usu_pass= $row["usu_pass"]; 
+        }
+        $this->isSMTP();
+        $this->Host = 'vmail.globalpc.net';//Aqui el server
+        $this->Port = 465;//Aqui el puerto
+        $this->SMTPAuth = true;
+        $this->Username = $this->gCorreo;
+        $this->Password = $this->gContrasena;
+        $this->From = $this->gCorreo;
+        $this->SMTPSecure = 'ssl';
+        $this->FromName = $this->tu_nombre = $usu_nom." recupera tu contraseña.";
+        $this->CharSet = 'UTF8';
+        $this->addAddress($usu_correo);
+        $this->WordWrap = 50;
+        $this->IsHTML(true);
+        $this->Subject = "TLA SuTra: Recuperación de contraseña.";
+        //Igual//
+        $cuerpo = file_get_contents('../public/RecuperarContra.html'); /*ruta del template en formato HTML */
+        /*parametros del template a remplazar */
+       
+        $cuerpo = str_replace("xusunom", $usu_nom, $cuerpo);
+        $cuerpo = str_replace("xusuape", $usu_ape, $cuerpo);
+        $cuerpo = str_replace("xnuevopass", $usu_pass, $cuerpo);
+
+        $this->Body = $cuerpo;
+        $this->AltBody = strip_tags("Recuperación de contraseña");
+
+        try{
+            $this->Send();
+
+            $usuario-> encriptar_nueva_contra($usu_id, $usu_pass);
+            return true;
+        }catch(Exception $e){
+            return false;
+        }
+    }
+
+    
 }
 
 ?>
