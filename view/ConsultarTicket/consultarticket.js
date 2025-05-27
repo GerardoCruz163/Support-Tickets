@@ -105,7 +105,7 @@ $(document).on("click",".btn-inline", function(){
 });
 
 function asignar(tick_id){
-    $.post("../../controller/ticket.php?op=mostrar", {tick_id : tick_id}, function (data){
+    $.post("../../controller/ticket.php?op=mostrar_noencry", {tick_id : tick_id}, function (data){
         data = JSON.parse(data);
         $('#tick_id').val(data.tick_id);
 

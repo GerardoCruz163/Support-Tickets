@@ -47,8 +47,12 @@
         break;
 
         case "update":
-            $ticket->update_ticket($_POST["tick_id"]);
-            $ticket->insert_ticketdetalle_cerrar($_POST["tick_id"], $_POST["usu_id"]);
+            $iv_dec = substr(base64_decode($_POST["tick_id"]), 0, openssl_cipher_iv_length($cipher));
+            $cifradoSinIV = substr(base64_decode($_POST["tick_id"]), openssl_cipher_iv_length($cipher));
+            $descifrado = openssl_decrypt($cifradoSinIV, $cipher, $key, OPENSSL_RAW_DATA, $iv_dec);
+
+            $ticket->update_ticket($descifrado);
+            $ticket->insert_ticketdetalle_cerrar($descifrado, $_POST["usu_id"]);
         break;
 
         case "reabrir":
@@ -465,6 +469,52 @@
 
         case "encuesta":
             $datos=$ticket->insert_encuesta($_POST["tick_id"], $_POST["tick_estre"],$_POST["tick_coment"]);  
+        break;
+
+        case "all_calendar":
+            $datos = $ticket->get_calendar_all();
+            echo json_encode($datos);
+        break;
+
+        case "usu_calendar":
+            $datos = $ticket->get_calendar_usu($_POST["usu_id"]);
+            echo json_encode($datos);
+        break;
+
+        case "mostrar_noencry";
+            
+
+            $datos=$ticket->listar_ticket_x_id($_POST["tick_id"]);  
+            if(is_array($datos)==true and count($datos)>0){
+                foreach($datos as $row)
+                {
+                    $output["tick_id"] = $row["tick_id"];
+                    $output["usu_id"] = $row["usu_id"];
+                    $output["cat_id"] = $row["cat_id"];
+                    $output["tick_titulo"] = $row["tick_titulo"];
+                    $output["tick_descrip"] = $row["tick_descrip"];
+
+                    if ($row["tick_estado"]=="Abierto"){
+                        $output["tick_estado"] = '<span class="label label-pill label-success">Abierto</span>';
+                    }else{
+                        $output["tick_estado"] = '<span class="label label-pill label-danger">Cerrado</span>';
+                    }
+
+                    $output["tick_estado_texto"] = $row["tick_estado"];
+                    $output["area_nom"] = $row["area_nom"];
+
+                    $output["fech_crea"] = date("d/m/Y H:i", strtotime($row["fech_crea"]));
+                    $output["fech_cierre"] = date("d/m/Y H:i", strtotime($row["fech_cierre"]));
+                    $output["usu_nom"] = $row["usu_nom"];
+                    $output["usu_ape"] = $row["usu_ape"];
+                    $output["cat_nom"] = $row["cat_nom"];
+                    $output["cats_nom"] = $row["cats_nom"];
+                    $output["tick_estre"] = $row["tick_estre"];
+                    $output["tick_coment"] = $row["tick_coment"];
+                    $output["prio_nom"] = $row["prio_nom"];
+                }
+                echo json_encode($output);
+            }   
         break;
     }
 ?>

@@ -184,23 +184,27 @@ $(document).ready(function(){
                 type: "warning",
                 showCancelButton: true,
                 confirmButtonClass: "btn-warning",
-                confirmButtonText: "Si",
+                confirmButtonText: "Si",    
                 cancelButtonText: "No",
                 closeOnConfirm: false,
                 
             },
             function(isConfirm) {
                 if (isConfirm) {
-                    var tick_id=getUrlParameter('ID');
+                    const url = window.location.href;
+                    const params = new URLSearchParams(new URL(url).search);
+                    const tick_id = params.get("ID");
+                    const decoded_id =  decodeURIComponent(tick_id);
+                    const id = decoded_id.replace(/\s/g, '+'); 
                     var usu_id = $('#user_idx').val();
-                    $.post("../../controller/ticket.php?op=update", {tick_id: tick_id, usu_id: usu_id}, function (data){
+                    $.post("../../controller/ticket.php?op=update", {tick_id: id, usu_id: usu_id}, function (data){
                         
                     });
 
-                    $.post("../../controller/email.php?op=ticket_cerrado", {tick_id: tick_id}, function (data){
+                    $.post("../../controller/email.php?op=ticket_cerrado", {tick_id: id}, function (data){
 
                     });
-                    listarDetalle(tick_id);
+                    //listarDetalle(tick_id); //aquiiiiiiiiiiiiiiiiiiiiiii
                     
                     swal({
                         title: "Ticket cerrado",

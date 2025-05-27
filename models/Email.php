@@ -121,6 +121,7 @@ class Email extends PHPMailer{
             $titulo=$row["tick_titulo"];
             $categoria=$row["cat_nom"];
             $correo=$row["usu_correo"]; 
+            
         }
         $this->isSMTP();
         $this->Host = 'vmail.globalpc.net';//Aqui el server

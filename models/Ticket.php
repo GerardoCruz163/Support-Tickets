@@ -379,6 +379,46 @@
             $sql->execute();
             return $resultado=$sql->fetchAll();
         }
+
+        public function get_calendar_all(){
+            $conectar= parent::conexion();
+            parent::set_names();
+            $sql="SELECT tm_ticket.tick_id as id, 
+            concat(tm_usuario.usu_nom, ' ', tm_usuario.usu_ape) as title, 
+            tm_ticket.fech_crea as start, 
+            CASE 
+            WHEN tm_ticket.tick_estado = 'Abierto' THEN 'green' 
+            WHEN tm_ticket.tick_estado = 'Cerrado' THEN 'red' 
+            else 'White' END as color, 
+            tm_ticket.tick_estado 
+            FROM tm_ticket 
+            INNER join tm_usuario 
+            on tm_ticket.usu_id = tm_usuario.usu_id;";
+            $sql=$conectar->prepare($sql);
+            $sql->execute();
+            return $resultado=$sql->fetchAll();
+        } 
+
+        public function get_calendar_usu($usu_id){
+            $conectar= parent::conexion();
+            parent::set_names();
+            $sql="SELECT tm_ticket.tick_id as id, 
+            concat(tm_usuario.usu_nom, ' ', tm_usuario.usu_ape) as title, 
+            tm_ticket.fech_crea as start, 
+            CASE 
+            WHEN tm_ticket.tick_estado = 'Abierto' THEN 'green' 
+            WHEN tm_ticket.tick_estado = 'Cerrado' THEN 'red' 
+            else 'White' END as color, 
+            tm_ticket.tick_estado 
+            FROM tm_ticket 
+            INNER join tm_usuario on tm_ticket.usu_id = tm_usuario.usu_id
+            WHERE
+            tm_ticket.usu_id=?;";
+            $sql=$conectar->prepare($sql);
+            $sql->bindValue(1, $usu_id);
+            $sql->execute();
+            return $resultado=$sql->fetchAll();
+        } 
     }
 
 ?>
