@@ -1,6 +1,5 @@
 function init(){
 
-
 }
 
 $(document).ready(function(){
@@ -11,13 +10,11 @@ $(document).ready(function(){
     const decoded_id =  decodeURIComponent(tick_id);
     const id = decoded_id.replace(/\s/g, '+'); 
 
-    $.post("../../controller/ticket.php?op=listardetalle", {tick_id: tick_id}, function (data){
-        console.log(data);
-    
+    $.post("../../controller/ticket.php?op=listardetalle", {tick_id: id}, function (data){
         $('#lbldetalle').html(data);
     });
 
-    $.post("../../controller/ticket.php?op=mostrar", {tick_id: tick_id}, function (data){
+    $.post("../../controller/ticket.php?op=mostrar", {tick_id: id}, function (data){
         data=JSON.parse(data);
         $('#lblestado').html(data.tick_estado);
         $('#lblnomusuario').html(data.usu_nom + ' ' + data.usu_ape);
@@ -133,92 +130,83 @@ $(document).ready(function(){
             }
         }
     }).DataTable();
-
-    $(document).on("click","#btnenviar",function(){
-        var tick_id = getUrlParameter('ID');
-        var usu_id = $('#user_idx').val();
-        var tickd_descrip = $('#tickd_descrip').val();
-
-        if ($('#tickd_descrip').summernote('isEmpty')){
-            swal("¡Advertencia!", "No puedes dejar el campo vacio", "warning");
-        }else{
-            var formData = new FormData();
-            formData.append('tick_id',tick_id);
-            formData.append('usu_id',usu_id);
-            formData.append('tickd_descrip',tickd_descrip);
-            var totalFiles = $('#fileElem').val().length;
-            for(var i = 0; i<totalFiles; i++){
-                formData.append("files[]", $('#fileElem')[0].files[i]);
-            }
-
-            $.ajax({
-                url: "../../controller/ticket.php?op=insertdetalle",
-                type: "POST",
-                data: formData,
-                contentType: false,
-                processData: false,
-                success: function(data){
-                    listarDetalle(tick_id);
-                    // LIMPIAR INPUTFILE
-                    $('#fileElem').val('');
-                    $('#tickd_descrip').summernote('reset');
-                    
-                }
-            });
-
-            // $.post("../../controller/ticket.php?op=insertdetalle", {tick_id: tick_id, usu_id: usu_id, tickd_descrip: tickd_descrip}, function (data){
-            //     console.log(data);
-            //     listarDetalle(tick_id);
-            //     // swal("Mensaje enviado", "Se ha enviado tu mensaje correctamente.","success");
-            //     $('#tickd_descrip').summernote('reset');
-            // });
-        }
-
-    })
-
-    $(document).on("click","#btncerrar",function(){
-        swal(
-            {
-                title: "TLA Support Tracing",
-                text: "¿Estas seguro de cerrar este ticket?",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonClass: "btn-warning",
-                confirmButtonText: "Si",    
-                cancelButtonText: "No",
-                closeOnConfirm: false,
-                
-            },
-            function(isConfirm) {
-                if (isConfirm) {
-                    const url = window.location.href;
-                    const params = new URLSearchParams(new URL(url).search);
-                    const tick_id = params.get("ID");
-                    const decoded_id =  decodeURIComponent(tick_id);
-                    const id = decoded_id.replace(/\s/g, '+'); 
-                    var usu_id = $('#user_idx').val();
-                    $.post("../../controller/ticket.php?op=update", {tick_id: id, usu_id: usu_id}, function (data){
-                        
-                    });
-
-                    $.post("../../controller/email.php?op=ticket_cerrado", {tick_id: id}, function (data){
-
-                    });
-                    //listarDetalle(tick_id); //aquiiiiiiiiiiiiiiiiiiiiiii
-                    
-                    swal({
-                        title: "Ticket cerrado",
-                        text: "Gracias por atender.",
-                        type: "success",
-                        confirmButtonClass: "btn-success"
-                    });
-                }
-            }
-        );
-    })
-
 });
 
+$(document).on("click","#btnenviar",function(){
 
+    var tick_id = getUrlParameter('ID'); // Aqui
+    var usu_id = $('#user_idx').val();
+    var tickd_descrip = $('#tickd_descrip').val();
+
+    if ($('#tickd_descrip').summernote('isEmpty')){
+        swal("¡Advertencia!", "No puedes dejar el campo vacio", "warning");
+    }else{
+        var formData = new FormData();
+        formData.append('tick_id',tick_id);
+        formData.append('usu_id',usu_id);
+        formData.append('tickd_descrip',tickd_descrip);
+        var totalFiles = $('#fileElem').val().length;
+        for(var i = 0; i<totalFiles; i++){
+            formData.append("files[]", $('#fileElem')[0].files[i]);
+        }
+
+        $.ajax({
+            url: "../../controller/ticket.php?op=insertdetalle",
+            type: "POST",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(data){
+                listarDetalle(tick_id);
+                console.log(tick_id);
+                // LIMPIAR INPUTFILE
+                $('#fileElem').val('');
+                
+                $('#tickd_descrip').summernote('reset');
+            }
+        });
+    }
+});
+
+$(document).on("click","#btncerrar",function(){
+    swal(
+        {
+            title: "TLA Support Tracing",
+            text: "¿Estas seguro de cerrar este ticket?",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonClass: "btn-warning",
+            confirmButtonText: "Si",    
+            cancelButtonText: "No",
+            closeOnConfirm: false,
+            
+        },
+        function(isConfirm) {
+            if (isConfirm) {
+                const url = window.location.href;
+                const params = new URLSearchParams(new URL(url).search);
+                const tick_id = params.get("ID");
+                const decoded_id =  decodeURIComponent(tick_id);
+                const id = decoded_id.replace(/\s/g, '+'); 
+                var usu_id = $('#user_idx').val();
+                $.post("../../controller/ticket.php?op=update", {tick_id: id, usu_id: usu_id}, function (data){
+                    
+                });
+
+                $.post("../../controller/email.php?op=ticket_cerrado", {tick_id: id}, function (data){
+
+                });
+                //listarDetalle(tick_id); //aquiiiiiiiiiiiiiiiiiiiiiii
+                
+                swal({
+                    title: "Ticket cerrado",
+                    text: "Gracias por atender.",
+                    type: "success",
+                    confirmButtonClass: "btn-success"
+                });
+            }
+        }
+    );
+});
 
 init();

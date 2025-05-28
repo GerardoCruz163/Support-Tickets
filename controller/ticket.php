@@ -389,6 +389,7 @@
         break;
 
         case "insertdetalle":
+            
             $datos=$ticket->insert_ticketdetalle($_POST["tick_id"],$_POST["usu_id"],$_POST["tickd_descrip"]);
             if (is_array($datos)==true and count($datos)>0){
                 foreach($datos as $row){
@@ -482,8 +483,6 @@
         break;
 
         case "mostrar_noencry";
-            
-
             $datos=$ticket->listar_ticket_x_id($_POST["tick_id"]);  
             if(is_array($datos)==true and count($datos)>0){
                 foreach($datos as $row)
