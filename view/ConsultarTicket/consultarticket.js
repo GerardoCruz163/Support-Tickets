@@ -50,6 +50,7 @@ $(document).ready(function(){
                     console.log(e.responseText);	
                 }
             },
+            "ordering": false,
             "bDestroy": true,
             "responsive": true,
             "bInfo":true,
@@ -116,6 +117,10 @@ function asignar(tick_id){
 
 function guardar(e){
     e.preventDefault();
+
+    $('#btnguardar').prop("disabled",true);
+    $('#btnguardar').html('<i class="fa fa-spinner fa-spin"></i> Enviando...');
+
 	var formData = new FormData($("#ticket_form")[0]);
     $.ajax({
         url: "../../controller/ticket.php?op=asignar",
@@ -124,13 +129,16 @@ function guardar(e){
         contentType: false,
         processData: false,
         success: function(datos){
-            var tick_id =$('#tick_id').val();
-            $.post("../../controller/email.php?op=ticket_asignado", {tick_id: tick_id}, function (data){
+            //var tick_id =$('#tick_id').val();
+            // $.post("../../controller/email.php?op=ticket_asignado", {tick_id: tick_id}, function (data){
 
-            });
+            // });
 
             $("#modalasignar").modal('hide');
             $('#ticket_data').DataTable().ajax.reload();
+
+            $('#btnguardar').prop("disabled",false);
+            $('#btnguardar').html('<i class="fa fa-paper-plane" aria-hidden="true"></i> Asignar');
         }
     });
 }
@@ -208,6 +216,7 @@ function listardatatable(tick_titulo, cat_id, prio_id, usu_id){
                 console.log(e.responseText);	
             }
         },
+        "ordering": false,
         "bDestroy": true,
         "responsive": true,
         "bInfo":true,

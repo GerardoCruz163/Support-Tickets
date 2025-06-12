@@ -16,17 +16,32 @@ function guardaryeditar(e){
         contentType: false,
         processData: false,
         success: function(datos){    
-            console.log(datos);
-            $('#usuario_form')[0].reset();
-            $("#modalmantenimiento").modal('hide');
-            $('#usuario_data').DataTable().ajax.reload();
-
-            swal({
-                title: "TLA Support Tracing",
-                text: "Se registro correctamente.",
-                type: "success",
-                confirmButtonClass: "btn-success"
-            });
+            if(datos == "1"){
+                $('#usuario_form')[0].reset();
+                $("#modalmantenimiento").modal('hide');
+                $('#usuario_data').DataTable().ajax.reload();
+    
+                swal({
+                    title: "TLA Support Tracing",
+                    text: "Registrado correctamente.",
+                    type: "success",
+                    confirmButtonClass: "btn-success"
+                });    
+            }else if(datos == "2"){
+                $('#usuario_form')[0].reset();
+                $("#modalmantenimiento").modal('hide');
+                $('#usuario_data').DataTable().ajax.reload();
+    
+                swal({
+                    title: "TLA Support Tracing",
+                    text: "Actualizado correctamente.",
+                    type: "success",
+                    confirmButtonClass: "btn-success"
+                });    
+            }else if(datos== "0"){
+                $("#usu_correo").addClass("form-control-error");
+                $("<small class='text-muted text-danger'>El nombre que introduciste ya existe.</small>").insertAfter("#usu_correo");
+            }
         }
     }); 
 }
@@ -89,6 +104,9 @@ $(document).ready(function(){
 function editar(usu_id){
     $('#mdltitulo').html('Editar datos del usuario');
 
+    $("#usu_correo").removeClass("form-control-error");
+    $("#usu_correo + small").remove();
+
     $.post("../../controller/usuario.php?op=mostrar", {usu_id: usu_id}, function (data){
         data = JSON.parse(data);
 
@@ -138,6 +156,10 @@ function eliminar(usu_id){
 $(document).on("click","#btnnuevo",function(){
     $('#mdltitulo').html('Nuevo Usuario');
     $('#usuario_form')[0].reset();
+
+    $("#usu_correo").removeClass("form-control-error");
+    $("#usu_correo + small").remove();
+
     $('#modalmantenimiento').modal('show');
 });
 

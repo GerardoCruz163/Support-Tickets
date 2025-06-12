@@ -19,3 +19,5 @@
 
 	
 	<script src="../../public/js/lib/bootstrap-notify/bootstrap-notify.min.js"></script>
+
+	<script type="text/javascript" src="../../public/js/lib/blockUI/jquery.blockUI.js"></script>

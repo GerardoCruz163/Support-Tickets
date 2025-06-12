@@ -60,5 +60,15 @@
             $sql->execute();    
             return $resultado=$sql->fetchAll();
         }
+
+        public function get_prioridad_x_nom($prio_nom){
+            $conectar= parent::conexion();
+            parent::set_names();
+            $sql="SELECT * FROM tm_prioridad WHERE prio_nom = ? and est=1";
+            $sql=$conectar->prepare($sql);
+            $sql->bindValue(1, $prio_nom);
+            $sql->execute();    
+            return $resultado=$sql->fetchAll();
+        }
     }
 ?>

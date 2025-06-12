@@ -10,33 +10,7 @@ $(document).ready(function(){
     const decoded_id =  decodeURIComponent(tick_id);
     const id = decoded_id.replace(/\s/g, '+'); 
 
-    $.post("../../controller/ticket.php?op=listardetalle", {tick_id: id}, function (data){
-        $('#lbldetalle').html(data);
-    });
-
-    $.post("../../controller/ticket.php?op=mostrar", {tick_id: id}, function (data){
-        data=JSON.parse(data);
-        $('#lblestado').html(data.tick_estado);
-        $('#lblnomusuario').html(data.usu_nom + ' ' + data.usu_ape);
-        $('#lblarea').html(data.area_nom);
-        $('#lblfechcrea').html(data.fech_crea);
-
-        $('#lblfechcierre').val(data.fech_cierre);
-
-        $('#lblnomidticket').html("Detalle ticket: "+data.tick_id);
-        
-        $('#cat_nom').val(data.cat_nom);
-        $('#cats_nom').val(data.cats_nom);
-        $('#tick_titulo').val(data.tick_titulo);
-        $('#tickd_descripusu').summernote('code', data.tick_descrip);
-
-        $('#prio_nom').val(data.prio_nom);
-
-        if(data.tick_estado_texto == 'Cerrado'){
-
-            $('#pnldetalle').hide();
-        }
-    });
+    
  
     $('#tickd_descrip').summernote({
         height: 150,
@@ -62,6 +36,8 @@ $(document).ready(function(){
     
     });
 
+    mostraryvalidar(id);
+
     $('#tickd_descripusu').summernote({
         height: 250,
         lang: "es-ES",
@@ -74,7 +50,7 @@ $(document).ready(function(){
             ['para', ['ul', 'ol', 'paragraph']],
             ['height', ['height']]
           ]
-    });
+    }); 
 
     $('#tickd_descripusu').summernote('disable');
 
@@ -94,7 +70,7 @@ $(document).ready(function(){
         "ajax":{
             url: '../../controller/documento.php?op=listar',
             type : "post",
-            data : {tick_id:tick_id},
+            data : {tick_id:id},
             dataType : "json",
             error: function(e){
                 console.log(e.responseText);
@@ -133,8 +109,13 @@ $(document).ready(function(){
 });
 
 $(document).on("click","#btnenviar",function(){
-
-    var tick_id = getUrlParameter('ID'); // Aqui
+    const url = window.location.href;
+    const params = new URLSearchParams(new URL(url).search);
+    const tick_id = params.get("ID");
+    const decoded_id =  decodeURIComponent(tick_id);
+    const id = decoded_id.replace(/\s/g, '+'); 
+    console.log(id);
+    //var tick_id = getUrlParameter('ID'); // Aqui
     var usu_id = $('#user_idx').val();
     var tickd_descrip = $('#tickd_descrip').val();
 
@@ -142,13 +123,16 @@ $(document).on("click","#btnenviar",function(){
         swal("¡Advertencia!", "No puedes dejar el campo vacio", "warning");
     }else{
         var formData = new FormData();
-        formData.append('tick_id',tick_id);
+        formData.append('tick_id',id);
         formData.append('usu_id',usu_id);
         formData.append('tickd_descrip',tickd_descrip);
         var totalFiles = $('#fileElem').val().length;
         for(var i = 0; i<totalFiles; i++){
             formData.append("files[]", $('#fileElem')[0].files[i]);
         }
+
+        $('#btnenviar').prop("disabled",true);
+        $('#btnenviar').html('<i class="fa fa-spinner fa-spin"></i> Enviando...');
 
         $.ajax({
             url: "../../controller/ticket.php?op=insertdetalle",
@@ -157,12 +141,15 @@ $(document).on("click","#btnenviar",function(){
             contentType: false,
             processData: false,
             success: function(data){
-                listarDetalle(tick_id);
-                console.log(tick_id);
-                // LIMPIAR INPUTFILE
+
+                mostraryvalidar(id);
                 $('#fileElem').val('');
-                
                 $('#tickd_descrip').summernote('reset');
+                console.log(data);
+
+                //listarDetalle(id);
+                $('#btnenviar').prop("disabled",false);
+                $('#btnenviar').html('<i class="fa fa-paper-plane" aria-hidden="true"></i> Enviar');  
             }
         });
     }
@@ -183,30 +170,102 @@ $(document).on("click","#btncerrar",function(){
         },
         function(isConfirm) {
             if (isConfirm) {
+                swal.close();
                 const url = window.location.href;
                 const params = new URLSearchParams(new URL(url).search);
                 const tick_id = params.get("ID");
                 const decoded_id =  decodeURIComponent(tick_id);
                 const id = decoded_id.replace(/\s/g, '+'); 
-                var usu_id = $('#user_idx').val();
-                $.post("../../controller/ticket.php?op=update", {tick_id: id, usu_id: usu_id}, function (data){
-                    
-                });
+                //var usu_id = $('#user_idx').val();
 
-                $.post("../../controller/email.php?op=ticket_cerrado", {tick_id: id}, function (data){
-
-                });
-                //listarDetalle(tick_id); //aquiiiiiiiiiiiiiiiiiiiiiii
                 
-                swal({
-                    title: "Ticket cerrado",
-                    text: "Gracias por atender.",
-                    type: "success",
-                    confirmButtonClass: "btn-success"
+                $.ajax({
+                    url:"../../controller/ticket.php?op=update",
+                    type: "POST",
+                    data: {tick_id: id},
+                    success: function(datos){
+                        console.log(datos);
+
+                        mostraryvalidar(id);
+
+                        swal({
+                            title: "Ticket cerrado",
+                            text: "El ticket ha sido cerrado.",
+                            type: "success",
+                            confirmButtonClass: "btn-success"
+                        });
+
+                        
+                        $.unblockUI();
+
+                    },beforeSend: function(){
+                        $.blockUI({
+                            overlayCSS:  {
+                                background: 'rgba(142, 159, 167, 0.3)',
+                                opacity: 1,
+                                cursor: 'wait'
+                            },
+                            css: {
+                                width: 'auto',
+                                top: '45%',
+                                left: '45%'
+                            },
+                            message: '<div class="blockui-default-message">Cerrando ticket, espere...</div>',
+                            blockMsgClass: 'block-msg-message-loader'
+                        });
+                    },
                 });
+
+                // $.post("../../controller/ticket.php?op=update", {tick_id: id}, function (data){
+                    
+                // });
+
+                // $.post("../../controller/email.php?op=ticket_cerrado", {tick_id: id}, function (data){
+
+                // });
+
+                
+
+                // $.post("../../controller/ticket.php?op=listardetalle", {tick_id: id}, function (data){
+                //     $('#lbldetalle').html(data);
+                // });
+                //listarDetalle(id); 
+                
             }
         }
     );
 });
+
+function mostraryvalidar(id){
+    $.post("../../controller/ticket.php?op=listardetalle", {tick_id: id}, function (data){
+        $('#lbldetalle').html(data);
+    });
+
+    $.post("../../controller/ticket.php?op=mostrar", {tick_id: id}, function (data){
+        data=JSON.parse(data);
+        $('#lblestado').html(data.tick_estado);
+        $('#lblnomusuario').html(data.usu_nom + ' ' + data.usu_ape);
+        $('#lblarea').html(data.area_nom);
+        $('#lblfechcrea').html(data.fech_crea);
+
+        $('#lblfechcierre').val(data.fech_cierre);
+
+        $('#lblnomidticket').html("Detalle ticket: "+data.tick_id);
+        
+        $('#cat_nom').val(data.cat_nom);
+        $('#cats_nom').val(data.cats_nom);
+        $('#tick_titulo').val(data.tick_titulo);
+        $('#tickd_descripusu').summernote('code', data.tick_descrip);
+
+        $('#prio_nom').val(data.prio_nom);
+
+        if(data.tick_estado_texto == 'Cerrado'){
+
+            $('#pnldetalle').hide();
+        }
+    });
+
+    
+}
 
 init();

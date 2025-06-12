@@ -9,6 +9,9 @@
     require_once("../models/Documento.php");
     $documento= new Documento();
 
+    require_once("../models/Email.php");
+    $email= new Email();
+
     $key = "mi_key_secret";
     $cipher = "aes-256-cbc";
     $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length($cipher));
@@ -43,6 +46,13 @@
                     }
                 }
             }
+
+            // ENVIAR CORREO AL USUARIO QUE CREO EL TICKET
+            $email -> ticket_abierto($datos[0]["tick_id"]);
+
+            //ENVIAR CORREO AL USUARIO AL QUE SE LE ASIGNO EL TICKET Y AL QUE LO CREO
+            $email-> ticket_asignado($datos[0]["tick_id"]);
+            echo "1";
             echo json_encode($datos);
         break;
 
@@ -52,7 +62,10 @@
             $descifrado = openssl_decrypt($cifradoSinIV, $cipher, $key, OPENSSL_RAW_DATA, $iv_dec);
 
             $ticket->update_ticket($descifrado);
-            $ticket->insert_ticketdetalle_cerrar($descifrado, $_POST["usu_id"]);
+            $ticket->insert_ticketdetalle_cerrar($descifrado, $_SESSION["usu_id"]);
+
+            $email->ticket_cerrado($descifrado);
+            echo $descifrado;
         break;
 
         case "reabrir":
@@ -62,6 +75,8 @@
 
         case "asignar":
             $ticket->update_ticket_asignacion($_POST["tick_id"],$_POST["usu_asig"]);
+            $email->ticket_asignado($_POST["tick_id"]); // SE INFORMA AL ASIGNADO UN CORREO
+            echo "1";
         break;
 
         case "listar_x_usu":
@@ -73,7 +88,6 @@
                 $sub_array[] = $row["cat_nom"];
                 $sub_array[] = $row["tick_titulo"];
 
-                
                 if($row["prio_nom"] == "Bajo"){
                     $sub_array[] = '<span class="label label-pill label-success">Bajo</span>';
                 }else if($row["prio_nom"] == "Medio"){
@@ -102,7 +116,7 @@
                     $sub_array[] = date("d/m/Y H:i", strtotime($row["fech_cierre"]));
                 }
 
-                if($row["usu_asig"]==null){
+                if($row["usu_asig"]==0){
                     $sub_array[] = '<span class="label label-pill label-warning">Sin asignar</span>';
                 }else{
                     $datos1=$usuario->get_usuario_x_id($row["usu_asig"]);
@@ -164,7 +178,7 @@
                     $sub_array[] = date("d/m/Y H:i", strtotime($row["fech_cierre"]));
                 }
 
-                if($row["usu_asig"]==null){
+                if($row["usu_asig"]==0){
                     $sub_array[] = '<a onClick="asignar('.$row["tick_id"].');"><span class="label label-pill label-warning"><i class="fa fa-plus-circle" aria-hidden="true"></i> Asignar soporte</span></a>';
                 }else{
                     $datos1=$usuario->get_usuario_x_id($row["usu_asig"]);
@@ -225,7 +239,7 @@
                     $sub_array[] = date("d/m/Y H:i", strtotime($row["fech_cierre"]));
                 }
 
-                if($row["usu_asig"]==null){
+                if($row["usu_asig"]==0){
                     $sub_array[] = '<a onClick="asignar('.$row["tick_id"].');"><span class="label label-pill label-warning"><i class="fa fa-plus-circle" aria-hidden="true"></i> Asignar soporte</span></a>';
                 }else{
                     $datos1=$usuario->get_usuario_x_id($row["usu_asig"]);
@@ -389,8 +403,11 @@
         break;
 
         case "insertdetalle":
+            $iv_dec = substr(base64_decode($_POST["tick_id"]), 0, openssl_cipher_iv_length($cipher));
+            $cifradoSinIV = substr(base64_decode($_POST["tick_id"]), openssl_cipher_iv_length($cipher));
+            $descifrado = openssl_decrypt($cifradoSinIV, $cipher, $key, OPENSSL_RAW_DATA, $iv_dec);
             
-            $datos=$ticket->insert_ticketdetalle($_POST["tick_id"],$_POST["usu_id"],$_POST["tickd_descrip"]);
+            $datos=$ticket->insert_ticketdetalle($descifrado,$_POST["usu_id"],$_POST["tickd_descrip"]);
             if (is_array($datos)==true and count($datos)>0){
                 foreach($datos as $row){
                     //obtener tickd_id de $datos
@@ -424,6 +441,7 @@
                     }
                 }
             }
+            $email->ticket_comentario($descifrado);
             echo json_encode($datos);
         break;
 

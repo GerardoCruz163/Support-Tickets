@@ -18,8 +18,8 @@ require_once("../Models/Ticket.php");
 require_once("../Models/Usuario.php");
 
 class Email extends PHPMailer{
-    protected $gCorreo = '';
-    protected $gContrasena = '';
+    protected $gCorreo = 'logistica@tecnologisticaaduanal.com';
+    protected $gContrasena = 'Tecno*Julio';
 
     public function ticket_abierto($tick_id){
         $ticket = new Ticket();
@@ -77,6 +77,11 @@ class Email extends PHPMailer{
             $categoria=$row["cat_nom"];
             $correo=$row["usu_correo"]; 
         }
+
+        $usuario = new Usuario();
+        $datos2 = $usuario->get_usuario_x_id($datos[0]["usu_asig"]); //USUARIO ASIGNADO AL TICKET
+
+
         $this->isSMTP();
         $this->Host = 'vmail.globalpc.net';//Aqui el server
         $this->Port = 465;//Aqui el puerto
@@ -88,6 +93,7 @@ class Email extends PHPMailer{
         $this->FromName = $this->tu_nombre = "Se ha cerrado tu ticket: ".$id;
         $this->CharSet = 'UTF8';
         $this->addAddress($correo);
+        $this->addAddress($datos2[0]["usu_correo"]); // ENVIAR CORREO AL USUARIO QUE SE LE ASIGNO AL TICKET
         $this->WordWrap = 50;
         $this->IsHTML(true);
         $this->Subject = "Ticket Cerrado";
@@ -114,6 +120,10 @@ class Email extends PHPMailer{
     public function ticket_asignado($tick_id){
         $ticket = new Ticket();
         $datos = $ticket->listar_ticket_x_id($tick_id);
+
+        $usuario = new Usuario();
+        $datos2 = $usuario->get_usuario_x_id($datos[0]["usu_asig"]); //USUARIO ASIGNADO AL TICKET
+
         foreach($datos as $row){
             $id = $row["tick_id"];
             $usu = $row["usu_nom"];
@@ -121,8 +131,13 @@ class Email extends PHPMailer{
             $titulo=$row["tick_titulo"];
             $categoria=$row["cat_nom"];
             $correo=$row["usu_correo"]; 
-            
         }
+
+        // foreach($datos2 as $row){
+        //     $nom_usu= $row["usu_nom"];
+        //     $ape_usu= $row["usu_ape"];
+        // }
+
         $this->isSMTP();
         $this->Host = 'vmail.globalpc.net';//Aqui el server
         $this->Port = 465;//Aqui el puerto
@@ -133,7 +148,8 @@ class Email extends PHPMailer{
         $this->SMTPSecure = 'ssl';
         $this->FromName = $this->tu_nombre = "Se ha asignado un ticket: ".$id;
         $this->CharSet = 'UTF8';
-        $this->addAddress($correo);
+        //$this->addAddress($correo);
+        $this->addAddress($datos2[0]["usu_correo"]); // ENVIAR CORREO AL USUARIO QUE SE LE ASIGNO AL TICKET
         $this->WordWrap = 50;
         $this->IsHTML(true);
         $this->Subject = "Ticket Asignado";
@@ -145,6 +161,64 @@ class Email extends PHPMailer{
         $cuerpo = str_replace("lblArea", $area, $cuerpo);
         $cuerpo = str_replace("lblTitu", $titulo, $cuerpo);
         $cuerpo = str_replace("lblCate", $categoria, $cuerpo);
+        //$cuerpo = str_replace("lblUsuSop", $nom_usu+' '+$ape_usu, $cuerpo);
+
+        $this->Body = $cuerpo;
+        $this->AltBody = strip_tags("Ticket Cerrado");
+
+        try{
+            $this->Send();
+            return true;
+        }catch(Exception $e){
+            return false;
+        }
+    }
+
+    public function ticket_comentario($tick_id){
+        $ticket = new Ticket();
+        $datos = $ticket->listar_ticket_x_id($tick_id);
+
+        $usuario = new Usuario();
+        $datos2 = $usuario->get_usuario_x_id($datos[0]["usu_asig"]); //USUARIO ASIGNADO AL TICKET
+
+        foreach($datos as $row){
+            $id = $row["tick_id"];
+            $usu = $row["usu_nom"];
+            $area = $row["area_nom"];
+            $titulo=$row["tick_titulo"];
+            $categoria=$row["cat_nom"];
+            $correo=$row["usu_correo"]; 
+        }
+
+        // foreach($datos2 as $row){
+        //     $nom_usu= $row["usu_nom"];
+        //     $ape_usu= $row["usu_ape"];
+        // }
+
+        $this->isSMTP();
+        $this->Host = 'vmail.globalpc.net';//Aqui el server
+        $this->Port = 465;//Aqui el puerto
+        $this->SMTPAuth = true;
+        $this->Username = $this->gCorreo;
+        $this->Password = $this->gContrasena;
+        $this->From = $this->gCorreo;
+        $this->SMTPSecure = 'ssl';
+        $this->FromName = $this->tu_nombre = "Se ha añadido un comentario al ticket: ".$id;
+        $this->CharSet = 'UTF8';
+        $this->addAddress($correo);
+        $this->addAddress($datos2[0]["usu_correo"]); // ENVIAR CORREO AL USUARIO QUE SE LE ASIGNO AL TICKET
+        $this->WordWrap = 50;
+        $this->IsHTML(true);
+        $this->Subject = "Ticket comentado";
+        //Igual//
+        $cuerpo = file_get_contents('../public/ComentarioTicket.html'); /*ruta del template en formato HTML */
+        /*parametros del template a remplazar */
+        $cuerpo = str_replace("xnroticket", $id, $cuerpo);
+        $cuerpo = str_replace("lblNomUsu", $usu, $cuerpo);
+        $cuerpo = str_replace("lblArea", $area, $cuerpo);
+        $cuerpo = str_replace("lblTitu", $titulo, $cuerpo);
+        $cuerpo = str_replace("lblCate", $categoria, $cuerpo);
+        //$cuerpo = str_replace("lblUsuSop", $nom_usu+' '+$ape_usu, $cuerpo);
 
         $this->Body = $cuerpo;
         $this->AltBody = strip_tags("Ticket Cerrado");
@@ -203,9 +277,7 @@ class Email extends PHPMailer{
         }catch(Exception $e){
             return false;
         }
-    }
-
-    
+    } 
 }
 
 ?>

@@ -7,10 +7,10 @@
         case "combo":
             $datos= $prioridad->get_prioridad();
             if(is_array($datos)==true and count($datos)>0){
-                $html="<option></option>";
+                $html="";
+                $html.= "<option value=''>Seleccionar</option>";
                 foreach($datos as $row)
                 {
-                    $html.= "<option label='Seleccionar'></option>";
                     $html.= "<option value='".$row['prio_id']."'>".$row['prio_nom']."</option>";
                 }
                 echo $html;
@@ -18,10 +18,17 @@
         break;
 
         case "guardaryeditar":
-            if(empty($_POST["prio_id"])){
-                $prioridad->insert_prioridad($_POST["prio_nom"]);  
+            $datos= $prioridad->get_prioridad_x_nom($_POST["prio_nom"]);
+            if(count($datos)==0){
+                if(empty($_POST["prio_id"])){
+                    $prioridad->insert_prioridad($_POST["prio_nom"]);  
+                    echo "1";
+                }else{
+                    $prioridad->update_prioridad($_POST["prio_id"],$_POST["prio_nom"]);
+                    echo "2";
+                }
             }else{
-                $prioridad->update_prioridad($_POST["prio_id"],$_POST["prio_nom"]);
+                echo "0";
             }
         break;
     

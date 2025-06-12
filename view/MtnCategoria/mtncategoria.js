@@ -6,6 +6,7 @@ function init(){
     });
 }
 
+//TOMAR ESTE EJEMPLO PARA CREACION DE NUEVO TICKET (AL DEJAR CAMPOS VACIOS)
 function guardaryeditar(e){
     e.preventDefault();
 	var formData = new FormData($("#usuario_form")[0]);
@@ -17,16 +18,33 @@ function guardaryeditar(e){
         processData: false,
         success: function(datos){    
             console.log(datos);
-            $('#usuario_form')[0].reset();
-            $("#modalmantenimiento").modal('hide');
-            $('#usuario_data').DataTable().ajax.reload();
 
-            swal({
-                title: "TLA Support Tracing",
-                text: "Se registro correctamente.",
-                type: "success",
-                confirmButtonClass: "btn-success"
-            });
+            if(datos == "1"){
+                $('#usuario_form')[0].reset();
+                $("#modalmantenimiento").modal('hide');
+                $('#usuario_data').DataTable().ajax.reload();
+    
+                swal({
+                    title: "TLA Support Tracing",
+                    text: "Registrado correctamente.",
+                    type: "success",
+                    confirmButtonClass: "btn-success"
+                });    
+            }else if(datos == "2"){
+                $('#usuario_form')[0].reset();
+                $("#modalmantenimiento").modal('hide');
+                $('#usuario_data').DataTable().ajax.reload();
+    
+                swal({
+                    title: "TLA Support Tracing",
+                    text: "Actualizado correctamente.",
+                    type: "success",
+                    confirmButtonClass: "btn-success"
+                });    
+            }else if(datos== "0"){
+                $("#cat_nom").addClass("form-control-error");
+                $("<small class='text-muted text-danger'>El nombre que introduciste ya existe.</small>").insertAfter("#cat_nom");
+            }
         }
     }); 
 }
@@ -87,7 +105,11 @@ $(document).ready(function(){
 
 
 function editar(cat_id){
-    $('#mdltitulo').html('Editar datos del usuario');
+    $('#mdltitulo').html('Editar Categoria');
+
+    $("#cat_nom").removeClass("form-control-error");
+
+    $("#cat_nom + small").remove();
 
     $.post("../../controller/categoria.php?op=mostrar", {cat_id: cat_id}, function (data){
         data = JSON.parse(data);
@@ -129,8 +151,12 @@ function eliminar(cat_id){
     );
 }
 $(document).on("click","#btnnuevo",function(){
-    $('#mdltitulo').html('Nuevo Usuario');
+    $('#mdltitulo').html('Nueva categoria');
     $('#usuario_form')[0].reset();
+
+    $("#cat_nom").removeClass("form-control-error");
+    $("#cat_nom + small").remove();
+
     $('#modalmantenimiento').modal('show');
 });
 

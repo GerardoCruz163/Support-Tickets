@@ -9,6 +9,9 @@
 	<link href="img/favicon.57x57.png" rel="apple-touch-icon" type="image/png">
 	<link href="img/favicon.png" rel="icon" type="image/png">
 	<link href="img/favicon.ico" rel="shortcut icon">
+
+	<link rel="stylesheet" href="../../public/css/separate/vendor/blockui.min.css">
+
     <link rel="stylesheet" href="../../public/css/lib/font-awesome/font-awesome.min.css">
     <link rel="stylesheet" href="../../public/css/lib/bootstrap/bootstrap.min.css">
 

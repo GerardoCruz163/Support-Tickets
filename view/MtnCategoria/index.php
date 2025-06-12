@@ -42,7 +42,7 @@
 					<thead>
 						<tr>
 							<th style="width: 8%;">Nombre</th>
-							<!-- <th style="width: 8%;">Area</th> -->
+							<th style="width: 8%;">Area</th>
 							<th class="d-none d-sm-table-cell" style="width: 5%;"></th>
 							<th class="d-none d-sm-table-cell" style="width: 5%;"></th>
 							

@@ -16,17 +16,32 @@ function guardaryeditar(e){
         contentType: false,
         processData: false,
         success: function(datos){    
-            console.log(datos);
-            $('#usuario_form')[0].reset();
-            $("#modalmantenimiento").modal('hide');
-            $('#usuario_data').DataTable().ajax.reload();
-
-            swal({
-                title: "HelpDesk!",
-                text: "Completado.",
-                type: "success",
-                confirmButtonClass: "btn-success"
-            });
+            if(datos == "1"){
+                $('#usuario_form')[0].reset();
+                $("#modalmantenimiento").modal('hide');
+                $('#usuario_data').DataTable().ajax.reload();
+    
+                swal({
+                    title: "TLA Support Tracing",
+                    text: "Registrado correctamente.",
+                    type: "success",
+                    confirmButtonClass: "btn-success"
+                });    
+            }else if(datos == "2"){
+                $('#usuario_form')[0].reset();
+                $("#modalmantenimiento").modal('hide');
+                $('#usuario_data').DataTable().ajax.reload();
+    
+                swal({
+                    title: "TLA Support Tracing",
+                    text: "Actualizado correctamente.",
+                    type: "success",
+                    confirmButtonClass: "btn-success"
+                });    
+            }else if(datos== "0"){
+                $("#cats_nom").addClass("form-control-error");
+                $("<small class='text-muted text-danger'>El nombre que introduciste ya existe.</small>").insertAfter("#cats_nom");
+            }
         }
     }); 
 }
@@ -93,6 +108,10 @@ $(document).ready(function(){
 function editar(cats_id){
     $('#mdltitulo').html('Editar Registro');
 
+    $("#cats_nom").removeClass("form-control-error");
+
+    $("#cats_nom + small").remove();
+    
     $.post("../../controller/subcategoria.php?op=mostrar", {cats_id : cats_id}, function (data) {
         data = JSON.parse(data);
         $('#cats_id').val(data.cats_id);
@@ -137,6 +156,11 @@ $(document).on("click","#btnnuevo", function(){
     $('#cat_id').val('').trigger('change');
     $('#mdltitulo').html('Nuevo Registro');
     $('#usuario_form')[0].reset();
+
+    $("#cats_nom").removeClass("form-control-error");
+
+    $("#cats_nom + small").remove();
+
     $('#modalmantenimiento').modal('show');
 });
 

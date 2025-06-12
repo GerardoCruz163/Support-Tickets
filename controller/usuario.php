@@ -13,10 +13,17 @@
 
     switch($_GET["op"]){
         case "guardaryeditar":
-            if(empty($_POST["usu_id"])){
-                $usuario->insert_usuario($_POST["usu_nom"],$_POST["usu_ape"],$_POST["usu_correo"],$_POST["usu_pass"],$_POST["rol_id"],$_POST["area_id"]);  
+            $datos= $usuario->get_usuario_x_correo($_POST["usu_correo"]);
+            if(count($datos)==0){
+                if(empty($_POST["usu_id"])){
+                    $usuario->insert_usuario($_POST["usu_nom"],$_POST["usu_ape"],$_POST["usu_correo"],$_POST["usu_pass"],$_POST["rol_id"],$_POST["area_id"]);  
+                    echo "1";
+                } else {
+                    $usuario->update_usuario($_POST["usu_id"],$_POST["usu_nom"],$_POST["usu_ape"],$_POST["usu_correo"],$_POST["usu_pass"],$_POST["rol_id"],$_POST["area_id"]);
+                    echo "2";
+                }
             }else{
-                $usuario->update_usuario($_POST["usu_id"],$_POST["usu_nom"],$_POST["usu_ape"],$_POST["usu_correo"],$_POST["usu_pass"],$_POST["rol_id"],$_POST["area_id"]);
+                echo "0";
             }
         break;
 

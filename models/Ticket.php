@@ -42,7 +42,7 @@
                 tm_area.area_nom,
                 tm_categoria.cat_nom,
                 tm_ticket.prio_id,
-                tm_prioridad.prio_nom
+                tm_prioridad.prio_nom 
                 FROM 
                 tm_ticket
                 INNER join tm_categoria on tm_ticket.cat_id = tm_categoria.cat_id
@@ -51,7 +51,8 @@
                 INNER join tm_prioridad on tm_ticket.prio_id = tm_prioridad.prio_id
                 WHERE
                 tm_ticket.est = 1
-                AND tm_usuario.usu_id=?";
+                AND tm_usuario.usu_id=?
+                ORDER BY tm_ticket.tick_id DESC";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $usu_id);
             $sql->execute();
@@ -161,7 +162,8 @@
                 INNER join tm_prioridad on tm_ticket.prio_id = tm_prioridad.prio_id
 
                 WHERE
-                tm_ticket.est = 1";
+                tm_ticket.est = 1
+                ";
             $sql=$conectar->prepare($sql);
             $sql->execute();
             return $resultado=$sql->fetchAll();

@@ -17,16 +17,34 @@ function guardaryeditar(e){
         processData: false,
         success: function(datos){    
             console.log(datos);
-            $('#usuario_form')[0].reset();
-            $("#modalmantenimiento").modal('hide');
-            $('#usuario_data').DataTable().ajax.reload();
 
-            swal({
-                title: "TLA Support Tracing",
-                text: "Se registro correctamente.",
-                type: "success",
-                confirmButtonClass: "btn-success"
-            });
+            if(datos == "1"){
+                $('#usuario_form')[0].reset();
+                $("#modalmantenimiento").modal('hide');
+                $('#usuario_data').DataTable().ajax.reload();
+    
+                swal({
+                    title: "TLA Support Tracing",
+                    text: "Registrado correctamente.",
+                    type: "success",
+                    confirmButtonClass: "btn-success"
+                });
+
+            }else if(datos == "2"){
+                $('#usuario_form')[0].reset();
+                $("#modalmantenimiento").modal('hide');
+                $('#usuario_data').DataTable().ajax.reload();
+    
+                swal({
+                    title: "TLA Support Tracing",
+                    text: "Actualizado correctamente.",
+                    type: "success",
+                    confirmButtonClass: "btn-success"
+                });
+            }else if(datos == "0"){
+                $("#prio_nom").addClass("form-control-error");
+                $("<small class='text-muted text-danger'>El nombre que introduciste ya existe.</small>").insertAfter("#prio_nom");
+            }
         }
     }); 
 }
@@ -89,6 +107,10 @@ $(document).ready(function(){
 function editar(prio_id){
     $('#mdltitulo').html('Editar datos de esta prioridad');
 
+    $("#prio_nom").removeClass("form-control-error");
+
+    $("#prio_nom + small").remove();
+
     $.post("../../controller/prioridad.php?op=mostrar", {prio_id: prio_id}, function (data){
         data = JSON.parse(data);
         $('#prio_id').val(data.prio_id);
@@ -132,6 +154,11 @@ $(document).on("click","#btnnuevo",function(){
     $('#prio_id').val('');
     $('#mdltitulo').html('Nuevo Registro');
     $('#usuario_form')[0].reset();
+
+    $("#prio_nom").removeClass("form-control-error");
+
+    $("#prio_nom + small").remove();
+
     $('#modalmantenimiento').modal('show');
 });
 

@@ -6,21 +6,18 @@ $(document).ready(function() {
 	
 });
 
-$(document).on("click", "#btnsoporte", function(){
-
-    if($('#rol_id').val()==1){
-        $('#lbltitulo').html("Acceso para soporte");
-        $('#btnsoporte').html("Acceso usuario");
+$(document).on("click", "#btnsoporte", function () {
+    if ($('#rol_id').val()==1){
+        $('#lbltitulo').html("Acceso Soporte");
+        $('#btnsoporte').html("Acceso Usuario");
         $('#rol_id').val(2);
-        $('#imgtipo').attr("src","public/img/2.png")
+        $("#imgtipo").attr("src","public/2.jpg");
     }else{
-        $('#lbltitulo').html("Acceso usuario");
-        $('#btnsoporte').html("Acceso para soporte");
+        $('#lbltitulo').html("Acceso Usuario");
+        $('#btnsoporte').html("Acceso Soporte");
         $('#rol_id').val(1);
-        
-        $('#imgtipo').attr("src","public/img/1.png")
+        $("#imgtipo").attr("src","public/1.jpg");
     }
-    
 });
 
 init();

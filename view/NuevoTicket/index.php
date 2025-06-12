@@ -38,9 +38,11 @@
 				<p>
 					¿Necesitas ayuda? Puedes crear nuevas solicitudes aquí:
 				</p>
+				
 
 				<h5 class="m-t-lg with-border">Ingresa detalles</h5>
 
+				<p>(*) Campos obligatorios</p>
 				<div class="row">
 					<form method="post" id="ticket_form">
 
@@ -48,16 +50,16 @@
 
 						<div class="col-lg-12">
 							<fieldset class="form-group">
-								<label class="form-label semibold" for="tick_titulo">Título</label>
-								<input type="text" class="form-control" id="tick_titulo" name="tick_titulo" placeholder="Ingrese el título">
+								<label class="form-label semibold" for="tick_titulo">Título (*)</label>
+								<input type="text" class="form-control" id="tick_titulo" name="tick_titulo" placeholder="Ingrese el título" required>
 							</fieldset>
 						</div>
 
 						<div class="col-lg-6">
 							<fieldset class="form-group">
-								<label class="form-label semibold" for="exampleInput">Categoría</label>
-								<select id="cat_id" name="cat_id" class="form-control">
-	
+								<label class="form-label semibold" for="exampleInput">Categoría (*)</label>
+								<select id="cat_id" name="cat_id" class="form-control select2" required>
+									<option value=''>Seleccionar</option>
 								</select>
 							
 							</fieldset>
@@ -65,9 +67,9 @@
 
 						<div class="col-lg-6">
 							<fieldset class="form-group">
-								<label class="form-label semibold" for="exampleInput">Subcategoría</label>
-								<select id="cats_id" name="cats_id" class="form-control" data_placeholder="Seleccionar">
-									<option label="Seleccionar"></option>
+								<label class="form-label semibold" for="exampleInput">Subcategoría (*)</label>
+								<select id="cats_id" name="cats_id" class="form-control select2" required>
+									<option value=''>Seleccionar</option>
 								</select>
 							
 							</fieldset>
@@ -75,9 +77,9 @@
 
 						<div class="col-lg-6">
 							<fieldset class="form-group">
-								<label class="form-label semibold" for="usu_asig">Asignar a</label>
-								<select id="usu_asig" name="usu_asig" class="form-control" data_placeholder="Seleccionar">
-									<option label="Seleccionar"></option>
+								<label class="form-label semibold" for="usu_asig">Asignar (*)</label>
+								<select id="usu_asig" name="usu_asig" class="form-control select2">
+									<option value=''>Seleccionar</option>
 								</select>
 							
 							</fieldset>
@@ -85,9 +87,9 @@
 
 						<div class="col-lg-6">
 							<fieldset class="form-group">
-								<label class="form-label semibold" for="exampleInput">Prioridad</label>
-								<select id="prio_id" name="prio_id" class="form-control">
-	
+								<label class="form-label semibold" for="exampleInput">Prioridad (*)</label>
+								<select id="prio_id" name="prio_id" class="form-control select2" required>
+									<option value=''>Seleccionar</option>
 								</select>
 							
 							</fieldset>
@@ -102,7 +104,7 @@
 						
 						<div class="col-lg-12">
 							<fieldset class="form-group">
-								<label class="form-label semibold" for="tick_descrip">Descripción</label>
+								<label class="form-label semibold" for="tick_descrip">Descripción (*)</label>
 								<div class="summernote-theme-1">
 									<textarea class="summernote" id="tick_descrip" name="tick_descrip"></textarea>
 								</div>
@@ -110,7 +112,7 @@
 						</div>
 							
 						<div class="col-lg-12">
-							<button type="submit" name="action" value="add" class="btn btn-rounded btn-inline btn_primary">
+							<button type="submit" id="btnguardar"name="action" value="add" class="btn btn-rounded btn-inline btn_primary">
 							<i class="fa fa-paper-plane" aria-hidden="true"></i>	
 							Guardar y enviar</button>
 						</div>

@@ -1,5 +1,4 @@
 function init(){
-
     $("#ticket_form").on("submit",function(e){
         guardaryeditar(e);
     });
@@ -35,7 +34,7 @@ $(document).ready(function() {
 
     $("#cat_id").change(function(){
         cat_id =$(this).val();
-        console.log(cat_id);
+        
 
         $.post("../../controller/subcategoria.php?op=combo",{cat_id : cat_id},function(data, status){
             $('#cats_id').html(data);
@@ -53,15 +52,20 @@ $(document).ready(function() {
 
 function guardaryeditar(e){
     e.preventDefault();
+
+    
     var formData = new FormData($("#ticket_form")[0]);
-    if ($('#tick_descrip').summernote('isEmpty') || $('#tick_titulo').val()=='' || $("#cats_id").val()=='' || $("#usu_asig").val()=='' || $("#prio_id").val()==''){
+    if ($('#tick_descrip').summernote('isEmpty') || $('#tick_titulo').val()=='' || $("#usu_asig").val()== '' || $("#cats_id").val()=='' || $("#prio_id").val()==''){
         swal("¡Advertencia!", "Campos vacios", "warning");
-    }else{
+    }else{ 
         var totalFiles = $('#fileElem').val().length;
         for(var i = 0; i<totalFiles; i++){
             formData.append("files[]", $('#fileElem')[0].files[i]);
         }
-
+        
+        $('#btnguardar').prop("disabled",true);
+        $('#btnguardar').html('<i class="fa fa-spinner fa-spin"></i> Enviando...');
+        
         $.ajax({
             url: "../../controller/ticket.php?op=insert",
             type: "POST",
@@ -69,19 +73,23 @@ function guardaryeditar(e){
             contentType: false,
             processData: false,
             success: function(data){
-                console.log(data);
-                data = JSON.parse(data);
-                console.log(data[0].tick_id); 
+                
+                // data = JSON.parse(data);
+                // console.log(data[0].tick_id);
 
-                $.post("../../controller/email.php?op=ticket_abierto", {tick_id: data[0].tick_id}, function (data){
-
-                });
+                // $.post("../../controller/email.php?op=ticket_asignado", {tick_id: data[0].tick_id}, function (data){
+                // });
                 
                 $('#tick_titulo').val('');
                 $('#tick_descrip').summernote('reset');
                 swal("¡Listo!", "Se ha guardado tu ticket correctamente.", "success");
+                // $('#btnguardar').prop("disabled",false);
+                // $('#btnguardar').html('<i class="fa fa-paper-plane" aria-hidden="true"></i> Guardar y enviar');
+                $('#btnguardar').prop("disabled",false);
+                $('#btnguardar').html('<i class="fa fa-paper-plane" aria-hidden="true"></i> Guardar y enviar');   
             }
         });
+        
     }
 }
 

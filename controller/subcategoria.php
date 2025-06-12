@@ -6,12 +6,19 @@
     switch($_GET["op"]){
 
         case "guardaryeditar":
-            if(empty($_POST["cats_id"])){
-                $subcategoria->insert_subcategoria($_POST["cat_id"],$_POST["cats_nom"]);     
-            }else {
-                $subcategoria->update_subcategoria($_POST["cats_id"],$_POST["cat_id"],$_POST["cats_nom"]);
+            $datos= $subcategoria->get_subcategoria_x_nom($_POST["cats_nom"], $_POST["cat_id"]);
+            if(count($datos)==0){
+                if(empty($_POST["cats_id"])){
+                    $subcategoria->insert_subcategoria($_POST["cat_id"],$_POST["cats_nom"]);     
+                    echo "1";
+                }else {
+                    $subcategoria->update_subcategoria($_POST["cats_id"],$_POST["cat_id"],$_POST["cats_nom"]);
+                    echo "2";
+                }
+            }else{
+                echo "0";
             }
-            break;
+        break;
 
         case "listar":
             $datos=$subcategoria->get_subcategoria_all();
@@ -53,7 +60,7 @@
         case "combo":
             $datos = $subcategoria->get_subcategoria($_POST["cat_id"]);
             $html="";
-            $html.="<option label='Seleccionar'></option>";
+            $html.="<option value=''>Seleccionar</option>";
             if(is_array($datos)==true and count($datos)>0){
                 foreach($datos as $row)
                 {

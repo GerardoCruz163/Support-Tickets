@@ -7,21 +7,29 @@
         case "combo":
             $datos= $categoria->get_categoria();
             if(is_array($datos)==true and count($datos)>0){
-                $html="<option></option>";
+                $html="";
+                $html.= "<option value=''>Seleccionar</option>";
                 foreach($datos as $row)
                 {
-                    $html.= "<option label='Seleccionar'></option>";
                     $html.= "<option value='".$row['cat_id']."'>".$row['cat_nom']."</option>";
                 }
                 echo $html;
             }
         break;
 
+        //TOMAR ESTE EJEMPLO PARA CREACION DE NUEVO TICKET (AL DEJAR CAMPOS VACIOS)
         case "guardaryeditar":
-            if(empty($_POST["cat_id"])){
-                $categoria->insert_categoria($_POST["cat_nom"]);  
+            $datos= $categoria->get_categoria_x_nom($_POST["cat_nom"]);
+            if(count($datos)==0){
+                if(empty($_POST["cat_id"])){
+                    $categoria->insert_categoria($_POST["cat_nom"], $_POST["area_id"]);  
+                    echo "1";
+                } else {
+                    $categoria->update_categoria($_POST["cat_id"],$_POST["cat_nom"],$_POST["area_id"]);
+                    echo "2";
+                }
             }else{
-                $categoria->update_categoria($_POST["cat_id"],$_POST["cat_nom"]);
+                echo "0";
             }
         break;
     
@@ -31,7 +39,7 @@
             foreach($datos as $row){
                 $sub_array = array();
                 $sub_array[] = $row["cat_nom"];
-                // $sub_array[] = $row["area_nom"];
+                $sub_array[] = $row["area_nom"];
                 $sub_array[] = '<button type="button" onClick="editar('.$row["cat_id"].');"  id="'.$row["cat_id"].'" class="btn btn-inline btn-warning btn-sm ladda-button"><i class="fa fa-edit"></i></button>';
                 $sub_array[] = '<button type="button" onClick="eliminar('.$row["cat_id"].');"  id="'.$row["cat_id"].'" class="btn btn-inline btn-danger btn-sm ladda-button"><i class="fa fa-trash"></i></button>';
                 $data[] = $sub_array;

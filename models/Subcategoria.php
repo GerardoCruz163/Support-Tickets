@@ -79,5 +79,16 @@
             $sql->execute();
             return $resultado=$sql->fetchAll();
         }
+
+        public function get_subcategoria_x_nom($cats_nom, $cat_id){
+            $conectar= parent::conexion();
+            parent::set_names();
+            $sql="SELECT * FROM tm_subcategoria WHERE cats_nom = ? AND cat_id=? AND est = 1";
+            $sql=$conectar->prepare($sql);
+            $sql->bindValue(1, $cats_nom);
+            $sql->bindValue(2, $cat_id);
+            $sql->execute();
+            return $resultado=$sql->fetchAll();
+        }
     }
 ?>

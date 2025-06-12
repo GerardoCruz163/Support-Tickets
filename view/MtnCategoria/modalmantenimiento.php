@@ -5,7 +5,7 @@
                 <button type="button" class="modal-close" data-dismiss="modal" aria-label="Close">
                     <i class="font-icon-close-2"></i>
                 </button>
-                <h4 class="modal-title" id="mdltitulo"></h4></h4>
+                <h4 class="modal-title" id="mdltitulo"></h4>
             </div>
 
             <form method="post" id="usuario_form">
@@ -19,7 +19,15 @@
     
                     
     
-                    
+                    <div class="form-group">
+                        <label class="form-label" for="area_id">Area</label>
+                        <select class="select2" id="area_id" name="area_id">
+                            <option value="1">Sistemas</option>
+                            <option value="2">Trafico</option>
+                            <option value="3">Contabilidad</option>
+                            <option value="4">Administracion</option>
+                        </select>
+                    </div>
 
                     <!-- <div class="form-group">
                         <label class="form-label" for="area_id">Area</label>
