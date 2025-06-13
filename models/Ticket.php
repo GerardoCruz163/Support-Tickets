@@ -118,7 +118,7 @@
                 tm_area.area_nom,
                 tm_categoria.cat_nom,
                 tm_ticket.prio_id,
-                tm_prioridad.prio_nom
+                tm_prioridad.prio_nom 
                 FROM 
                 tm_ticket
                 INNER join tm_categoria on tm_ticket.cat_id = tm_categoria.cat_id
@@ -127,7 +127,8 @@
                 INNER join tm_prioridad on tm_ticket.prio_id = tm_prioridad.prio_id
                 WHERE
                 tm_ticket.est = 1
-                AND tm_ticket.usu_asig=?";
+                AND tm_ticket.usu_asig=?
+                ORDER BY tm_ticket.tick_id DESC";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $usu_id);
             $sql->execute();
@@ -370,6 +371,18 @@
         }
 
         public function filtrar_ticket($tick_titulo,$cat_id,$prio_id, $usu_id){
+            $conectar= parent::conexion();
+            parent::set_names();
+            $sql="call filtrar_ticket (?,?,?,?)";
+            $sql=$conectar->prepare($sql);
+            $sql->bindValue(1, '%'.$tick_titulo.'%');
+            $sql->bindValue(2, $cat_id);
+            $sql->bindValue(3, $prio_id);
+            $sql->bindValue(4, $usu_id);
+            $sql->execute();
+            return $resultado=$sql->fetchAll();
+        }
+        public function filtrar_ticket_x_usu_asig($tick_titulo,$cat_id,$prio_id, $usu_id){
             $conectar= parent::conexion();
             parent::set_names();
             $sql="call filtrar_ticket (?,?,?,?)";

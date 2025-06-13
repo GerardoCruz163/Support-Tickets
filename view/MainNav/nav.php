@@ -42,22 +42,15 @@
                         </a>
                     </li>
 
-                    <?php
-                        if($_SESSION['rol_id']==1){
-                            echo '
-                                <li class="aquamarine">
-                                    <a href="..\NuevoTicket\">
-                                        <span>
-                                        <i class="fa fa-ticket" aria-hidden="true"></i>
-                                        </span>
-                                        <span class="lbl">Tickets Asignados</span>
-                                    </a>
-                                </li>
-                            ';
-                        }else{
-                            echo '';
-                        }
-					?>
+                    <li class="aquamarine">
+                        <a href="..\TicketsAsignados\">
+                            <span>
+                            <i class="fa fa-ticket" aria-hidden="true"></i>
+                            </span>
+                            <span class="lbl">Tickets que me asignaron</span>
+                        </a>
+                    </li>
+                    
 
                 </ul>
             
@@ -86,6 +79,15 @@
                                 <i class="fa fa-search" aria-hidden="true"></i>
                             </span>
                             <span class="lbl">Consultar Ticket</span>
+                        </a>
+                    </li>
+
+                    <li class="aquamarine">
+                        <a href="..\TicketsAsignados\">
+                            <span>
+                            <i class="fa fa-ticket" aria-hidden="true"></i>
+                            </span>
+                            <span class="lbl">Tickets que me asignaron</span>
                         </a>
                     </li>
                     <li class="aquamarine">
