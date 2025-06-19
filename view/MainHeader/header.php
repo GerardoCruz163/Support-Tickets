@@ -45,6 +45,8 @@
 
                 <input type="hidden" id="user_idx" value="<?php echo $_SESSION["usu_id"] ?>"><!-- ID del Usuario-->
                 <input type="hidden" id="rol_idx" value="<?php echo $_SESSION["rol_id"] ?>"><!-- rol del Usuario-->
+                <input type="hidden" id="suc_idx" value="<?php echo $_SESSION["suc_id"] ?>">
+                <input type="hidden" id="area_idx" value="<?php echo $_SESSION["area_id"] ?>">
 
                 <div class="dropdown dropdown-typical">
                     <a href="#" class="dropdown-toggle no-arr">
@@ -52,7 +54,9 @@
                         <i class="fa fa-user" aria-hidden="true"></i>
                         <span class="lblcontactonomx"><?php echo $_SESSION["usu_nom"] ?> <?php echo $_SESSION["usu_ape"];
                         if($_SESSION["rol_id"]==2){
-                            echo ' (Cuenta de Soporte)';
+                            echo ' (Supervisor)';
+                        }else if($_SESSION["rol_id"]==3){
+                            echo ' (Administrador)';
                         }
 
                         ?></span>

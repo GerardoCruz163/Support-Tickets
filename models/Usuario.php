@@ -38,6 +38,8 @@
                                 $_SESSION["usu_nom"] = $resultado["usu_nom"];
                                 $_SESSION["usu_ape"] = $resultado["usu_ape"];
                                 $_SESSION["rol_id"] = $resultado["rol_id"];
+                                $_SESSION["suc_id"] = $resultado["suc_id"];
+                                $_SESSION["area_id"] = $resultado["area_id"];
                                 header("Location:".Conectar::ruta()."view/Home/");
                                 exit();
                             }else{

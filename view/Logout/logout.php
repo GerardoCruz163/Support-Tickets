@@ -6,6 +6,9 @@
         header("Location:"."http://localhost:80/HelpDesk_Tecno/"."index.php");        
     } else if($_SESSION["rol_id"] == 2) {
         header("Location:"."http://localhost:80/HelpDesk_Tecno/"."view/accesosoporte/index.php"); 
+    }else if($_SESSION["rol_id"] == 3) {
+        header("Location:"."http://localhost:80/HelpDesk_Tecno/"."view/accesoadmin/index.php"); 
     }
+    
     exit();
 ?>

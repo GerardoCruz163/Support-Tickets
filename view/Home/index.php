@@ -42,8 +42,14 @@
 			</header>
 			<div class="row">
 				<div class="col-xl-12">
-					<div class="row">
-						<div class="col-sm-4">
+					<?php
+						if($_SESSION["rol_id"] == 2){
+							echo '<p>Tickets de area';
+						}
+
+					?>
+				<div class="row">
+					<div class="col-sm-4">
 							<article class="statistic-box green">
 								<div>
 									<div class="number" id="lbltotal"></div>

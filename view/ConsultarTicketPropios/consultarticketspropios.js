@@ -1,7 +1,8 @@
 var tabla;
 var usu_id=$('#user_idx').val();
 var rol_id=$('#rol_idx').val();
-var usu_asig = $('#user_idx').val();
+var suc_id = $('#suc_idx').val();
+
 function init(){
     $("#ticket_form").on("submit",function(e){
         guardar(e);
@@ -9,8 +10,7 @@ function init(){
 }
 
 $(document).ready(function(){
-    
-        
+    console.log(suc_id);
     $.post("../../controller/categoria.php?op=combo",function(data, status){
         $('#cat_id').html(data);
     });
@@ -41,7 +41,7 @@ $(document).ready(function(){
                 'pdfHtml5'
                 ],
         "ajax":{
-            url: '../../controller/ticket.php?op=listar_ticket_asig_x_usu',
+            url: '../../controller/ticket.php?op=listar_x_usu',
             type : "post",
             dataType : "json",	
             data:{ usu_id : usu_id },						
@@ -80,17 +80,25 @@ $(document).ready(function(){
             }
         }     
     }).DataTable(); 
-    
     // if(rol_id == 1){/* SI EL ROL ES USUARIO, SOLO VERA SUS TICKETS GENERADOS */
+        
 
-    // }else{ /* SI EL ROL ES DE SOPORTE, VERA TODOS LOS TICKETS DE LOS USUARIOS */
+    // }else if(rol_id == 2){ /* SI EL ROL ES DE Supervisor, VERA TODOS LOS TICKETS DE LOS USUARIOS de su area y sucursal */
+    // $('#viewuser').hide();
     //     var tick_titulo = $('#tick_titulo').val();
     //     var cat_id = $('#cat_id').val();
     //     var prio_id = $('#prio_id').val();
     //     var usu_idt = $('#usu_id').val(); // se utiliza usu_idt para que no haga conflicto con la variable usu_id global
 
+    //     listardatatable(tick_titulo, cat_id, prio_id, usu_idt, suc_id);
+    // }else if(rol_id == 3){
+    //     var tick_titulo = $('#tick_titulo').val();
+    //     var cat_id = $('#cat_id').val();
+    //     var prio_id = $('#prio_id').val();
+    //     var usu_idt = $('#usu_id').val(); // se utiliza usu_idt para que no haga conflicto con la variable usu_id global
+
+    //     listardatatable_admin(tick_titulo, cat_id, prio_id, usu_idt);
     // }
-    //listardatatable(tick_titulo, cat_id, prio_id, usu_id);
 });
 
 // function ver(tick_id){
@@ -105,15 +113,15 @@ $(document).on("click",".btn-inline", function(){
     window.open('http://localhost:80/HelpDesk_Tecno/view/DetalleTicket/?ID='+ciphertext+'');
 });
 
-// function asignar(tick_id){
-//     $.post("../../controller/ticket.php?op=mostrar_noencry", {tick_id : tick_id}, function (data){
-//         data = JSON.parse(data);
-//         $('#tick_id').val(data.tick_id);
+function asignar(tick_id){
+    $.post("../../controller/ticket.php?op=mostrar_noencry", {tick_id : tick_id}, function (data){
+        data = JSON.parse(data);
+        $('#tick_id').val(data.tick_id);
 
-//         $('#mdltitulo').html('Asignar soporte');
-//         $("#modalasignar").modal('show');
-//     });
-// }
+        $('#mdltitulo').html('Asignar soporte');
+        $("#modalasignar").modal('show');
+    });
+}
 
 function guardar(e){
     e.preventDefault();
@@ -173,27 +181,48 @@ function CambiarEstado(tick_id){
     });
 }
 
-$(document).on("click", "#btnfiltrar", function(){
-    limpiar();
-    var tick_titulo = $('#tick_titulo').val();
-    var cat_id = $('#cat_id').val();
-    var prio_id = $('#prio_id').val();
-    var usu_id = $('#usu_id').val();
-
-    listardatatable(tick_titulo, cat_id, prio_id, usu_id);
-});
+// $(document).on("click", "#btnfiltrar", function(){
+//     if(rol_id==2){
+//         limpiar();
+//         var tick_titulo = $('#tick_titulo').val();
+//         var cat_id = $('#cat_id').val();
+//         var prio_id = $('#prio_id').val();
+//         var usu_id = $('#usu_id').val();
+    
+//         listardatatable(tick_titulo, cat_id, prio_id, usu_id, suc_id);
+//     }else if(rol_id == 3){
+//         limpiar();
+//         var tick_titulo = $('#tick_titulo').val();
+//         var cat_id = $('#cat_id').val();
+//         var prio_id = $('#prio_id').val();
+//         var usu_id = $('#usu_id').val();
+    
+//         listardatatable_admin(tick_titulo, cat_id, prio_id, usu_id);
+//     }
+// });
 
 $(document).on("click", "#btntodo", function(){
-    limpiar();
-    $('#tick_titulo').val('');
-    $('#cat_id').val('').trigger('change');
-    $('#prio_id').val('').trigger('change');
-    $('#usu_id').val('').trigger('change');
+    
+    if(rol_id==2){
+        limpiar();
+        $('#tick_titulo').val('');
+        $('#cat_id').val('').trigger('change');
+        $('#prio_id').val('').trigger('change');
+        $('#usu_id').val('').trigger('change');
+        listardatatable('', '', '', '', '');
 
-    listardatatable('', '', '', '');
+    }else if(rol_id == 3){
+        limpiar();
+        $('#tick_titulo').val('');
+        $('#cat_id').val('').trigger('change');
+        $('#prio_id').val('').trigger('change');
+        $('#usu_id').val('').trigger('change');
+        listardatatable_admin('', '', '', '');
+    }
 });
 
-function listardatatable(tick_titulo, cat_id, prio_id, usu_id){
+function listardatatable(tick_titulo, cat_id, prio_id, usu_id, suc_id){
+    
     tabla=$('#ticket_data').dataTable({
         "aProcessing": true,
         "aServerSide": true,
@@ -208,7 +237,65 @@ function listardatatable(tick_titulo, cat_id, prio_id, usu_id){
                 'pdfHtml5'
                 ],
         "ajax":{
-            url: '../../controller/ticket.php?op=listar_filtro',
+            url: '../../controller/ticket.php?op=listar_filtro_sup',
+            type : "post",
+            dataType : "json",	
+            data:{ tick_titulo : tick_titulo, cat_id : cat_id, prio_id: prio_id, usu_id : usu_id, suc_id: suc_id},					
+            error: function(e){
+                console.log(e.responseText);	
+            }
+        },
+        "ordering": false,
+        "bDestroy": true,
+        "responsive": true,
+        "bInfo":true,
+        "iDisplayLength": 10,
+        "autoWidth": false,
+        "language": {
+            "sProcessing":     "Procesando...",
+            "sLengthMenu":     "Mostrar _MENU_ registros",
+            "sZeroRecords":    "No se encontraron resultados",
+            "sEmptyTable":     "Ningún dato disponible en esta tabla",
+            "sInfo":           "Mostrando un total de _TOTAL_ registros",
+            "sInfoEmpty":      "Mostrando un total de 0 registros",
+            "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+            "sInfoPostFix":    "",
+            "sSearch":         "Buscar:",
+            "sUrl":            "",
+            "sInfoThousands":  ",",
+            "sLoadingRecords": "Cargando...",
+            "oPaginate": {
+                "sFirst":    "Primero",
+                "sLast":     "Último",
+                "sNext":     "Siguiente",
+                "sPrevious": "Anterior"
+            },
+            "oAria": {
+                "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+            }
+        }     
+    }).DataTable();
+
+}
+
+function listardatatable_admin(tick_titulo, cat_id, prio_id, usu_id){ //LISTAR TODOS LOS TICKETS (ROL DE ADMINISTRADOR)
+    
+    tabla=$('#ticket_data').dataTable({
+        "aProcessing": true,
+        "aServerSide": true,
+        dom: 'Bfrtip',
+        "searching": true,
+        lengthChange: false,
+        colReorder: true,
+        buttons: [		          
+                'copyHtml5',
+                'excelHtml5',
+                'csvHtml5',
+                'pdfHtml5'
+                ],
+        "ajax":{
+            url: '../../controller/ticket.php?op=listar_filtro_admin',
             type : "post",
             dataType : "json",	
             data:{ tick_titulo : tick_titulo, cat_id : cat_id, prio_id: prio_id, usu_id : usu_id},					

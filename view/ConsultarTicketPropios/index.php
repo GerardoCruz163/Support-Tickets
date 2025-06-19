@@ -24,13 +24,13 @@
 					<div class="tbl-row">
 						<div class="tbl-cell">
 							<h3>
-								Consultar Tickets
+								Consultar mis Tickets
 							</h3>
 							<ol class="breadcrumb breadcrumb-simple">
 								<li><a href="#">Inicio</a></li>
 								
 								<li class="active">
-									Consultar Tickets
+									Consultar mis Tickets
 								</li>
 							</ol>
 						</div>
@@ -75,31 +75,7 @@
 					</div>
 				</div>
 					
-				<?php
-					if($_SESSION['rol_id']==1 || $_SESSION['rol_id']==2){
-						echo '';
-					}else{
-						echo '
-						<div class="row" id="viewuser">
-							<div class="col-lg-2">
-								<fieldset class="form-group">
-									<label class="form-label" for="btnfiltrar">&nbsp;</label>
-									<button type="submit" class="btn btn-rounded btn-primary btn-block" id="btnfiltrar" required>
-										Filtrar	
-									</button>
-								</fieldset>
-							</div>
-		
-							<div class="col-lg-2">
-								<fieldset class="form-group">
-									<label class="form-label" for="btntodo">&nbsp;</label>
-									<button class="btn btn-rounded btn-primary btn-block" id="btntodo" required>Ver todo</button>
-								</fieldset>
-							</div>
-	
-						</div>';
-					}
-				?>
+				
 				
 				
 
@@ -134,7 +110,7 @@
 
 	<?php require_once("modalasignar.php");?>
 	<?php require_once("../MainJS/js.php");?>
-	<script type="text/javascript" src="consultarticket.js"></script>
+	<script type="text/javascript" src="consultarticketspropios.js"></script>
 	<script type="text/javascript" src="../notificacion.js"></script>
 
 

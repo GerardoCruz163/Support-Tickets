@@ -161,15 +161,16 @@
                 INNER join tm_usuario on tm_ticket.usu_id = tm_usuario.usu_id
                 INNER join tm_area on tm_usuario.area_id = tm_area.area_id
                 INNER join tm_prioridad on tm_ticket.prio_id = tm_prioridad.prio_id
-
+                
                 WHERE
                 tm_ticket.est = 1
                 ";
             $sql=$conectar->prepare($sql);
+            $sql->bindValue(1, $suc_id);
             $sql->execute();
             return $resultado=$sql->fetchAll();
         }
-
+   
         public function listar_tickdetalle_x_ticket($tick_id){
             $conectar= parent::conexion();
             parent::set_names();
@@ -311,28 +312,84 @@
             return $resultado=$sql->fetchAll();
         }
 
-        public function get_ticket_total(){
+        public function get_ticket_total(){ // CONTEO TOTAL GENERAL DE TICKETS (ADMINISTRADOR)
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="SELECT COUNT(*) as TOTAL FROM tm_ticket";
-            $sql=$conectar->prepare($sql);
-            $sql->execute();
-            return $resultado=$sql->fetchAll();
-        }
-        public function get_ticket_totalabierto(){
-            $conectar= parent::conexion();
-            parent::set_names();
-            $sql="SELECT COUNT(*) as TOTAL FROM tm_ticket where tick_estado='Abierto'";
+            $sql="SELECT COUNT(*) as TOTAL FROM tm_ticket where tm_ticket.est = 1";
             $sql=$conectar->prepare($sql);
             $sql->execute();
             return $resultado=$sql->fetchAll();
         }
 
+        public function get_ticket_total_sup($area_id, $suc_id){ // CONTEO TOTAL DE TICKETS X AREA Y SUCURSAL (SUPERVISOR)
+            $conectar= parent::conexion();
+            parent::set_names();
+            $sql="SELECT COUNT(*) AS TOTAL 
+            FROM tm_ticket 
+            INNER JOIN tm_usuario ON tm_ticket.usu_id = tm_usuario.usu_id
+            INNER JOIN tm_area ON tm_usuario.area_id = tm_area.area_id
+            INNER JOIN tm_sucursal on tm_usuario.suc_id = tm_sucursal.suc_id
+            WHERE tm_area.area_id = ?
+            AND tm_sucursal.suc_id = ?
+            and tm_ticket.est = 1";
+            $sql=$conectar->prepare($sql);
+            $sql->bindValue(1, $area_id);
+            $sql->bindValue(2, $suc_id);
+            $sql->execute();
+            return $resultado=$sql->fetchAll();
+        }
+        public function get_ticket_totalabierto(){ // CONTEO GENERAL DE TICKETS ABIERTOS (ADMINISTRADOR)
+            $conectar= parent::conexion();
+            parent::set_names();
+            $sql="SELECT COUNT(*) as TOTAL FROM tm_ticket where tick_estado='Abierto'
+            and tm_ticket.est = 1";
+            $sql=$conectar->prepare($sql);
+            $sql->execute();
+            return $resultado=$sql->fetchAll();
+        }
+
+        public function get_ticket_totalabierto_sup($area_id, $suc_id){ // CONTEO DE TICKETS ABIERTOS X AREA Y SUCURSAL (SUPERVISOR)
+            $conectar= parent::conexion();
+            parent::set_names();
+            $sql="SELECT COUNT(*) as TOTAL FROM tm_ticket
+            INNER JOIN tm_usuario ON tm_ticket.usu_id = tm_usuario.usu_id
+            INNER JOIN tm_area ON tm_usuario.area_id = tm_area.area_id
+            INNER JOIN tm_sucursal on tm_usuario.suc_id = tm_sucursal.suc_id
+            where tm_area.area_id = ?
+            and tm_sucursal.suc_id = ?
+            and tick_estado='Abierto'
+            and tm_ticket.est = 1";
+            $sql=$conectar->prepare($sql);
+            $sql->bindValue(1, $area_id);
+            $sql->bindValue(2, $suc_id);
+            $sql->execute();
+            return $resultado=$sql->fetchAll();
+        }        
+
         public function get_ticket_totalcerrado(){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="SELECT COUNT(*) as TOTAL FROM tm_ticket where tick_estado='Cerrado'";
+            $sql="SELECT COUNT(*) as TOTAL FROM tm_ticket where tick_estado='Cerrado'
+            and tm_ticket.est = 1";
             $sql=$conectar->prepare($sql);
+            $sql->execute();
+            return $resultado=$sql->fetchAll();
+        }
+        
+        public function get_ticket_totalcerrado_sup($area_id, $suc_id){
+            $conectar= parent::conexion();
+            parent::set_names();
+            $sql="SELECT COUNT(*) as TOTAL FROM tm_ticket
+            INNER JOIN tm_usuario ON tm_ticket.usu_id = tm_usuario.usu_id
+            INNER JOIN tm_area ON tm_usuario.area_id = tm_area.area_id
+            INNER JOIN tm_sucursal on tm_usuario.suc_id = tm_sucursal.suc_id
+            where tm_area.area_id = ?
+            and tm_sucursal.suc_id = ?
+            and tick_estado='Cerrado'
+            and tm_ticket.est = 1";
+            $sql=$conectar->prepare($sql);
+            $sql->bindValue(1, $area_id);
+            $sql->bindValue(2, $suc_id);
             $sql->execute();
             return $resultado=$sql->fetchAll();
         }
@@ -349,6 +406,29 @@
                 tm_categoria.cat_nom 
                 ORDER BY total DESC";
             $sql=$conectar->prepare($sql);
+            $sql->execute();
+            return $resultado=$sql->fetchAll();
+        } 
+
+        public function get_ticket_grafico_sup($area_id, $suc_id){
+            $conectar= parent::conexion();
+            parent::set_names();
+            $sql="SELECT tm_categoria.cat_nom as nom,COUNT(*) AS total
+            FROM tm_ticket  inner JOIN  
+                tm_categoria ON tm_ticket.cat_id = tm_categoria.cat_id  
+                INNER JOIN tm_usuario ON tm_ticket.usu_id = tm_usuario.usu_id
+                INNER JOIN tm_area ON tm_usuario.area_id = tm_area.area_id
+                INNER JOIN tm_sucursal ON tm_usuario.suc_id = tm_sucursal.suc_id
+            WHERE    
+            tm_ticket.est = 1
+            and tm_area.area_id =?
+            and tm_sucursal.suc_id =?
+            GROUP BY 
+            tm_categoria.cat_nom 
+            ORDER BY total DESC";
+            $sql=$conectar->prepare($sql);
+            $sql->bindValue(1, $area_id);
+            $sql->bindValue(2, $suc_id);
             $sql->execute();
             return $resultado=$sql->fetchAll();
         } 
@@ -370,15 +450,33 @@
             return $resultado=$sql->fetchAll();
         }
 
-        public function filtrar_ticket($tick_titulo,$cat_id,$prio_id, $usu_id){
+        //VERA TODOS LOS TICKETS (ADMINSITRADOR)
+        public function filtrar_ticket_admin($tick_titulo,$cat_id,$prio_id,$usu_id){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="call filtrar_ticket (?,?,?,?)";
+            $sql="call filtrar_ticket_admin(?,?,?,?)";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, '%'.$tick_titulo.'%');
             $sql->bindValue(2, $cat_id);
             $sql->bindValue(3, $prio_id);
             $sql->bindValue(4, $usu_id);
+           
+            $sql->execute();
+            return $resultado=$sql->fetchAll();
+        }
+
+        //VERA SOLAMENTE LOS DEL AREA Y SUCURSAL (SUPERVISOR)
+        public function filtrar_ticket($tick_titulo,$cat_id,$prio_id, $usu_id, $suc_id, $area_id){
+            $conectar= parent::conexion();
+            parent::set_names();
+            $sql="call filtrar_ticket_sup (?,?,?,?,?,?)";
+            $sql=$conectar->prepare($sql);
+            $sql->bindValue(1, '%'.$tick_titulo.'%');
+            $sql->bindValue(2, $cat_id);
+            $sql->bindValue(3, $prio_id);
+            $sql->bindValue(4, $usu_id);
+            $sql->bindValue(5, $suc_id);
+            $sql->bindValue(6, $area_id);
             $sql->execute();
             return $resultado=$sql->fetchAll();
         }
@@ -410,6 +508,30 @@
             INNER join tm_usuario 
             on tm_ticket.usu_id = tm_usuario.usu_id;";
             $sql=$conectar->prepare($sql);
+            $sql->execute();
+            return $resultado=$sql->fetchAll();
+        } 
+
+        public function get_calendar_sup($area_id, $suc_id){
+            $conectar= parent::conexion();
+            parent::set_names();
+            $sql="SELECT tm_ticket.tick_id as id, 
+            concat(tm_usuario.usu_nom, ' ', tm_usuario.usu_ape) as title, 
+            tm_ticket.fech_crea as start, 
+            CASE 
+            WHEN tm_ticket.tick_estado = 'Abierto' THEN 'green' 
+            WHEN tm_ticket.tick_estado = 'Cerrado' THEN 'red' 
+            else 'White' END as color, 
+            tm_ticket.tick_estado 
+            FROM tm_ticket 
+            INNER JOIN tm_usuario on tm_ticket.usu_id = tm_usuario.usu_id
+            INNER JOIN tm_area on tm_usuario.area_id = tm_area.area_id
+            INNER JOIN tm_sucursal on tm_usuario.suc_id = tm_sucursal.suc_id
+            WHERE tm_area.area_id = ?
+            AND tm_sucursal.suc_id =?;";
+            $sql=$conectar->prepare($sql);
+            $sql->bindValue(1, $area_id);
+            $sql->bindValue(2, $suc_id);
             $sql->execute();
             return $resultado=$sql->fetchAll();
         } 

@@ -38,11 +38,11 @@
                 <div class="container-fluid">
                     
                     <form class="sign-box" action="" method="post" id="login_form">
-                        <input type="hidden" id="rol_id" name="rol_id" value="2">
+                        <input type="hidden" id="rol_id" name="rol_id" value="3">
                         <div class="sign-avatar">
-                            <img src="../../public/img/2.png" alt="" id="imgtipo">
+                            <img src="../../public/img/3.png" alt="" id="imgtipo">
                     </div>
-                    <header class="sign-title" id="lbltitulo">Acceso Supervisor</header>
+                    <header class="sign-title" id="lbltitulo">Acceso Administrador</header>
                     
                     <?php
                         if(isset($_GET["m"])){

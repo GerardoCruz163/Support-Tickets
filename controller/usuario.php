@@ -39,14 +39,27 @@
                 
                 if($row["rol_id"]=="1"){
                     $sub_array[] = '<span class="label label-pill label-primary">Usuario</span>';
+                }else if($row["rol_id"]=="2"){
+                    $sub_array[] = '<span class="label label-pill label-info aquamarine">Supervisor</span>';
                 }else{
-                    $sub_array[] = '<span class="label label-pill label-info aquamarine">Soporte</span>';
+                    $sub_array[] = '<span class="label label-pill label-default ">Administrador</span>';
                 }
 
+                if($row["suc_id"] == "1"){
+                    $sub_array[] = 'Nuevo Laredo';
+                }else if($row["suc_id"] == "2"){
+                    $sub_array[] = 'Manzanillo';
+                }else if($row["suc_id"] == "3"){
+                    $sub_array[] = 'Veracruz';
+                }else if($row["suc_id"] == "4"){
+                    $sub_array[] = 'Altamira';
+                }else if($row["suc_id"] == "5"){
+                    $sub_array[] = 'AICM';
+                }else if($row["suc_id"] == "6"){
+                    $sub_array[] = 'AIFA';
+                }
                 $sub_array[] = $row["area_nom"];
 
-
-                
                 $sub_array[] = '<button type="button" onClick="editar('.$row["usu_id"].');"  id="'.$row["usu_id"].'" class="btn btn-inline btn-warning btn-sm ladda-button"><i class="fa fa-edit"></i></button>';
                 $sub_array[] = '<button type="button" onClick="eliminar('.$row["usu_id"].');"  id="'.$row["usu_id"].'" class="btn btn-inline btn-danger btn-sm ladda-button"><i class="fa fa-trash"></i></button>';
                 $data[] = $sub_array;
