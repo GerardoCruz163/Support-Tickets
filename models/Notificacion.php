@@ -14,7 +14,8 @@
         public function get_notificacion_x_usu2($usu_id){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="SELECT * FROM tm_notificacion WHERE usu_id = ?;";
+            $sql="SELECT * FROM tm_notificacion WHERE usu_id = ?
+            order by not_id desc;";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $usu_id);
             $sql->execute();
