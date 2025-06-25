@@ -118,6 +118,7 @@ function editar(usu_id){
         $('#usu_pass').val(data.usu_pass);
         $('#rol_id').val(data.rol_id).trigger('change');
         $('#area_id').val(data.area_id).trigger('change');
+        $('#suc_id').val(data.suc_id).trigger('change');
     });
     $('#modalmantenimiento').modal('show');
 }

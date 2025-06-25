@@ -52,7 +52,7 @@
             }
         }
 
-        public function insert_usuario($usu_nom,$usu_ape,$usu_correo,$usu_pass,$rol_id, $area_id){
+        public function insert_usuario($usu_nom,$usu_ape,$usu_correo,$usu_pass,$rol_id, $area_id, $suc_id){
 
             //ENCRIPTADO DE LA CONTRASEÑA 
             $key = "mi_key_secret";
@@ -63,7 +63,7 @@
 
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="INSERT INTO tm_usuario (usu_id, usu_nom, usu_ape, usu_correo, usu_pass, rol_id, area_id, fech_crea, fech_modi, fech_elim, est) VALUES (NULL,?,?,?,?,?,?,now(), NULL, NULL, '1');";
+            $sql="INSERT INTO tm_usuario (usu_id, usu_nom, usu_ape, usu_correo, usu_pass, rol_id, area_id, suc_id, fech_crea, fech_modi, fech_elim, est) VALUES (NULL,?,?,?,?,?,?,?,now(), NULL, NULL, '1');";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $usu_nom);
             $sql->bindValue(2, $usu_ape); 
@@ -71,11 +71,12 @@
             $sql->bindValue(4, $textoCifrado);
             $sql->bindValue(5, $rol_id);
             $sql->bindValue(6, $area_id);
+            $sql->bindValue(7, $suc_id);
             $sql->execute();
             return $resultado=$sql->fetchAll();
         }
 
-        public function update_usuario($usu_id,$usu_nom,$usu_ape,$usu_correo,$usu_pass,$rol_id,$area_id){
+        public function update_usuario($usu_id,$usu_nom,$usu_ape,$usu_correo,$usu_pass,$rol_id,$area_id, $suc_id){
             //ENCRIPTADO DE LA CONTRASEÑA 
             $key = "mi_key_secret";
             $cipher = "aes-256-cbc";
@@ -92,7 +93,8 @@
                 usu_correo =?, 
                 usu_pass =?, 
                 rol_id =?,
-                area_id = ?
+                area_id = ?,
+                suc_id = ?
                 WHERE
                 usu_id =?";
             $sql=$conectar->prepare($sql);
@@ -102,7 +104,8 @@
             $sql->bindValue(4, $textoCifrado);
             $sql->bindValue(5, $rol_id);
             $sql->bindValue(6, $area_id);
-            $sql->bindValue(7, $usu_id);
+            $sql->bindValue(7, $suc_id);
+            $sql->bindValue(8, $usu_id);
             $sql->execute();
             return $resultado=$sql->fetchAll();
         }
@@ -140,21 +143,24 @@
             return $resultado=$sql->fetchAll();
         }
 
-        public function get_usuario_x_area_cat($cat_id){
+        public function get_usuario_x_area_cat($cat_id, $usu_id){
             $conectar= parent::conexion();
             parent::set_names();
             $sql="SELECT 
             tm_usuario.usu_id,
             tm_usuario.usu_nom, 
-            tm_usuario.usu_ape
+            tm_usuario.usu_ape,
+            tm_usuario.rol_id
             FROM tm_usuario
             JOIN tm_categoria 
             ON tm_usuario.area_id = tm_categoria.area_id
             WHERE tm_categoria.cat_id = ?
-            and tm_usuario.est = 1 
-            and tm_categoria.est =1";
+            and tm_usuario.est = 1
+            and tm_categoria.est =1
+            and tm_usuario.usu_id != ?;";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $cat_id);
+            $sql->bindValue(2, $usu_id);
             $sql->execute();
             return $resultado=$sql->fetchAll();
         }

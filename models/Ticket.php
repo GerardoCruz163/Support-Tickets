@@ -52,7 +52,13 @@
                 WHERE
                 tm_ticket.est = 1
                 AND tm_usuario.usu_id=?
-                ORDER BY tm_ticket.tick_id DESC";
+                ORDER BY CASE tm_ticket.prio_id
+                    WHEN 1 THEN 1
+                    WHEN 2 THEN 2
+                    WHEN 3 THEN 3
+                    ELSE 4
+                END DESC,
+                tm_ticket.fech_crea DESC";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $usu_id);
             $sql->execute();
@@ -128,7 +134,13 @@
                 WHERE
                 tm_ticket.est = 1
                 AND tm_ticket.usu_asig=?
-                ORDER BY tm_ticket.tick_id DESC";
+                ORDER BY CASE tm_ticket.prio_id
+                    WHEN 1 THEN 1
+                    WHEN 2 THEN 2
+                    WHEN 3 THEN 3
+                    ELSE 4
+                END DESC,
+                tm_ticket.fech_crea DESC";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $usu_id);
             $sql->execute();
@@ -528,7 +540,8 @@
             INNER JOIN tm_area on tm_usuario.area_id = tm_area.area_id
             INNER JOIN tm_sucursal on tm_usuario.suc_id = tm_sucursal.suc_id
             WHERE tm_area.area_id = ?
-            AND tm_sucursal.suc_id =?;";
+            AND tm_sucursal.suc_id = ?
+            AND tm_ticket.est = 1;";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $area_id);
             $sql->bindValue(2, $suc_id);

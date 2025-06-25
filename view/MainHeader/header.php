@@ -34,7 +34,7 @@
                         </button>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dd-user-menu">
                             <a class="dropdown-item" href="../MntPerfil/"><i class="fa fa-user" aria-hidden="true"></i>    Perfil</a>
-                            <a class="dropdown-item" href="#"><i class="fa fa-question-circle" aria-hidden="true"></i> Ayuda</a>
+                            <a class="dropdown-item" href="../ayuda/index.php"><i class="fa fa-question-circle" aria-hidden="true"></i> Ayuda</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="../Logout/logout.php"><i class="fa fa-sign-out" aria-hidden="true"></i> Cerrar Sesion</a>
                         </div>

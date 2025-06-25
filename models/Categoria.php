@@ -6,7 +6,8 @@
             parent::set_names();
             $sql="SELECT * FROM tm_categoria
             JOIN tm_area on tm_categoria.area_id = tm_area.area_id
-            WHERE est=1;";
+            WHERE est=1
+            ORDER BY tm_categoria.area_id ASC;";
             $sql=$conectar->prepare($sql);
             $sql->execute();
             return $resultado=$sql->fetchAll();

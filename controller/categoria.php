@@ -11,7 +11,7 @@
                 $html.= "<option value=''>Seleccionar</option>";
                 foreach($datos as $row)
                 {
-                    $html.= "<option value='".$row['cat_id']."'>".$row['cat_nom']."</option>";
+                    $html.= "<option value='".$row['cat_id']."'>".$row['cat_nom'].' - ('.$row['area_nom'].')'."</option>";
                 }
                 echo $html;
             }

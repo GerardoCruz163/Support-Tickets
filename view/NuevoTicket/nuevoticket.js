@@ -5,7 +5,11 @@ function init(){
 
 }
 
+var usu_id=$('#user_idx').val();
+
 $(document).ready(function() {
+
+    console.log(usu_id);
 	$('#tick_descrip').summernote({
         height: 150,
         lang: "es-ES",
@@ -39,7 +43,7 @@ $(document).ready(function() {
         $.post("../../controller/subcategoria.php?op=combo",{cat_id : cat_id},function(data, status){
             $('#cats_id').html(data);
         });
-        $.post("../../controller/usuario.php?op=combo_soporte", { cat_id: cat_id }, function(data){
+        $.post("../../controller/usuario.php?op=combo_soporte", { cat_id: cat_id, usu_id: usu_id }, function(data){
             $('#usu_asig').html(data); 
         });
     });

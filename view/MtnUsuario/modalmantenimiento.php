@@ -50,6 +50,18 @@
                             <option value="4">Administracion</option>
                         </select>
                     </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="suc_id">Sucursal</label>
+                        <select class="select2" id="suc_id" name="suc_id">
+                            <option value="1">Nuevo Laredo</option>
+                            <option value="2">Manzanillo</option>
+                            <option value="3">Veracruz</option>
+                            <option value="4">Altamira</option>
+                            <option value="5">AICM</option>
+                            <option value="6">AIFA</option>
+                        </select>
+                    </div>
                     
                 </div>
                 <div class="modal-footer">

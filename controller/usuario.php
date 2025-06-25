@@ -16,10 +16,10 @@
             $datos= $usuario->get_usuario_x_correo($_POST["usu_correo"]);
             if(count($datos)==0){
                 if(empty($_POST["usu_id"])){
-                    $usuario->insert_usuario($_POST["usu_nom"],$_POST["usu_ape"],$_POST["usu_correo"],$_POST["usu_pass"],$_POST["rol_id"],$_POST["area_id"]);  
+                    $usuario->insert_usuario($_POST["usu_nom"],$_POST["usu_ape"],$_POST["usu_correo"],$_POST["usu_pass"],$_POST["rol_id"],$_POST["area_id"], $_POST["suc_id"]);  
                     echo "1";
                 } else {
-                    $usuario->update_usuario($_POST["usu_id"],$_POST["usu_nom"],$_POST["usu_ape"],$_POST["usu_correo"],$_POST["usu_pass"],$_POST["rol_id"],$_POST["area_id"]);
+                    $usuario->update_usuario($_POST["usu_id"],$_POST["usu_nom"],$_POST["usu_ape"],$_POST["usu_correo"],$_POST["usu_pass"],$_POST["rol_id"],$_POST["area_id"], $_POST["suc_id"]);
                     echo "2";
                 }
             }else{
@@ -94,6 +94,7 @@
                     $output["usu_pass"] = $descifrado;
                     $output["rol_id"] = $row["rol_id"];
                     $output["area_id"] = $row["area_id"];
+                    $output["suc_id"] = $row["suc_id"];
                 }
                 echo json_encode($output);
             }   
@@ -163,7 +164,7 @@
         break;
         
         case "combo_soporte":
-            $datos = $usuario->get_usuario_x_area_cat($_POST["cat_id"]);
+            $datos = $usuario->get_usuario_x_area_cat($_POST["cat_id"], $_POST["usu_id"]);
             $html = "<option label='Seleccionar'></option>";
             if(is_array($datos) && count($datos) > 0){
                 foreach($datos as $row){
