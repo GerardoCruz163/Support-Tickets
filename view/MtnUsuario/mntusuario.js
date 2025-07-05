@@ -21,7 +21,7 @@ function guardaryeditar(e){
                 $("#modalmantenimiento").modal('hide');
                 $('#usuario_data').DataTable().ajax.reload();
     
-                swal({
+            swal({
                     title: "TLA Support Tracing",
                     text: "Registrado correctamente.",
                     type: "success",

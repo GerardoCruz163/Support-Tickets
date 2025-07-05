@@ -27,13 +27,36 @@
 
 <body>
 
-<div class="page-error-box">
-    <!-- <div class="error-code">404</div> -->
-    <img class="" src="../../public/img/uc.png" alt="">
-    <div class="error-title">Disponible muy pronto</div>
-    <a href="" class="btn btn-rounded">Volver al inicio</a>
-</div>
+<?php require_once("../MainHeader/header.php");?>
 
+	<div class="mobile-menu-left-overlay"></div>
+	
+    <?php require_once("../MainNav/nav.php");?>x
+<div class="page-content">
+		<div class="container-fluid">
+			<div class="box-typical box-typical-full-height">
+				<div class="add-customers-screen tbl">
+					<div class="add-customers-screen-in">
+						<div class="add-customers-screen-user">
+							<i class="font-icon font-icon-user"></i>
+						</div>
+						<h2>Your customers list</h2>
+						<p class="lead color-blue-grey-lighter">Create items with names, contact information<br/> and locations to speed-up dispatching.</p>
+						<a href="#" class="btn">Add customer</a>
+					</div>
+				</div>
+			</div><!--.box-typical-->
+		</div><!--.container-fluid-->
+	</div><!--.page-content-->
+
+
+
+	<script src="js/lib/jquery/jquery.min.js"></script>
+	<script src="js/lib/tether/tether.min.js"></script>
+	<script src="js/lib/bootstrap/bootstrap.min.js"></script>
+	<script src="js/plugins.js"></script>
+
+	<script src="js/app.js"></script>
 <?php
 	}else{
 		header("Location:"."http://localhost:80/HelpDesk_Tecno/"."index.php");

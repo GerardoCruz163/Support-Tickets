@@ -64,6 +64,7 @@
                 {
                     $output["cat_id"] = $row["cat_id"];
                     $output["cat_nom"] = $row["cat_nom"];
+                    $output["area_id"] = $row["area_id"];
                 }
                 echo json_encode($output);
             }   

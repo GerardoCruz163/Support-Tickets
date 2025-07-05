@@ -2,6 +2,7 @@ function init(){
 
 }
 
+const socket = io("http://localhost:8082"); // O tu IP si es red local
 $(document).ready(function(){
     
     const url = window.location.href;
@@ -10,6 +11,16 @@ $(document).ready(function(){
     const decoded_id =  decodeURIComponent(tick_id);
     const id = decoded_id.replace(/\s/g, '+'); 
 
+    // socket.emit("join_ticket", decoded_id);
+    // console.log("ID de sala a la que me uno:", id);
+
+    // socket.on("connect", () => {
+    //     console.log("Conectado al WebSocket");
+    //     socket.emit("join_ticket", decoded_id); // 'id' es el ticket descifrado
+    // });
+    // socket.on("recibir_mensaje", function(data){
+    //     console.log("Cliente receptor recibió:", data.ticketId, "==", decoded_id);
+    // });
     
  
     $('#tickd_descrip').summernote({
@@ -35,8 +46,6 @@ $(document).ready(function(){
           ]
     
     });
-
-    mostraryvalidar(id);
 
     $('#tickd_descripusu').summernote({
         height: 250,
@@ -106,7 +115,11 @@ $(document).ready(function(){
             }
         }
     }).DataTable();
+    console.log("Tick ID enviado a listar:", id);
+
+    mostraryvalidar(id);
 });
+
 
 $(document).on("click","#btnenviar",function(){
     const url = window.location.href;
@@ -147,9 +160,17 @@ $(document).on("click","#btnenviar",function(){
                 $('#tickd_descrip').summernote('reset');
                 console.log(data);
 
+                
                 //listarDetalle(id);
                 $('#btnenviar').prop("disabled",false);
                 $('#btnenviar').html('<i class="fa fa-paper-plane" aria-hidden="true"></i> Enviar');  
+                
+                socket.emit("nuevo_mensaje", {
+                    ticketId: id,
+                    message: tickd_descrip,
+                    usuario: usu_id
+                });
+                
             }
         });
     }
@@ -237,12 +258,16 @@ $(document).on("click","#btncerrar",function(){
 });
 
 function mostraryvalidar(id){
+    //console.log("mostraryvalidar ejecutado desde WebSocket con ID:", id);
     $.post("../../controller/ticket.php?op=listardetalle", {tick_id: id}, function (data){
+        
+        console.log("Respuesta del detalle:", data);
         $('#lbldetalle').html(data);
     });
 
     $.post("../../controller/ticket.php?op=mostrar", {tick_id: id}, function (data){
         data=JSON.parse(data);
+        console.log(data.tick_id); // aqui si muestra el id descifrado
         $('#lblestado').html(data.tick_estado);
         $('#lblnomusuario').html(data.usu_nom + ' ' + data.usu_ape);
         $('#lblarea').html(data.area_nom);

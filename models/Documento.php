@@ -2,7 +2,7 @@
     class Documento extends Conectar{
         public function insert_documento($tick_id, $doc_nom){
             $conectar= parent::conexion();
-            $sql ="INSERT INTO td_documento (doc_id,tick_id,doc_nom,fech_crea,est) VALUES (null,?,?,now(),1);";
+            $sql ="call sp_insert_documento(?,?)";
 
             $sql = $conectar->prepare($sql);
             $sql->bindParam(1,$tick_id);
@@ -13,7 +13,7 @@
         public function get_documento_x_ticket($tick_id){
             $conectar= parent::conexion();
 
-            $sql="SELECT * FROM td_documento WHERE tick_id=?";
+            $sql="call sp_get_documento_x_ticket(?)";
             $sql = $conectar->prepare($sql);
             $sql->bindParam(1,$tick_id);
             $sql->execute();
@@ -21,7 +21,7 @@
         }
         public function insert_documento_detalle($tickd_id, $det_nom){
             $conectar= parent::conexion();
-            $sql ="INSERT INTO td_documento_detalle (det_id,tickd_id,det_nom,est) VALUES (null,?,?,1);";
+            $sql ="call sp_insert_documento_detalle(?,?)";
             $sql = $conectar->prepare($sql);
             $sql->bindParam(1,$tickd_id);
             $sql->bindParam(2,$det_nom);
@@ -31,7 +31,7 @@
         public function get_documento_detalle_x_ticketd($tickd_id){
             $conectar= parent::conexion();
 
-            $sql="SELECT * FROM td_documento_detalle WHERE tickd_id=?";
+            $sql="call sp_get_documento_detalle_x_ticketd(?)";
             $sql = $conectar->prepare($sql);
             $sql->bindParam(1,$tickd_id);
             $sql->execute();

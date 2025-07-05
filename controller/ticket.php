@@ -20,7 +20,7 @@
 
         case "insert":
             $datos=$ticket->insert_ticket($_POST["usu_id"],$_POST["cat_id"],$_POST["cats_id"],$_POST["tick_titulo"],$_POST["tick_descrip"], $_POST["usu_asig"], $_POST["prio_id"]);
-                {
+            if (is_array($datos)==true and count($datos)>0){   
                 foreach ($datos as $row){
                     $output["tick_id"] = $row["tick_id"];
 
@@ -346,8 +346,18 @@
                                     <div class="activity-line-item-user">
                                         <div class="activity-line-item-user-photo">
                                             <a href="#">
-                                                <img src="../../public/img/<?php echo $row['rol_id']?>.png" alt="">
-
+                                            <!-- Muestreo de fotos -->
+                                            <?php
+                                                if($row["rol_id"] == 2 || $row["rol_id"] == 3){
+                                                    ?>
+                                                        <img src="../../public/img/<?php echo $row["rol_id"]?>.png" alt="">
+                                                    <?php
+                                                }else{
+                                                    ?>
+                                                        <img src="../../public/img/<?php echo $row["pic_num"]?>_user.jpg" alt="">
+                                                    <?php
+                                                }
+                                            ?>
                                             </a>
                                         </div>
                                         <div class="activity-line-item-user-name"><?php echo $row['usu_nom'].' '.$row['usu_ape']?></div>
@@ -355,12 +365,15 @@
                                             
                                         <?php 
                                             if($row['rol_id']==1){
-                                                echo 'Usuario', ' ';
+                                                echo ' ';
                                             }else if($row['rol_id']==2){
-                                                echo 'Supervisor';
+                                                echo 'Supervisor > ';
                                             }else {
-                                                echo 'Administrador';
+                                                echo '<span class="font-icon font-icon-cogwheel"></span> Administrador > ';
                                             }
+                                           
+                                            echo $row['area_nom'] . '   >   <span class="font-icon font-icon-pin-2"></span> ' . $row['suc_nom'];
+
                                         ?>
                                         
                                         </div>

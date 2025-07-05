@@ -114,8 +114,11 @@ function editar(cat_id){
 
     $.post("../../controller/categoria.php?op=mostrar", {cat_id: cat_id}, function (data){
         data = JSON.parse(data);
+        console.log(data);
         $('#cat_id').val(data.cat_id);
         $('#cat_nom').val(data.cat_nom);
+        $('#area_id').val(data.area_id).trigger('change');
+        console.log(data.area_id);
     });
     $('#modalmantenimiento').modal('show');
 }

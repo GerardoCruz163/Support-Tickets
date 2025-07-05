@@ -12,7 +12,7 @@
                     $subcategoria->insert_subcategoria($_POST["cat_id"],$_POST["cats_nom"]);     
                     echo "1";
                 }else {
-                    $subcategoria->update_subcategoria($_POST["cats_id"],$_POST["cat_id"],$_POST["cats_nom"]);
+                    $subcategoria->update_subcategoria($_POST["cat_id"],$_POST["cats_nom"],$_POST["cats_id"]);
                     echo "2";
                 }
             }else{
@@ -25,8 +25,8 @@
             $data= Array();
             foreach($datos as $row){
                 $sub_array = array();
-                $sub_array[] = $row["cat_nom"];
                 $sub_array[] = $row["cats_nom"];
+                $sub_array[] = $row["cat_nom"].' ('.$row["area_nom"].')';
                 $sub_array[] = '<button type="button" onClick="editar('.$row["cats_id"].');"  id="'.$row["cats_id"].'" class="btn btn-inline btn-warning btn-sm ladda-button"><i class="fa fa-edit"></i></button>';
                 $sub_array[] = '<button type="button" onClick="eliminar('.$row["cats_id"].');"  id="'.$row["cats_id"].'" class="btn btn-inline btn-danger btn-sm ladda-button"><i class="fa fa-trash"></i></button>';
                 $data[] = $sub_array;

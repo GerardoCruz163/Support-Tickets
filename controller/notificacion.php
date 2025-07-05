@@ -14,7 +14,6 @@
             if(is_array($datos)==true and count($datos)>0){
                 foreach($datos as $row)
                 {
-                    
                     $output["not_id"] = $row["not_id"];
                     $output["usu_id"] = $row["usu_id"];
                     $output["not_mensaje"] = $row["not_mensaje"]. ' ' . $row["tick_id"];

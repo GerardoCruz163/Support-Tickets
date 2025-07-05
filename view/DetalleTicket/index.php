@@ -65,8 +65,7 @@
 
 					<div class="col-lg-12">
 						<fieldset class="form-group">
-							<label class="form-label semibold" for="cat_nom">Documentos adjuntos</label>
-
+							<label class="form-label semibold" for="tick_titulo">Documentos adjuntos</label>
 							<table id="documentos_data" class="table table-bordered table-striped table-vcenter js-dataTable-full">
 								<thead>
 									<tr>
@@ -101,11 +100,6 @@
 			
 		</section><!--.activity-line-->
 			<div class="box-typical box-typical-padding" id="pnldetalle">
-				<p>
-					Responder aqui:
-				</p>
-				
-
 				<div class="row">
 					<div class="col-lg-12">
 						<fieldset class="form-group">
@@ -138,10 +132,11 @@
 	</div><!--.page-content-->
 
 	<?php require_once("../MainJS/js.php");?>
+	<script src="http://cdn.socket.io/4.7.2/socket.io.min.js"></script>
 	<script type="text/javascript" src="detalleticket.js"></script>
 	<script type="text/javascript" src="../notificacion.js"></script>
-
-<script src="js/app.js"></script>
+	
+	<!-- <script src="js/app.js"></script> -->
 </body>
 </html>
 <?php

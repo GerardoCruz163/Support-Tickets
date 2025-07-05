@@ -6,7 +6,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
     <div class="container-fluid">
 
-        <a href="#" class="site-logo">
+        <a href="../Home/index.php" class="site-logo">
             <img class="hidden-md-down" src="../../public/img/SUTRAT.png" alt="">
             <img class="hidden-lg-up" src="../../public/img/SUTRA REDT.png" alt="">
         </a>
@@ -30,7 +30,18 @@
                     </div>
                     <div class="dropdown user-menu">   
                         <button class="dropdown-toggle" id="dd-user-menu" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img src="../../public/img/<?php echo $_SESSION["rol_id"]?>.png" alt="">
+                            <!-- DEFINICION DE FOTO DEFAULT -->
+                            <?php
+                                if($_SESSION["rol_id"] == 2 || $_SESSION["rol_id"] == 3){
+                                    ?>
+                                        <img src="../../public/img/<?php echo $_SESSION["rol_id"]?>.png" alt="">
+                                    <?php
+                                }else{
+                                    ?>
+                                        <img src="../../public/img/<?php echo $_SESSION["pic_num"]?>_user.jpg" alt="">
+                                    <?php
+                                }
+                            ?>
                         </button>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dd-user-menu">
                             <a class="dropdown-item" href="../MntPerfil/"><i class="fa fa-user" aria-hidden="true"></i>    Perfil</a>
@@ -49,7 +60,7 @@
                 <input type="hidden" id="area_idx" value="<?php echo $_SESSION["area_id"] ?>">
 
                 <div class="dropdown dropdown-typical">
-                    <a href="#" class="dropdown-toggle no-arr">
+                    <a href="../MntPerfil/index.php" class="dropdown-toggle no-arr">
                         <!-- <span class="font-icon font-icon-user"></span> -->
                         <i class="fa fa-user" aria-hidden="true"></i>
                         <span class="lblcontactonomx"><?php echo $_SESSION["usu_nom"] ?> <?php echo $_SESSION["usu_ape"];

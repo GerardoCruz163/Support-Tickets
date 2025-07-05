@@ -53,7 +53,7 @@
 						</tbody>
 					</table>
 					<button id="btnnuevo" type="button" class="btn btn-inline btn-primary">
-						<i class="fa fa-user-plus" aria-hidden="true"></i>	
+						<i class="fa fa-plus" aria-hidden="true"> </i>
 						Nuevo
 					</button>
 			</div>

@@ -41,8 +41,8 @@
 				<table id="usuario_data" class="table table-bordered table-striped table-vcenter js-dataTable-full">
 					<thead>
 						<tr>
-							<th style="width: 8%;">Categoria</th>
 							<th style="width: 8%;">Subcategoria</th>
+							<th style="width: 8%;">Categoria</th>
 							<th class="d-none d-sm-table-cell" style="width: 5%;"></th>
 							<th class="d-none d-sm-table-cell" style="width: 5%;"></th>
 							
@@ -53,7 +53,7 @@
 						</tbody>
 					</table>
 					<button id="btnnuevo" type="button" class="btn btn-inline btn-primary">
-						<i class="fa fa-user-plus" aria-hidden="true"></i>	
+						<i class="fa fa-plus" aria-hidden="true"></i>	
 						Nuevo
 					</button>
 			</div>

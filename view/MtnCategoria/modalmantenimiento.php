@@ -17,8 +17,6 @@
                         <input type="text" class="form-control" id="cat_nom" name="cat_nom" placeholder="Ingrese el nombre de la categoria" required>
                     </div>
     
-                    
-    
                     <div class="form-group">
                         <label class="form-label" for="area_id">Area</label>
                         <select class="select2" id="area_id" name="area_id">
@@ -28,15 +26,6 @@
                             <option value="4">Administracion</option>
                         </select>
                     </div>
-
-                    <!-- <div class="form-group">
-                        <label class="form-label" for="area_id">Area</label>
-                        <select class="select2" id="area_id" name="area_id">
-                            <option value="1">Sistemas</option>
-                            <option value="2">Trafico</option>
-                            <option value="3">Contabilidad</option>
-                        </select>
-                    </div> -->
                     
                 </div>
                 <div class="modal-footer">

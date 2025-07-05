@@ -4,8 +4,7 @@
         public function insert_ticket($usu_id, $cat_id, $cats_id, $tick_titulo, $tick_descrip, $usu_asig, $prio_id){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="INSERT INTO tm_ticket (usu_id, cat_id, cats_id, tick_titulo, tick_descrip, tick_estado, fech_crea, usu_asig, fech_asig, prio_id,est) 
-            VALUES (?,?,?,?,?,'Abierto',now(),?,now(),?,'1');";
+            $sql="call sp_insert_ticket(?,?,?,?,?,?,?)";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1,$usu_id);
             $sql->bindValue(2,$cat_id);
@@ -16,7 +15,6 @@
             $sql->bindValue(7,$prio_id);
             $sql->execute();
             
-
             $sql1="select last_insert_id() as 'tick_id';";
             $sql1=$conectar->prepare($sql1);
             $sql1->execute();
@@ -26,39 +24,7 @@
         public function listar_ticket_x_usu($usu_id){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="SELECT 
-                tm_ticket.tick_id,
-                tm_ticket.usu_id,
-                tm_ticket.cat_id,
-                tm_ticket.tick_titulo,
-                tm_ticket.tick_descrip,
-                tm_ticket.tick_estado,
-                tm_ticket.fech_crea,
-                tm_ticket.fech_cierre,
-                tm_ticket.usu_asig,
-                tm_ticket.fech_asig,
-                tm_usuario.usu_nom,
-                tm_usuario.usu_ape,
-                tm_area.area_nom,
-                tm_categoria.cat_nom,
-                tm_ticket.prio_id,
-                tm_prioridad.prio_nom 
-                FROM 
-                tm_ticket
-                INNER join tm_categoria on tm_ticket.cat_id = tm_categoria.cat_id
-                INNER join tm_usuario on tm_ticket.usu_id = tm_usuario.usu_id
-                INNER join tm_area on tm_usuario.area_id = tm_area.area_id
-                INNER join tm_prioridad on tm_ticket.prio_id = tm_prioridad.prio_id
-                WHERE
-                tm_ticket.est = 1
-                AND tm_usuario.usu_id=?
-                ORDER BY CASE tm_ticket.prio_id
-                    WHEN 1 THEN 1
-                    WHEN 2 THEN 2
-                    WHEN 3 THEN 3
-                    ELSE 4
-                END DESC,
-                tm_ticket.fech_crea DESC";
+            $sql="call sp_listar_ticket_x_usu(?)";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $usu_id);
             $sql->execute();
@@ -68,37 +34,7 @@
         public function listar_ticket_x_id($tick_id){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="SELECT 
-            tm_ticket.tick_id,
-            tm_ticket.usu_id,
-            tm_ticket.cat_id,
-            tm_ticket.cats_id,
-            tm_ticket.tick_titulo,
-            tm_ticket.tick_descrip,
-            tm_ticket.tick_estado,
-            tm_ticket.fech_crea,
-            tm_ticket.fech_cierre,
-            tm_ticket.tick_estre,
-            tm_ticket.tick_coment,
-            tm_ticket.usu_asig,
-            tm_area.area_nom,
-            tm_usuario.usu_nom,
-            tm_usuario.usu_ape,
-            tm_usuario.usu_correo,
-            tm_categoria.cat_nom,
-            tm_subcategoria.cats_nom,
-            tm_ticket.prio_id,
-            tm_prioridad.prio_nom
-            FROM 
-            tm_ticket
-            INNER join tm_categoria on tm_ticket.cat_id = tm_categoria.cat_id
-            INNER join tm_subcategoria on tm_ticket.cats_id = tm_subcategoria.cats_id
-            INNER join tm_usuario on tm_ticket.usu_id = tm_usuario.usu_id
-            INNER join tm_area on tm_usuario.area_id = tm_area.area_id
-            INNER join tm_prioridad on tm_ticket.prio_id = tm_prioridad.prio_id
-            WHERE
-            tm_ticket.est = 1
-            AND tm_ticket.tick_id = ?";
+            $sql="call sp_listar_ticket_x_id(?)";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $tick_id);
             $sql->execute();
@@ -108,39 +44,7 @@
         public function listar_ticket_asig_x_usu($usu_id){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="SELECT 
-                tm_ticket.tick_id,
-                tm_ticket.usu_id,
-                tm_ticket.cat_id,
-                tm_ticket.tick_titulo,
-                tm_ticket.tick_descrip,
-                tm_ticket.tick_estado,
-                tm_ticket.fech_crea,
-                tm_ticket.fech_cierre,
-                tm_ticket.usu_asig,
-                tm_ticket.fech_asig,
-                tm_usuario.usu_nom,
-                tm_usuario.usu_ape,
-                tm_area.area_nom,
-                tm_categoria.cat_nom,
-                tm_ticket.prio_id,
-                tm_prioridad.prio_nom 
-                FROM 
-                tm_ticket
-                INNER join tm_categoria on tm_ticket.cat_id = tm_categoria.cat_id
-                INNER join tm_usuario on tm_ticket.usu_id = tm_usuario.usu_id
-                INNER join tm_area on tm_usuario.area_id = tm_area.area_id
-                INNER join tm_prioridad on tm_ticket.prio_id = tm_prioridad.prio_id
-                WHERE
-                tm_ticket.est = 1
-                AND tm_ticket.usu_asig=?
-                ORDER BY CASE tm_ticket.prio_id
-                    WHEN 1 THEN 1
-                    WHEN 2 THEN 2
-                    WHEN 3 THEN 3
-                    ELSE 4
-                END DESC,
-                tm_ticket.fech_crea DESC";
+            $sql="call sp_listar_ticket_asig_x_usu(?)";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $usu_id);
             $sql->execute();
@@ -150,33 +54,7 @@
         public function listar_ticket(){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="SELECT 
-                tm_ticket.tick_id,
-                tm_ticket.usu_id,
-                tm_ticket.cat_id,
-                tm_ticket.tick_titulo,
-                tm_ticket.tick_descrip,
-                tm_ticket.tick_estado,
-                tm_ticket.fech_crea,
-                tm_ticket.fech_cierre,
-                tm_ticket.usu_asig,
-                tm_ticket.fech_asig,
-                tm_usuario.usu_nom,
-                tm_usuario.usu_ape,
-                tm_area.area_nom,
-                tm_categoria.cat_nom,
-                tm_ticket.prio_id,
-                tm_prioridad.prio_nom
-                FROM 
-                tm_ticket
-                INNER join tm_categoria on tm_ticket.cat_id = tm_categoria.cat_id
-                INNER join tm_usuario on tm_ticket.usu_id = tm_usuario.usu_id
-                INNER join tm_area on tm_usuario.area_id = tm_area.area_id
-                INNER join tm_prioridad on tm_ticket.prio_id = tm_prioridad.prio_id
-                
-                WHERE
-                tm_ticket.est = 1
-                ";
+            $sql="call sp_listar_ticket";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $suc_id);
             $sql->execute();
@@ -186,19 +64,7 @@
         public function listar_tickdetalle_x_ticket($tick_id){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="SELECT
-                    td_ticketdetalle.tickd_id,
-                    td_ticketdetalle.tickd_descrip,
-                    td_ticketdetalle.fech_crea,
-                    tm_usuario.usu_nom,
-                    tm_usuario.usu_ape,
-                    tm_usuario.rol_id
-                FROM 
-                    td_ticketdetalle
-                INNER join tm_usuario on td_ticketdetalle.usu_id = tm_usuario.usu_id
-                WHERE 
-                    tick_id =?
-                    order by tickd_id";
+            $sql="call sp_listar_tickdetalle_x_ticket(?)";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $tick_id);
             $sql->execute();
@@ -216,21 +82,24 @@
                 $usu_crea = $row["usu_id"];
             }
 
-            //si rol es 1, entonces inserta la alerta para el usuario de soporte
-            if($_SESSION["rol_id"]==1){
+            //si el usuario es quien fue asignado al ticket, la notificacion va para el que la creo
+            if($_SESSION["usu_id"]== $usu_asig){
                 //GUARDAR NOTIFICACION DE NUEVO COMENTARIO
-                $sql0="INSERT INTO tm_notificacion (not_id,usu_id,not_mensaje,tick_id,est) VALUES(null, $usu_asig,'Tienes una nueva respuesta en el ticket #',$tick_id, 2)";
+                $sql0="call sp_guardar_notificacion($usu_crea, $tick_id)";
                 $sql0=$conectar->prepare($sql0);
                 $sql0->execute();
-            }else{
+
+            //si el usuario es quien creó el ticket, la notificacion va para quien fue asignado
+            }else if($_SESSION["usu_id"]== $usu_crea){
                 //GUARDAR NOTIFICACION DE NUEVO COMENTARIO
-                $sql0="INSERT INTO tm_notificacion (not_id,usu_id,not_mensaje,tick_id,est) VALUES(null, $usu_crea,'Tienes una nueva respuesta en el ticket #',$tick_id, 2)";
+                $sql0="call sp_guardar_notificacion($usu_asig, $tick_id)";
                 $sql0=$conectar->prepare($sql0);
                 $sql0->execute();
+                
             }
 
             // TODO: Devuelve el ultimo ID ticket ingresado
-            $sql="INSERT INTO td_ticketdetalle (tickd_id,tick_id,usu_id,tickd_descrip,fech_crea,est) VALUES (NULL,?,?,?,now(),'1');";
+            $sql="call sp_insert_ticketdetalle(?,?,?)";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $tick_id);
             $sql->bindValue(2, $usu_id);
@@ -260,11 +129,7 @@
         public function insert_ticketdetalle_cerrar_reabrir($tick_id,$usu_id){
             $conectar= parent::conexion();
             parent::set_names();
-                $sql="INSERT INTO 
-                td_ticketdetalle 
-                (tickd_id,tick_id,usu_id,tickd_descrip,fech_crea,est) 
-                VALUES 
-                (NULL,?,?,'Ticket re-abierto',now(),'1');";
+                $sql="call sp_insert_ticketdetalle_cerrar_reabrir(?,?)";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $tick_id);
             $sql->bindValue(2, $usu_id);
@@ -275,12 +140,7 @@
         public function update_ticket($tick_id){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="update tm_ticket 
-                set	
-                    tick_estado = 'Cerrado',
-                    fech_cierre = now()
-                where
-                    tick_id = ?";
+            $sql="call sp_update_ticket_cerrar(?)";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $tick_id);
             $sql->execute();
@@ -461,7 +321,6 @@
             $sql->execute();
             return $resultado=$sql->fetchAll();
         }
-
         //VERA TODOS LOS TICKETS (ADMINSITRADOR)
         public function filtrar_ticket_admin($tick_titulo,$cat_id,$prio_id,$usu_id){
             $conectar= parent::conexion();
@@ -476,7 +335,6 @@
             $sql->execute();
             return $resultado=$sql->fetchAll();
         }
-
         //VERA SOLAMENTE LOS DEL AREA Y SUCURSAL (SUPERVISOR)
         public function filtrar_ticket($tick_titulo,$cat_id,$prio_id, $usu_id, $suc_id, $area_id){
             $conectar= parent::conexion();

@@ -4,7 +4,7 @@
         public function get_subcategoria($cat_id){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="SELECT * FROM tm_subcategoria WHERE cat_id = ? and est=1;";
+            $sql="call sp_get_subcategoria(?)";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $cat_id);
             $sql->execute();
@@ -13,14 +13,7 @@
         public function get_subcategoria_all(){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="SELECT 
-            tm_subcategoria.cats_id,
-            tm_subcategoria.cat_id,
-            tm_subcategoria.cats_nom,
-            tm_categoria.cat_nom
-            FROM tm_subcategoria INNER JOIN
-            tm_categoria on tm_subcategoria.cat_id = tm_categoria.cat_id
-            WHERE tm_subcategoria.est=1";
+            $sql="call sp_get_subcategoria_all";
             $sql=$conectar->prepare($sql);
             $sql->execute();
             return $resultado=$sql->fetchAll();
@@ -30,7 +23,7 @@
         public function insert_subcategoria($cat_id,$cats_nom){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="INSERT INTO tm_subcategoria (cats_id,cat_id,cats_nom,est) VALUES (NULL,?,?,'1');";
+            $sql="call sp_insert_subcategoria(?,?)";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $cat_id);
             $sql->bindValue(2, $cats_nom);
@@ -39,14 +32,10 @@
         }
 
         /* TODO:Update */
-        public function update_subcategoria($cats_id,$cat_id,$cats_nom){
+        public function update_subcategoria($cat_id,$cats_nom,$cats_id){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="UPDATE tm_subcategoria set
-                cat_id = ?,
-                cats_nom = ?
-                WHERE
-                cats_id = ?";
+            $sql="call sp_update_subcategoria(?,?,?)";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $cat_id);
             $sql->bindValue(2, $cats_nom);
@@ -59,10 +48,7 @@
         public function delete_subcategoria($cats_id){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="UPDATE tm_subcategoria SET
-                est = 0
-                WHERE 
-                cats_id = ?";
+            $sql="call sp_delete_subcategoria(?)";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $cats_id);
             $sql->execute();
@@ -73,7 +59,7 @@
         public function get_subcategoria_x_id($cats_id){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="SELECT * FROM tm_subcategoria WHERE cats_id = ?";
+            $sql="call sp_get_subcategoria_x_id(?)";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $cats_id);
             $sql->execute();
@@ -83,7 +69,7 @@
         public function get_subcategoria_x_nom($cats_nom, $cat_id){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="SELECT * FROM tm_subcategoria WHERE cats_nom = ? AND cat_id=? AND est = 1";
+            $sql="call sp_get_subcategoria_x_nom(?,?)";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $cats_nom);
             $sql->bindValue(2, $cat_id);
