@@ -668,7 +668,7 @@
         break;
 
         case "encuesta":
-            $datos=$ticket->insert_encuesta($_POST["tick_id"], $_POST["tick_estre"],$_POST["tick_coment"]);  
+            $datos=$ticket->insert_encuesta($_POST["tick_estre"],$_POST["tick_coment"],$_POST["tick_id"]);  
         break;
 
         case "all_calendar":

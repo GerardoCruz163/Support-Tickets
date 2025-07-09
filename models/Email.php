@@ -272,7 +272,7 @@ class Email extends PHPMailer{
         try{
             $this->Send();
 
-            $usuario-> encriptar_nueva_contra($usu_id, $usu_pass);
+            $usuario-> encriptar_nueva_contra($usu_pass,$usu_id);
             return true;
         }catch(Exception $e){
             return false;

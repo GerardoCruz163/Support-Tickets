@@ -9,7 +9,7 @@ $(document).on("click","#btnactualizar",function(){
         if(pass==newpass){
             console.log("Contraseña actualizada");
             var usu_id =$('#user_idx').val();
-            $.post("../../controller/usuario.php?op=password", {usu_id : usu_id, usu_pass : newpass}, function (data){
+            $.post("../../controller/usuario.php?op=password", {usu_pass : newpass, usu_id : usu_id}, function (data){
                 swal("Contraseña actualizada", "Anotala en un lugar seguro", "success")
             });
 

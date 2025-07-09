@@ -19,7 +19,7 @@
                     $usuario->insert_usuario($_POST["usu_nom"],$_POST["usu_ape"],$_POST["usu_correo"],$_POST["usu_pass"],$_POST["rol_id"],$_POST["area_id"], $_POST["suc_id"]);  
                     echo "1";
                 } else {
-                    $usuario->update_usuario($_POST["usu_id"],$_POST["usu_nom"],$_POST["usu_ape"],$_POST["usu_correo"],$_POST["usu_pass"],$_POST["rol_id"],$_POST["area_id"], $_POST["suc_id"]);
+                    $usuario->update_usuario($_POST["usu_nom"],$_POST["usu_ape"],$_POST["usu_correo"],$_POST["usu_pass"],$_POST["rol_id"],$_POST["area_id"], $_POST["suc_id"], $_POST["usu_id"]);
                     echo "2";
                 }
             }else{
@@ -179,7 +179,7 @@
             $cifrado = openssl_encrypt($_POST["usu_pass"], $cipher, $key,OPENSSL_RAW_DATA, $iv);
             $textoCifrado = base64_encode($iv . $cifrado);
 
-            $usuario->update_usuario_pass($_POST["usu_id"], $textoCifrado);
+            $usuario->update_usuario_pass($textoCifrado,$_POST["usu_id"]);
         break;
 
         case "correo";

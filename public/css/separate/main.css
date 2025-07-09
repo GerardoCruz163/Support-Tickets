@@ -10168,7 +10168,7 @@ body.modal-open {
   -webkit-border-radius: inherit;
           border-radius: inherit;
   height: 142px;
-  background: url('../img/statistic-box-grid.png') 50% 0;
+  /* background: url('../img/statistic-box-grid.png') 50% 0; */
   background-size: 21px 20px;
   position: relative;
 }

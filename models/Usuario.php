@@ -15,7 +15,7 @@
                     header("Location:".conectar::ruta()."index.php?m=2");
                     exit();
                 }else{
-                    $sql = "SELECT * FROM tm_usuario WHERE usu_correo=? and rol_id=? and est = 1";
+                    $sql = "call sp_login(?,?)";
                     $stmt=$conectar->prepare($sql);
                     $stmt->bindValue(1, $correo);
                    
@@ -65,7 +65,7 @@
 
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="INSERT INTO tm_usuario (usu_id, usu_nom, usu_ape, usu_correo, usu_pass, rol_id, area_id, suc_id, fech_crea, fech_modi, fech_elim, pic_num, est) VALUES (NULL,?,?,?,?,?,?,?,now(), NULL, NULL, FLOOR(1 + RAND() * 8), '1');";
+            $sql="call sp_insert_usuario(?,?,?,?,?,?,?)";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $usu_nom);
             $sql->bindValue(2, $usu_ape); 
@@ -78,7 +78,7 @@
             return $resultado=$sql->fetchAll();
         }
 
-        public function update_usuario($usu_id,$usu_nom,$usu_ape,$usu_correo,$usu_pass,$rol_id,$area_id, $suc_id){
+        public function update_usuario($usu_nom,$usu_ape,$usu_correo,$usu_pass,$rol_id,$area_id, $suc_id, $usu_id){
             //ENCRIPTADO DE LA CONTRASEÑA 
             $key = "mi_key_secret";
             $cipher = "aes-256-cbc";
@@ -88,17 +88,7 @@
 
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="UPDATE tm_usuario 
-            SET 
-                usu_nom =?,
-                usu_ape =?, 
-                usu_correo =?, 
-                usu_pass =?, 
-                rol_id =?,
-                area_id = ?,
-                suc_id = ?
-                WHERE
-                usu_id =?";
+            $sql="call sp_update_usuario(?,?,?,?,?,?,?,?)";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $usu_nom);
             $sql->bindValue(2, $usu_ape);
@@ -115,11 +105,7 @@
         public function delete_usuario($usu_id){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="UPDATE tm_usuario 
-                SET 
-                est='0', 
-                fech_elim=now() 
-                where usu_id=?";
+            $sql="call sp_delete_usuario(?)";
             
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $usu_id);
@@ -139,7 +125,7 @@
         public function get_usuario_x_rol(){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="SELECT * FROM tm_usuario where est=1 and rol_id = 2";
+            $sql="call sp_get_usuario_x_rol";
             $sql=$conectar->prepare($sql);
             $sql->execute();
             return $resultado=$sql->fetchAll();
@@ -148,18 +134,7 @@
         public function get_usuario_x_area_cat($cat_id, $usu_id){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="SELECT 
-            tm_usuario.usu_id,
-            tm_usuario.usu_nom, 
-            tm_usuario.usu_ape,
-            tm_usuario.rol_id
-            FROM tm_usuario
-            JOIN tm_categoria 
-            ON tm_usuario.area_id = tm_categoria.area_id
-            WHERE tm_categoria.cat_id = ?
-            and tm_usuario.est = 1
-            and tm_categoria.est =1
-            and tm_usuario.usu_id != ?;";
+            $sql="call sp_get_usuario_x_area_cat(?,?)";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $cat_id);
             $sql->bindValue(2, $usu_id);
@@ -180,7 +155,7 @@
         public function get_usuario_total_x_id($usu_id){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="SELECT COUNT(*) as TOTAL FROM tm_ticket where usu_id=?";
+            $sql="call sp_get_usuario_total_x_id(?)";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $usu_id);
             $sql->execute();
@@ -190,7 +165,7 @@
         public function get_usuario_totalabierto_x_id($usu_id){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="SELECT COUNT(*) as TOTAL FROM tm_ticket where usu_id=? and tick_estado='Abierto'";
+            $sql="call sp_get_usuario_totalabierto_x_id(?)";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $usu_id);
             $sql->execute();
@@ -200,7 +175,7 @@
         public function get_usuario_totalcerrado_x_id($usu_id){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="SELECT COUNT(*) as TOTAL FROM tm_ticket where usu_id=? and tick_estado='Cerrado'";
+            $sql="call sp_get_usuario_totalcerrado_x_id(?)";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $usu_id);
             $sql->execute();
@@ -210,7 +185,7 @@
         public function get_usuario_totalabierto(){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="SELECT COUNT(*) as TOTAL FROM tm_ticket where tick_estado='Abierto'";
+            $sql="call sp_get_usuario_totalabierto";
             $sql=$conectar->prepare($sql);
             $sql->execute();
             return $resultado=$sql->fetchAll();
@@ -219,7 +194,7 @@
         public function get_usuario_totalcerrado(){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="SELECT COUNT(*) as TOTAL FROM tm_ticket where tick_estado='Cerrado'";
+            $sql="call sp_get_usuario_totalcerrado";
             $sql=$conectar->prepare($sql);
             $sql->execute();
             return $resultado=$sql->fetchAll();
@@ -228,29 +203,17 @@
         public function get_usuario_grafico($usu_id){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="SELECT tm_categoria.cat_nom as nom,COUNT(*) AS total
-                FROM   tm_ticket  JOIN  
-                    tm_categoria ON tm_ticket.cat_id = tm_categoria.cat_id  
-                WHERE    
-                tm_ticket.est = 1
-                and tm_ticket.usu_id = ?
-                GROUP BY 
-                tm_categoria.cat_nom 
-                ORDER BY total DESC";
+            $sql="call sp_get_usuario_grafico(?)";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $usu_id);
             $sql->execute();
             return $resultado=$sql->fetchAll();
         } 
 
-        public function update_usuario_pass($usu_id, $usu_pass){
+        public function update_usuario_pass($usu_pass,$usu_id){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="UPDATE tm_usuario
-            SET
-                usu_pass = ?
-            WHERE
-                usu_id = ?";
+            $sql="call sp_update_usuario_pass(?,?)";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $usu_pass);
             $sql->bindValue(2, $usu_id);
@@ -271,17 +234,14 @@
         public function get_cambiar_contra_recuperar($usu_correo){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="UPDATE tm_usuario SET 
-                usu_pass = CONCAT(SUBSTRING(MD5(RAND()),1,3),LPAD(FLOOR(RAND()*1000),3,'0'))
-                WHERE
-                usu_correo = ?";
+            $sql="call sp_get_cambiar_contra_recuperar(?)";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $usu_correo);
             $sql->execute();
             return $resultado=$sql->fetchAll();
         }
 
-        public function encriptar_nueva_contra($usu_id,$usu_pass){
+        public function encriptar_nueva_contra($usu_pass,$usu_id){
             //ENCRIPTADO DE LA CONTRASEÑA 
             $key = "mi_key_secret";
             $cipher = "aes-256-cbc";
@@ -291,11 +251,7 @@
     
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="UPDATE tm_usuario 
-            SET 
-                usu_pass =?
-                WHERE
-                usu_id =?";
+            $sql="call sp_encriptar_nueva_contra(?,?)";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $textoCifrado);
             $sql->bindValue(2, $usu_id);
