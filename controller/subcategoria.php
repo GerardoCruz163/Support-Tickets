@@ -21,11 +21,13 @@
         break;
 
         case "listar":
+        
             $datos=$subcategoria->get_subcategoria_all();
             $data= Array();
             foreach($datos as $row){
                 $sub_array = array();
                 $sub_array[] = $row["cats_nom"];
+                
                 $sub_array[] = $row["cat_nom"].' ('.$row["area_nom"].')';
                 $sub_array[] = '<button type="button" onClick="editar('.$row["cats_id"].');"  id="'.$row["cats_id"].'" class="btn btn-inline btn-warning btn-sm ladda-button"><i class="fa fa-edit"></i></button>';
                 $sub_array[] = '<button type="button" onClick="eliminar('.$row["cats_id"].');"  id="'.$row["cats_id"].'" class="btn btn-inline btn-danger btn-sm ladda-button"><i class="fa fa-trash"></i></button>';

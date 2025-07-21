@@ -33,7 +33,6 @@
 
 	<link rel="stylesheet" href="../../public/css/separate/pages/others.min.css">
 	
-	
     <link rel="stylesheet" href="../../public/css/main.css">
 
 	

@@ -19,7 +19,7 @@
 
         //TOMAR ESTE EJEMPLO PARA CREACION DE NUEVO TICKET (AL DEJAR CAMPOS VACIOS)
         case "guardaryeditar":
-            $datos= $categoria->get_categoria_x_nom($_POST["cat_nom"]);
+            $datos= $categoria->get_categoria_x_nom($_POST["cat_nom"], $_POST["area_id"]);
             if(count($datos)==0){
                 if(empty($_POST["cat_id"])){
                     $categoria->insert_categoria($_POST["cat_nom"], $_POST["area_id"]);  

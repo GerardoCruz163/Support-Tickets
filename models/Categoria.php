@@ -55,12 +55,13 @@
             return $resultado=$sql->fetchAll();
         }
 
-        public function get_categoria_x_nom($cat_nom){
+        public function get_categoria_x_nom($cat_nom, $area_id){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="call sp_get_cat_x_nom(?)";
+            $sql="call sp_get_cat_x_nom(?,?)";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $cat_nom);
+            $sql->bindValue(2, $area_id);
             $sql->execute();    
             return $resultado=$sql->fetchAll();
         }

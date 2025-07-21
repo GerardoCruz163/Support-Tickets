@@ -16,35 +16,36 @@ function guardaryeditar(e){
         data: formData,
         contentType: false,
         processData: false,
-        success: function(datos){    
-            console.log(datos);
-
-            if(datos == "1"){
+        success: function(datos){   
+            if(datos == 1){
+                console.log("Respuesta del servidor:", datos); 
                 $('#usuario_form')[0].reset();
                 $("#modalmantenimiento").modal('hide');
                 $('#usuario_data').DataTable().ajax.reload();
-    
+                
                 swal({
-                    title: "TLA Support Tracing",
+                    title: "TLA Support Tracking",
                     text: "Registrado correctamente.",
                     type: "success",
                     confirmButtonClass: "btn-success"
-                });    
-            }else if(datos == "2"){
+                });   
+            }else if(datos == 2){
+                console.log("Respuesta del servidor:", datos); 
                 $('#usuario_form')[0].reset();
                 $("#modalmantenimiento").modal('hide');
                 $('#usuario_data').DataTable().ajax.reload();
     
                 swal({
-                    title: "TLA Support Tracing",
+                    title: "TLA Support Tracking",
                     text: "Actualizado correctamente.",
                     type: "success",
                     confirmButtonClass: "btn-success"
                 });    
-            }else if(datos== "0"){
-                $("#cat_nom").addClass("form-control-error");
-                $("<small class='text-muted text-danger'>El nombre que introduciste ya existe.</small>").insertAfter("#cat_nom");
             }
+            //  else if(datos== 0){
+            //     $("#cat_nom").addClass("form-control-error");
+            //     $("<small class='text-muted text-danger'>El nombre que introduciste ya existe.</small>").insertAfter("#cat_nom");
+            // }
         }
     }); 
 }
@@ -141,8 +142,6 @@ function eliminar(cat_id){
                 $.post("../../controller/categoria.php?op=eliminar", {cat_id: cat_id}, function (data){
                     
                 });
-
-                $('#usuario_data').DataTable().ajax.reload();
                 
                 swal({
                     title: "TLA Support Tracing",
@@ -150,6 +149,7 @@ function eliminar(cat_id){
                     type: "success",
                     confirmButtonClass: "btn-success"
                 });
+                $('#usuario_data').DataTable().ajax.reload();
             }
         }
     );

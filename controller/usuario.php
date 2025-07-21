@@ -14,17 +14,37 @@
     switch($_GET["op"]){
         case "guardaryeditar":
             $datos= $usuario->get_usuario_x_correo($_POST["usu_correo"]);
-            if(count($datos)==0){
-                if(empty($_POST["usu_id"])){
-                    $usuario->insert_usuario($_POST["usu_nom"],$_POST["usu_ape"],$_POST["usu_correo"],$_POST["usu_pass"],$_POST["rol_id"],$_POST["area_id"], $_POST["suc_id"]);  
+
+            if(empty($_POST["usu_id"])){
+                // Agregar nuevo usuario
+                if(count($datos) == 0){
+                    $usuario->insert_usuario($_POST["usu_nom"],$_POST["usu_ape"],$_POST["usu_correo"],$_POST["usu_pass"],$_POST["rol_id"],$_POST["area_id"], $_POST["suc_id"]);
                     echo "1";
-                } else {
+                }else {
+                    echo "0"; // correo ya existe
+                }
+            } else {
+                // Editar usuario existente
+                // Verificar si el correo pertenece a otro usuario
+                if($datos[0]["usu_id"] == $_POST["usu_id"]){
                     $usuario->update_usuario($_POST["usu_nom"],$_POST["usu_ape"],$_POST["usu_correo"],$_POST["usu_pass"],$_POST["rol_id"],$_POST["area_id"], $_POST["suc_id"], $_POST["usu_id"]);
                     echo "2";
+                } else {
+                    echo "0"; // correo duplicado en otro usuario
                 }
-            }else{
-                echo "0";
             }
+
+            // if(count($datos)==0){
+            //     if(empty($_POST["usu_id"])){
+            //         $usuario->insert_usuario($_POST["usu_nom"],$_POST["usu_ape"],$_POST["usu_correo"],$_POST["usu_pass"],$_POST["rol_id"],$_POST["area_id"], $_POST["suc_id"]);  
+            //         echo "1";
+            //     } else {
+            //         $usuario->update_usuario($_POST["usu_nom"],$_POST["usu_ape"],$_POST["usu_correo"],$_POST["usu_pass"],$_POST["rol_id"],$_POST["area_id"], $_POST["suc_id"], $_POST["usu_id"]);
+            //         echo "2";
+            //     }
+            // }else{
+            //     echo "0";
+            // }
         break;
 
         case "listar":
@@ -164,6 +184,7 @@
         break;
         
         case "combo_soporte":
+
             $datos = $usuario->get_usuario_x_area_cat($_POST["cat_id"], $_POST["usu_id"]);
             $html = "<option label='Seleccionar'></option>";
             if(is_array($datos) && count($datos) > 0){

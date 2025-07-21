@@ -16,32 +16,33 @@ function guardaryeditar(e){
         contentType: false,
         processData: false,
         success: function(datos){    
-            if(datos == "1"){
+            if(datos == 1){
                 $('#usuario_form')[0].reset();
                 $("#modalmantenimiento").modal('hide');
                 $('#usuario_data').DataTable().ajax.reload();
     
                 swal({
-                    title: "TLA Support Tracing",
+                    title: "TLA Support Tracking",
                     text: "Registrado correctamente.",
                     type: "success",
                     confirmButtonClass: "btn-success"
                 });    
-            }else if(datos == "2"){
+            }else if(datos == 2){
                 $('#usuario_form')[0].reset();
                 $("#modalmantenimiento").modal('hide');
                 $('#usuario_data').DataTable().ajax.reload();
     
                 swal({
-                    title: "TLA Support Tracing",
+                    title: "TLA Support Tracking",
                     text: "Actualizado correctamente.",
                     type: "success",
                     confirmButtonClass: "btn-success"
                 });    
-            }else if(datos== "0"){
-                $("#cats_nom").addClass("form-control-error");
-                $("<small class='text-muted text-danger'>El nombre que introduciste ya existe.</small>").insertAfter("#cats_nom");
             }
+            // else if(datos== "0"){
+            //     $("#cats_nom").addClass("form-control-error");
+            //     $("<small class='text-muted text-danger'>El nombre que introduciste ya existe.</small>").insertAfter("#cats_nom");
+            // }
         }
     }); 
 }

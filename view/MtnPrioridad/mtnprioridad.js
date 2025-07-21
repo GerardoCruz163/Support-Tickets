@@ -18,7 +18,7 @@ function guardaryeditar(e){
         success: function(datos){    
             console.log(datos);
 
-            if(datos == "1"){
+            if(datos == 1){
                 $('#usuario_form')[0].reset();
                 $("#modalmantenimiento").modal('hide');
                 $('#usuario_data').DataTable().ajax.reload();
@@ -30,7 +30,7 @@ function guardaryeditar(e){
                     confirmButtonClass: "btn-success"
                 });
 
-            }else if(datos == "2"){
+            }else if(datos == 2){
                 $('#usuario_form')[0].reset();
                 $("#modalmantenimiento").modal('hide');
                 $('#usuario_data').DataTable().ajax.reload();
@@ -41,7 +41,7 @@ function guardaryeditar(e){
                     type: "success",
                     confirmButtonClass: "btn-success"
                 });
-            }else if(datos == "0"){
+            }else if(datos == 0){
                 $("#prio_nom").addClass("form-control-error");
                 $("<small class='text-muted text-danger'>El nombre que introduciste ya existe.</small>").insertAfter("#prio_nom");
             }

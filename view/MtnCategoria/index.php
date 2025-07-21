@@ -60,6 +60,7 @@
 		</div><!--.container-fluid-->
 	</div><!--.page-content-->
 
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 	<?php require_once("modalmantenimiento.php");?>
 	<?php require_once("../MainJS/js.php");?>

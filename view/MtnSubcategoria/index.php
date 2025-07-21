@@ -66,7 +66,7 @@
 	<script type="text/javascript" src="mtnsubcategoria.js"></script>
 	<script type="text/javascript" src="../notificacion.js"></script>
 
-<script src="js/app.js"></script>
+	<script src="js/app.js"></script>
 </body>
 </html>
 <?php
