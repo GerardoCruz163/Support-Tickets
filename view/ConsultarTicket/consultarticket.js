@@ -111,8 +111,17 @@ $(document).ready(function(){
 // TODO: Link para ver detalle de ticket a otra ventana
 $(document).on("click",".btn-inline", function(){
     const ciphertext = $(this).data("ciphertext");
-    console.log(ciphertext);
-    window.open('http://localhost:80/HelpDesk_Tecno/view/DetalleTicket/?ID='+ciphertext+'');
+    const realId = $(this).data("real-id");
+
+    // console.log("ID encriptado:", ciphertext);
+    // console.log("ID sin ecriptar:", id);
+
+    console.log(realId);
+    //DATO TEMPORAL (MIENTRAS EL USUARIO ENTRE AL TICKET, EL VALOR EXISTIRA)
+    sessionStorage.setItem("ticket_id_real", realId); 
+    
+    // window.open('http://localhost:80/HelpDesk_Tecno/view/DetalleTicket/?ID='+ciphertext+'');
+    window.open('https://support-tracking.tecnologisticaaduanal.com/view/DetalleTicket/?ID='+ciphertext+'');
 });
 
 function asignar(tick_id){

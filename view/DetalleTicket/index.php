@@ -19,6 +19,7 @@
 	<!-- Contenido -->
 	<div class="page-content">
 		<div class="container-fluid">
+		<span id="realTicketId" data-id=""></span>
 
 			<header class="section-header">
 				<div class="tbl">

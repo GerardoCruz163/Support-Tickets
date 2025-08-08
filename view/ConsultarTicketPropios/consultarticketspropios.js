@@ -110,7 +110,7 @@ $(document).ready(function(){
 $(document).on("click",".btn-inline", function(){
     const ciphertext = $(this).data("ciphertext");
     console.log(ciphertext);
-    window.open('http://localhost:80/HelpDesk_Tecno/view/DetalleTicket/?ID='+ciphertext+'');
+    window.open('https://support-tracking.tecnologisticaaduanal.com/view/DetalleTicket/?ID='+ciphertext+'');
 });
 
 function asignar(tick_id){

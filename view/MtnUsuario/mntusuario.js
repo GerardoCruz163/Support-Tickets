@@ -42,7 +42,7 @@ function guardaryeditar(e){
                     type: "success",
                     confirmButtonClass: "btn-success"
                 });    
-            }else if(datos== 0){
+            }else if(datos == 0){
                 $("#usu_correo").addClass("form-control-error");
                 $("<small class='text-muted text-danger'>El nombre que introduciste ya existe.</small>").insertAfter("#usu_correo");
             }

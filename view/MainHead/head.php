@@ -15,8 +15,6 @@
     <link rel="stylesheet" href="../../public/css/lib/font-awesome/font-awesome.min.css">
     <link rel="stylesheet" href="../../public/css/lib/bootstrap/bootstrap.min.css">
 	
-	<!-- <link rel="stylesheet" href="../../public/css/separate/pages/error.min.css"> -->
-	
 	<link rel="stylesheet" href="../../public/css/separate/vendor/fancybox.min.css">
 	<link rel="stylesheet" href="../../public/css/separate/pages/activity.min.css">
 	
@@ -30,8 +28,9 @@
 	<link rel="stylesheet" href="../../public/css/separate/vendor/datatables-net.min.css">
 	
 	<link rel="stylesheet" href="../../public/css/separate/vendor/select2.min.css">
-
+	
 	<link rel="stylesheet" href="../../public/css/separate/pages/others.min.css">
+	<!-- <link rel="stylesheet" href="../../public/css/separate/pages/error.min.css">  -->
 	
     <link rel="stylesheet" href="../../public/css/main.css">
 

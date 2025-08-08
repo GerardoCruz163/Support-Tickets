@@ -23,7 +23,7 @@
                     </div>
     
                     <div class="form-group">
-                        <label class="form-label" for="usu_correo">Correo electronico</label>
+                        <label class="form-label" for="usu_correo">Correo electrónico</label>
                         <input type="email" class="form-control" id="usu_correo" name="usu_correo" placeholder="ejemplo@tecnologisticaaduanal.com" required>
                     </div>
     
@@ -45,9 +45,9 @@
                         <label class="form-label" for="area_id">Area</label>
                         <select class="select2" id="area_id" name="area_id">
                             <option value="1">Sistemas</option>
-                            <option value="2">Trafico</option>
+                            <option value="2">Operaciones</option>
                             <option value="3">Contabilidad</option>
-                            <option value="4">Administracion</option>
+                            <option value="4">Administración</option>
                         </select>
                     </div>
 

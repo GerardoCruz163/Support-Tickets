@@ -19,10 +19,10 @@ io.on("connection", (socket) => {
         console.log(`Cliente se unió a la sala del ticket: ${ticketId}`);
     });
 
-    socket.on("nuevo_mensaje", (data) => {
+    socket.on("recibir_mensaje", (data) => {
         console.log("Mensaje recibido del cliente:", data);
         console.log("Reenviando a sala:", data.ticketId);
-        io.to(data.ticketId).emit("recibir_mensaje", data);
+        socket.to(data.ticketId).emit("recibir_mensaje", data);
     });
     
 
@@ -30,7 +30,6 @@ io.on("connection", (socket) => {
         console.log("Cliente desconectado");
     });
 });
-
 
 server.listen(8082, () => {
     console.log("WebSocket corriendo en puerto 8082");

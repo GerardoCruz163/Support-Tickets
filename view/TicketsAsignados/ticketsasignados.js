@@ -101,6 +101,11 @@ $(document).ready(function(){
 // TODO: Link para ver detalle de ticket a otra ventana
 $(document).on("click",".btn-inline", function(){
     const ciphertext = $(this).data("ciphertext");
+
+    const realId = $(this).data("real-id");
+
+    sessionStorage.setItem("ticket_id_real", realId); 
+    
     console.log(ciphertext);
     window.open('http://localhost:80/HelpDesk_Tecno/view/DetalleTicket/?ID='+ciphertext+'');
 });

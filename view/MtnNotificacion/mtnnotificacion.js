@@ -60,5 +60,6 @@ $(document).ready(function(){
 $(document).on("click",".btn-inline", function(){
     const ciphertext = $(this).data("ciphertext");
     
-    window.open('http://localhost:80/HelpDesk_Tecno/view/DetalleTicket/?ID='+ciphertext+'');
+    // window.open('http://localhost:80/HelpDesk_Tecno/view/DetalleTicket/?ID='+ciphertext+'');
+    window.open('https://support-tracking.tecnologisticaaduanal.com/view/DetalleTicket/?ID='+ciphertext+'');
 });

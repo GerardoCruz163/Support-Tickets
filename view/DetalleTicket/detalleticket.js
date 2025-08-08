@@ -2,27 +2,33 @@ function init(){
 
 }
 
-const socket = io("http://localhost:8082"); // O tu IP si es red local
+const socket = io("http://localhost:8082"); // O la IP si es red local
 $(document).ready(function(){
     
     const url = window.location.href;
     const params = new URLSearchParams(new URL(url).search);
     const tick_id = params.get("ID");
     const decoded_id =  decodeURIComponent(tick_id);
+    const encodedCiphertext = encodeURIComponent(tick_id);
     const id = decoded_id.replace(/\s/g, '+'); 
 
-    // socket.emit("join_ticket", decoded_id);
-    // console.log("ID de sala a la que me uno:", id);
+    //AQUI LEO EL SESSION STORAGE
+    const realTicketId = sessionStorage.getItem("ticket_id_real");
 
-    // socket.on("connect", () => {
-    //     console.log("Conectado al WebSocket");
-    //     socket.emit("join_ticket", decoded_id); // 'id' es el ticket descifrado
-    // });
-    // socket.on("recibir_mensaje", function(data){
-    //     console.log("Cliente receptor recibió:", data.ticketId, "==", decoded_id);
-    // });
+    console.log(realTicketId);
+    socket.on("connect", () => {
+        console.log("Conectado al WebSocket");
+    });
+    socket.emit("join_ticket", realTicketId);
+
+    socket.on("recibir_mensaje", (data)=> {
+        // Solo refresca si el mensaje pertenece al mismo ticket
+        if (data.ticketId === realTicketId) {
+            console.log("Mensaje en tiempo real recibido:", data);
+            mostraryvalidar(id); // ya está definida y actualiza los mensajes
+        }
+    });
     
- 
     $('#tickd_descrip').summernote({
         height: 150,
         lang: "es-ES",
@@ -128,6 +134,9 @@ $(document).on("click","#btnenviar",function(){
     const decoded_id =  decodeURIComponent(tick_id);
     const id = decoded_id.replace(/\s/g, '+'); 
     console.log(id);
+
+    const realTicketId = sessionStorage.getItem("ticket_id_real");
+
     //var tick_id = getUrlParameter('ID'); // Aqui
     var usu_id = $('#user_idx').val();
     var tickd_descrip = $('#tickd_descrip').val();
@@ -160,13 +169,18 @@ $(document).on("click","#btnenviar",function(){
                 $('#tickd_descrip').summernote('reset');
                 console.log(data);
 
-                
                 //listarDetalle(id);
                 $('#btnenviar').prop("disabled",false);
                 $('#btnenviar').html('<i class="fa fa-paper-plane" aria-hidden="true"></i> Enviar');  
                 
-                socket.emit("nuevo_mensaje", {
-                    ticketId: id,
+                // io.to(ticketId).emit("recibir_mensaje", {
+                //     ticketId: id,
+                //     message: tickd_descrip,
+                //     usuario: usu_id
+                // });
+                
+                socket.emit("recibir_mensaje", {
+                    ticketId: realTicketId,
                     message: tickd_descrip,
                     usuario: usu_id
                 });
@@ -260,8 +274,7 @@ $(document).on("click","#btncerrar",function(){
 function mostraryvalidar(id){
     //console.log("mostraryvalidar ejecutado desde WebSocket con ID:", id);
     $.post("../../controller/ticket.php?op=listardetalle", {tick_id: id}, function (data){
-        
-        console.log("Respuesta del detalle:", data);
+        //console.log("Respuesta del detalle:", data);
         $('#lbldetalle').html(data);
     });
 
@@ -285,12 +298,9 @@ function mostraryvalidar(id){
         $('#prio_nom').val(data.prio_nom);
 
         if(data.tick_estado_texto == 'Cerrado'){
-
             $('#pnldetalle').hide();
         }
     });
-
-    
 }
 
 init();

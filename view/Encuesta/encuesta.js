@@ -30,7 +30,7 @@ function listarDetalle(tick_id){
         $('#tick_titulo').val(data.tick_titulo);
         $('#prio_nom').val(data.prio_nom);
         if (data.tick_estado_texto=='Abierto') {
-            window.open('http://localhost:80/HelpDesk_Tecno/','_self');
+            window.open('https://support-tracking.tecnologisticaaduanal.com/','_self');
         }else{
             if (data.tick_estre==null){
 
