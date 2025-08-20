@@ -52,7 +52,7 @@
 						<fieldset class="form-group">
 							<label class="form-label" for="cat_id">Categoria</label>
 							<select class="select2" id="cat_id" name="cat_id" data-placeholder="Seleccionar">
-								<option label="Seleccionar">Seleccionar</option>
+								<!-- <option label="Seleccionar">Seleccionar</option> -->
 							</select>
 						</fieldset>
 					</div>
