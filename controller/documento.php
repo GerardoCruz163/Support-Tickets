@@ -32,7 +32,7 @@
                 "aaData"=>$data
             );
         
-            // 🔧 Solución: asegurarse que los strings estén en UTF-8
+            // Solución: asegurarse que los strings estén en UTF-8
             array_walk_recursive($results, function (&$item) {
                 if (is_string($item) && !mb_detect_encoding($item, 'UTF-8', true)) {
                     $item = utf8_encode($item);

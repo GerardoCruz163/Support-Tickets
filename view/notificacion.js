@@ -22,6 +22,7 @@ function mostrar_notificacion(){
                     $.notify({
                         icon: 'glyphicon glyphicon-star',
                         message: data.not_mensaje,
+                        //url: "http://localhost:80/HelpDesk_Tecno/view/DetalleTicket/?ID=" + data.tick_id //NOS REDIRIGE AL DETALLE DEL TICKET
                         url: "https://support-tracking.tecnologisticaaduanal.com/view/DetalleTicket/?ID=" + data.tick_id //NOS REDIRIGE AL DETALLE DEL TICKET
                     })
     

@@ -57,9 +57,20 @@ $(document).ready(function(){
 });
 
 // TODO: Link para ver detalle de ticket a otra ventana
-$(document).on("click",".btn-inline", function(){
-    const ciphertext = $(this).data("ciphertext");
-    
-    // window.open('http://localhost:80/HelpDesk_Tecno/view/DetalleTicket/?ID='+ciphertext+'');
-    window.open('https://support-tracking.tecnologisticaaduanal.com/view/DetalleTicket/?ID='+ciphertext+'');
+$(document).on("click", ".btn-inline, a[data-real-id]", function(e){
+    e.preventDefault(); // Solo necesario para el <a> para que no navegue de inmediato
+    const ciphertext = $(this).data("ciphertext"); // puede ser undefined en <a> si no tiene
+    const realId = $(this).data("realId");
+
+    console.log(realId);
+    //DATO TEMPORAL (MIENTRAS EL USUARIO ENTRE AL TICKET, EL VALOR EXISTIRA)
+    sessionStorage.setItem("ticket_id_real", realId);
+
+    if(ciphertext){
+        // window.open('http://localhost:80/HelpDesk_Tecno/view/DetalleTicket/?ID=' + ciphertext);
+        window.open('https://support-tracking.tecnologisticaaduanal.com/view/DetalleTicket/?ID='+ciphertext+'');
+    } else if(this.tagName.toLowerCase() === 'a'){
+        // Si es un <a> sin ciphertext, abrimos el href
+        window.open($(this).attr("href"));
+    }
 });

@@ -5,18 +5,22 @@
 
     switch($_GET["op"]){
 
+        //VERIFICACION SI EL TICKET SE AGREGA O SE MODIFICA
         case "guardaryeditar":
-            $datos= $subcategoria->get_subcategoria_x_nom($_POST["cats_nom"], $_POST["cat_id"]);
-            if(count($datos)==0){
-                if(empty($_POST["cats_id"])){
+            //SE CONSULTA SI EXISTE LA SUBCATEGORIA CON LOS DATOS ENVIADOS
+            $datos= $subcategoria->get_subcategoria_x_nom($_POST["cats_nom"], $_POST["cat_id"]); 
+            if(count($datos)==0){   // SI NO EXISTE LA SUBCATEGORIA CON ESOS DATOS
+                //ENTONCES
+                if(empty($_POST["cats_id"])){ // LOS DATOS QUE ENVIAS ¿NO CONTIENEN UN cats_id?
+                    // SI ES ASI, ENTONCES AGREGA UNA NUEVA SUBCATEGORIA
                     $subcategoria->insert_subcategoria($_POST["cat_id"],$_POST["cats_nom"]);     
-                    echo "1";
-                }else {
+                    echo "1"; //EMITE 1
+                }else { // SI CONTIENEN UN cats_id, ENTONCES SOLO SE EDITARÁ
                     $subcategoria->update_subcategoria($_POST["cat_id"],$_POST["cats_nom"],$_POST["cats_id"]);
-                    echo "2";
+                    echo "2"; //EMITE 2
                 }
-            }else{
-                echo "0";
+            }else{// SI EXISTE LA SUBCATEGORIA CON ESOS DATOS
+                echo "0";// EMITE 0 (EVITA DUPLICADOS) (DESACTIVADO POR EL MOMENTO)
             }
         break;
 

@@ -46,9 +46,9 @@
                 $cifrado = openssl_encrypt($row["tick_id"], $cipher, $key,OPENSSL_RAW_DATA, $iv);
                 $textoCifrado = base64_encode($iv . $cifrado);
                 
-                $sub_array[] = '<a href="../../view/DetalleTicket/?ID='.$textoCifrado.'" target="_blank">'.$row["not_mensaje"]. ' ' . $row["tick_id"].'</a>';
+                $sub_array[] = '<a href="../../view/DetalleTicket/?ID='.$textoCifrado.'" data-real-id="'.$row["tick_id"].'" target="_blank">'.$row["not_mensaje"]. ' ' . $row["tick_id"].'</a>';
 
-                $sub_array[] = '<button type="button" data-ciphertext="'.$textoCifrado.'"  id="'.$textoCifrado.'" class="btn btn-inline btn-primary btn-sm ladda-button"><i class="fa fa-pencil"></i></button>';
+                $sub_array[] = '<button type="button" data-ciphertext="'.$textoCifrado.'" data-real-id="'.$row["tick_id"].'"  id="'.$textoCifrado.'" class="btn btn-inline btn-primary btn-sm ladda-button"><i class="fa fa-pencil"></i></button>';
                 $data[] = $sub_array;
             }
     

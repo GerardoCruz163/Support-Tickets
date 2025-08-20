@@ -34,7 +34,7 @@
             $sql="call sp_get_documento_detalle_x_ticketd(?)";
             $sql = $conectar->prepare($sql);
             $sql->bindParam(1,$tickd_id);
-            $sql->execute();
+            $sql->execute(); //aqui
             return $resultado=$sql->fetchAll(pdo::FETCH_ASSOC);
         }
     }

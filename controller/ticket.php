@@ -256,8 +256,7 @@
                 $sub_array[] = '<button type="button" data-ciphertext="'.$textoCifrado.'" data-real-id="'.$row["tick_id"].'"  id="'.$textoCifrado.'" class="btn btn-inline btn-primary btn-sm ladda-button"><i class="fa fa-pencil"></i></button>';
                 $data[] = $sub_array;
             }
-
-        // ROL DE SUPERVISOR (VERA SOLAMENTE LOS DE SU AREA Y SU SUCURSAL)
+            
             $results = array(
                 "sEcho"=>1,
                 "iTotalRecords"=>count($data),
@@ -265,7 +264,8 @@
                 "aaData"=>$data);
             echo json_encode($results);
         break;
-        
+                
+        // ROL DE SUPERVISOR (VERA SOLAMENTE LOS DE SU AREA Y SU SUCURSAL)
         case "listar_filtro_sup":
             $datos=$ticket->filtrar_ticket($_POST["tick_titulo"], $_POST["cat_id"],$_POST["prio_id"], $_POST["usu_id"],$_POST["suc_id"],$_POST["area_id"]);
             $data= Array();
@@ -332,7 +332,7 @@
             $iv_dec = substr(base64_decode($_POST["tick_id"]), 0, openssl_cipher_iv_length($cipher));
             $cifradoSinIV = substr(base64_decode($_POST["tick_id"]), openssl_cipher_iv_length($cipher));
             $descifrado = openssl_decrypt($cifradoSinIV, $cipher, $key, OPENSSL_RAW_DATA, $iv_dec);
-
+            
             $datos=$ticket->listar_tickdetalle_x_ticket($descifrado);
             ?>
                 <?php
@@ -394,7 +394,7 @@
                                             <br>
                                             
                                             <?php
-                                                $datos_det= $documento->get_documento_detalle_x_ticketd($row["tickd_id"]);
+                                                $datos_det= $documento->get_documento_detalle_x_ticketd($row["tickd_id"]); // aqui se abre
                                                 if(is_array($datos_det)==true and count($datos_det)>0){
                                                     ?>
                                                         <p><strong>Documentos adjuntos</strong></p>
@@ -414,11 +414,13 @@
                                                                         }
                                                                     ?>
                                                                     <td><i class="fa fa-paperclip" aria-hidden="true"></i>
-                                                                        <?php echo $row_det["det_nom"];?>
+                                                                        <a href="../../public/document_detalle/<?php echo $row_det["tick_id"];?>/<?php echo $row_det["det_nom"];?>" target="_blank" class="">   
+                                                                            <?php echo $row_det["det_nom"];?>
+                                                                        </a>
                                                                     </td>
                                                                     <td>
                                                                         
-                                                                        <a href="../../public/document_detalle/<?php echo $row_det["tickd_id"];?>/<?php echo $row_det["det_nom"];?>" target="_blank" class="btn btn-inline btn-primary btn-sm">
+                                                                        <a href="../../public/document_detalle/<?php echo $row_det["tick_id"];?>/<?php echo $row_det["det_nom"];?>" target="_blank" class="btn btn-inline btn-primary btn-sm">
                                                                             <i class="fa fa-eye" aria-hidden="true"></i>
                                                                             Ver
                                                                         </a>
@@ -543,48 +545,90 @@
             echo json_encode($results);
         break;
 
+        // case "insertdetalle":
+        //     $iv_dec = substr(base64_decode($_POST["tick_id"]), 0, openssl_cipher_iv_length($cipher));
+        //     $cifradoSinIV = substr(base64_decode($_POST["tick_id"]), openssl_cipher_iv_length($cipher));
+        //     $descifrado = openssl_decrypt($cifradoSinIV, $cipher, $key, OPENSSL_RAW_DATA, $iv_dec);
+            
+        //     $datos=$ticket->insert_ticketdetalle($descifrado,$_POST["usu_id"],$_POST["tickd_descrip"]);
+        //     if (is_array($datos)==true and count($datos)>0){
+        //         foreach($datos as $row){
+        //             //obtener tickd_id de $datos
+        //             $output["tickd_id"] = $row["tickd_id"];
+        //             //se verifica si hay archivos desde vista
+        //             if (!isset($_FILES['files']) || empty($_FILES['files']['name'][0])){
+
+        //             }else{
+        //                 //contar registros
+        //                 $countfiles = count($_FILES['files']['name']);
+        //                 //ruta de los documentos
+        //                 $ruta = "../public/document_detalle/".$output["tickd_id"]."/";
+        //                 //arreglo de archivos
+        //                 $files_arr = array();
+
+        //                 //verifica si la ruta existe
+        //                 if (!file_exists($ruta)) {
+        //                     //en caso de no existir, la crea
+        //                     mkdir($ruta, 0777, true);
+        //                 }
+
+        //                 //recorrer todos los registros
+        //                 for ($index = 0; $index < $countfiles; $index++) {
+        //                     $doc1 = $_FILES['files']['tmp_name'][$index];
+        //                     $destino = $ruta.$_FILES['files']['name'][$index];
+
+        //                     $documento->insert_documento_detalle( $output["tickd_id"],$_FILES['files']['name'][$index]);
+
+        //                     move_uploaded_file($doc1,$destino);
+        //                 }
+        //             }
+        //         }
+        //     }
+        //     $email->ticket_comentario($descifrado);
+        //     echo json_encode($datos);
+        // break;
+
         case "insertdetalle":
             $iv_dec = substr(base64_decode($_POST["tick_id"]), 0, openssl_cipher_iv_length($cipher));
             $cifradoSinIV = substr(base64_decode($_POST["tick_id"]), openssl_cipher_iv_length($cipher));
             $descifrado = openssl_decrypt($cifradoSinIV, $cipher, $key, OPENSSL_RAW_DATA, $iv_dec);
-            
-            $datos=$ticket->insert_ticketdetalle($descifrado,$_POST["usu_id"],$_POST["tickd_descrip"]);
-            if (is_array($datos)==true and count($datos)>0){
-                foreach($datos as $row){
-                    //obtener tickd_id de $datos
+        
+            $datos = $ticket->insert_ticketdetalle($descifrado, $_POST["usu_id"], $_POST["tickd_descrip"]);
+        
+            if (is_array($datos) && count($datos) > 0) {
+                foreach ($datos as $row) {
                     $output["tickd_id"] = $row["tickd_id"];
-                    //se verifica si hay archivos desde vista
-                    if (!isset($_FILES['files']) || empty($_FILES['files']['name'][0])){
-
-                    }else{
-                        //contar registros
+                    $output["tick_id"]  = $row["tick_id"]; // <-- Necesitamos que insert_ticketdetalle también devuelva esto
+        
+                    if (isset($_FILES['files']) && !empty($_FILES['files']['name'][0])) {
                         $countfiles = count($_FILES['files']['name']);
-                        //ruta de los documentos
-                        $ruta = "../public/document_detalle/".$output["tickd_id"]."/";
-                        //arreglo de archivos
-                        $files_arr = array();
-
-                        //verifica si la ruta existe
+        
+                        // Ahora la carpeta usa el ID del ticket
+                        $ruta = "../public/document_detalle/" . $output["tick_id"] . "/";
+        
                         if (!file_exists($ruta)) {
-                            //en caso de no existir, la crea
                             mkdir($ruta, 0777, true);
                         }
-
-                        //recorrer todos los registros
+        
                         for ($index = 0; $index < $countfiles; $index++) {
                             $doc1 = $_FILES['files']['tmp_name'][$index];
-                            $destino = $ruta.$_FILES['files']['name'][$index];
-
-                            $documento->insert_documento_detalle( $output["tickd_id"],$_FILES['files']['name'][$index]);
-
-                            move_uploaded_file($doc1,$destino);
+                            $destino = $ruta . $_FILES['files']['name'][$index];
+        
+                            $documento->insert_documento_detalle(
+                                $output["tickd_id"],
+                                $_FILES['files']['name'][$index]
+                            );
+        
+                            move_uploaded_file($doc1, $destino);
                         }
                     }
                 }
             }
+        
             $email->ticket_comentario($descifrado);
             echo json_encode($datos);
         break;
+        
 
         case "total";
             $datos=$ticket->get_ticket_total();  

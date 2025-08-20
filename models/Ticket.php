@@ -106,8 +106,13 @@
             $sql->bindValue(3, $tickd_descrip);
             $sql->execute();
             
-            $sql1="select last_insert_id() as 'tickd_id';";
-            $sql1=$conectar->prepare($sql1);
+            // $sql1="select last_insert_id() as 'tickd_id';";
+            // $sql1=$conectar->prepare($sql1);
+            // $sql1->execute();
+
+            $sql1 = "SELECT LAST_INSERT_ID() AS tickd_id, ? AS tick_id;";
+            $sql1 = $conectar->prepare($sql1);
+            $sql1->bindValue(1, $tick_id); // reutilizamos el tick_id que entró por parámetro
             $sql1->execute();
 
             
@@ -269,13 +274,20 @@
         public function filtrar_ticket_admin($tick_titulo,$cat_id,$prio_id,$usu_id){
             $conectar= parent::conexion();
             parent::set_names();
+
+            // Limpiar valores antes de pasarlos al SP
+            // $cat_id  = ($cat_id === '' || $cat_id === 'Seleccionar') ? null : (int)$cat_id;
+            // $prio_id = ($prio_id === '' || $prio_id === 'Seleccionar') ? null : (int)$prio_id;
+            // $usu_id  = ($usu_id === '' || $usu_id === 'Seleccionar') ? null : (int)$usu_id;
+            // $tick_titulo = ($tick_titulo === '') ? null : $tick_titulo;
+
             $sql="call filtrar_ticket_admin(?,?,?,?)";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, '%'.$tick_titulo.'%');
             $sql->bindValue(2, $cat_id);
             $sql->bindValue(3, $prio_id);
             $sql->bindValue(4, $usu_id);
-           
+
             $sql->execute();
             return $resultado=$sql->fetchAll();
         }
@@ -283,6 +295,11 @@
         public function filtrar_ticket($tick_titulo,$cat_id,$prio_id, $usu_id, $suc_id, $area_id){
             $conectar= parent::conexion();
             parent::set_names();
+
+            // $cat_id = !empty($_POST['cat_id']) ? (int)$_POST['cat_id'] : null;
+            // $prio_id = !empty($_POST['prio_id']) ? (int)$_POST['prio_id'] : null;
+            // $usu_id = !empty($_POST['usu_id']) ? (int)$_POST['usu_id'] : null;
+
             $sql="call filtrar_ticket_sup (?,?,?,?,?,?)";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, '%'.$tick_titulo.'%');

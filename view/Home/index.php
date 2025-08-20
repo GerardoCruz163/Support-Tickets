@@ -8,7 +8,7 @@
 <html>
 	<?php require_once("../MainHead/head.php");?>
 	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
-
+	<link rel="icon" type="../../public/img/SuTra_icon.png">
 	<link rel="stylesheet" href="../../public/css/lib/fullcalendar/fullcalendar.min.css">
 	<link rel="stylesheet" href="../../public/css/separate/pages/calendar.min.css">
 	<title>Home: SUTRA</title>

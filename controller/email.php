@@ -28,6 +28,16 @@
             break;
 
         case "recuperar_contrasena":
+            $raw = file_get_contents("php://input");
+            $json = json_decode($raw, true);
+
+            $usu_correo = $_POST["usu_correo"] ?? $json["usu_correo"] ?? null;
+
+            if (!$usu_correo) {
+                http_response_code(400);
+                echo json_encode(["error" => "No se recibió usu_correo"]);
+                exit;
+            }
             $email->recuperar_contrasena($_POST["usu_correo"]);
             break;
     }

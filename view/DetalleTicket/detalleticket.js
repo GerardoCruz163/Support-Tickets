@@ -2,6 +2,7 @@ function init(){
 
 }
 
+// const socket = io("https://support-tracking.tecnologisticaaduanal.com:8082"); 
 const socket = io("http://localhost:8082"); // O la IP si es red local
 $(document).ready(function(){
     
