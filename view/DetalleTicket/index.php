@@ -82,6 +82,15 @@
 						</fieldset>
 					</div>
 
+					<!-- AQUI QUIERO AGREGAR LOS SEGUIDORES DEL TICKET -->
+					<div class="col-lg-12">
+						<fieldset class="form-group">
+							<label class="form-label semibold" for="tickd_descripusu">Seguidores</label>
+							<div class="label label-pill label-default" id="lblnomusuarioseg"></div>
+							
+						</fieldset>
+					</div>
+
 					<div class="col-lg-12">
 						<fieldset class="form-group">
 							<label class="form-label semibold" for="tickd_descripusu">Descripcion</label>
@@ -122,6 +131,11 @@
 						<i class="fa fa-paper-plane" aria-hidden="true"></i>	
 						Enviar</button>
 
+						<button type="button" id="btnseguidores" name="action" value="add" class="btn btn-rounded btn-inline btn-secondary">
+							<i class="fa fa-users" aria-hidden="true"></i>
+							Añadir Seguidor/es
+						</button>
+
 						<button type="button" id="btncerrar" name="action" value="add" class="btn btn-rounded btn-inline btn-default">
 						<i class="fa fa-times-circle" aria-hidden="true"></i>	
 						Cerrar Ticket</button>
@@ -133,17 +147,19 @@
 	</div><!--.page-content-->
 
 	<?php require_once("../MainJS/js.php");?>
+	<?php require_once("modalseguidorticket.php");?>
 	<script src="http://cdn.socket.io/4.7.2/socket.io.min.js"></script>
 	<script type="text/javascript" src="detalleticket.js"></script>
 	<script type="text/javascript" src="../notificacion.js"></script>
+
 	
 	<!-- <script src="js/app.js"></script> -->
 </body>
 </html>
 <?php
 	}else{
-		//header("Location:"."http://localhost:80/HelpDesk_Tecno/"."index.php");
-		header("Location:"."https://support-tracking.tecnologisticaaduanal.com/"."index.php");
+		header("Location:"."http://localhost:80/HelpDesk_Tecno/"."index.php");
+		//header("Location:"."https://support-tracking.tecnologisticaaduanal.com/"."index.php");
 	}
 
 ?>

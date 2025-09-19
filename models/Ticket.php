@@ -21,6 +21,61 @@
             return $resultado=$sql1->fetchAll(pdo::FETCH_ASSOC);
         }
 
+        // INSERTAR SEGUIDORES AL TICKET
+        public function insert_ticket_seguidor($tick_id, $usu_id){
+            $conectar = parent::conexion();
+            parent::set_names();
+            $sql = "SELECT * FROM td_ticket_seguidor WHERE tick_id = ? AND usu_id = ?;";
+            $sql = $conectar->prepare($sql);
+            $sql->bindValue(1, $tick_id);
+            $sql->bindValue(2, $usu_id);
+            $sql->execute();
+
+            if ($stmt->rowCount() == 0) {
+                //Insertar solo si no existe
+                $sql = "INSERT INTO td_ticket_seguidor(tick_id, usu_id, fech_agregado, est)
+                        VALUES (?, ?, NOW(), 1);";
+                $stmt = $conectar->prepare($sql);
+                $stmt->bindValue(1, $tick_id);
+                $stmt->bindValue(2, $usu_id);
+                $stmt->execute();
+            }
+        }
+
+        //METODOS PARA VERIFICAR SI HAY SEGUIDORES (CASO DE TICKET YA CREADO)
+        public function get_ticket_seguidor($tick_id, $usu_id){
+            $conectar = parent::conexion();
+            parent::set_names();
+            $sql = "SELECT * FROM td_ticket_seguidor WHERE tick_id = ? AND usu_id = ?;";
+            $sql = $conectar->prepare($sql);
+            $sql->bindValue(1, $tick_id);
+            $sql->bindValue(2, $usu_id);
+            $sql->execute();
+        }
+
+        public function insert_ticket_seguidor_2($tick_id, $usu_id){
+            $conectar = parent::conexion();
+            parent::set_names();
+            $sql = "INSERT INTO td_ticket_seguidor(tick_id, usu_id, fech_agregado, est)
+                        VALUES (?, ?, NOW(), 1);";
+            $stmt = $conectar->prepare($sql);
+            $stmt->bindValue(1, $tick_id);
+            $stmt->bindValue(2, $usu_id);
+            $stmt->execute();
+        }
+        
+        public function get_seg_x_tick($tick_id){
+            $conectar= parent::conexion();
+            parent::set_names();
+            $sql="SELECT * FROM td_ticket_seguidor
+                LEFT JOIN tm_usuario on td_ticket_seguidor.usu_id = tm_usuario.usu_id
+                WHERE tick_id = ?;";
+            $sql=$conectar->prepare($sql);
+            $sql->bindValue(1, $tick_id);
+            $sql->execute();
+            return $resultado=$sql->fetchAll();
+        }
+
         public function listar_ticket_x_usu($usu_id){
             $conectar= parent::conexion();
             parent::set_names();
@@ -47,6 +102,42 @@
             $sql="call sp_listar_ticket_asig_x_usu(?)";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $usu_id);
+            $sql->execute();
+            return $resultado=$sql->fetchAll();
+        }
+
+        public function listar_ticket_seguidor($tick_id){
+            $conectar= parent::conexion();
+            parent::set_names();
+            $sql="SELECT * FROM td_ticket_seguidor
+                    LEFT JOIN tm_usuario on td_ticket_seguidor.usu_id = tm_usuario.usu_id
+                    LEFT JOIN tm_ticket on td_ticket_seguidor.tick_id = tm_ticket.tick_id
+                    WHERE td_ticket_seguidor.tick_id = ?;";    
+            $sql=$conectar->prepare($sql);
+            $sql->bindValue(1, $tick_id);
+            $sql->execute();
+            return $resultado=$sql->fetchAll();
+        }
+
+        public function listar_ticket_seguidor_detalle($tick_id){
+            $conectar= parent::conexion();
+            parent::set_names();
+            $sql="call sp_listar_ticket_seguidor_detalle(?)";    
+            $sql=$conectar->prepare($sql);
+            $sql->bindValue(1, $tick_id);
+            $sql->execute();
+            return $resultado=$sql->fetchAll();
+        }
+
+        public function listar_seguidores($tick_id){
+            $conectar= parent::conexion();
+            parent::set_names();
+            $sql="SELECT * FROM td_ticket_seguidor
+                    LEFT JOIN tm_usuario on td_ticket_seguidor.usu_id = tm_usuario.usu_id
+                    LEFT JOIN tm_ticket on td_ticket_seguidor.tick_id = tm_ticket.tick_id
+                    WHERE td_ticket_seguidor.tick_id = ?;";    
+            $sql=$conectar->prepare($sql);
+            $sql->bindValue(1, $tick_id);
             $sql->execute();
             return $resultado=$sql->fetchAll();
         }
@@ -85,14 +176,14 @@
             //si el usuario es quien fue asignado al ticket, la notificacion va para el que la creo
             if($_SESSION["usu_id"]== $usu_asig){
                 //GUARDAR NOTIFICACION DE NUEVO COMENTARIO
-                $sql0="call sp_guardar_notificacion($usu_crea, $tick_id)";
+                $sql0="call sp_guardar_notificacion_modificado($usu_crea, $tick_id)";
                 $sql0=$conectar->prepare($sql0);
                 $sql0->execute();
 
             //si el usuario es quien creó el ticket, la notificacion va para quien fue asignado
             }else if($_SESSION["usu_id"]== $usu_crea){
                 //GUARDAR NOTIFICACION DE NUEVO COMENTARIO
-                $sql0="call sp_guardar_notificacion($usu_asig, $tick_id)";
+                $sql0="call sp_guardar_notificacion_modificado($usu_asig, $tick_id)";
                 $sql0=$conectar->prepare($sql0);
                 $sql0->execute();
                 

@@ -175,7 +175,7 @@
                     </li>
                     
                     
-
+                    <!-- CONSULTA DE TICKETS -->
                     <li class="gold">
                         <a href="..\ConsultarTicket\">
                             <span>
@@ -186,6 +186,15 @@
                     </li>
 
                     <li class="aquamarine">
+                        <a href="..\ConsultarTicketPropios\">
+                            <span>
+                                <i class="fa fa-search" aria-hidden="true"></i>
+                            </span>
+                            <span class="lbl">Consultar mis Tickets</span>
+                        </a>
+                    </li>
+
+                    <li class="pink">
                         <a href="..\TicketsAsignados\">
                             <span>
                             <i class="fa fa-ticket" aria-hidden="true"></i>
@@ -193,7 +202,35 @@
                             <span class="lbl">Tickets que me asignaron</span>
                         </a>
                     </li>
-                    <li class="aquamarine">
+
+                    <!-- MANTENIMIENTOS -->
+
+                    <li class="black with-sub">
+                        <span>
+                        <i class="fa fa-cog" aria-hidden="true"></i>
+                        <span class="lbl">Mantenimiento</span>
+                        </span>
+                        
+                        <ul style>
+                            <a href="..\MtnUsuario\">
+                                <span class="lbl">Usuarios</span>
+                            </a>
+
+                            <a href="..\MtnCategoria\">
+                                <span class="lbl">Categorias</span>
+                            </a>
+
+                            <a href="..\MtnSubcategoria\">
+                                <span class="lbl">Subcategorias</span>
+                            </a>
+
+                            <a href="..\MtnPrioridad\">
+                                <span class="lbl">Prioridades</span>
+                            </a>
+
+                        </ul>
+                    </li>
+                    <!-- <li class="aquamarine">
                         <a href="..\MtnUsuario\">
                             <span>
                             <i class="fa fa-users" aria-hidden="true"></i>
@@ -225,18 +262,11 @@
                             <span>
                             <i class="fa fa-tachometer" aria-hidden="true"></i>
                             </span>
-                            <span class="lbl">Mantenimiento a prioridades</span>
+                            <span class="lbl">Prioridades</span>
                         </a>
-                    </li>
+                    </li> -->
 
-                    <li class="aquamarine">
-                        <a href="..\ConsultarTicketPropios\">
-                            <span>
-                                <i class="fa fa-search" aria-hidden="true"></i>
-                            </span>
-                            <span class="lbl">Consultar mis Tickets</span>
-                        </a>
-                    </li>
+                    
                 </ul>
             </nav><!--.side-menu-->
         <?php

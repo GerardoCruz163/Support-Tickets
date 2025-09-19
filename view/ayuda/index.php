@@ -60,6 +60,7 @@
 <?php
 	}else{
 		header("Location:"."https://support-tracking.tecnologisticaaduanal.com/"."index.php");
+		
 	}
 
 ?>

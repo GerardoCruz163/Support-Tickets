@@ -101,19 +101,16 @@
 					<table id="ticket_data" class="table table-bordered table-striped table-vcenter js-dataTable-full">
 						<thead>
 							<tr>
-								<th style="width: 2%;">#</th>
-								<th style="width: 8%;">Categoria</th>
-								<th class="d-none d-sm-table-cell" style="width: 8%;">Titulo</th>
+							<th style="width: 2%;">#</th>
+								<th class="d-none d-sm-table-cell" style="width: 26%;">Titulo</th>
+								<th style="width: 10%;">Categoria</th>
 								<th class="d-none d-sm-table-cell" style="width: 8%;">Prioridad</th>
-								<th class="d-none d-sm-table-cell" style="width: 4%;">Creación</th>
-								<th class="d-none d-sm-table-cell" style="width: 7%;">Solicitante</th>
-								<th class="d-none d-sm-table-cell" style="width: 5%;">Area</th>
-								<th class="d-none d-sm-table-cell" style="width: 5%;">Estado</th>
-								<th class="d-none d-sm-table-cell" style="width: 2%;">Asignación</th>
-								<th class="d-none d-sm-table-cell" style="width: 2%;">Cierre</th>
-	
-								<th class="d-none d-sm-table-cell" style="width: 4%;">Soporte</th>
-	
+								<th class="d-none d-sm-table-cell" style="width: 8%;">Creación</th>
+								<th class="d-none d-sm-table-cell" style="width: 8%;">Solicitante</th>
+								<th class="d-none d-sm-table-cell" style="width: 10%;">Area</th>
+								<th class="d-none d-sm-table-cell" style="width: 10%;">Estado</th>
+								<th class="d-none d-sm-table-cell" style="width: 5%;">Cierre</th>
+								<th class="d-none d-sm-table-cell" style="width: 10%;">Soporte</th>
 								<th class="text-center" style="width: 5%;"></th>
 							</tr>
 						</thead>

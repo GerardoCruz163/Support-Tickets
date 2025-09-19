@@ -121,6 +121,7 @@
             $sql->execute();
             return $resultado=$sql->fetchAll();
         }
+        
 
         public function get_usuario_x_rol(){
             $conectar= parent::conexion();

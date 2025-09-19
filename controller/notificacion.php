@@ -16,13 +16,16 @@
                 {
                     $output["not_id"] = $row["not_id"];
                     $output["usu_id"] = $row["usu_id"];
-                    $output["not_mensaje"] = $row["not_mensaje"]. ' ' . $row["tick_id"];
+                    $output["not_mensaje"] = $row["not_mensaje"];
+
+                    
 
                     $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length($cipher));
                     $cifrado = openssl_encrypt($row["tick_id"], $cipher, $key, OPENSSL_RAW_DATA, $iv);
                     $encrypted_id = base64_encode($iv . $cifrado);
 
                     $output["tick_id"] = $encrypted_id;
+                    $output["tick_id_real"] = $row["tick_id"];
                 }
                 echo json_encode($output);
             }   
@@ -46,7 +49,7 @@
                 $cifrado = openssl_encrypt($row["tick_id"], $cipher, $key,OPENSSL_RAW_DATA, $iv);
                 $textoCifrado = base64_encode($iv . $cifrado);
                 
-                $sub_array[] = '<a href="../../view/DetalleTicket/?ID='.$textoCifrado.'" data-real-id="'.$row["tick_id"].'" target="_blank">'.$row["not_mensaje"]. ' ' . $row["tick_id"].'</a>';
+                $sub_array[] = '<a href="../../view/DetalleTicket/?ID='.$textoCifrado.'" data-real-id="'.$row["tick_id"].'" target="_blank">'.$row["not_mensaje"].'</a>';
 
                 $sub_array[] = '<button type="button" data-ciphertext="'.$textoCifrado.'" data-real-id="'.$row["tick_id"].'"  id="'.$textoCifrado.'" class="btn btn-inline btn-primary btn-sm ladda-button"><i class="fa fa-pencil"></i></button>';
                 $data[] = $sub_array;

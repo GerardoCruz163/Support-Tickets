@@ -117,6 +117,73 @@ class Email extends PHPMailer{
         }
     }
 
+    public function ticket_asignado_seguidor($tick_id){
+        //OBTENER TICKETSEGUIDOR
+        $ticketSeguidor = new Ticket();
+        $datos = $ticketSeguidor->listar_ticket_seguidor($tick_id);
+
+        foreach($datos as $row){
+            $correoSeg = $row["usu_correo"];
+            echo $correoSeg;
+        }
+
+        //OBTENER USUARIO QUE HIZO EL TICKET
+        $ticket = new Ticket();
+        $datos2 = $ticket->listar_ticket_x_id($tick_id);
+
+        foreach($datos2 as $row){
+            $id = $row["tick_id"];
+            $usu = $row["usu_nom"];
+            $ape = $row["usu_ape"];
+            $area = $row["area_nom"];
+            $titulo=$row["tick_titulo"];
+            $categoria=$row["cat_nom"];
+            //$correo=$row["usu_correo"]; 
+        }
+
+        $this->isSMTP();
+        $this->Host = 'vmail.globalpc.net';//Aqui el server
+        $this->Port = 465;//Aqui el puerto
+        $this->SMTPAuth = true;
+        $this->Username = $this->gCorreo;
+        $this->Password = $this->gContrasena;
+        $this->From = $this->gCorreo;
+        $this->SMTPSecure = 'ssl';
+        $this->FromName = $this->tu_nombre = "Se le ha asignado a un ticket como seguidor: ".$id;
+        $this->CharSet = 'UTF8';
+        //$this->addAddress($correo);
+        //$this->addAddress($datos[0]["usu_correo"]); // ENVIAR CORREO AL USUARIO QUE SE LE ASIGNO AL TICKET COMO SEGUIDOR
+
+        //RECORRE LOS USUARIOS ASIGNADOS PARA ENVIAR EL CORREO DE UNO EN UNO
+        foreach($datos as $row){
+            $this->addAddress($row["usu_correo"]);
+        }
+
+        $this->WordWrap = 50;
+        $this->IsHTML(true);
+        $this->Subject = "Ticket Asignado";
+        //Igual//
+        $cuerpo = file_get_contents('../public/AsignarTicket.html'); /*ruta del template en formato HTML */
+        /*parametros del template a remplazar */
+        $cuerpo = str_replace("xnroticket", $id, $cuerpo);
+        $cuerpo = str_replace("lblNomUsu", $usu, $cuerpo);
+        $cuerpo = str_replace("lblArea", $area, $cuerpo);
+        $cuerpo = str_replace("lblTitu", $titulo, $cuerpo);
+        $cuerpo = str_replace("lblCate", $categoria, $cuerpo);
+        $cuerpo = str_replace("lblUsuSop", $usu, $cuerpo);
+
+        $this->Body = $cuerpo;
+        $this->AltBody = strip_tags("Ticket Cerrado");
+
+        try{
+            $this->Send();
+            return true;
+        }catch(Exception $e){
+            return false;
+        }
+
+    }
+
     public function ticket_asignado($tick_id){
         $ticket = new Ticket();
         $datos = $ticket->listar_ticket_x_id($tick_id);
@@ -130,7 +197,7 @@ class Email extends PHPMailer{
             $area = $row["area_nom"];
             $titulo=$row["tick_titulo"];
             $categoria=$row["cat_nom"];
-            $correo=$row["usu_correo"]; 
+            //$correo=$row["usu_correo"]; 
         }
 
         // foreach($datos2 as $row){

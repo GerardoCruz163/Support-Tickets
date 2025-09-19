@@ -118,8 +118,25 @@ $(document).on("click",".btn-inline", function(){
     //DATO TEMPORAL (MIENTRAS EL USUARIO ENTRE AL TICKET, EL VALOR EXISTIRA)
     sessionStorage.setItem("ticket_id_real", realId); 
 
-    // window.open('http://localhost:80/HelpDesk_Tecno/view/DetalleTicket/?ID='+ciphertext+'');
+    //window.open('http://localhost:80/HelpDesk_Tecno/view/DetalleTicket/?ID='+ciphertext+'');
     window.open('https://support-tracking.tecnologisticaaduanal.com/view/DetalleTicket/?ID='+ciphertext+'');
+});
+
+// Para enlaces en el título
+$(document).on("click", "a[data-real-id]", function (e) {
+    e.preventDefault(); // Evita que abra el link de inmediato
+
+    const ciphertext = $(this).attr("id");
+    const realId = $(this).data("real-id");
+
+    console.log(realId);
+
+    // Guardar ID en sessionStorage igual que el botón
+    sessionStorage.setItem("ticket_id_real", realId); 
+
+    // Abrir la ventana con el ticket
+    //window.open('http://localhost:80/HelpDesk_Tecno/view/DetalleTicket/?ID=' + ciphertext);
+    window.open('https://support-tracking.tecnologisticaaduanal.com/view/DetalleTicket/?ID=' + ciphertext);
 });
 
 function asignar(tick_id){

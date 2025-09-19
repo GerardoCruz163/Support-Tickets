@@ -51,6 +51,10 @@ $(document).ready(function() {
     $.post("../../controller/prioridad.php?op=combo",function(data, status){
         $('#prio_id').html(data);
     });
+
+    $.post("../../controller/usuario.php?op=combo_usuarios_seg",function(data, status){ // aqui
+        $('#seguidores').html(data);
+    });
 });
 
 
@@ -70,6 +74,16 @@ function guardaryeditar(e){
         $('#btnguardar').prop("disabled",true);
         $('#btnguardar').html('<i class="fa fa-spinner fa-spin"></i> Enviando...');
         
+        //TOMA LOS SEGUIDORES SELECCIONADOS
+        var seguidores = $("#seguidores").val(); 
+        console.log("Seguidores seleccionados:", seguidores);
+
+        // if (seguidores !== null) {
+        //     seguidores.forEach((seg, i) => {
+        //         formData.append("seguidores[]", seg);
+        //     });
+        // }
+
         $.ajax({
             url: "../../controller/ticket.php?op=insert",
             type: "POST",

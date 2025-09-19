@@ -1,4 +1,7 @@
 <?php
+
+    // CONEXION LOCAL
+
     session_start();
 
     class Conectar{

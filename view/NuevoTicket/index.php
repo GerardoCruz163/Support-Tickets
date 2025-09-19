@@ -101,6 +101,15 @@
 									<input type="file" name="fileElem" id="fileElem" class="form-control" multiple>
 							</fieldset>
 						</div>
+
+						<div class="col-md-6">
+						<label class="form-label semibold" for="">Añadir Seguidores</label>
+							<select id="seguidores" name="seguidores[]" class="select2 select2-hidden-accessible" multiple="" tabindex="-1" aria-hidden="true">
+								
+							</select>
+							<br>
+							<br>
+						</div>
 						
 						<div class="col-lg-12">
 							<fieldset class="form-group">
@@ -131,7 +140,7 @@
 </html>
 <?php
 	}else{
-		// header("Location:"."http://localhost:80/HelpDesk_Tecno/"."index.php");
+		//header("Location:"."http://localhost:80/HelpDesk_Tecno/"."index.php");
 		header("Location:"."https://support-tracking.tecnologisticaaduanal.com/"."index.php");
 	}
 

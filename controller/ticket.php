@@ -44,6 +44,12 @@
                             move_uploaded_file($doc1,$destino);
                         }
                     }
+
+                    if (isset($_POST["seguidores"])) {
+                        foreach ($_POST["seguidores"] as $usu_id) {
+                            $ticket->insert_ticket_seguidor($output["tick_id"], $usu_id);
+                        }
+                    }
                 }
             }
 
@@ -52,6 +58,8 @@
 
             //ENVIAR CORREO AL USUARIO AL QUE SE LE ASIGNO EL TICKET Y AL QUE LO CREO
             $email-> ticket_asignado($datos[0]["tick_id"]);
+
+            $email-> ticket_asignado_seguidor($datos[0]["tick_id"]);
             echo "1";
             echo json_encode($datos);
         break;
@@ -83,10 +91,15 @@
             $datos=$ticket->listar_ticket_x_usu($_POST["usu_id"]);
             $data= Array();
             foreach($datos as $row){
+
+                $cifrado = openssl_encrypt($row["tick_id"], $cipher, $key,OPENSSL_RAW_DATA, $iv);
+                $textoCifrado = base64_encode($iv . $cifrado);
+                
                 $sub_array = array();
                 $sub_array[] = $row["tick_id"];
+                // $sub_array[] = $row["tick_titulo"];
+                $sub_array[] = '<a href="../../view/DetalleTicket/?ID='.$textoCifrado.'" data-real-id="'.$row["tick_id"].'" id="'.$textoCifrado.'">'.$row["tick_titulo"].'</a>';
                 $sub_array[] = $row["cat_nom"];
-                $sub_array[] = $row["tick_titulo"];
 
                 if($row["prio_nom"] == "Bajo"){
                     $sub_array[] = '<span class="label label-pill label-success">Bajo</span>';
@@ -105,11 +118,11 @@
                     $sub_array[] = '<a onClick="CambiarEstado('.$row["tick_id"].')"><span class="label label-pill label-danger">CERRADO</span></a>';
                 }
 
-                if($row["fech_asig"]==null){    
-                    $sub_array[] = '<span class="label label-pill label-defualt">--/--/----</span>';
-                }else{
-                    $sub_array[] = date("d/m/Y H:i", strtotime($row["fech_asig"]));
-                }
+                // if($row["fech_asig"]==null){    
+                //     $sub_array[] = '<span class="label label-pill label-defualt">--/--/----</span>';
+                // }else{
+                //     $sub_array[] = date("d/m/Y H:i", strtotime($row["fech_asig"]));
+                // }
                 if($row["fech_cierre"]==null){
                     $sub_array[] = '<span class ="label label-pill label-default">Sin cerrar</span>';
                 }else{
@@ -125,8 +138,7 @@
                     }
                 }
 
-                $cifrado = openssl_encrypt($row["tick_id"], $cipher, $key,OPENSSL_RAW_DATA, $iv);
-                $textoCifrado = base64_encode($iv . $cifrado);
+               
                 $sub_array[] = '<button type="button" data-ciphertext="'.$textoCifrado.'" data-real-id="'.$row["tick_id"].'"  id="'.$textoCifrado.'" class="btn btn-inline btn-primary btn-sm ladda-button"><i class="fa fa-pencil"></i></button>';
                 
                 $data[] = $sub_array;
@@ -204,12 +216,14 @@
             $datos=$ticket->filtrar_ticket_admin($_POST["tick_titulo"], $_POST["cat_id"],$_POST["prio_id"], $_POST["usu_id"]);
             $data= Array();
             foreach($datos as $row){
-                
+                $cifrado = openssl_encrypt($row["tick_id"], $cipher, $key,OPENSSL_RAW_DATA, $iv);
+                $textoCifrado = base64_encode($iv . $cifrado);
 
                 $sub_array = array();
                 $sub_array[] = $row["tick_id"];
+                // $sub_array[] = $row["tick_titulo"];
+                $sub_array[] = '<a href="../../view/DetalleTicket/?ID='.$textoCifrado.'" data-real-id="'.$row["tick_id"].'" id="'.$textoCifrado.'">'.$row["tick_titulo"].'</a>';
                 $sub_array[] = $row["cat_nom"];
-                $sub_array[] = $row["tick_titulo"];
 
                 if($row["prio_nom"] == "Bajo"){
                     $sub_array[] = '<span class="label label-pill label-success">Bajo</span>';
@@ -229,11 +243,11 @@
                     $sub_array[] = '<a onClick="CambiarEstado('.$row["tick_id"].')"><span class="label label-pill label-danger">CERRADO</span></a>';
                 }
 
-                if($row["fech_asig"]==null){
-                    $sub_array[] = '--/--/---- --:--';
-                }else{
-                    $sub_array[] = date("d/m/Y H:i", strtotime($row["fech_asig"]));
-                }
+                // if($row["fech_asig"]==null){
+                //     $sub_array[] = '--/--/---- --:--';
+                // }else{
+                //     $sub_array[] = date("d/m/Y H:i", strtotime($row["fech_asig"]));
+                // }
                 if($row["fech_cierre"]==null){
                     $sub_array[] = '<span class ="label label-pill label-default">Sin cerrar</span>';
                 }else{
@@ -249,9 +263,7 @@
                     }
                 }
 
-                $cifrado = openssl_encrypt($row["tick_id"], $cipher, $key,OPENSSL_RAW_DATA, $iv);
-                $textoCifrado = base64_encode($iv . $cifrado);
-
+            
                 // $sub_array[] = '<button type="button" data-ciphertext="'.$textoCifrado.'"  id="'.$textoCifrado.'" class="btn btn-inline btn-primary btn-sm ladda-button"><i class="fa fa-pencil"></i></button>';
                 $sub_array[] = '<button type="button" data-ciphertext="'.$textoCifrado.'" data-real-id="'.$row["tick_id"].'"  id="'.$textoCifrado.'" class="btn btn-inline btn-primary btn-sm ladda-button"><i class="fa fa-pencil"></i></button>';
                 $data[] = $sub_array;
@@ -270,10 +282,14 @@
             $datos=$ticket->filtrar_ticket($_POST["tick_titulo"], $_POST["cat_id"],$_POST["prio_id"], $_POST["usu_id"],$_POST["suc_id"],$_POST["area_id"]);
             $data= Array();
             foreach($datos as $row){
+                $cifrado = openssl_encrypt($row["tick_id"], $cipher, $key,OPENSSL_RAW_DATA, $iv);
+                $textoCifrado = base64_encode($iv . $cifrado);
+
                 $sub_array = array();
                 $sub_array[] = $row["tick_id"];
+                // $sub_array[] = $row["tick_titulo"];
+                $sub_array[] = '<a href="../../view/DetalleTicket/?ID='.$textoCifrado.'" data-real-id="'.$row["tick_id"].'" id="'.$textoCifrado.'">'.$row["tick_titulo"].'</a>';
                 $sub_array[] = $row["cat_nom"];
-                $sub_array[] = $row["tick_titulo"];
 
                 if($row["prio_nom"] == "Bajo"){
                     $sub_array[] = '<span class="label label-pill label-success">Bajo</span>';
@@ -293,11 +309,11 @@
                     $sub_array[] = '<a onClick="CambiarEstado('.$row["tick_id"].')"><span class="label label-pill label-danger">CERRADO</span></a>';
                 }
 
-                if($row["fech_asig"]==null){
-                    $sub_array[] = '--/--/---- --:--';
-                }else{
-                    $sub_array[] = date("d/m/Y H:i", strtotime($row["fech_asig"]));
-                }
+                // if($row["fech_asig"]==null){
+                //     $sub_array[] = '--/--/---- --:--';
+                // }else{
+                //     $sub_array[] = date("d/m/Y H:i", strtotime($row["fech_asig"]));
+                // }
                 if($row["fech_cierre"]==null){
                     $sub_array[] = '<span class ="label label-pill label-default">Sin cerrar</span>';
                 }else{
@@ -313,8 +329,7 @@
                     }
                 }
 
-                $cifrado = openssl_encrypt($row["tick_id"], $cipher, $key,OPENSSL_RAW_DATA, $iv);
-                $textoCifrado = base64_encode($iv . $cifrado);
+                
 
                 $sub_array[] = '<button type="button" data-ciphertext="'.$textoCifrado.'" data-real-id="'.$row["tick_id"].'"  id="'.$textoCifrado.'" class="btn btn-inline btn-primary btn-sm ladda-button"><i class="fa fa-pencil"></i></button>';
                 $data[] = $sub_array;
@@ -451,7 +466,8 @@
             $cifradoSinIV = substr(base64_decode($_POST["tick_id"]), openssl_cipher_iv_length($cipher));
             $descifrado = openssl_decrypt($cifradoSinIV, $cipher, $key, OPENSSL_RAW_DATA, $iv_dec);
 
-            $datos=$ticket->listar_ticket_x_id($descifrado);  
+            $datos=$ticket->listar_ticket_x_id($descifrado); 
+            
             if(is_array($datos)==true and count($datos)>0){
                 foreach($datos as $row)
                 {
@@ -480,6 +496,15 @@
                     $output["tick_coment"] = $row["tick_coment"];
                     $output["prio_nom"] = $row["prio_nom"];
                 }
+                $seguidores = $ticket->get_seg_x_tick($descifrado);
+                $seg_html = '';
+
+                foreach($seguidores as $seg){
+                    $nombre = $seg["usu_nom"]." ".$seg["usu_ape"];
+                    $seg_html .= '<div class="label label-pill label-default" id="lblnomusuarioseg">'.$nombre.'</div>';
+                }
+
+                $output["seguidores"] = $seg_html;
                 echo json_encode($output);
             }   
         break;
@@ -488,10 +513,14 @@
             $datos=$ticket->listar_ticket_asig_x_usu($_POST["usu_id"]);
             $data= Array();
             foreach($datos as $row){
+                $cifrado = openssl_encrypt($row["tick_id"], $cipher, $key,OPENSSL_RAW_DATA, $iv);
+                $textoCifrado = base64_encode($iv . $cifrado);
+                
                 $sub_array = array();
                 $sub_array[] = $row["tick_id"];
+                // $sub_array[] = $row["tick_titulo"];
+                $sub_array[] = '<a href="../../view/DetalleTicket/?ID='.$textoCifrado.'" data-real-id="'.$row["tick_id"].'" id="'.$textoCifrado.'">'.$row["tick_titulo"].'</a>';
                 $sub_array[] = $row["cat_nom"];
-                $sub_array[] = $row["tick_titulo"];
 
                 if($row["prio_nom"] == "Bajo"){
                     $sub_array[] = '<span class="label label-pill label-success">Bajo</span>';
@@ -510,11 +539,11 @@
                     $sub_array[] = '<a onClick="CambiarEstado('.$row["tick_id"].')"><span class="label label-pill label-danger">CERRADO</span></a>';
                 }
 
-                if($row["fech_asig"]==null){    
-                    $sub_array[] = '<span class="label label-pill label-defualt">--/--/----</span>';
-                }else{
-                    $sub_array[] = date("d/m/Y H:i", strtotime($row["fech_asig"]));
-                }
+                // if($row["fech_asig"]==null){    
+                //     $sub_array[] = '<span class="label label-pill label-defualt">--/--/----</span>';
+                // }else{
+                //     $sub_array[] = date("d/m/Y H:i", strtotime($row["fech_asig"]));
+                // }
                 if($row["fech_cierre"]==null){
                     $sub_array[] = '<span class ="label label-pill label-default">Sin cerrar</span>';
                 }else{
@@ -530,8 +559,7 @@
                     }
                 }
 
-                $cifrado = openssl_encrypt($row["tick_id"], $cipher, $key,OPENSSL_RAW_DATA, $iv);
-                $textoCifrado = base64_encode($iv . $cifrado);
+               
                 $sub_array[] = '<button type="button" data-ciphertext="'.$textoCifrado.'" data-real-id="'.$row["tick_id"].'" id="'.$textoCifrado.'" class="btn btn-inline btn-primary btn-sm ladda-button"><i class="fa fa-pencil"></i></button>';
                 
                 $data[] = $sub_array;
@@ -797,6 +825,36 @@
                 }
                 echo json_encode($output);
             }   
+        break;
+
+        case "combo_usuarios_seg_detalle"; //aqui se listan los usuarios para ser asignados como seguidores
+
+            $iv_dec = substr(base64_decode($_POST["tick_id"]), 0, openssl_cipher_iv_length($cipher));
+            $cifradoSinIV = substr(base64_decode($_POST["tick_id"]), openssl_cipher_iv_length($cipher));
+            $descifrado = openssl_decrypt($cifradoSinIV, $cipher, $key, OPENSSL_RAW_DATA, $iv_dec);
+            $tick_id = $descifrado;
+            $datos = $ticket->listar_ticket_seguidor_detalle($descifrado);
+            $html = "";
+            if (is_array($datos) && count($datos) > 0) {
+                foreach ($datos as $row) {
+                    $html .= "<option value='".$row['usu_id']."'>".$row['usu_nom']." ".$row['usu_ape']."</option>";
+                }
+            }
+            echo $html;
+        break;
+
+        case "insert_seguidor";
+
+            $iv_dec = substr(base64_decode($_POST["tick_id"]), 0, openssl_cipher_iv_length($cipher));
+            $cifradoSinIV = substr(base64_decode($_POST["tick_id"]), openssl_cipher_iv_length($cipher));
+            $descifrado = openssl_decrypt($cifradoSinIV, $cipher, $key, OPENSSL_RAW_DATA, $iv_dec);
+            $tick_id = $descifrado;
+
+            if (isset($_POST["seguidores"]) && is_array($_POST["seguidores"])) {
+                foreach ($_POST["seguidores"] as $usu_id) {
+                    $ticket->insert_ticket_seguidor_2($descifrado, $usu_id);
+                }
+            }
         break;
     }
 ?>

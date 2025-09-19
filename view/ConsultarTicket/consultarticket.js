@@ -101,6 +101,7 @@ $(document).ready(function(){
 
         listardatatable_admin(tick_titulo, cat_id, prio_id, usu_idt);
     }
+
 });
 
 // function ver(tick_id){
@@ -109,7 +110,7 @@ $(document).ready(function(){
 // }
 
 // TODO: Link para ver detalle de ticket a otra ventana
-$(document).on("click",".btn-inline", function(){
+$(document).on("click",".btn-inline","url-inline", function(){
     const ciphertext = $(this).data("ciphertext");
     const realId = $(this).data("real-id");
 
@@ -120,9 +121,27 @@ $(document).on("click",".btn-inline", function(){
     //DATO TEMPORAL (MIENTRAS EL USUARIO ENTRE AL TICKET, EL VALOR EXISTIRÁ)
     sessionStorage.setItem("ticket_id_real", realId); 
     
-    // window.open('http://localhost:80/HelpDesk_Tecno/view/DetalleTicket/?ID='+ciphertext+'');
+    //window.open('http://localhost:80/HelpDesk_Tecno/view/DetalleTicket/?ID='+ciphertext+'');
     window.open('https://support-tracking.tecnologisticaaduanal.com/view/DetalleTicket/?ID='+ciphertext+'');
 });
+
+// Para enlaces en el título
+$(document).on("click", "a[data-real-id]", function (e) {
+    e.preventDefault(); // Evita que abra el link de inmediato
+
+    const ciphertext = $(this).attr("id");
+    const realId = $(this).data("real-id");
+
+    console.log(realId);
+
+    // Guardar ID en sessionStorage igual que el botón
+    sessionStorage.setItem("ticket_id_real", realId); 
+
+    // Abrir la ventana con el ticket
+    //window.open('http://localhost:80/HelpDesk_Tecno/view/DetalleTicket/?ID=' + ciphertext);
+    window.open('https://support-tracking.tecnologisticaaduanal.com/view/DetalleTicket/?ID=' + ciphertext);
+});
+
 
 function asignar(tick_id){
     $.post("../../controller/ticket.php?op=mostrar_noencry", {tick_id : tick_id}, function (data){
