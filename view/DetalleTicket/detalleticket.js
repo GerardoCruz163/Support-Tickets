@@ -248,6 +248,7 @@ $(document).on("click", "#btnseguidores", function(data,status){ //AQUI ABRE EL 
     $('#mdltitulo').html('Añadir Seguidor/es a este ticket');
     $('#modalseguidorticket').modal('show');
 
+    
     // Llamada AJAX para cargar usuarios disponibles
     $.post("../../controller/ticket.php?op=combo_usuarios_seg_detalle", { tick_id: id }, function (data) {
         $('#seguidores').html(data);

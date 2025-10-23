@@ -26,7 +26,7 @@ function mostrar_notificacion(){
                     url: "https://support-tracking.tecnologisticaaduanal.com/view/DetalleTicket/?ID=" + data.tick_id //NOS REDIRIGE AL DETALLE DEL TICKET
                 })
                 console.log("ID REAL",data.tick_id_real);
-                sessionStorage.setItem("ticket_id_real", data.tick_id_real);
+                //sessionStorage.setItem("ticket_id_real", data.tick_id_real);
 
                 $.post("../../controller/notificacion.php?op=actualizar", {not_id: data.not_id}, function (data){
                     

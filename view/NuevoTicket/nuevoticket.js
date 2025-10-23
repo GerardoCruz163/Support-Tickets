@@ -63,10 +63,12 @@ function guardaryeditar(e){
 
     
     var formData = new FormData($("#ticket_form")[0]);
+    formData.append("usu_id", usu_id); // esta es la variable que ya definiste arriba
     if ($('#tick_descrip').summernote('isEmpty') || $('#tick_titulo').val()=='' || $("#usu_asig").val()== '' || $("#cats_id").val()=='' || $("#prio_id").val()==''){
         swal("¡Advertencia!", "Campos vacios", "warning");
     }else{ 
-        var totalFiles = $('#fileElem').val().length;
+       // var totalFiles = $('#fileElem').val().length;
+        var totalFiles = $('#fileElem')[0].files.length;
         for(var i = 0; i<totalFiles; i++){
             formData.append("files[]", $('#fileElem')[0].files[i]);
         }
@@ -78,11 +80,11 @@ function guardaryeditar(e){
         var seguidores = $("#seguidores").val(); 
         console.log("Seguidores seleccionados:", seguidores);
 
-        // if (seguidores !== null) {
-        //     seguidores.forEach((seg, i) => {
-        //         formData.append("seguidores[]", seg);
-        //     });
-        // }
+        if (seguidores !== null) {
+            seguidores.forEach((seg, i) => {
+                formData.append("seguidores[]", seg);
+            });
+        }
 
         $.ajax({
             url: "../../controller/ticket.php?op=insert",

@@ -13,7 +13,7 @@
             $sql->bindValue(5,$tick_descrip);
             $sql->bindValue(6,$usu_asig);
             $sql->bindValue(7,$prio_id);
-            $sql->execute();
+            $sql->execute(); // linea 16
             
             $sql1="select last_insert_id() as 'tick_id';";
             $sql1=$conectar->prepare($sql1);
@@ -31,14 +31,14 @@
             $sql->bindValue(2, $usu_id);
             $sql->execute();
 
-            if ($stmt->rowCount() == 0) {
+            if ($sql->rowCount() == 0) {
                 //Insertar solo si no existe
                 $sql = "INSERT INTO td_ticket_seguidor(tick_id, usu_id, fech_agregado, est)
                         VALUES (?, ?, NOW(), 1);";
-                $stmt = $conectar->prepare($sql);
-                $stmt->bindValue(1, $tick_id);
-                $stmt->bindValue(2, $usu_id);
-                $stmt->execute();
+                $sql = $conectar->prepare($sql);
+                $sql->bindValue(1, $tick_id);
+                $sql->bindValue(2, $usu_id);
+                $sql->execute();
             }
         }
 
@@ -89,10 +89,12 @@
         public function listar_ticket_x_id($tick_id){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="call sp_listar_ticket_x_id(?)";
+
+            $tick_id = !empty($tick_id) ? (int)$tick_id : null;
+            $sql="call sp_listar_ticket_x_id(?)"; 
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $tick_id);
-            $sql->execute();
+            $sql->execute();//linea 95
             return $resultado=$sql->fetchAll();
         }
 
@@ -142,12 +144,59 @@
             return $resultado=$sql->fetchAll();
         }
 
+        public function listar_seguidores_not($tick_id){
+            $conectar= parent::conexion();
+            parent::set_names();
+            $sql="SELECT 
+                td_ticket_seguidor.seg_id,
+                td_ticket_seguidor.tick_id,
+                td_ticket_seguidor.usu_id AS seg_usu_id,
+                tm_usuario.usu_nom,
+                tm_usuario.usu_ape,
+                tm_usuario.usu_correo
+                FROM td_ticket_seguidor
+                LEFT JOIN tm_usuario 
+                    ON td_ticket_seguidor.usu_id = tm_usuario.usu_id
+                WHERE td_ticket_seguidor.tick_id =?";    
+            $sql=$conectar->prepare($sql);
+            $sql->bindValue(1, $tick_id);
+            $sql->execute();
+            return $resultado=$sql->fetchAll();
+        }
+
         public function listar_ticket(){
             $conectar= parent::conexion();
             parent::set_names();
             $sql="call sp_listar_ticket";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $suc_id);
+            $sql->execute();
+            return $resultado=$sql->fetchAll();
+        }
+
+        public function get_ultimo_coment_tickdetalle($tick_id){
+            $conectar= parent::conexion();
+            parent::set_names();
+            $sql="SELECT
+                td_ticketdetalle.tickd_id,
+                td_ticketdetalle.tickd_descrip,
+                td_ticketdetalle.fech_crea,
+                tm_usuario.usu_nom,
+                tm_usuario.usu_ape,
+                tm_usuario.rol_id,
+                tm_usuario.pic_num,
+                tm_area.area_nom,
+                tm_sucursal.suc_nom
+                FROM 
+                    td_ticketdetalle
+                INNER join tm_usuario on td_ticketdetalle.usu_id = tm_usuario.usu_id
+                INNER join tm_area on tm_usuario.area_id = tm_area.area_id
+                INNER join tm_sucursal on tm_usuario.suc_id = tm_sucursal.suc_id
+                WHERE 
+                tick_id = ?
+                AND td_ticketdetalle.fech_crea = (SELECT MAX(fech_crea) from td_ticketdetalle);";
+            $sql=$conectar->prepare($sql);
+            $sql->bindValue(1, $tick_id);
             $sql->execute();
             return $resultado=$sql->fetchAll();
         }
@@ -168,9 +217,21 @@
             //OBTENER EL USUARIO ASIGNADO
             $ticket = new Ticket();
             $datos = $ticket->listar_ticket_x_id($tick_id);
+            $seguidor = $ticket->listar_seguidores_not($tick_id);
             foreach($datos as $row){
                 $usu_asig = $row["usu_asig"];
                 $usu_crea = $row["usu_id"];
+            }
+
+            //AQUI SE ENVIA AL SEGUIDOR
+            foreach ($seguidor as $row) {
+                $usu_seg = $row["seg_usu_id"];
+
+                if($_SESSION["usu_id"] != $usu_seg){  // notificar a los demás, no a quien comenta
+                    $sql0="call sp_guardar_notificacion_modificado($usu_seg, $tick_id)";
+                    $sql0=$conectar->prepare($sql0);
+                    $sql0->execute();
+                }
             }
 
             //si el usuario es quien fue asignado al ticket, la notificacion va para el que la creo
@@ -195,7 +256,7 @@
             $sql->bindValue(1, $tick_id);
             $sql->bindValue(2, $usu_id);
             $sql->bindValue(3, $tickd_descrip);
-            $sql->execute();
+            $sql->execute(); // linea 211
             
             // $sql1="select last_insert_id() as 'tickd_id';";
             // $sql1=$conectar->prepare($sql1);
@@ -366,11 +427,11 @@
             $conectar= parent::conexion();
             parent::set_names();
 
-            // Limpiar valores antes de pasarlos al SP
-            // $cat_id  = ($cat_id === '' || $cat_id === 'Seleccionar') ? null : (int)$cat_id;
-            // $prio_id = ($prio_id === '' || $prio_id === 'Seleccionar') ? null : (int)$prio_id;
-            // $usu_id  = ($usu_id === '' || $usu_id === 'Seleccionar') ? null : (int)$usu_id;
-            // $tick_titulo = ($tick_titulo === '') ? null : $tick_titulo;
+           // Limpiar valores antes de pasarlos al SP
+            $cat_id  = ($cat_id === '' || $cat_id === 'Seleccionar') ? null : (int)$cat_id;
+            $prio_id = ($prio_id === '' || $prio_id === 'Seleccionar') ? null : (int)$prio_id;
+            $usu_id  = ($usu_id === '' || $usu_id === 'Seleccionar') ? null : (int)$usu_id;
+            $tick_titulo = ($tick_titulo === '') ? null : $tick_titulo;
 
             $sql="call filtrar_ticket_admin(?,?,?,?)";
             $sql=$conectar->prepare($sql);
@@ -387,9 +448,9 @@
             $conectar= parent::conexion();
             parent::set_names();
 
-            // $cat_id = !empty($_POST['cat_id']) ? (int)$_POST['cat_id'] : null;
-            // $prio_id = !empty($_POST['prio_id']) ? (int)$_POST['prio_id'] : null;
-            // $usu_id = !empty($_POST['usu_id']) ? (int)$_POST['usu_id'] : null;
+            $cat_id = !empty($_POST['cat_id']) ? (int)$_POST['cat_id'] : null;
+            $prio_id = !empty($_POST['prio_id']) ? (int)$_POST['prio_id'] : null;
+            $usu_id = !empty($_POST['usu_id']) ? (int)$_POST['usu_id'] : null;
 
             $sql="call filtrar_ticket_sup (?,?,?,?,?,?)";
             $sql=$conectar->prepare($sql);

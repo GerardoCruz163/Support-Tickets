@@ -81,12 +81,14 @@
                             <a href="view/ResetPassword/">Recuperar contraseña</a>
                         </div>
 
-                        <div class="float-left reset">
-                            <a href="view/accesosoporte/" id="btnsoporte">Acceder como soporte</a>
-                        </div>
+                        
                     </div>
                     <input type="hidden" name="enviar" class="form-control" value="si">
                     <button type="submit" class="btn btn-rounded">Acceder</button>
+
+                    <p class="sign-note">
+                        <a href="view/accesosoporte/" id="btnsoporte">Acceder como supervisor</a>
+                    </p>
                     
                 </form>
             </div>

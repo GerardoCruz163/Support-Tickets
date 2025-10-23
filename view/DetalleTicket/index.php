@@ -148,7 +148,7 @@
 
 	<?php require_once("../MainJS/js.php");?>
 	<?php require_once("modalseguidorticket.php");?>
-	<script src="http://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+	<script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
 	<script type="text/javascript" src="detalleticket.js"></script>
 	<script type="text/javascript" src="../notificacion.js"></script>
 
@@ -158,8 +158,8 @@
 </html>
 <?php
 	}else{
-		header("Location:"."http://localhost:80/HelpDesk_Tecno/"."index.php");
-		//header("Location:"."https://support-tracking.tecnologisticaaduanal.com/"."index.php");
+		//header("Location:"."http://localhost:80/HelpDesk_Tecno/"."index.php");
+		header("Location:"."https://support-tracking.tecnologisticaaduanal.com/"."index.php");
 	}
 
 ?>
