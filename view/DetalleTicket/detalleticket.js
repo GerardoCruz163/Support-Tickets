@@ -32,8 +32,11 @@ function insertarseguidores(e){
     $('#modalseguidorticket').modal('hide');
 }
 
-const socket = io("https://support-tracking.tecnologisticaaduanal.com:8082"); 
-//const socket = io("http://localhost:8082"); // O la IP si es red local
+            // SOCKET IO RUTA
+
+//const socket = io("https://support-tracking.tecnologisticaaduanal.com:8082"); 
+const socket = io("http://localhost:8082"); // O la IP si es red local
+
 $(document).ready(function(){
     
     const url = window.location.href;
@@ -183,6 +186,9 @@ $(document).on("click","#btnenviar",function(){
     var usu_id = $('#user_idx').val();
     var tickd_descrip = $('#tickd_descrip').val();
 
+    // VERIFICA SI EL BOTON DE URGENCIA ESTA ACTIVO
+    const esUrgente = $("#btnUrgente").hasClass("activo") ? 1 : 0; 
+
     //VERIFICA QUE NO QUEDE NINGUN CAMPO VACIO, MINIMO UNO DEBE TENER INFORMACION
     if ($('#tickd_descrip').summernote('isEmpty') && $('#fileElem')[0].files.length === 0){
         swal("¡Advertencia!", "No puedes dejar el campo vacio", "warning");
@@ -193,6 +199,9 @@ $(document).on("click","#btnenviar",function(){
         formData.append('tick_id',id);
         formData.append('usu_id',usu_id);
         formData.append('tickd_descrip',tickd_descrip);
+        // CARGA EL ESTADO DEL BOTON DE URGENCIA
+        formData.append('es_urgente', esUrgente);
+
         var totalFiles = $('#fileElem').val().length;
         for(var i = 0; i<totalFiles; i++){
             formData.append("files[]", $('#fileElem')[0].files[i]);
@@ -235,6 +244,19 @@ $(document).on("click","#btnenviar",function(){
     }
 });
 
+$(document).on("click","#btnUrgente",function(){
+    const $btn = $(this);
+    $btn.toggleClass("activo");
+
+    if ($btn.hasClass("activo")) {
+        $btn.removeClass("btn-secondary").addClass("btn-danger");
+        $btn.html('<i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Marcado como Urgente');
+    } else {
+        $btn.removeClass("btn-danger").addClass("btn-secondary");
+        $btn.html('<i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Marcar como Urgente');
+    }
+});
+
 $(document).on("click", "#btnseguidores", function(data,status){ //AQUI ABRE EL BOTON QUE NOS DA EL MODAL DE LOS SEGUIDORES
     const url = window.location.href;
     const params = new URLSearchParams(new URL(url).search);
@@ -255,6 +277,8 @@ $(document).on("click", "#btnseguidores", function(data,status){ //AQUI ABRE EL 
         console.log(tick_id);
     });
 })
+
+
 
 $(document).on("click","#btncerrar",function(){
     swal(

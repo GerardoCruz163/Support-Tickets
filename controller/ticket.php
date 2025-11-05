@@ -243,11 +243,6 @@
                     $sub_array[] = '<a onClick="CambiarEstado('.$row["tick_id"].')"><span class="label label-pill label-danger">CERRADO</span></a>';
                 }
 
-                // if($row["fech_asig"]==null){
-                //     $sub_array[] = '--/--/---- --:--';
-                // }else{
-                //     $sub_array[] = date("d/m/Y H:i", strtotime($row["fech_asig"]));
-                // }
                 if($row["fech_cierre"]==null){
                     $sub_array[] = '<span class ="label label-pill label-default">Sin cerrar</span>';
                 }else{
@@ -429,9 +424,18 @@
                                                                         }
                                                                     ?>
                                                                     <td><i class="fa fa-paperclip" aria-hidden="true"></i>
-                                                                        <a href="../../public/document_detalle/<?php echo $row_det["tick_id"];?>/<?php echo $row_det["det_nom"];?>" target="_blank" class="">   
+                                                                        <!-- <a href="../../public/document_detalle/<?php// echo $row_det["tick_id"];?>/<?php// echo $row_det["det_nom"];?>" target="_blank" class="">   
+                                                                            <?php// echo $row_det["det_nom"];?>
+                                                                        </a>  -->
+
+                                                                        <a href="../../controller/documento.php?op=ver&tick_id=<?php echo $row_det["tick_id"];?>&file=<?php echo urlencode($row_det["det_nom"]);?>" target="_blank" class="">   
                                                                             <?php echo $row_det["det_nom"];?>
                                                                         </a>
+
+
+                                                                        <!-- <a href="../../controller/documento.php?tick_id=<?php // echo $row_det["tick_id"];?>&file=<?php // echo $row_det["det_nom"];?>" target="_blank" class="">   
+                                                                            <?php // echo $row_det["det_nom"];?>
+                                                                        </a> -->
                                                                     </td>
                                                                     <td>
                                                                         
@@ -652,8 +656,9 @@
                     }
                 }
             }
-        
-            $email->ticket_comentario($descifrado);
+            if($_POST["es_urgente"]){
+                $email->ticket_comentario($descifrado);
+            }
             echo json_encode($datos);
         break;
         

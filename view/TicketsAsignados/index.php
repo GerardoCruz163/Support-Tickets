@@ -133,7 +133,8 @@
 </html>
 <?php
 	}else{
-		header("Location:"."https://support-tracking.tecnologisticaaduanal.com/"."index.php");
+		//header("Location:"."https://support-tracking.tecnologisticaaduanal.com/"."index.php");
+		header("Location:"."http://localhost:80/HelpDesk_Tecno/"."index.php");
 	}
 
 ?>

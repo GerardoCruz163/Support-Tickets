@@ -44,7 +44,7 @@
                     </div>
                     <header class="sign-title" id="lbltitulo">Acceso Administrador</header>
                     
-                    <?php
+                    <?php // aqui linea 47
                         if(isset($_GET["m"])){
                             switch($_GET["m"]){
                                 case "1";
@@ -86,6 +86,10 @@
                     <input type="hidden" name="enviar" class="form-control" value="si">
                     <button type="submit" class="btn btn-rounded">Acceder</button>
                     
+                    <p class="sign-note">
+                        <a href="../../view/accesosoporte/">Acceder como Supervisor</a>
+                    </p>
+
                 </form>
             </div>
         </div>

@@ -41,15 +41,15 @@
 		
 		<div class="error-title">No se encontró esta pagina.</div>
 		<div class="error-title">Error: 404</div>
-		<!-- <a href="https://localhost:80/HelpDesk_Tecno/view/Home/" class="btn btn-rounded">Volver</a> -->
-		<a href="https://support-tracking.tecnologisticaaduanal.com/view/Home/" class="btn btn-rounded">Volver</a>
+		<a href="http://localhost:80/HelpDesk_Tecno/view/Home/" class="btn btn-rounded">Volver</a>
+		<!-- <a href="https://support-tracking.tecnologisticaaduanal.com/view/Home/" class="btn btn-rounded">Volver</a> -->
 	</div>
 
 </body>
 <?php
 	}else{
-		//header("Location:"."http://localhost:80/HelpDesk_Tecno/"."index.php");
-		header("Location:"."https://support-tracking.tecnologisticaaduanal.com/"."index.php");
+		header("Location:"."http://localhost:80/HelpDesk_Tecno/"."index.php");
+		//header("Location:"."https://support-tracking.tecnologisticaaduanal.com/"."index.php");
 	}
 
 ?>

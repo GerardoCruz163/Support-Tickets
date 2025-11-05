@@ -137,7 +137,7 @@ $(document).ready(function(){
     }
 
     $.post("../../controller/ticket.php?op=all_calendar", function (data){
-        console.log(data);
+        //console.log(data);
     });
 });
 

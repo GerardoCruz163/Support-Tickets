@@ -31,14 +31,14 @@
             $sql->bindValue(2, $usu_id);
             $sql->execute();
 
-            if ($stmt->rowCount() == 0) {
+            if ($sql->rowCount() == 0) {
                 //Insertar solo si no existe
                 $sql = "INSERT INTO td_ticket_seguidor(tick_id, usu_id, fech_agregado, est)
                         VALUES (?, ?, NOW(), 1);";
-                $stmt = $conectar->prepare($sql);
-                $stmt->bindValue(1, $tick_id);
-                $stmt->bindValue(2, $usu_id);
-                $stmt->execute();
+                $sql = $conectar->prepare($sql);
+                $sql->bindValue(1, $tick_id);
+                $sql->bindValue(2, $usu_id);
+                $sql->execute();
             }
         }
 
@@ -133,9 +133,29 @@
             $conectar= parent::conexion();
             parent::set_names();
             $sql="SELECT * FROM td_ticket_seguidor
-                    LEFT JOIN tm_usuario on td_ticket_seguidor.usu_id = tm_usuario.usu_id
+                LEFT JOIN tm_usuario on td_ticket_seguidor.usu_id = tm_usuario.usu_id
                     LEFT JOIN tm_ticket on td_ticket_seguidor.tick_id = tm_ticket.tick_id
                     WHERE td_ticket_seguidor.tick_id = ?;";    
+            $sql=$conectar->prepare($sql);
+            $sql->bindValue(1, $tick_id);
+            $sql->execute();
+            return $resultado=$sql->fetchAll();
+        }
+
+        public function listar_seguidores_not($tick_id){
+            $conectar= parent::conexion();
+            parent::set_names();
+            $sql="SELECT 
+                td_ticket_seguidor.seg_id,
+                td_ticket_seguidor.tick_id,
+                td_ticket_seguidor.usu_id AS seg_usu_id,
+                tm_usuario.usu_nom,
+                tm_usuario.usu_ape,
+                tm_usuario.usu_correo
+                FROM td_ticket_seguidor
+                LEFT JOIN tm_usuario 
+                    ON td_ticket_seguidor.usu_id = tm_usuario.usu_id
+                WHERE td_ticket_seguidor.tick_id =?";    
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $tick_id);
             $sql->execute();
@@ -151,6 +171,33 @@
             $sql->execute();
             return $resultado=$sql->fetchAll();
         }
+
+        public function get_ultimo_coment_tickdetalle($tick_id){
+            $conectar= parent::conexion();
+            parent::set_names();
+            $sql="SELECT
+                td_ticketdetalle.tickd_id,
+                td_ticketdetalle.tickd_descrip,
+                td_ticketdetalle.fech_crea,
+                tm_usuario.usu_nom,
+                tm_usuario.usu_ape,
+                tm_usuario.rol_id,
+                tm_usuario.pic_num,
+                tm_area.area_nom,
+                tm_sucursal.suc_nom
+                FROM 
+                    td_ticketdetalle
+                INNER join tm_usuario on td_ticketdetalle.usu_id = tm_usuario.usu_id
+                INNER join tm_area on tm_usuario.area_id = tm_area.area_id
+                INNER join tm_sucursal on tm_usuario.suc_id = tm_sucursal.suc_id
+                WHERE 
+                tick_id = ?
+                AND td_ticketdetalle.fech_crea = (SELECT MAX(fech_crea) from td_ticketdetalle);";
+            $sql=$conectar->prepare($sql);
+            $sql->bindValue(1, $tick_id);
+            $sql->execute();
+            return $resultado=$sql->fetchAll();
+        }
    
         public function listar_tickdetalle_x_ticket($tick_id){
             $conectar= parent::conexion();
@@ -162,15 +209,61 @@
             return $resultado=$sql->fetchAll();
         }
 
+        public function verificar_usuario_en_ticket($usu_id, $tick_id) {
+            $conectar = parent::conexion();
+            parent::set_names();
+        
+            $sql = "SELECT 1
+            FROM tm_ticket t
+            LEFT JOIN td_ticket_seguidor s ON t.tick_id = s.tick_id
+            LEFT JOIN tm_usuario u ON u.usu_id = t.usu_id
+            WHERE 
+                t.tick_id = ? 
+                AND (
+                    t.usu_id = ?         -- creador
+                    OR t.usu_asig = ?    -- asignado
+                    OR s.usu_id = ?      -- seguidor
+                    OR EXISTS (          -- validar si el usuario es admin o soporte
+                        SELECT 1 FROM tm_usuario ux
+                        WHERE ux.usu_id = ?
+                        AND ux.rol_id IN (1,2,3)
+                    )
+                )
+            LIMIT 1;";
+        
+            $sql = $conectar->prepare($sql);
+            $sql->bindValue(1, $usu_id);
+            $sql->bindValue(2, $tick_id);
+            $sql->bindValue(4, $usu_id);
+            $sql->bindValue(3, $usu_id);
+            $sql->bindValue(5, $usu_id);
+            $sql->execute();
+        
+            return $sql->fetch(PDO::FETCH_ASSOC) ? true : false;
+        }
+        
+
         public function insert_ticketdetalle($tick_id,$usu_id,$tickd_descrip){
             $conectar= parent::conexion();
             parent::set_names();
             //OBTENER EL USUARIO ASIGNADO
             $ticket = new Ticket();
             $datos = $ticket->listar_ticket_x_id($tick_id);
+            $seguidor = $ticket->listar_seguidores_not($tick_id);
             foreach($datos as $row){
                 $usu_asig = $row["usu_asig"];
                 $usu_crea = $row["usu_id"];
+            }
+
+            //AQUI SE ENVIA AL SEGUIDOR
+            foreach ($seguidor as $row) {
+                $usu_seg = $row["seg_usu_id"];
+
+                if($_SESSION["usu_id"] != $usu_seg){  // notificar a los demás, no a quien comenta
+                    $sql0="call sp_guardar_notificacion_modificado($usu_seg, $tick_id)";
+                    $sql0=$conectar->prepare($sql0);
+                    $sql0->execute();
+                }
             }
 
             //si el usuario es quien fue asignado al ticket, la notificacion va para el que la creo
@@ -205,10 +298,7 @@
             $sql1 = $conectar->prepare($sql1);
             $sql1->bindValue(1, $tick_id); // reutilizamos el tick_id que entró por parámetro
             $sql1->execute();
-
-            
             return $resultado=$sql1->fetchAll(pdo::FETCH_ASSOC);
-            
         }
 
         public function insert_ticketdetalle_cerrar($tick_id,$usu_id){

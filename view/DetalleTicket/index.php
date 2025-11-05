@@ -106,35 +106,45 @@
 			</div>
 
         <section class="activity-line" id="lbldetalle">
-
+		
 			
-		</section><!--.activity-line-->
+			</section><!--.activity-line-->
+
+			<span class="label label-pill label-default">
+				<i class="font-icon font-icon-pencil-thin"></i>
+				• • •
+			</span>
 			<div class="box-typical box-typical-padding" id="pnldetalle">
 				<div class="row">
 					<div class="col-lg-12">
 						<fieldset class="form-group">
-							
 							<div class="summernote-theme-1">
 								<textarea class="summernote" id="tickd_descrip" name="tick_descrip"></textarea>
 							</div>
 						</fieldset>
+						
 					</div>
 
 					<div class="col-lg-12">
-							<fieldset class="form-group">
-									<label class="form-label semibold" for="fileElem">Adjuntar documento</label>
-									<input type="file" name="fileElem" id="fileElem" class="form-control" multiple>
-							</fieldset>
-						</div>
+						<fieldset class="form-group">
+								<label class="form-label semibold" for="fileElem">Adjuntar documento</label>
+								<input type="file" name="fileElem" id="fileElem" class="form-control" multiple>
+						</fieldset>
+					</div>
 					<div class="col-lg-12">
-						<button type="button" id="btnenviar" name="action" value="add" class="btn btn-rounded btn-inline btn_primary">
-						<i class="fa fa-paper-plane" aria-hidden="true"></i>	
-						Enviar</button>
+						<button id="btnUrgente" type="button" class="btn btn-rounded btn-inline btn-secondary">
+							<i class="fa fa-exclamation-triangle" aria-hidden="true"></i>	
+							Marcar como Urgente
+						</button>
 
 						<button type="button" id="btnseguidores" name="action" value="add" class="btn btn-rounded btn-inline btn-secondary">
 							<i class="fa fa-users" aria-hidden="true"></i>
 							Añadir Seguidor/es
 						</button>
+
+						<button type="button" id="btnenviar" name="action" value="add" class="btn btn-rounded btn-inline btn_primary">
+						<i class="fa fa-paper-plane" aria-hidden="true"></i>	
+						Enviar</button>
 
 						<button type="button" id="btncerrar" name="action" value="add" class="btn btn-rounded btn-inline btn-default">
 						<i class="fa fa-times-circle" aria-hidden="true"></i>	

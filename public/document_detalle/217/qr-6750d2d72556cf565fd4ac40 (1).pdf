@@ -1,0 +1,11 @@
+
+qr-6750d2d72556cf565fd4ac40.pdf216string(18) "Usuario en ticket:"
+int(3)
+string(5) "Tick:"
+int(216)
+string(10) "Resultado:"
+bool(true)
+qr-6750d2d72556cf565fd4ac40.pdf<br><br />
+<b>Warning</b>:  filesize(): stat failed for ../../public/document_detalle/216/qr-6750d2d72556cf565fd4ac40.pdf in <b>C:\xampp_8.2.12\htdocs\HelpDesk_Tecno\controller\documento.php</b> on line <b>80</b><br />
+<br />
+<b>Warning</b>:  readfile(../../public/document_detalle/216/qr-6750d2d72556cf565fd4ac40.pdf): Failed to open stream: No such file or directory in <b>C:\xampp_8.2.12\htdocs\HelpDesk_Tecno\controller\documento.php</b> on line <b>81</b><br />

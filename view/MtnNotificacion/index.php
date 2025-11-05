@@ -43,6 +43,7 @@
 						<tr>
 							<th style="width: 75%;">Notificación</th>
 							<th class="text-center" style="width: 5%;"></th>
+							
 						</tr>
 					</thead>
 					<tbody>
@@ -63,8 +64,8 @@
 </html>
 <?php
 	}else{
-		//header("Location:"."http://localhost:80/HelpDesk_Tecno/"."index.php");
-		header("Location:"."https://support-tracking.tecnologisticaaduanal.com/"."index.php");
+		header("Location:"."http://localhost:80/HelpDesk_Tecno/"."index.php");
+		//header("Location:"."https://support-tracking.tecnologisticaaduanal.com/"."index.php");
 	}
 
 ?>

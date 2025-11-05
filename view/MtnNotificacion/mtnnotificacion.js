@@ -67,8 +67,8 @@ $(document).on("click", ".btn-inline, a[data-real-id]", function(e){
     sessionStorage.setItem("ticket_id_real", realId);
 
     if(ciphertext){
-        //window.open('http://localhost:80/HelpDesk_Tecno/view/DetalleTicket/?ID=' + ciphertext);
-        window.open('https://support-tracking.tecnologisticaaduanal.com/view/DetalleTicket/?ID='+ciphertext+'');
+        window.open('http://localhost:80/HelpDesk_Tecno/view/DetalleTicket/?ID=' + ciphertext);
+        //window.open('https://support-tracking.tecnologisticaaduanal.com/view/DetalleTicket/?ID='+ciphertext+'');
     } else if(this.tagName.toLowerCase() === 'a'){
         // Si es un <a> sin ciphertext, abrimos el href
         window.open($(this).attr("href"));

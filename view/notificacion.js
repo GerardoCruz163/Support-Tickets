@@ -16,18 +16,18 @@ function mostrar_notificacion(){
         success: function(data){
 
             if(!data || data.trim() === ""){
-                return; // no hay notificación
+                return;
             }else{
                 data = JSON.parse(data);
-                $.notify({
+                sessionStorage.setItem("ticket_id_real", data.tick_id_real);
+                $.notify({ // aqui
                     icon: 'glyphicon glyphicon-star',
                     message: data.not_mensaje,
-                    //url: "http://localhost:80/HelpDesk_Tecno/view/DetalleTicket/?ID=" + data.tick_id //NOS REDIRIGE AL DETALLE DEL TICKET
-                    url: "https://support-tracking.tecnologisticaaduanal.com/view/DetalleTicket/?ID=" + data.tick_id //NOS REDIRIGE AL DETALLE DEL TICKET
+                    url: "http://localhost:80/HelpDesk_Tecno/view/DetalleTicket/?ID=" + data.tick_id //NOS REDIRIGE AL DETALLE DEL TICKET
+                    //url: "https://support-tracking.tecnologisticaaduanal.com/view/DetalleTicket/?ID=" + data.tick_id //NOS REDIRIGE AL DETALLE DEL TICKET
                 })
                 console.log("ID REAL",data.tick_id_real);
-                sessionStorage.setItem("ticket_id_real", data.tick_id_real);
-
+                
                 $.post("../../controller/notificacion.php?op=actualizar", {not_id: data.not_id}, function (data){
                     
                 });

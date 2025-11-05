@@ -248,13 +248,21 @@ class Email extends PHPMailer{
         $usuario = new Usuario();
         $datos2 = $usuario->get_usuario_x_id($datos[0]["usu_asig"]); //USUARIO ASIGNADO AL TICKET
 
+        $datoscoment = $ticket->get_ultimo_coment_tickdetalle($tick_id); // OBTENGO EL ULTIMO MENSAJE ENVIADO
+
         foreach($datos as $row){
             $id = $row["tick_id"];
             $usu = $row["usu_nom"];
             $area = $row["area_nom"];
             $titulo=$row["tick_titulo"];
             $categoria=$row["cat_nom"];
+            $descripcion=$row["tick_descrip"];
             $correo=$row["usu_correo"]; 
+        }
+
+        foreach ($datoscoment as $row) {
+            $usu_coment =  $row["usu_nom"] . " " . $row["usu_ape"];
+            $tick_coment = $row["tickd_descrip"];
         }
 
         // foreach($datos2 as $row){
@@ -270,7 +278,7 @@ class Email extends PHPMailer{
         $this->Password = $this->gContrasena;
         $this->From = $this->gCorreo;
         $this->SMTPSecure = 'ssl';
-        $this->FromName = $this->tu_nombre = "Se ha añadido un comentario al ticket: ".$id;
+        $this->FromName = $this->tu_nombre = "Tienes una respuesta en el ticket: ".$id;
         $this->CharSet = 'UTF8';
         $this->addAddress($correo);
         $this->addAddress($datos2[0]["usu_correo"]); // ENVIAR CORREO AL USUARIO QUE SE LE ASIGNO AL TICKET
@@ -285,6 +293,8 @@ class Email extends PHPMailer{
         $cuerpo = str_replace("lblArea", $area, $cuerpo);
         $cuerpo = str_replace("lblTitu", $titulo, $cuerpo);
         $cuerpo = str_replace("lblCate", $categoria, $cuerpo);
+        $cuerpo = str_replace("lblName", $usu_coment, $cuerpo);
+        $cuerpo = str_replace("lblComent", $tick_coment, $cuerpo);
         //$cuerpo = str_replace("lblUsuSop", $nom_usu+' '+$ape_usu, $cuerpo);
 
         $this->Body = $cuerpo;
