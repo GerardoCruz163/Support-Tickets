@@ -40,7 +40,7 @@ $(document).ready(function(){
     const encodedCiphertext = encodeURIComponent(tick_id);
     const id = decoded_id.replace(/\s/g, '+'); 
 
-    //AQUI LEO EL SESSION STORAGE
+    //AQUI LEO EL SESSION STORAGEs
     const realTicketId = sessionStorage.getItem("ticket_id_real");
 
     socket.on("connect", () => {
