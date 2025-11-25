@@ -61,7 +61,7 @@
             $sql="call sp_get_prioridad_x_nom(?)";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $prio_nom);
-            $sql->execute();    
+            $sql->execute();    // linea 64
             return $resultado=$sql->fetchAll();
         }
     }

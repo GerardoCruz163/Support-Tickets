@@ -11,8 +11,8 @@ function init(){
 }
 
 $(document).ready(function(){
-    console.log(area_id);
-    console.log(suc_id);
+    // console.log(area_id);
+    // console.log(suc_id);
     $.post("../../controller/categoria.php?op=combo",function(data, status){
         $('#cat_id').html(data);
     });
@@ -117,7 +117,7 @@ $(document).on("click",".btn-inline","url-inline", function(){
     // console.log("ID encriptado:", ciphertext);
     // console.log("ID sin ecriptar:", id);
 
-    console.log(realId);
+    //console.log(realId);
     //DATO TEMPORAL (MIENTRAS EL USUARIO ENTRE AL TICKET, EL VALOR EXISTIRÁ)
     sessionStorage.setItem("ticket_id_real", realId); 
     
@@ -132,7 +132,7 @@ $(document).on("click", "a[data-real-id]", function (e) {
     const ciphertext = $(this).attr("id");
     const realId = $(this).data("real-id");
 
-    console.log(realId);
+    // console.log(realId);
 
     // Guardar ID en sessionStorage igual que el botón
     sessionStorage.setItem("ticket_id_real", realId); 
@@ -198,7 +198,7 @@ function CambiarEstado(tick_id){
                 
             });
                 
-            console.log(tick_id);
+            //console.log(tick_id);
             $('#ticket_data').DataTable().ajax.reload();
             
             swal({

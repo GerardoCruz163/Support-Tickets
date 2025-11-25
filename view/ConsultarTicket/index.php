@@ -8,6 +8,8 @@
 <html>
 <?php require_once("../MainHead/head.php");?>
 <title>Consulta Tickets: TLA SuTra</title>
+<audio id="notif_sound" src="../../public/sound/bell_not_sutra.wav" preload="auto"></audio>
+<link rel="shortcut icon" href="../../public/img/SuTra_icon.png" type="image/x-icon">
 <body class="with-side-menu">
 
     <?php require_once("../MainHeader/header.php");?>

@@ -16,7 +16,7 @@ function guardaryeditar(e){
         contentType: false,
         processData: false,
         success: function(datos){    
-            console.log(datos);
+            //console.log(datos);
 
             if(datos == 1){
                 $('#usuario_form')[0].reset();

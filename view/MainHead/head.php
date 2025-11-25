@@ -3,6 +3,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
     
+	<link rel="shortcut icon" href="../../public/img/SuTra_icon.png" type="image/x-icon">
 	<link href="img/favicon.144x144.png" rel="apple-touch-icon" type="image/png" sizes="144x144">
 	<link href="img/favicon.114x114.png" rel="apple-touch-icon" type="image/png" sizes="114x114">
 	<link href="img/favicon.72x72.png" rel="apple-touch-icon" type="image/png" sizes="72x72">

@@ -20,8 +20,12 @@
             $data = array();
             foreach($datos as $row){
                 $sub_array = array();
-                $sub_array[] = '<a href="../../public/document/'.$descifrado.'/'.$row["doc_nom"].'" target="_blank">'.$row["doc_nom"].'</a>';
-                $sub_array[] = '<a type="button" href="../../public/document/'.$descifrado.'/'.$row["doc_nom"].'" target="_blank" class="btn btn-inline btn-primary btn-sm ladda-button"><i class="fa fa-eye"></i></a>';
+                // $sub_array[] = '<a href="../../public/document/'.$descifrado.'/'.$row["doc_nom"].'" target="_blank">'.$row["doc_nom"].'</a>';
+                // $sub_array[] = '<a type="button" href="../../public/document/'.$descifrado.'/'.$row["doc_nom"].'" target="_blank" class="btn btn-inline btn-primary btn-sm ladda-button"><i class="fa fa-eye"></i></a>';
+                $sub_array[] = '<a href="../../controller/ver_documento.php?id=' . $descifrado . '&archivo=' . urlencode($row["doc_nom"]) . '" target="_blank">' . $row["doc_nom"] . '</a>';
+
+                $sub_array[] = '<a type="button" href="../../controller/ver_documento.php?id=' . $descifrado . '&archivo=' . urlencode($row["doc_nom"]).'" target="_blank" class="btn btn-inline btn-primary btn-sm ladda-button"><i class="fa fa-eye"></i></a>';
+                
                 $data[] = $sub_array;
             }
         

@@ -48,6 +48,53 @@
         break;
 
         case "listar":
+            ini_set('display_errors',1);
+            ini_set('display_startup_errors',1);
+	        error_reporting(E_ALL);
+            $datos=$usuario->get_usuario();
+            $data= Array();
+            foreach($datos as $row){
+                $sub_array = array();
+                $sub_array[] = $row["usu_nom"];
+                $sub_array[] = $row["usu_ape"];
+                $sub_array[] = $row["usu_correo"];
+                $sub_array[] = $row["usu_pass"];
+                
+                if($row["rol_id"]=="1"){
+                    $sub_array[] = '<span class="label label-pill label-primary">Usuario</span>';
+                }else if($row["rol_id"]=="2"){
+                    $sub_array[] = '<span class="label label-pill label-info aquamarine">Supervisor</span>';
+                }else{
+                    $sub_array[] = '<span class="label label-pill label-default ">Administrador</span>';
+                }
+
+                if($row["suc_id"] == "1"){
+                    $sub_array[] = 'Nuevo Laredo';
+                }else if($row["suc_id"] == "2"){
+                    $sub_array[] = 'Manzanillo';
+                }else if($row["suc_id"] == "3"){
+                    $sub_array[] = 'Veracruz';
+                }else if($row["suc_id"] == "4"){
+                    $sub_array[] = 'Altamira';
+                }else if($row["suc_id"] == "5"){
+                    $sub_array[] = 'AICM';
+                }else if($row["suc_id"] == "6"){
+                    $sub_array[] = 'AIFA';
+                }
+                $sub_array[] = $row["area_nom"];
+
+                $sub_array[] = '<button type="button" onClick="editar('.$row["usu_id"].');"  id="'.$row["usu_id"].'" class="btn btn-inline btn-warning btn-sm ladda-button"><i class="fa fa-edit"></i></button>';
+                $sub_array[] = '<button type="button" onClick="eliminar('.$row["usu_id"].');"  id="'.$row["usu_id"].'" class="btn btn-inline btn-danger btn-sm ladda-button"><i class="fa fa-trash"></i></button>';
+                $data[] = $sub_array;
+            }
+
+            $results = array(
+                "sEcho"=>1,
+                "iTotalRecords"=>count($data),
+                "iTotalDisplayRecords"=>count($data),
+                "aaData"=>$data);
+            echo json_encode($results);
+        break;	
             $datos=$usuario->get_usuario();
             $data= Array();
             foreach($datos as $row){
@@ -187,6 +234,7 @@
 
         case "combo_usuarios_seg";
             $datos = $usuario->get_usuario();
+            //$datos = $usuario->get_usuario_seguidor($_POST["usu_id"]);
             if(is_array($datos)==true and count($datos)>0){
                 $html = "";
                 $html.= "<option label='Seleccionar'></option>";

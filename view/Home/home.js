@@ -25,7 +25,7 @@ $(document).ready(function(){
 
         $.post("../../controller/usuario.php?op=grafico", {usu_id:usu_id},function (data) {
             data = JSON.parse(data);
-            console.log(data);
+            //console.log(data);
     
             new Morris.Bar({
                 element: 'divgrafico',
@@ -137,7 +137,7 @@ $(document).ready(function(){
     }
 
     $.post("../../controller/ticket.php?op=all_calendar", function (data){
-        console.log(data);
+        //console.log(data);
     });
 });
 

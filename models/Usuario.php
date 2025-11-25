@@ -116,12 +116,20 @@
         public function get_usuario(){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="call sp_l_usuario_01()";
+            $sql="call sp_l_usuario_01";
             $sql=$conectar->prepare($sql);
             $sql->execute();
             return $resultado=$sql->fetchAll();
         }
-        
+        public function get_usuario_seguidor($usu_id){
+            $conectar= parent::conexion();
+            parent::set_names();
+            $sql="call sp_listar_ticket_seguidor(?)";
+            $sql=$conectar->prepare($sql);
+            $sql->execute();
+            return $resultado=$sql->fetchAll();
+        }
+
 
         public function get_usuario_x_rol(){
             $conectar= parent::conexion();

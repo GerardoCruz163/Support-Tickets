@@ -8,10 +8,11 @@
 <html>
 	<?php require_once("../MainHead/head.php");?>
 	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
-	<link rel="icon" type="../../public/img/SuTra_icon.png">
+	<link rel="shortcut icon" href="../../public/img/SuTra_icon.png" type="image/x-icon">
 	<link rel="stylesheet" href="../../public/css/lib/fullcalendar/fullcalendar.min.css">
 	<link rel="stylesheet" href="../../public/css/separate/pages/calendar.min.css">
-	<title>Home: SUTRA</title>
+	<title>Inicio: TLA Support Tracking</title>
+	<audio id="notif_sound" src="../../public/sound/bell_not_sutra.wav" preload="auto"></audio>
 </head>
 <body class="with-side-menu">
 
@@ -119,7 +120,7 @@
 <?php
 	}else{
 		//header("Location:"."http://localhost:80/HelpDesk_Tecno/"."index.php");
-		header("Location:"."https://support-tracking.tecnologisticaaduanal.com/"."index.php");
+		header("Location:"."https://support-tracking.tecnologisticaaduanal.com/"."index.php"); //linea 122
 	}
 
 ?>

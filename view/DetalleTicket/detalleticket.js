@@ -14,9 +14,6 @@ function insertarseguidores(e){
     
     //TOMA LOS SEGUIDORES SELECCIONADOS
     var seguidores = $("#seguidores").val(); 
-    console.log("Seguidores seleccionados:", seguidores);
-
-    console.log("Ticket ID:", $("#tick_id").val());
 
     $.ajax({
         url: "../../controller/ticket.php?op=insert_seguidor",
@@ -26,14 +23,14 @@ function insertarseguidores(e){
         processData: false,
         success: function(data){
             swal("¡Listo!", "Has asignado seguidor/es.", "success");
-            console.log(data );
+            //console.log(data );
         }
     });
     $('#modalseguidorticket').modal('hide');
 }
 
 const socket = io("https://support-tracking.tecnologisticaaduanal.com:8082"); 
-//const socket = io("http://localhost:8082"); // O la IP si es red local
+//const socket = io("http://localhost:8082"); 
 $(document).ready(function(){
     
     const url = window.location.href;
@@ -46,16 +43,14 @@ $(document).ready(function(){
     //AQUI LEO EL SESSION STORAGE
     const realTicketId = sessionStorage.getItem("ticket_id_real");
 
-    //console.log(realTicketId);
     socket.on("connect", () => {
-        console.log("Conectado al WebSocket");
+
     });
     socket.emit("join_ticket", realTicketId);
 
     socket.on("recibir_mensaje", (data)=> {
         // Solo refresca si el mensaje pertenece al mismo ticket
         if (data.ticketId === realTicketId) {
-            console.log("Mensaje en tiempo real recibido:", data);
             mostraryvalidar(id); // ya está definida y actualiza los mensajes
         }
     });
@@ -65,11 +60,11 @@ $(document).ready(function(){
         lang: "es-ES",
         callbacks: {
             onImageUpload: function(image) {
-                console.log("Image detect...");
+               // console.log("Image detect...");
                 myimagetreat(image[0]);
             },
             onPaste: function (e) {
-                console.log("Text detect...");
+                //console.log("Text detect...");
             }
         },
         toolbar: [
@@ -83,11 +78,6 @@ $(document).ready(function(){
           ]
     
     });
-
-    // $.post("../../controller/ticket.php?op=combo_usuarios_seg_detalle",function(data, status){ // aqui
-    //     $('#mdltitulo').html('Añade seguidor/es al ticket');
-    //     $('#seguidores').html(data);
-    // });
 
     $('#tickd_descripusu').summernote({
         height: 250,
@@ -124,7 +114,7 @@ $(document).ready(function(){
             data : {tick_id:id},
             dataType : "json",
             error: function(e){
-                console.log(e.responseText);
+                //console.log(e.responseText);
             }
         },
         "bDestroy": true,
@@ -157,7 +147,7 @@ $(document).ready(function(){
             }
         }
     }).DataTable();
-    console.log("Tick ID enviado a listar:", id);
+    //console.log("Tick ID enviado a listar:", id);
 
     mostraryvalidar(id);
 });
@@ -175,13 +165,17 @@ $(document).on("click","#btnenviar",function(){
     const tick_id = params.get("ID");
     const decoded_id =  decodeURIComponent(tick_id);
     const id = decoded_id.replace(/\s/g, '+'); 
-    console.log(id);
 
+    // TICKET DESCIFRADO PARA EMITIR AL SOCKET
     const realTicketId = sessionStorage.getItem("ticket_id_real");
 
-    //var tick_id = getUrlParameter('ID'); // Aqui
     var usu_id = $('#user_idx').val();
     var tickd_descrip = $('#tickd_descrip').val();
+
+    // VERIFICA SI EL BOTON DE URGENCIA ESTA ACTIVO
+    const $btn = $("#btnUrgente"); // VARBTN SE USA MAS ABAJO 
+    const esUrgente = $("#btnUrgente").hasClass("activo") ? 1 : 0; 
+
 
     //VERIFICA QUE NO QUEDE NINGUN CAMPO VACIO, MINIMO UNO DEBE TENER INFORMACION
     if ($('#tickd_descrip').summernote('isEmpty') && $('#fileElem')[0].files.length === 0){
@@ -193,14 +187,21 @@ $(document).on("click","#btnenviar",function(){
         formData.append('tick_id',id);
         formData.append('usu_id',usu_id);
         formData.append('tickd_descrip',tickd_descrip);
+
+        // CARGA EL ESTADO DEL BOTON DE URGENCIA
+        formData.append('es_urgente', esUrgente);
+        
+        // AGREGACION DE ARCHIVOS ADJUNTADOS AL FORMDATA
         var totalFiles = $('#fileElem').val().length;
         for(var i = 0; i<totalFiles; i++){
             formData.append("files[]", $('#fileElem')[0].files[i]);
         }
 
+        // VARBTN CAMBIO DE ESTADO DE BOTON ENVIAR
         $('#btnenviar').prop("disabled",true);
         $('#btnenviar').html('<i class="fa fa-spinner fa-spin"></i> Enviando...');
 
+        // INSERCCION DE MENSAJE/COMENTARIO
         $.ajax({
             url: "../../controller/ticket.php?op=insertdetalle",
             type: "POST",
@@ -208,22 +209,18 @@ $(document).on("click","#btnenviar",function(){
             contentType: false,
             processData: false,
             success: function(data){
-
                 mostraryvalidar(id);
                 $('#fileElem').val('');
                 $('#tickd_descrip').summernote('reset');
-                console.log(data);
 
-                //listarDetalle(id);
                 $('#btnenviar').prop("disabled",false);
                 $('#btnenviar').html('<i class="fa fa-paper-plane" aria-hidden="true"></i> Enviar');  
                 
-                // io.to(ticketId).emit("recibir_mensaje", {
-                //     ticketId: id,
-                //     message: tickd_descrip,
-                //     usuario: usu_id
-                // });
-                
+                // DESENMARCAR COMO URGENTE DESPUES DE ENVIAR MENSAJE
+                $btn.removeClass("btn-danger").addClass("btn-secondary");
+                $btn.html('<i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Marcar como Urgente');
+
+                // SOCKET PARA EMITIR MENSAJE
                 socket.emit("recibir_mensaje", {
                     ticketId: realTicketId,
                     message: tickd_descrip,
@@ -232,6 +229,19 @@ $(document).on("click","#btnenviar",function(){
                 
             }
         });
+    }
+});
+
+$(document).on("click","#btnUrgente",function(){
+    const $btn = $(this);
+    $btn.toggleClass("activo");
+
+    if ($btn.hasClass("activo")) {
+        $btn.removeClass("btn-secondary").addClass("btn-danger");
+        $btn.html('<i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Marcado como Urgente');
+    } else {
+        $btn.removeClass("btn-danger").addClass("btn-secondary");
+        $btn.html('<i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Marcar como Urgente');
     }
 });
 
@@ -253,7 +263,6 @@ $(document).on("click", "#btnseguidores", function(data,status){ //AQUI ABRE EL 
     $.post("../../controller/ticket.php?op=combo_usuarios_seg_detalle", { tick_id: id }, function (data) {
         $('#seguidores').html(data);
 
-        console.log(tick_id);
     });
 })
 
@@ -286,7 +295,7 @@ $(document).on("click","#btncerrar",function(){
                     type: "POST",
                     data: {tick_id: id},
                     success: function(datos){
-                        console.log(datos);
+                        //console.log(datos);
 
                         mostraryvalidar(id);
 
@@ -348,7 +357,7 @@ function mostraryvalidar(id){
 
     $.post("../../controller/ticket.php?op=mostrar", {tick_id: id}, function (data){
         data=JSON.parse(data);
-        console.log(data.tick_id); // aqui si muestra el id descifrado
+        //console.log(data.tick_id); // aqui si muestra el id descifrado
         $('#lblestado').html(data.tick_estado);
         $('#lblnomusuario').html(data.usu_nom + ' ' + data.usu_ape);
         $('#lblarea').html(data.area_nom);

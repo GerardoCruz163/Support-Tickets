@@ -38,7 +38,7 @@
                                     <?php
                                 }else{
                                     ?>
-                                        <img src="../../public/img/<?php echo $_SESSION["pic_num"]?>_user.jpg" alt="">
+                                        <img src="../../public/img/<?php echo $_SESSION["pic_num"]?>_user.JPG" alt="">
                                     <?php
                                 }
                             ?>

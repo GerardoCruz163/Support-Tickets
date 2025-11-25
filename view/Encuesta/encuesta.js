@@ -57,12 +57,11 @@ var getUrlParameter = function getUrlParameter(sParam) {
 };
 
 $(document).on("click","#btnguardar",function(){
-    console.log("test");
     var tick_id=getUrlParameter('ID');  
     var tick_estre =$('#tick_estre').val();
     var tick_coment =$('#tick_coment').val();
     $.post("../../controller/ticket.php?op=encuesta", { tick_estre : tick_estre, tick_coment : tick_coment, tick_id : tick_id}, function (data){
-        console.log(data);
         swal("Listo", "Gracias por darnos tu opinion.", "success");
+        //$('#panel1').hide().ajax.reload();
     });
 });

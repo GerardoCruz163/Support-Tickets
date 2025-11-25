@@ -9,7 +9,7 @@ var usu_id=$('#user_idx').val();
 
 $(document).ready(function() {
 
-    console.log(usu_id);
+    //console.log(usu_id);
 	$('#tick_descrip').summernote({
         height: 150,
         lang: "es-ES",
@@ -52,6 +52,7 @@ $(document).ready(function() {
         $('#prio_id').html(data);
     });
 
+
     $.post("../../controller/usuario.php?op=combo_usuarios_seg",function(data, status){ // aqui
         $('#seguidores').html(data);
     });
@@ -78,7 +79,7 @@ function guardaryeditar(e){
         
         //TOMA LOS SEGUIDORES SELECCIONADOS
         var seguidores = $("#seguidores").val(); 
-        console.log("Seguidores seleccionados:", seguidores);
+        //console.log("Seguidores seleccionados:", seguidores);
 
         if (seguidores !== null) {
             seguidores.forEach((seg, i) => {

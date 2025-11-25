@@ -62,7 +62,7 @@ $(document).on("click", ".btn-inline, a[data-real-id]", function(e){
     const ciphertext = $(this).data("ciphertext"); // puede ser undefined en <a> si no tiene
     const realId = $(this).data("realId");
 
-    console.log(realId);
+    //console.log(realId);
     //DATO TEMPORAL (MIENTRAS EL USUARIO ENTRE AL TICKET, EL VALOR EXISTIRA)
     sessionStorage.setItem("ticket_id_real", realId);
 

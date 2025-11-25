@@ -1,5 +1,13 @@
 <?php
-session_start();
+session_start(); //linea 2
+
+require '/var/www/support-tracking/vendor/autoload.php';
+
+use Dotenv\Dotenv;
+
+// Cargar el archivo .env
+$dotenv = Dotenv::createImmutable('/var/www');
+$dotenv->load();
  
 class Conectar {
     /** @var PDO */
@@ -11,9 +19,13 @@ class Conectar {
      */
     protected function Conexion() {
         try {
-            $dsn  = "mysql:host=192.168.10.69;port=3306;dbname=helpdesk;charset=utf8mb4";
-            $user = "support_tracking";
-            $pass = "3Sequ3Le7L4Su7r4";
+
+            $host = $_ENV['DB_HOST'];
+            $port = $_ENV['DB_PORT'];
+            $name = $_ENV['DB_NAME'];
+            $dsn  = "mysql:host={$host};port={$port};dbname={$name};charset=utf8mb4";
+            $user = $_ENV['DB_USER'];
+            $pass = $_ENV['DB_PASS'];
             $options = [
                 PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
@@ -22,9 +34,6 @@ class Conectar {
                 PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8mb4 COLLATE utf8mb4_general_ci"
                 
             ];
- 
-            // Si usas SSL/TLS, descomenta y ajusta la ruta al certificado CA:
-            // $options[PDO::MYSQL_ATTR_SSL_CA] = 'C:\\ruta\\a\\ca.pem';
  
             $this->dbh = new PDO($dsn, $user, $pass, $options);
             return $this->dbh;

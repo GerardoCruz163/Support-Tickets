@@ -10,6 +10,7 @@
             return $resultado=$sql->fetchAll();
         }
 
+
         public function insert_categoria($cat_nom, $area_id){
             $conectar= parent::conexion();
             parent::set_names();

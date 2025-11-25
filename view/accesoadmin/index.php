@@ -15,6 +15,7 @@
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<title>Inicia sesion: SuTra</title>
     
+    <link rel="shortcut icon" href="../../public/img/SuTra_icon.png" type="image/x-icon">
 	<link href="img/favicon.144x144.png" rel="apple-touch-icon" type="image/png" sizes="144x144">
 	<link href="img/favicon.114x114.png" rel="apple-touch-icon" type="image/png" sizes="114x114">
 	<link href="img/favicon.72x72.png" rel="apple-touch-icon" type="image/png" sizes="72x72">
@@ -87,7 +88,12 @@
                     <button type="submit" class="btn btn-rounded">Acceder</button>
 
                     <p class="sign-note">
-                        <a href="../../view/accesosoporte/">Acceder como Supervisor</a>
+                       acceder como:
+                    </p>
+                    <p class="sign-note">
+                        <a href="../../index.php">Usuario</a>
+                        |
+                        <a href="/view/accesosoporte/"">Supervisor</a>
                     </p>
                     
                 </form>

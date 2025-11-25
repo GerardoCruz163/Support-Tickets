@@ -6,7 +6,13 @@
 /* librerias necesarias para que el proyecto pueda enviar emails */
 // require('class.phpmailer.php');
 // include("class.smtp.php");
+require __DIR__ . '/../vendor/autoload.php'; 
 
+use Dotenv\Dotenv;
+
+// Cargar el archivo .env
+$dotenv = Dotenv::createImmutable('/var/www/');
+$dotenv->load();
 require '../include/vendor/autoload.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
@@ -14,12 +20,22 @@ use PHPMailer\PHPMailer\Exception;
 
 /* llamada de las clases necesarias que se usaran en el envio del mail */
 require_once("../config/conexion.php");
-require_once("../Models/Ticket.php");
-require_once("../Models/Usuario.php");
+require_once("../models/Ticket.php");
+require_once("../models/Usuario.php");
+
 
 class Email extends PHPMailer{
-    protected $gCorreo = 'logistica@tecnologisticaaduanal.com';
-    protected $gContrasena = 'Tecno*Julio';
+    // CORREO EMISOR
+    protected $gCorreo;
+    protected $gContrasena;
+
+    public function __construct() {
+        parent::__construct(true);
+
+        // Cargar desde las variables de entorno
+        $this->gCorreo = $_ENV['CORREO_EMISOR'] ?? null;
+        $this->gContrasena = $_ENV['CONTRASENA_CORREO_EMISOR'] ?? null;
+    }
 
     public function ticket_abierto($tick_id){
         $ticket = new Ticket();
@@ -33,21 +49,24 @@ class Email extends PHPMailer{
             $correo=$row["usu_correo"]; 
         }
         $this->isSMTP();
-        $this->Host = 'vmail.globalpc.net';//Aqui el server
+        $this->Host = 'vmail.globalpc.net'; // SERVER
         $this->Port = 465;//Aqui el puerto
         $this->SMTPAuth = true;
         $this->Username = $this->gCorreo;
         $this->Password = $this->gContrasena;
         $this->From = $this->gCorreo;
         $this->SMTPSecure = 'ssl';
-        $this->FromName = $this->tu_nombre = $usu." haz generado un nuevo ticket: ".$id;
-        $this->CharSet = 'UTF8';
+        $this->FromName = $this->tu_nombre = $usu." has generado un nuevo ticket: ".$id;
+        $this->CharSet = 'UTF-8';
+        $this->clearAddresses();
+        $this->clearAllRecipients();
+
         $this->addAddress($correo);
         $this->WordWrap = 50;
         $this->IsHTML(true);
         $this->Subject = "Ticket Abierto";
         //Igual//
-        $cuerpo = file_get_contents('../public/NuevoTicket.html'); /*ruta del template en formato HTML */
+        $cuerpo = file_get_contents('../public/NuevoTicket.html'); /* ruta del template en formato HTML */
         /*parametros del template a remplazar */
         $cuerpo = str_replace("xnroticket", $id, $cuerpo);
         $cuerpo = str_replace("lblNomUsu", $usu, $cuerpo);
@@ -91,7 +110,7 @@ class Email extends PHPMailer{
         $this->From = $this->gCorreo;
         $this->SMTPSecure = 'ssl';
         $this->FromName = $this->tu_nombre = "Se ha cerrado tu ticket: ".$id;
-        $this->CharSet = 'UTF8';
+        $this->CharSet = 'UTF-8';
         $this->addAddress($correo);
         $this->addAddress($datos2[0]["usu_correo"]); // ENVIAR CORREO AL USUARIO QUE SE LE ASIGNO AL TICKET
         $this->WordWrap = 50;
@@ -127,7 +146,7 @@ class Email extends PHPMailer{
             echo $correoSeg;
         }
 
-        //OBTENER USUARIO QUE HIZO EL TICKET
+        //OBTENER INFORMACION DEL TICKET
         $ticket = new Ticket();
         $datos2 = $ticket->listar_ticket_x_id($tick_id);
 
@@ -138,9 +157,19 @@ class Email extends PHPMailer{
             $area = $row["area_nom"];
             $titulo=$row["tick_titulo"];
             $categoria=$row["cat_nom"];
+            
             //$correo=$row["usu_correo"]; 
         }
 
+        // DEL TICKET TRAIGO EL USUARIO ASIGNADO usu_asig y consulto su informacion
+        $usuario = new Usuario();
+        $datos3 = $usuario->get_usuario_x_id($datos2[0]["usu_asig"]);
+        foreach($datos3 as $row){
+            //OBTENGO EL NOMBRE DEL USUARIO ASIGNADO
+            $usu_sop_nom = $row["usu_nom"];
+            $usu_sop_ape = $row["usu_ape"];
+        }
+       
         $this->isSMTP();
         $this->Host = 'vmail.globalpc.net';//Aqui el server
         $this->Port = 465;//Aqui el puerto
@@ -150,12 +179,13 @@ class Email extends PHPMailer{
         $this->From = $this->gCorreo;
         $this->SMTPSecure = 'ssl';
         $this->FromName = $this->tu_nombre = "Se le ha asignado a un ticket como seguidor: ".$id;
-        $this->CharSet = 'UTF8';
+        $this->CharSet = 'UTF-8';
         //$this->addAddress($correo);
         //$this->addAddress($datos[0]["usu_correo"]); // ENVIAR CORREO AL USUARIO QUE SE LE ASIGNO AL TICKET COMO SEGUIDOR
 
         //RECORRE LOS USUARIOS ASIGNADOS PARA ENVIAR EL CORREO DE UNO EN UNO
         foreach($datos as $row){
+            // $this->addAddress($row["usu_correo"]);
             $this->addAddress($row["usu_correo"]);
         }
 
@@ -170,7 +200,7 @@ class Email extends PHPMailer{
         $cuerpo = str_replace("lblArea", $area, $cuerpo);
         $cuerpo = str_replace("lblTitu", $titulo, $cuerpo);
         $cuerpo = str_replace("lblCate", $categoria, $cuerpo);
-        $cuerpo = str_replace("lblUsuSop", $usu, $cuerpo);
+        $cuerpo = str_replace("lblUsuSop", $usu_sop_nom. ' '.$usu_sop_ape, $cuerpo);
 
         $this->Body = $cuerpo;
         $this->AltBody = strip_tags("Ticket Cerrado");
@@ -200,10 +230,11 @@ class Email extends PHPMailer{
             //$correo=$row["usu_correo"]; 
         }
 
-        // foreach($datos2 as $row){
-        //     $nom_usu= $row["usu_nom"];
-        //     $ape_usu= $row["usu_ape"];
-        // }
+        foreach($datos2 as $row){
+            $nom_usu= $row["usu_nom"];
+            $ape_usu= $row["usu_ape"];
+            $correo = $row["usu_correo"];
+        }
 
         $this->isSMTP();
         $this->Host = 'vmail.globalpc.net';//Aqui el server
@@ -214,9 +245,9 @@ class Email extends PHPMailer{
         $this->From = $this->gCorreo;
         $this->SMTPSecure = 'ssl';
         $this->FromName = $this->tu_nombre = "Se ha asignado un ticket: ".$id;
-        $this->CharSet = 'UTF8';
+        $this->CharSet = 'UTF-8';
         //$this->addAddress($correo);
-        $this->addAddress($datos2[0]["usu_correo"]); // ENVIAR CORREO AL USUARIO QUE SE LE ASIGNO AL TICKET
+        $this->addAddress($correo); // ENVIAR CORREO AL USUARIO QUE SE LE ASIGNO AL TICKET
         $this->WordWrap = 50;
         $this->IsHTML(true);
         $this->Subject = "Ticket Asignado";
@@ -228,7 +259,7 @@ class Email extends PHPMailer{
         $cuerpo = str_replace("lblArea", $area, $cuerpo);
         $cuerpo = str_replace("lblTitu", $titulo, $cuerpo);
         $cuerpo = str_replace("lblCate", $categoria, $cuerpo);
-        //$cuerpo = str_replace("lblUsuSop", $nom_usu+' '+$ape_usu, $cuerpo);
+        $cuerpo = str_replace("lblUsuSop", $nom_usu.' '.$ape_usu, $cuerpo);
 
         $this->Body = $cuerpo;
         $this->AltBody = strip_tags("Ticket Cerrado");
@@ -279,7 +310,7 @@ class Email extends PHPMailer{
         $this->From = $this->gCorreo;
         $this->SMTPSecure = 'ssl';
         $this->FromName = $this->tu_nombre = "Tienes una respuesta en el ticket: ".$id;
-        $this->CharSet = 'UTF8';
+        $this->CharSet = 'UTF-8';
         $this->addAddress($correo);
         $this->addAddress($datos2[0]["usu_correo"]); // ENVIAR CORREO AL USUARIO QUE SE LE ASIGNO AL TICKET
         $this->WordWrap = 50;
@@ -330,7 +361,7 @@ class Email extends PHPMailer{
         $this->From = $this->gCorreo;
         $this->SMTPSecure = 'ssl';
         $this->FromName = $this->tu_nombre = $usu_nom." recupera tu contraseña.";
-        $this->CharSet = 'UTF8';
+        $this->CharSet = 'UTF-8';
         $this->addAddress($usu_correo);
         $this->WordWrap = 50;
         $this->IsHTML(true);

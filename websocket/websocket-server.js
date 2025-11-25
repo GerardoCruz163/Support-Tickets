@@ -43,8 +43,8 @@ const app = express();
 //const server = http.createServer(app);
 
 const server = https.createServer({
-    key: fs.readFileSync('C:/inetpub/certificados SSL/support-tracking.tecnologisticaaduanal.com-key.pem'),
-    cert: fs.readFileSync('C:/inetpub/certificados SSL/support-tracking.tecnologisticaaduanal.com-crt.pem'),
+    cert: fs.readFileSync('/etc/letsencrypt/live/support-tracking.tecnologisticaaduanal.com/fullchain.pem'),
+    key: fs.readFileSync('/etc/letsencrypt/live/support-tracking.tecnologisticaaduanal.com/privkey.pem'),
     passphrase: 'sistemasadmin'
 });
 
