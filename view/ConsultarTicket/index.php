@@ -1,5 +1,8 @@
 <?php
 	require_once("../../config/conexion.php");
+	require '/var/www/support-tracking/vendor/autoload.php';
+
+	use Dotenv\Dotenv;
 	if(isset($_SESSION["usu_id"])){
 		
 ?>
@@ -131,6 +134,9 @@
 		</div><!--.container-fluid-->
 	</div><!--.page-content-->
 
+	<script>
+    	const URL_DOMAIN = "<?= $_ENV['URL_DOMAIN'] ?>";
+	</script>
 	<?php require_once("modalasignar.php");?>
 	<?php require_once("../MainJS/js.php");?>
 	<script type="text/javascript" src="consultarticket.js"></script>
@@ -141,8 +147,13 @@
 </html>
 <?php
 	}else{
+	// Cargar el archivo .env
+	$dotenv = Dotenv::createImmutable('/var/www');
+	$dotenv->load();
+	$ruta = $_ENV['URL_DOMAIN'];
 		//header("Location:"."http://localhost:80/HelpDesk_Tecno/"."index.php");
-		header("Location:"."https://support-tracking.tecnologisticaaduanal.com/"."index.php");
+		//header("Location:"."https://support-tracking.tecnologisticaaduanal.com/"."index.php");
+		header("Location:"."{$ruta}"."index.php");
 	}
 
 ?>

@@ -122,7 +122,8 @@ $(document).on("click",".btn-inline","url-inline", function(){
     sessionStorage.setItem("ticket_id_real", realId); 
     
     //window.open('http://localhost:80/HelpDesk_Tecno/view/DetalleTicket/?ID='+ciphertext+'');
-    window.open('https://support-tracking.tecnologisticaaduanal.com/view/DetalleTicket/?ID='+ciphertext+'');
+    // window.open('https://support-tracking.tecnologisticaaduanal.com/view/DetalleTicket/?ID='+ciphertext+'');
+    window.open(`${URL_DOMAIN}view/DetalleTicket/?ID=${ciphertext}`);
 });
 
 // Para enlaces en el título
@@ -139,7 +140,7 @@ $(document).on("click", "a[data-real-id]", function (e) {
 
     // Abrir la ventana con el ticket
     //window.open('http://localhost:80/HelpDesk_Tecno/view/DetalleTicket/?ID=' + ciphertext);
-    window.open('https://support-tracking.tecnologisticaaduanal.com/view/DetalleTicket/?ID=' + ciphertext);
+    window.open(`${URL_DOMAIN}view/DetalleTicket/?ID=${ciphertext}`);
 });
 
 

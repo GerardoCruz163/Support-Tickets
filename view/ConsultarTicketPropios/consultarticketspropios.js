@@ -207,26 +207,6 @@ function CambiarEstado(tick_id){
     });
 }
 
-// $(document).on("click", "#btnfiltrar", function(){
-//     if(rol_id==2){
-//         limpiar();
-//         var tick_titulo = $('#tick_titulo').val();
-//         var cat_id = $('#cat_id').val();
-//         var prio_id = $('#prio_id').val();
-//         var usu_id = $('#usu_id').val();
-    
-//         listardatatable(tick_titulo, cat_id, prio_id, usu_id, suc_id);
-//     }else if(rol_id == 3){
-//         limpiar();
-//         var tick_titulo = $('#tick_titulo').val();
-//         var cat_id = $('#cat_id').val();
-//         var prio_id = $('#prio_id').val();
-//         var usu_id = $('#usu_id').val();
-    
-//         listardatatable_admin(tick_titulo, cat_id, prio_id, usu_id);
-//     }
-// });
-
 $(document).on("click", "#btntodo", function(){
     
     if(rol_id==2){

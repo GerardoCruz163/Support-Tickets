@@ -8,18 +8,20 @@ use Dotenv\Dotenv;
 // Cargar el archivo .env
 $dotenv = Dotenv::createImmutable('/var/www');
 $dotenv->load();
- 
+
+
+
 class Conectar {
     /** @var PDO */
     protected $dbh;
- 
+    
     /**
      * Crea y retorna la conexión PDO a la base de datos helpdesk
      * utilizando charset y collation compatibles con las tablas.
-     */
+    */
     protected function Conexion() {
         try {
-
+            
             $host = $_ENV['DB_HOST'];
             $port = $_ENV['DB_PORT'];
             $name = $_ENV['DB_NAME'];
@@ -55,7 +57,8 @@ class Conectar {
      * Ruta base de la aplicación
      */
     public static function ruta() {
-        return "https://support-tracking.tecnologisticaaduanal.com/";
+        $ruta = $_ENV['URL_DOMAIN'];
+        return "{$ruta}";
     }
 }
 ?>
