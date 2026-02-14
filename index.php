@@ -38,7 +38,7 @@
                 <div class="container-fluid">
                     
                     <form class="sign-box" action="" method="post" id="login_form">
-                        <input type="hidden" id="rol_id" name="rol_id" value="1">
+                        
                         <div class="sign-avatar">
                             <img src="public/img/1.png" alt="" id="imgtipo">
                     </div>
@@ -90,11 +90,7 @@
                     <p class="sign-note">
                        acceder como:
                     </p>
-                    <p class="sign-note">
-                        <a href="view/accesosoporte/" id="btnsoporte">Supervisor</a>
-                    |
-                        <a href="view/accesoadmin/">Administrador</a>
-                    </p>
+                    
                     
                     
                 </form>

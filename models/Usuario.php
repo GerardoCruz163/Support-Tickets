@@ -10,16 +10,15 @@
             if(isset($_POST["enviar"])){
                 $correo = $_POST["usu_correo"];
                 $pass = $_POST["usu_pass"];
-                $rol = $_POST["rol_id"];
+            
                 if(empty($correo) and empty($pass)){
                     header("Location:".conectar::ruta()."index.php?m=2");
                     exit();
                 }else{
-                    $sql = "call sp_login(?,?)";
+                    $sql = "call sp_login(?)";
                     $stmt=$conectar->prepare($sql);
                     $stmt->bindValue(1, $correo);
-                   
-                    $stmt->bindValue(2, $rol);
+                
                     $stmt->execute();
                     $resultado = $stmt->fetch();
 
