@@ -85,6 +85,10 @@
                     </div>
                     <input type="hidden" name="enviar" class="form-control" value="si">
                     <button type="submit" class="btn btn-rounded">Acceder</button>
+
+                    <p class="sign-note">
+                        <a href="../../view/accesosoporte/">Acceder como Supervisor</a>
+                    </p>
                     
                     <p class="sign-note">
                         <a href="../../view/accesosoporte/">Acceder como Supervisor</a>

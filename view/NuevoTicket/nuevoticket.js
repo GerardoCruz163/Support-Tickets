@@ -63,6 +63,7 @@ function guardaryeditar(e){
 
     
     var formData = new FormData($("#ticket_form")[0]);
+    formData.append("usu_id", usu_id); // esta es la variable que ya definiste arriba
     if ($('#tick_descrip').summernote('isEmpty') || $('#tick_titulo').val()=='' || $("#usu_asig").val()== '' || $("#cats_id").val()=='' || $("#prio_id").val()==''){
         swal("¡Advertencia!", "Campos vacios", "warning");
     }else{ 
@@ -84,8 +85,6 @@ function guardaryeditar(e){
                 formData.append("seguidores[]", seg);
             });
         }
-
-        formData.append("usu_id", usu_id);
 
         $.ajax({
             url: "../../controller/ticket.php?op=insert",

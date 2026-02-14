@@ -37,11 +37,11 @@
                 <div class="container-fluid">
                     
                     <form class="sign-box" action="" method="post" id="login_form">
-                        
+                        <input type="hidden" id="rol_id" name="rol_id" value="1">
                         <div class="sign-avatar">
                             <img src="public/img/1.png" alt="" id="imgtipo">
                     </div>
-                    <header class="sign-title" id="lbltitulo">INCIAR SESIÓN</header>
+                    <header class="sign-title" id="lbltitulo">Acceso usuario</header>
                     
                     <?php
                         if(isset($_GET["m"])){
@@ -81,10 +81,14 @@
                             <a href="view/ResetPassword/">Recuperar contraseña</a>
                         </div>
 
+                        
                     </div>
                     <input type="hidden" name="enviar" class="form-control" value="si">
                     <button type="submit" class="btn btn-rounded">Acceder</button>
 
+                    <p class="sign-note">
+                        <a href="view/accesosoporte/" id="btnsoporte">Acceder como supervisor</a>
+                    </p>
                     
                 </form>
             </div>

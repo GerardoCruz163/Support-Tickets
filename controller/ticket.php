@@ -19,7 +19,7 @@
     switch($_GET["op"]){
 
         case "insert":
-            $datos=$ticket->insert_ticket($_POST["usu_id"],$_POST["cat_id"],$_POST["cats_id"],$_POST["tick_titulo"],$_POST["tick_descrip"], $_POST["usu_asig"], $_POST["prio_id"]);
+            $datos=$ticket->insert_ticket($_POST["usu_id"],$_POST["cat_id"],$_POST["cats_id"],$_POST["tick_titulo"],$_POST["tick_descrip"], $_POST["usu_asig"], $_POST["prio_id"]); // linea 22
             if (is_array($datos)==true and count($datos)>0){   
                 foreach ($datos as $row){
                     $output["tick_id"] = $row["tick_id"];
@@ -274,7 +274,8 @@
                 
         // ROL DE SUPERVISOR (VERA SOLAMENTE LOS DE SU AREA Y SU SUCURSAL)
         case "listar_filtro_sup":
-            $datos=$ticket->filtrar_ticket($_POST["tick_titulo"], $_POST["cat_id"],$_POST["prio_id"], $_POST["usu_id"],$_POST["suc_id"],$_POST["area_id"]);
+            
+            $datos=$ticket->filtrar_ticket($_POST["tick_titulo"], $_POST["cat_id"],$_POST["prio_id"], $_POST["usu_id"],$_POST["suc_id"],$_POST["area_id"]); //linea 282
             $data= Array();
             foreach($datos as $row){
                 $cifrado = openssl_encrypt($row["tick_id"], $cipher, $key,OPENSSL_RAW_DATA, $iv);
@@ -466,8 +467,9 @@
         break;
 
         case "mostrar";
-            $iv_dec = substr(base64_decode($_POST["tick_id"]), 0, openssl_cipher_iv_length($cipher));
-            $cifradoSinIV = substr(base64_decode($_POST["tick_id"]), openssl_cipher_iv_length($cipher));
+        
+            $iv_dec = substr(base64_decode($_POST["tick_id"]), 0, openssl_cipher_iv_length($cipher)); //linea 465
+            $cifradoSinIV = substr(base64_decode($_POST["tick_id"]), openssl_cipher_iv_length($cipher)); //linea 466
             $descifrado = openssl_decrypt($cifradoSinIV, $cipher, $key, OPENSSL_RAW_DATA, $iv_dec);
 
             $datos=$ticket->listar_ticket_x_id($descifrado); 

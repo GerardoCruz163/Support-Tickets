@@ -1,0 +1,2818 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 15">
+<meta name=Originator content="Microsoft Word 15">
+<link rel=File-List href="wincache_readme_files/filelist.xml">
+<link rel=Edit-Time-Data href="wincache_readme_files/editdata.mso">
+<!--[if !mso]>
+<style>
+v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style>
+<![endif]-->
+<title>WinCache Extension for PHP 5.2 Readme</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>Eric Stenson</o:Author>
+  <o:LastAuthor>Eric Stenson</o:LastAuthor>
+  <o:Revision>3</o:Revision>
+  <o:TotalTime>46</o:TotalTime>
+  <o:Created>2015-05-28T20:51:00Z</o:Created>
+  <o:LastSaved>2015-05-28T21:17:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>1926</o:Words>
+  <o:Characters>10983</o:Characters>
+  <o:Company>Microsoft Corporation</o:Company>
+  <o:Lines>91</o:Lines>
+  <o:Paragraphs>25</o:Paragraphs>
+  <o:CharactersWithSpaces>12884</o:CharactersWithSpaces>
+  <o:Version>15.00</o:Version>
+ </o:DocumentProperties>
+ <o:OfficeDocumentSettings>
+  <o:AllowPNG/>
+ </o:OfficeDocumentSettings>
+</xml><![endif]-->
+<link rel=themeData href="wincache_readme_files/themedata.thmx">
+<link rel=colorSchemeMapping href="wincache_readme_files/colorschememapping.xml">
+<!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:SpellingState>Clean</w:SpellingState>
+  <w:GrammarState>Clean</w:GrammarState>
+  <w:TrackMoves>false</w:TrackMoves>
+  <w:TrackFormatting/>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:DoNotPromoteQF/>
+  <w:LidThemeOther>EN-US</w:LidThemeOther>
+  <w:LidThemeAsian>X-NONE</w:LidThemeAsian>
+  <w:LidThemeComplexScript>X-NONE</w:LidThemeComplexScript>
+  <w:Compatibility>
+   <w:BreakWrappedTables/>
+   <w:SplitPgBreakAndParaMark/>
+  </w:Compatibility>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+  <m:mathPr>
+   <m:mathFont m:val="Cambria Math"/>
+   <m:brkBin m:val="before"/>
+   <m:brkBinSub m:val="&#45;-"/>
+   <m:smallFrac m:val="off"/>
+   <m:dispDef/>
+   <m:lMargin m:val="0"/>
+   <m:rMargin m:val="0"/>
+   <m:defJc m:val="centerGroup"/>
+   <m:wrapIndent m:val="1440"/>
+   <m:intLim m:val="subSup"/>
+   <m:naryLim m:val="undOvr"/>
+  </m:mathPr></w:WordDocument>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState="false" DefUnhideWhenUsed="false"
+  DefSemiHidden="false" DefQFormat="false" DefPriority="99"
+  LatentStyleCount="371">
+  <w:LsdException Locked="false" Priority="0" QFormat="true" Name="Normal"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 1"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 2"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 3"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 4"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 5"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 6"/>
+  <w:LsdException Locked="false" Priority="9" SemiHidden="true"
+   UnhideWhenUsed="true" QFormat="true" Name="heading 7"/>
+  <w:LsdException Locked="false" Priority="9" SemiHidden="true"
+   UnhideWhenUsed="true" QFormat="true" Name="heading 8"/>
+  <w:LsdException Locked="false" Priority="9" SemiHidden="true"
+   UnhideWhenUsed="true" QFormat="true" Name="heading 9"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 5"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 6"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 7"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 8"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 9"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 1"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 2"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 3"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 4"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 5"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 6"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 7"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 8"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 9"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Normal Indent"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="footnote text"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="annotation text"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="header"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="footer"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index heading"/>
+  <w:LsdException Locked="false" Priority="35" SemiHidden="true"
+   UnhideWhenUsed="true" QFormat="true" Name="caption"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="table of figures"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="envelope address"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="envelope return"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="footnote reference"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="annotation reference"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="line number"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="page number"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="endnote reference"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="endnote text"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="table of authorities"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="macro"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="toa heading"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Bullet"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Number"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List 5"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Bullet 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Bullet 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Bullet 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Bullet 5"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Number 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Number 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Number 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Number 5"/>
+  <w:LsdException Locked="false" Priority="10" QFormat="true" Name="Title"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Closing"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Signature"/>
+  <w:LsdException Locked="false" Priority="1" SemiHidden="true"
+   UnhideWhenUsed="true" Name="Default Paragraph Font"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Body Text"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Body Text Indent"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Continue"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Continue 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Continue 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Continue 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Continue 5"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Message Header"/>
+  <w:LsdException Locked="false" Priority="11" QFormat="true" Name="Subtitle"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Salutation"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Date"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Body Text First Indent"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Body Text First Indent 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Note Heading"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Body Text 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Body Text 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Body Text Indent 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Body Text Indent 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Block Text"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Hyperlink"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="FollowedHyperlink"/>
+  <w:LsdException Locked="false" Priority="22" QFormat="true" Name="Strong"/>
+  <w:LsdException Locked="false" Priority="20" QFormat="true" Name="Emphasis"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Document Map"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Plain Text"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="E-mail Signature"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Top of Form"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Bottom of Form"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Normal (Web)"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Acronym"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Address"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Cite"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Code"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Definition"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Keyboard"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Preformatted"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Sample"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Typewriter"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Variable"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Normal Table"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="annotation subject"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="No List"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Outline List 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Outline List 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Outline List 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Simple 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Simple 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Simple 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Classic 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Classic 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Classic 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Classic 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Colorful 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Colorful 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Colorful 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Columns 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Columns 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Columns 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Columns 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Columns 5"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 5"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 6"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 7"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 8"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 5"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 6"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 7"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 8"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table 3D effects 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table 3D effects 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table 3D effects 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Contemporary"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Elegant"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Professional"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Subtle 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Subtle 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Web 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Web 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Web 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Balloon Text"/>
+  <w:LsdException Locked="false" Priority="59" Name="Table Grid"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Theme"/>
+  <w:LsdException Locked="false" SemiHidden="true" Name="Placeholder Text"/>
+  <w:LsdException Locked="false" Priority="1" QFormat="true" Name="No Spacing"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 1"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 1"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 1"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 1"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" Name="Revision"/>
+  <w:LsdException Locked="false" Priority="34" QFormat="true"
+   Name="List Paragraph"/>
+  <w:LsdException Locked="false" Priority="29" QFormat="true" Name="Quote"/>
+  <w:LsdException Locked="false" Priority="30" QFormat="true"
+   Name="Intense Quote"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 1"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 1"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 1"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 1"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 1"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 1"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 2"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 2"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 2"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 2"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 2"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 2"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 2"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 2"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 2"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 2"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 2"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 3"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 3"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 3"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 3"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 3"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 3"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 3"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 3"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 3"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 3"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 3"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 4"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 4"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 4"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 4"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 4"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 4"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 4"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 4"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 4"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 4"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 4"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 5"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 5"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 5"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 5"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 5"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 5"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 5"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 5"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 5"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 5"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 5"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 6"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 6"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 6"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 6"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 6"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 6"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 6"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 6"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 6"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 6"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 6"/>
+  <w:LsdException Locked="false" Priority="19" QFormat="true"
+   Name="Subtle Emphasis"/>
+  <w:LsdException Locked="false" Priority="21" QFormat="true"
+   Name="Intense Emphasis"/>
+  <w:LsdException Locked="false" Priority="31" QFormat="true"
+   Name="Subtle Reference"/>
+  <w:LsdException Locked="false" Priority="32" QFormat="true"
+   Name="Intense Reference"/>
+  <w:LsdException Locked="false" Priority="33" QFormat="true" Name="Book Title"/>
+  <w:LsdException Locked="false" Priority="37" SemiHidden="true"
+   UnhideWhenUsed="true" Name="Bibliography"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" QFormat="true" Name="TOC Heading"/>
+  <w:LsdException Locked="false" Priority="41" Name="Plain Table 1"/>
+  <w:LsdException Locked="false" Priority="42" Name="Plain Table 2"/>
+  <w:LsdException Locked="false" Priority="43" Name="Plain Table 3"/>
+  <w:LsdException Locked="false" Priority="44" Name="Plain Table 4"/>
+  <w:LsdException Locked="false" Priority="45" Name="Plain Table 5"/>
+  <w:LsdException Locked="false" Priority="40" Name="Grid Table Light"/>
+  <w:LsdException Locked="false" Priority="46" Name="Grid Table 1 Light"/>
+  <w:LsdException Locked="false" Priority="47" Name="Grid Table 2"/>
+  <w:LsdException Locked="false" Priority="48" Name="Grid Table 3"/>
+  <w:LsdException Locked="false" Priority="49" Name="Grid Table 4"/>
+  <w:LsdException Locked="false" Priority="50" Name="Grid Table 5 Dark"/>
+  <w:LsdException Locked="false" Priority="51" Name="Grid Table 6 Colorful"/>
+  <w:LsdException Locked="false" Priority="52" Name="Grid Table 7 Colorful"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="Grid Table 1 Light Accent 1"/>
+  <w:LsdException Locked="false" Priority="47" Name="Grid Table 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="48" Name="Grid Table 3 Accent 1"/>
+  <w:LsdException Locked="false" Priority="49" Name="Grid Table 4 Accent 1"/>
+  <w:LsdException Locked="false" Priority="50" Name="Grid Table 5 Dark Accent 1"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="Grid Table 6 Colorful Accent 1"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="Grid Table 7 Colorful Accent 1"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="Grid Table 1 Light Accent 2"/>
+  <w:LsdException Locked="false" Priority="47" Name="Grid Table 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="48" Name="Grid Table 3 Accent 2"/>
+  <w:LsdException Locked="false" Priority="49" Name="Grid Table 4 Accent 2"/>
+  <w:LsdException Locked="false" Priority="50" Name="Grid Table 5 Dark Accent 2"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="Grid Table 6 Colorful Accent 2"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="Grid Table 7 Colorful Accent 2"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="Grid Table 1 Light Accent 3"/>
+  <w:LsdException Locked="false" Priority="47" Name="Grid Table 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="48" Name="Grid Table 3 Accent 3"/>
+  <w:LsdException Locked="false" Priority="49" Name="Grid Table 4 Accent 3"/>
+  <w:LsdException Locked="false" Priority="50" Name="Grid Table 5 Dark Accent 3"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="Grid Table 6 Colorful Accent 3"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="Grid Table 7 Colorful Accent 3"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="Grid Table 1 Light Accent 4"/>
+  <w:LsdException Locked="false" Priority="47" Name="Grid Table 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="48" Name="Grid Table 3 Accent 4"/>
+  <w:LsdException Locked="false" Priority="49" Name="Grid Table 4 Accent 4"/>
+  <w:LsdException Locked="false" Priority="50" Name="Grid Table 5 Dark Accent 4"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="Grid Table 6 Colorful Accent 4"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="Grid Table 7 Colorful Accent 4"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="Grid Table 1 Light Accent 5"/>
+  <w:LsdException Locked="false" Priority="47" Name="Grid Table 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="48" Name="Grid Table 3 Accent 5"/>
+  <w:LsdException Locked="false" Priority="49" Name="Grid Table 4 Accent 5"/>
+  <w:LsdException Locked="false" Priority="50" Name="Grid Table 5 Dark Accent 5"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="Grid Table 6 Colorful Accent 5"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="Grid Table 7 Colorful Accent 5"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="Grid Table 1 Light Accent 6"/>
+  <w:LsdException Locked="false" Priority="47" Name="Grid Table 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="48" Name="Grid Table 3 Accent 6"/>
+  <w:LsdException Locked="false" Priority="49" Name="Grid Table 4 Accent 6"/>
+  <w:LsdException Locked="false" Priority="50" Name="Grid Table 5 Dark Accent 6"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="Grid Table 6 Colorful Accent 6"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="Grid Table 7 Colorful Accent 6"/>
+  <w:LsdException Locked="false" Priority="46" Name="List Table 1 Light"/>
+  <w:LsdException Locked="false" Priority="47" Name="List Table 2"/>
+  <w:LsdException Locked="false" Priority="48" Name="List Table 3"/>
+  <w:LsdException Locked="false" Priority="49" Name="List Table 4"/>
+  <w:LsdException Locked="false" Priority="50" Name="List Table 5 Dark"/>
+  <w:LsdException Locked="false" Priority="51" Name="List Table 6 Colorful"/>
+  <w:LsdException Locked="false" Priority="52" Name="List Table 7 Colorful"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="List Table 1 Light Accent 1"/>
+  <w:LsdException Locked="false" Priority="47" Name="List Table 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="48" Name="List Table 3 Accent 1"/>
+  <w:LsdException Locked="false" Priority="49" Name="List Table 4 Accent 1"/>
+  <w:LsdException Locked="false" Priority="50" Name="List Table 5 Dark Accent 1"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="List Table 6 Colorful Accent 1"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="List Table 7 Colorful Accent 1"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="List Table 1 Light Accent 2"/>
+  <w:LsdException Locked="false" Priority="47" Name="List Table 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="48" Name="List Table 3 Accent 2"/>
+  <w:LsdException Locked="false" Priority="49" Name="List Table 4 Accent 2"/>
+  <w:LsdException Locked="false" Priority="50" Name="List Table 5 Dark Accent 2"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="List Table 6 Colorful Accent 2"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="List Table 7 Colorful Accent 2"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="List Table 1 Light Accent 3"/>
+  <w:LsdException Locked="false" Priority="47" Name="List Table 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="48" Name="List Table 3 Accent 3"/>
+  <w:LsdException Locked="false" Priority="49" Name="List Table 4 Accent 3"/>
+  <w:LsdException Locked="false" Priority="50" Name="List Table 5 Dark Accent 3"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="List Table 6 Colorful Accent 3"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="List Table 7 Colorful Accent 3"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="List Table 1 Light Accent 4"/>
+  <w:LsdException Locked="false" Priority="47" Name="List Table 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="48" Name="List Table 3 Accent 4"/>
+  <w:LsdException Locked="false" Priority="49" Name="List Table 4 Accent 4"/>
+  <w:LsdException Locked="false" Priority="50" Name="List Table 5 Dark Accent 4"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="List Table 6 Colorful Accent 4"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="List Table 7 Colorful Accent 4"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="List Table 1 Light Accent 5"/>
+  <w:LsdException Locked="false" Priority="47" Name="List Table 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="48" Name="List Table 3 Accent 5"/>
+  <w:LsdException Locked="false" Priority="49" Name="List Table 4 Accent 5"/>
+  <w:LsdException Locked="false" Priority="50" Name="List Table 5 Dark Accent 5"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="List Table 6 Colorful Accent 5"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="List Table 7 Colorful Accent 5"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="List Table 1 Light Accent 6"/>
+  <w:LsdException Locked="false" Priority="47" Name="List Table 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="48" Name="List Table 3 Accent 6"/>
+  <w:LsdException Locked="false" Priority="49" Name="List Table 4 Accent 6"/>
+  <w:LsdException Locked="false" Priority="50" Name="List Table 5 Dark Accent 6"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="List Table 6 Colorful Accent 6"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="List Table 7 Colorful Accent 6"/>
+ </w:LatentStyles>
+</xml><![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;
+	mso-font-charset:2;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:0 268435456 0 0 -2147483648 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:roman;
+	mso-font-pitch:variable;
+	mso-font-signature:-536870145 1107305727 0 0 415 0;}
+@font-face
+	{font-family:Verdana;
+	panose-1:2 11 6 4 3 5 4 4 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:swiss;
+	mso-font-pitch:variable;
+	mso-font-signature:-1593833729 1073750107 16 0 415 0;}
+@font-face
+	{font-family:Consolas;
+	panose-1:2 11 6 9 2 2 4 3 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:modern;
+	mso-font-pitch:fixed;
+	mso-font-signature:-520092929 1073806591 9 0 415 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-parent:"";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:minor-fareast;}
+h1
+	{mso-style-priority:9;
+	mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-link:"Heading 1 Char";
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	mso-outline-level:1;
+	font-size:16.0pt;
+	font-family:"Times New Roman",serif;
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:minor-fareast;
+	color:black;
+	font-weight:bold;}
+h2
+	{mso-style-priority:9;
+	mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-link:"Heading 2 Char";
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	mso-outline-level:2;
+	font-size:15.0pt;
+	font-family:"Times New Roman",serif;
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:minor-fareast;
+	font-weight:bold;}
+h3
+	{mso-style-priority:9;
+	mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-link:"Heading 3 Char";
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	mso-outline-level:3;
+	font-size:14.0pt;
+	font-family:"Times New Roman",serif;
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:minor-fareast;
+	font-weight:bold;}
+h4
+	{mso-style-priority:9;
+	mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-link:"Heading 4 Char";
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	mso-outline-level:4;
+	font-size:13.0pt;
+	font-family:"Times New Roman",serif;
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:minor-fareast;
+	font-weight:bold;}
+h5
+	{mso-style-priority:9;
+	mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-link:"Heading 5 Char";
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	mso-outline-level:5;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:minor-fareast;
+	font-weight:bold;}
+h6
+	{mso-style-priority:9;
+	mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-link:"Heading 6 Char";
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	mso-outline-level:6;
+	font-size:11.0pt;
+	font-family:"Times New Roman",serif;
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:minor-fareast;
+	font-weight:bold;}
+a:link, span.MsoHyperlink
+	{mso-style-noshow:yes;
+	mso-style-priority:99;
+	color:#000066;
+	text-decoration:underline;
+	text-underline:single;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-noshow:yes;
+	mso-style-priority:99;
+	color:#000066;
+	text-decoration:underline;
+	text-underline:single;}
+p
+	{mso-style-noshow:yes;
+	mso-style-priority:99;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:minor-fareast;}
+pre
+	{mso-style-noshow:yes;
+	mso-style-priority:99;
+	mso-style-link:"HTML Preformatted Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt;
+	font-size:10.0pt;
+	font-family:"Courier New";
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:minor-fareast;}
+samp
+	{mso-style-noshow:yes;
+	mso-style-priority:99;
+	font-family:"Courier New";
+	mso-ascii-font-family:"Courier New";
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:minor-fareast;
+	mso-hansi-font-family:"Courier New";
+	mso-bidi-font-family:"Courier New";}
+span.Heading1Char
+	{mso-style-name:"Heading 1 Char";
+	mso-style-priority:9;
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:"Heading 1";
+	mso-ansi-font-size:14.0pt;
+	mso-bidi-font-size:14.0pt;
+	font-family:"Calibri Light",sans-serif;
+	mso-ascii-font-family:"Calibri Light";
+	mso-ascii-theme-font:major-latin;
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:major-fareast;
+	mso-hansi-font-family:"Calibri Light";
+	mso-hansi-theme-font:major-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:major-bidi;
+	color:#2E74B5;
+	mso-themecolor:accent1;
+	mso-themeshade:191;
+	font-weight:bold;}
+span.Heading2Char
+	{mso-style-name:"Heading 2 Char";
+	mso-style-noshow:yes;
+	mso-style-priority:9;
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:"Heading 2";
+	mso-ansi-font-size:13.0pt;
+	mso-bidi-font-size:13.0pt;
+	font-family:"Calibri Light",sans-serif;
+	mso-ascii-font-family:"Calibri Light";
+	mso-ascii-theme-font:major-latin;
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:major-fareast;
+	mso-hansi-font-family:"Calibri Light";
+	mso-hansi-theme-font:major-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:major-bidi;
+	color:#5B9BD5;
+	mso-themecolor:accent1;
+	font-weight:bold;}
+span.Heading3Char
+	{mso-style-name:"Heading 3 Char";
+	mso-style-noshow:yes;
+	mso-style-priority:9;
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:"Heading 3";
+	mso-ansi-font-size:12.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Calibri Light",sans-serif;
+	mso-ascii-font-family:"Calibri Light";
+	mso-ascii-theme-font:major-latin;
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:major-fareast;
+	mso-hansi-font-family:"Calibri Light";
+	mso-hansi-theme-font:major-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:major-bidi;
+	color:#5B9BD5;
+	mso-themecolor:accent1;
+	font-weight:bold;}
+span.Heading4Char
+	{mso-style-name:"Heading 4 Char";
+	mso-style-noshow:yes;
+	mso-style-priority:9;
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:"Heading 4";
+	mso-ansi-font-size:12.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Calibri Light",sans-serif;
+	mso-ascii-font-family:"Calibri Light";
+	mso-ascii-theme-font:major-latin;
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:major-fareast;
+	mso-hansi-font-family:"Calibri Light";
+	mso-hansi-theme-font:major-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:major-bidi;
+	color:#5B9BD5;
+	mso-themecolor:accent1;
+	font-weight:bold;
+	font-style:italic;}
+span.Heading5Char
+	{mso-style-name:"Heading 5 Char";
+	mso-style-noshow:yes;
+	mso-style-priority:9;
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:"Heading 5";
+	mso-ansi-font-size:12.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Calibri Light",sans-serif;
+	mso-ascii-font-family:"Calibri Light";
+	mso-ascii-theme-font:major-latin;
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:major-fareast;
+	mso-hansi-font-family:"Calibri Light";
+	mso-hansi-theme-font:major-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:major-bidi;
+	color:#1F4D78;
+	mso-themecolor:accent1;
+	mso-themeshade:127;}
+span.Heading6Char
+	{mso-style-name:"Heading 6 Char";
+	mso-style-noshow:yes;
+	mso-style-priority:9;
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:"Heading 6";
+	mso-ansi-font-size:12.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Calibri Light",sans-serif;
+	mso-ascii-font-family:"Calibri Light";
+	mso-ascii-theme-font:major-latin;
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:major-fareast;
+	mso-hansi-font-family:"Calibri Light";
+	mso-hansi-theme-font:major-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:major-bidi;
+	color:#1F4D78;
+	mso-themecolor:accent1;
+	mso-themeshade:127;
+	font-style:italic;}
+span.HTMLPreformattedChar
+	{mso-style-name:"HTML Preformatted Char";
+	mso-style-noshow:yes;
+	mso-style-priority:99;
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:"HTML Preformatted";
+	font-family:Consolas;
+	mso-ascii-font-family:Consolas;
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:minor-fareast;
+	mso-hansi-font-family:Consolas;
+	mso-bidi-font-family:Consolas;}
+p.code, li.code, div.code
+	{mso-style-name:code;
+	mso-style-noshow:yes;
+	mso-style-priority:99;
+	mso-style-unhide:no;
+	margin:3.75pt;
+	mso-pagination:widow-orphan;
+	background:#DDDDDD;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:minor-fareast;}
+span.SpellE
+	{mso-style-name:"";
+	mso-spl-e:yes;}
+span.GramE
+	{mso-style-name:"";
+	mso-gram-e:yes;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	mso-default-props:yes;
+	font-size:10.0pt;
+	mso-ansi-font-size:10.0pt;
+	mso-bidi-font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;
+	mso-header-margin:.5in;
+	mso-footer-margin:.5in;
+	mso-paper-source:0;}
+div.WordSection1
+	{page:WordSection1;}
+ /* List Definitions */
+ @list l0
+	{mso-list-id:592982242;
+	mso-list-template-ids:827493610;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l0:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l0:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1
+	{mso-list-id:684016682;
+	mso-list-template-ids:-1576338020;}
+@list l1:level1
+	{mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level2
+	{mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level3
+	{mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level4
+	{mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level5
+	{mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level6
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level7
+	{mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level8
+	{mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level9
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2
+	{mso-list-id:992677760;
+	mso-list-type:hybrid;
+	mso-list-template-ids:360104970 746779734 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l2:level1
+	{mso-level-start-at:0;
+	mso-level-number-format:bullet;
+	mso-level-text:•;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:63.75pt;
+	text-indent:-45.75pt;
+	font-family:"Verdana",sans-serif;
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";}
+@list l2:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";}
+@list l2:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l2:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l2:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";}
+@list l2:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l2:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l2:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";}
+@list l2:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l3
+	{mso-list-id:1259171318;
+	mso-list-template-ids:-1951135138;}
+@list l3:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l3:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l3:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l3:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l3:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l3:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l3:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l3:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l3:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l4
+	{mso-list-id:1714234551;
+	mso-list-template-ids:1794413882;}
+@list l4:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l4:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l4:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l4:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l4:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l4:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l4:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l4:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l4:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l5
+	{mso-list-id:2021467355;
+	mso-list-template-ids:1138161026;}
+@list l5:level1
+	{mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l5:level2
+	{mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l5:level3
+	{mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l5:level4
+	{mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l5:level5
+	{mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l5:level6
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l5:level7
+	{mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l5:level8
+	{mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l5:level9
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l6
+	{mso-list-id:2086027492;
+	mso-list-template-ids:1553362376;}
+@list l6:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l6:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l6:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l6:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l6:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l6:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l6:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l6:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l6:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:"Table Normal";
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-priority:99;
+	mso-style-parent:"";
+	mso-padding-alt:0in 5.4pt 0in 5.4pt;
+	mso-para-margin:0in;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman",serif;}
+</style>
+<![endif]-->
+<meta http-equiv=Content-Language content=en-us>
+<!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="1026"/>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body bgcolor=white lang=EN-US link="#000066" vlink="#000066" style='tab-interval:
+.5in'>
+
+<div class=WordSection1>
+
+<h1><span style='font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman"'>Windows
+Cache Extension for PHP 1.3.0<o:p></o:p></span></h1>
+
+<h2><span style='font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman";
+color:black'>Readme<o:p></o:p></span></h2>
+
+<div class=MsoNormal align=center style='text-align:center'><span
+style='font-size:10.0pt;font-family:"Verdana",sans-serif;mso-fareast-font-family:
+"Times New Roman";color:black'>
+
+<hr size=1 width="100%" noshade style='color:black' align=center>
+
+</span></div>
+
+<h4><span style='font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman";
+color:black'>Table of Contents<o:p></o:p></span></h4>
+
+<ul type=disc>
+ <li class=MsoNormal style='color:black;mso-margin-top-alt:auto;mso-margin-bottom-alt:
+     auto;mso-list:l4 level1 lfo1;tab-stops:list .5in'><span style='font-size:
+     10.0pt;font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman"'><a
+     href="#Overview">Overview</a> <o:p></o:p></span></li>
+ <li class=MsoNormal style='color:black;mso-margin-top-alt:auto;mso-margin-bottom-alt:
+     auto;mso-list:l4 level1 lfo1;tab-stops:list .5in'><span style='font-size:
+     10.0pt;font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman"'><a
+     href="#InstallationNotes">Installation</a><o:p></o:p></span></li>
+ <ul type=circle>
+  <li class=MsoNormal style='color:black;mso-margin-top-alt:auto;mso-margin-bottom-alt:
+      auto;mso-list:l4 level2 lfo1;tab-stops:list 1.0in'><span
+      style='font-size:10.0pt;font-family:"Verdana",sans-serif;mso-fareast-font-family:
+      "Times New Roman"'><a href="#Compatibility_Notes_">Compatibility Notes </a><o:p></o:p></span></li>
+ </ul>
+ <li class=MsoNormal style='color:black;mso-margin-top-alt:auto;mso-margin-bottom-alt:
+     auto;mso-list:l4 level1 lfo1;tab-stops:list .5in'><span style='font-size:
+     10.0pt;font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman"'><a
+     href="#Configuration_settings">Configuration Settings</a><o:p></o:p></span></li>
+ <li class=MsoNormal style='color:black;mso-margin-top-alt:auto;mso-margin-bottom-alt:
+     auto;mso-list:l4 level1 lfo1;tab-stops:list .5in'><span style='font-size:
+     10.0pt;font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman"'><a
+     href="#Extension_Statistics_Functions">Extension Statistics Functions</a><o:p></o:p></span></li>
+ <li class=MsoNormal style='color:black;mso-margin-top-alt:auto;mso-margin-bottom-alt:
+     auto;mso-list:l4 level1 lfo1;tab-stops:list .5in'><span style='font-size:
+     10.0pt;font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman"'><a
+     href="#User_Cache_API_">User Cache API</a><o:p></o:p></span></li>
+ <li class=MsoNormal style='color:black;mso-margin-top-alt:auto;mso-margin-bottom-alt:
+     auto;mso-list:l4 level1 lfo1;tab-stops:list .5in'><span style='font-size:
+     10.0pt;font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman"'><a
+     href="#WinCache_Session_Handler">WinCache Session Handler</a><o:p></o:p></span></li>
+ <li class=MsoNormal style='color:black;mso-margin-top-alt:auto;mso-margin-bottom-alt:
+     auto;mso-list:l4 level1 lfo1;tab-stops:list .5in'><span style='font-size:
+     10.0pt;font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman"'><a
+     href="#WinCache_Functions_Reroutes">WinCache Functions Reroutes</a><o:p></o:p></span></li>
+ <li class=MsoNormal style='color:black;mso-margin-top-alt:auto;mso-margin-bottom-alt:
+     auto;mso-list:l4 level1 lfo1;tab-stops:list .5in'><span style='font-size:
+     10.0pt;font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman"'><a
+     href="#MoreInfo">More Information and support</a><o:p></o:p></span></li>
+</ul>
+
+<div class=MsoNormal align=center style='text-align:center'><span
+style='font-size:10.0pt;font-family:"Verdana",sans-serif;mso-fareast-font-family:
+"Times New Roman";color:black'>
+
+<hr size=1 width="100%" noshade style='color:black' align=center>
+
+</span></div>
+
+<h3><a name=Overview><span style='font-family:"Verdana",sans-serif;mso-fareast-font-family:
+"Times New Roman";color:black'>Overview</span></a><span style='font-family:
+"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman";color:black'><o:p></o:p></span></h3>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;color:black'>The
+Windows Cache Extension for PHP is a PHP accelerator that is used to
+significantly increase the speed of PHP code running on the Windows Operating
+System. The extension increases PHP performance by:<o:p></o:p></span></p>
+
+<ol start=1 type=1>
+ <li class=MsoNormal style='color:black;mso-margin-top-alt:auto;margin-bottom:
+     5.0pt;mso-list:l1 level1 lfo2;tab-stops:list .5in'><span style='font-size:
+     10.0pt;font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman"'>Caching
+     the contents of PHP script files in shared memory, which helps to reduce
+     the amount of file system I/O operations that is performed by the PHP
+     engine. This is especially important when the PHP scripts are located on a
+     remote UNC file share.<o:p></o:p></span></li>
+ <li class=MsoNormal style='color:black;mso-margin-top-alt:auto;margin-bottom:
+     5.0pt;mso-list:l1 level1 lfo2;tab-stops:list .5in'><span style='font-size:
+     10.0pt;font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman"'>Caching
+     the resolutions of relative file paths to corresponding absolute file
+     paths. This reduces the amount of requests to file system when PHP scripts
+     perform any file operations.<o:p></o:p></span></li>
+ <li class=MsoNormal style='color:black;mso-margin-top-alt:auto;margin-bottom:
+     5.0pt;mso-list:l1 level1 lfo2;tab-stops:list .5in'><span style='font-size:
+     10.0pt;font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman"'>Caching
+     the compiled PHP opcode in shared memory to avoid the overhead of parsing
+     and compiling the PHP source code for every request.<o:p></o:p></span></li>
+ <li class=MsoNormal style='color:black;mso-margin-top-alt:auto;margin-bottom:
+     5.0pt;mso-list:l1 level1 lfo2;tab-stops:list .5in'><span style='font-size:
+     10.0pt;font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman"'>Providing
+     API's for storing application's variables and objects in a shared memory
+     user cache.<o:p></o:p></span></li>
+ <li class=MsoNormal style='color:black;mso-margin-top-alt:auto;margin-bottom:
+     5.0pt;mso-list:l1 level1 lfo2;tab-stops:list .5in'><span style='font-size:
+     10.0pt;font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman"'>Caching
+     the PHP session data by using <span class=SpellE><strong><span
+     style='font-family:"Verdana",sans-serif'>wincache</span></strong></span>
+     session handler.<o:p></o:p></span></li>
+</ol>
+
+<p><strong><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+color:black'>IMPORTANT: </span></strong><em><b><span style='font-size:10.0pt;
+font-family:"Verdana",sans-serif;color:black'>The Windows Cache Extension for
+PHP can only be used with the non-thread-safe builds of PHP.</span></b></em><span
+style='font-size:10.0pt;font-family:"Verdana",sans-serif;color:black'><o:p></o:p></span></p>
+
+<div class=MsoNormal align=center style='text-align:center'><span
+style='font-size:10.0pt;font-family:"Verdana",sans-serif;mso-fareast-font-family:
+"Times New Roman";color:black'>
+
+<hr size=1 width="100%" noshade style='color:black' align=center>
+
+</span></div>
+
+<h3><a name=InstallationNotes><span style='font-family:"Verdana",sans-serif;
+mso-fareast-font-family:"Times New Roman";color:black'>Installation</span></a><span
+style='font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman";
+color:black'><o:p></o:p></span></h3>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;color:black'>There
+are three packages for this extension: the first package is for PHP versions
+5.2.X, the second package is for PHP 5.3.X, and the third is for PHP 5.4.X. You
+will need to make sure that you use the appropriate package for your version of
+PHP.<o:p></o:p></span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;color:black'>To
+install and enable the extension, use the following steps:<o:p></o:p></span></p>
+
+<ol start=1 type=1>
+ <li class=MsoNormal style='color:black;mso-margin-top-alt:auto;margin-bottom:
+     5.0pt;mso-list:l5 level1 lfo3;tab-stops:list .5in'><span style='font-size:
+     10.0pt;font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman"'>Unpack
+     the package that is appropriate for the PHP version you are using.<o:p></o:p></span></li>
+ <li class=MsoNormal style='color:black;mso-margin-top-alt:auto;margin-bottom:
+     5.0pt;mso-list:l5 level1 lfo3;tab-stops:list .5in'><span style='font-size:
+     10.0pt;font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman"'>Copy
+     the php_wincache.dll file into the PHP extensions folder. Typically this
+     folder is called &quot;<span class=SpellE>ext</span>&quot; and it is
+     located in the same folder with all PHP binary files. For example:<o:p></o:p></span></li>
+</ol>
+
+<p class=MsoNormal style='mso-margin-top-alt:auto;margin-bottom:5.0pt;
+margin-left:.5in'><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+mso-fareast-font-family:"Times New Roman";color:black'>&quot;<b>C:\Program
+Files\PHP\<span class=SpellE>ext</span></b>&quot;.<o:p></o:p></span></p>
+
+<ol start=3 type=1>
+ <li class=MsoNormal style='color:black;mso-margin-top-alt:auto;margin-bottom:
+     5.0pt;mso-list:l5 level1 lfo3;tab-stops:list .5in'><span style='font-size:
+     10.0pt;font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman"'>Using
+     a text editor, open the php.ini file, which is usually located in the same
+     folder where all PHP binary files are. For example:<o:p></o:p></span></li>
+</ol>
+
+<p class=MsoNormal style='mso-margin-top-alt:auto;margin-bottom:5.0pt;
+margin-left:.5in'><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+mso-fareast-font-family:"Times New Roman";color:black'>&quot;<b>C:\Program
+Files\PHP\php.ini</b>&quot;.<o:p></o:p></span></p>
+
+<ol start=4 type=1>
+ <li class=MsoNormal style='color:black;mso-margin-top-alt:auto;margin-bottom:
+     5.0pt;mso-list:l5 level1 lfo3;tab-stops:list .5in'><span style='font-size:
+     10.0pt;font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman"'>Add
+     the following line at the end of the php.ini file:<o:p></o:p></span></li>
+</ol>
+
+<p class=MsoNormal style='mso-margin-top-alt:auto;margin-bottom:5.0pt;
+margin-left:.5in'><span class=GramE><samp><span style='font-size:10.0pt;
+color:black'>extension</span></samp></span><samp><span style='font-size:10.0pt;
+color:black'> = php_wincache.dll</span></samp><span style='font-size:10.0pt;
+font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman";
+color:black'><o:p></o:p></span></p>
+
+<ol start=5 type=1>
+ <li class=MsoNormal style='color:black;mso-margin-top-alt:auto;margin-bottom:
+     5.0pt;mso-list:l5 level1 lfo3;tab-stops:list .5in'><span style='font-size:
+     10.0pt;font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman"'>Save
+     and close the php.ini file.<o:p></o:p></span></li>
+ <li class=MsoNormal style='color:black;mso-margin-top-alt:auto;margin-bottom:
+     5.0pt;mso-list:l5 level1 lfo3;tab-stops:list .5in'><span style='font-size:
+     10.0pt;font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman"'>Recycle
+     your IIS Application Pools for PHP to pick up the configuration changes.<o:p></o:p></span></li>
+</ol>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;color:black'>To
+check that the extension has been enabled, create a file called <span
+class=SpellE>phpinfo.php</span> with the following PHP code that calls <span
+class=SpellE><span class=GramE>phpinfo</span></span><span class=GramE>(</span>)
+function:<o:p></o:p></span></p>
+
+<blockquote style='margin-top:5.0pt;margin-bottom:5.0pt'>
+
+<p><span class=GramE><samp><span style='font-size:10.0pt;color:black'>&lt;?<span
+class=SpellE>php</span></span></samp></span><samp><span style='font-size:10.0pt;
+color:black'> <span class=SpellE>phpinfo</span>(); ?&gt;</span></samp><span
+style='font-size:10.0pt;font-family:"Verdana",sans-serif;color:black'><o:p></o:p></span></p>
+
+</blockquote>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;color:black'>Save
+the <span class=SpellE>phpinfo.php</span> file in the root folder of <span
+class=GramE>a</span> IIS web site that uses PHP, then open a browser and make a
+request to <strong><span style='font-family:"Verdana",sans-serif'>http://yoursitename/phpinfo.php</span></strong>.
+Search within the returned web page for a section called &quot;<span
+class=SpellE>wincache</span>&quot;. If the extension is enabled, then you
+should see the configuration settings provided by the extension.<o:p></o:p></span></p>
+
+<h4><a name="Compatibility_Notes_"><span style='font-family:"Verdana",sans-serif;
+mso-fareast-font-family:"Times New Roman";color:black'>Compatibility Notes</span></a><span
+style='font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman";
+color:black'><o:p></o:p></span></h4>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;color:black'>The
+extension is supported only on the following configurations:<o:p></o:p></span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;color:black'>Windows
+OS:<o:p></o:p></span></p>
+
+<ul type=disc>
+ <li class=MsoNormal style='color:black;mso-margin-top-alt:auto;mso-margin-bottom-alt:
+     auto;mso-list:l3 level1 lfo4;tab-stops:list .5in'><span style='font-size:
+     10.0pt;font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman"'>Windows
+     XP SP3 with IIS 5.1 and FastCGI Extension<o:p></o:p></span></li>
+ <li class=MsoNormal style='color:black;mso-margin-top-alt:auto;mso-margin-bottom-alt:
+     auto;mso-list:l3 level1 lfo4;tab-stops:list .5in'><span style='font-size:
+     10.0pt;font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman"'>Windows
+     Server 2003 with IIS 6.0 and FastCGI Extension<o:p></o:p></span></li>
+ <li class=MsoNormal style='color:black;mso-margin-top-alt:auto;mso-margin-bottom-alt:
+     auto;mso-list:l3 level1 lfo4;tab-stops:list .5in'><span style='font-size:
+     10.0pt;font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman"'>Windows
+     Vista SP1 with IIS 7.0 and FastCGI Module<o:p></o:p></span></li>
+ <li class=MsoNormal style='color:black;mso-margin-top-alt:auto;mso-margin-bottom-alt:
+     auto;mso-list:l3 level1 lfo4;tab-stops:list .5in'><span style='font-size:
+     10.0pt;font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman"'>Windows
+     Server 2008 with IIS 7.0 and FastCGI Module<o:p></o:p></span></li>
+</ul>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;color:black'>PHP:<o:p></o:p></span></p>
+
+<ul type=disc>
+ <li class=MsoNormal style='color:black;mso-margin-top-alt:auto;mso-margin-bottom-alt:
+     auto;mso-list:l6 level1 lfo5;tab-stops:list .5in'><span style='font-size:
+     10.0pt;font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman"'>PHP
+     5.2.X, Non-thread-safe build<o:p></o:p></span></li>
+ <li class=MsoNormal style='color:black;mso-margin-top-alt:auto;mso-margin-bottom-alt:
+     auto;mso-list:l6 level1 lfo5;tab-stops:list .5in'><span style='font-size:
+     10.0pt;font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman"'>PHP
+     5.3 X86, Non-thread-safe VC9 build<o:p></o:p></span></li>
+ <li class=MsoNormal style='color:black;mso-margin-top-alt:auto;mso-margin-bottom-alt:
+     auto;mso-list:l6 level1 lfo5;tab-stops:list .5in'><span style='font-size:
+     10.0pt;font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman"'>PHP
+     5.4.X x86, Non-Thread-Safe VC9 build<o:p></o:p></span></li>
+</ul>
+
+<p><strong><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+color:black'>IMPORTANT: </span></strong><em><b><span style='font-size:10.0pt;
+font-family:"Verdana",sans-serif;color:black'>The Windows Cache Extension for
+PHP can only be used when IIS is configured to run PHP via FastCGI.</span></b></em><span
+style='font-size:10.0pt;font-family:"Verdana",sans-serif;color:black'><o:p></o:p></span></p>
+
+<h3><a name="Configuration_settings"><span style='font-family:"Verdana",sans-serif;
+mso-fareast-font-family:"Times New Roman";color:black'>Configuration settings</span></a><span
+style='font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman";
+color:black'><o:p></o:p></span></h3>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;color:black'>The
+following table lists and explains the configuration settings provided by the
+Windows Cache Extension for PHP. For more detailed information about the
+configuration settings refer to <a
+href="http://www.php.net/manual/en/wincache.configuration.php">WinCache
+Extension - Runtime Configuration</a>.<o:p></o:p></span></p>
+
+<table class=MsoNormalTable border=0 cellpadding=0 style='mso-cellspacing:1.5pt;
+ mso-yfti-tbllook:1184;mso-padding-alt:0in 5.4pt 0in 5.4pt'>
+ <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes'>
+  <td style='background:#222222;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal align=center style='text-align:center'><b><span
+  style='font-size:10.0pt;font-family:"Verdana",sans-serif;mso-fareast-font-family:
+  "Times New Roman";color:white'>Setting<o:p></o:p></span></b></p>
+  </td>
+  <td style='background:#222222;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal align=center style='text-align:center'><b><span
+  style='font-size:10.0pt;font-family:"Verdana",sans-serif;mso-fareast-font-family:
+  "Times New Roman";color:white'>Default<o:p></o:p></span></b></p>
+  </td>
+  <td style='background:#222222;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal align=center style='text-align:center'><b><span
+  style='font-size:10.0pt;font-family:"Verdana",sans-serif;mso-fareast-font-family:
+  "Times New Roman";color:white'>Minimum<o:p></o:p></span></b></p>
+  </td>
+  <td style='background:#222222;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal align=center style='text-align:center'><b><span
+  style='font-size:10.0pt;font-family:"Verdana",sans-serif;mso-fareast-font-family:
+  "Times New Roman";color:white'>Maximum<o:p></o:p></span></b></p>
+  </td>
+  <td style='background:#222222;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal align=center style='text-align:center'><b><span
+  style='font-size:10.0pt;font-family:"Verdana",sans-serif;mso-fareast-font-family:
+  "Times New Roman";color:white'>Changeable<o:p></o:p></span></b></p>
+  </td>
+  <td style='background:#222222;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal align=center style='text-align:center'><b><span
+  style='font-size:10.0pt;font-family:"Verdana",sans-serif;mso-fareast-font-family:
+  "Times New Roman";color:white'>Description<o:p></o:p></span></b></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:1'>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:10.0pt;
+  font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman";
+  color:black'>wincache.fcenabled</span></span><span style='font-size:10.0pt;
+  font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman";
+  color:black'><o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>1 (On)<o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>0 (Off)<o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>1 (On)<o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>PHP_INI_ALL <o:p></o:p></span></p>
+  </td>
+  <td width="50%" style='width:50.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>Enables or disables
+  the file cache functionality<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:2'>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:10.0pt;
+  font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman";
+  color:black'>wincache.fcenabledfilter</span></span><span style='font-size:
+  10.0pt;font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman";
+  color:black'><o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>no value<o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>no value<o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>no value<o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>PHP_INI_SYSTEM<o:p></o:p></span></p>
+  </td>
+  <td width="50%" style='width:50.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>Defines a comma
+  separated list of site-ids for which <span class=SpellE>wincache.fcenabled</span>
+  property value is toggled.<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:3'>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:10.0pt;
+  font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman";
+  color:black'>wincache.fcachesize</span></span><span style='font-size:10.0pt;
+  font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman";
+  color:black'><o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>24<o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>5<o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>85<o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>PHP_INI_SYSTEM <o:p></o:p></span></p>
+  </td>
+  <td width="50%" style='width:50.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>Defines the maximum
+  memory size (in megabytes) that is allocated for the file cache. If the total
+  size of all the cached files exceeds the value specified in this setting,
+  then most stale files will be removed from the file cache.<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:4'>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:10.0pt;
+  font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman";
+  color:black'>wincache.fcndetect</span></span><span style='font-size:10.0pt;
+  font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman";
+  color:black'><o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>1 (On)<o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>0 (Off)<o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>1 (On)<o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>PHP_INI_SYSTEM<o:p></o:p></span></p>
+  </td>
+  <td width="50%" style='width:50.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>Enables or disables
+  the file change notification detection functionality. If file change
+  notification is supported then it will be used to refresh the opcode and file
+  cache entries as soon as the corresponding files are modified on a file
+  system. If file change notification is not supported, for example when using
+  network file shares, then <span class=SpellE>wincache</span> will poll for
+  file changes at regular time intervals specified by <span class=SpellE><i>wincache.chkinterval</i></span>.<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:5'>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:10.0pt;
+  font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman";
+  color:black'>wincache.internedsize</span></span><span style='font-size:10.0pt;
+  font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman";
+  color:black'><o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>4<o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>4<o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>32<o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>PHP_INI_SYATEM<o:p></o:p></span></p>
+  </td>
+  <td width="50%" style='width:50.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>Defines the maximum
+  memory size (in megabytes) that is allocated for the per-process interned
+  strings cache.<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:6'>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:10.0pt;
+  font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman";
+  color:black'>wincache.maxfilesize</span></span><span style='font-size:10.0pt;
+  font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman";
+  color:black'><o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>256<o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>10<o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>2048<o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>PHP_INI_SYSTEM <o:p></o:p></span></p>
+  </td>
+  <td width="50%" style='width:50.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>Defines the maximum
+  allowed size (in kilobytes) for a single file to be cached. If a file size
+  exceeds the specified value, the file will not be cached. This setting
+  applies to the file cache only.<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:7'>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:10.0pt;
+  font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman";
+  color:black'>wincache.ocenabled</span></span><span style='font-size:10.0pt;
+  font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman";
+  color:black'><o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>1 (On)<o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>0 (Off)<o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>1 (On)<o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>PHP_INI_ALL<o:p></o:p></span></p>
+  </td>
+  <td width="50%" style='width:50.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>Enables or disables
+  the opcode cache functionality<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:8'>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:10.0pt;
+  font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman";
+  color:black'>wincache.ocenabledfilter</span></span><span style='font-size:
+  10.0pt;font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman";
+  color:black'><o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>no value<o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>no value<o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>no value<o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>PHP_INI_SYSTEM<o:p></o:p></span></p>
+  </td>
+  <td width="50%" style='width:50.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>Defines a comma
+  separated list of site-ids for which <span class=SpellE>wincache.ocenabled</span>
+  property value is toggled.<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:9'>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:10.0pt;
+  font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman";
+  color:black'>wincache.ocachesize</span></span><span style='font-size:10.0pt;
+  font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman";
+  color:black'><o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>96<o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>15<o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>255<o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>PHP_INI_SYSTEM <o:p></o:p></span></p>
+  </td>
+  <td width="50%" style='width:50.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>Defines the maximum
+  memory size (in megabytes) that is allocated for the opcode cache. If the
+  cached opcode size exceeds the specified value, then most stale opcode will be
+  removed from the cache. Note that the opcode cache size must be at least 3
+  times bigger than file cache size. If that is not the case the opcode cache
+  size will be automatically increased.<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:10'>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:10.0pt;
+  font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman";
+  color:black'>wincache.filecount</span></span><span style='font-size:10.0pt;
+  font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman";
+  color:black'><o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>4096<o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>1024<o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>16384<o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>PHP_INI_SYSTEM <o:p></o:p></span></p>
+  </td>
+  <td width="50%" style='width:50.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>Defines how many files
+  are expected to be cached by the extension, so that appropriate memory size
+  is allocated at the startup time. If the number of files exceeds the
+  specified value, the WinCache will re-allocate more memory as needed.<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:11'>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:10.0pt;
+  font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman";
+  color:black'>wincache.chkinterval</span></span><span style='font-size:10.0pt;
+  font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman";
+  color:black'><o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>30<o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>0, 2<o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>300<o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>PHP_INI_SYSTEM <o:p></o:p></span></p>
+  </td>
+  <td width="50%" style='width:50.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>Defines how often (in
+  seconds) the extension checks for file changes in order to refresh the cache.
+  Setting it to 0 will disable the refreshing of the cache. The file changes
+  will not be reflected in the cache unless the cache entry for that file is
+  removed by scavenger or IIS application pool is recycled or <span
+  class=SpellE>wincache_refresh_if_changed</span> function is called.<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:12'>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:10.0pt;
+  font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman";
+  color:black'>wincache.ttlmax</span></span><span style='font-size:10.0pt;
+  font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman";
+  color:black'><o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>1200<o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>0, 60<o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>7200<o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>PHP_INI_SYSTEM <o:p></o:p></span></p>
+  </td>
+  <td width="50%" style='width:50.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>Defines the maximum
+  time to live (in seconds) for a cached entry without being used. Setting it
+  to 0 will disable scavenger which takes care of removing old entries.<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:13'>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:10.0pt;
+  font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman";
+  color:black'>wincache.enablecli</span></span><span style='font-size:10.0pt;
+  font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman";
+  color:black'><o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>0 (Off)<o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>1 (On)<o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>0 (Off)<o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>PHP_INI_SYSTEM <o:p></o:p></span></p>
+  </td>
+  <td width="50%" style='width:50.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>Defines if caching is
+  enabled when PHP is running in command line (CLI) mode.<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:14'>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:10.0pt;
+  font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman";
+  color:black'>wincache.ignorelist</span></span><span style='font-size:10.0pt;
+  font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman";
+  color:black'><o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>no value<o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>no value<o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>no value<o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>PHP_INI_ALL <o:p></o:p></span></p>
+  </td>
+  <td width="50%" style='width:50.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>Defines a list of
+  files that should not be cached by the extension. The files list is specified
+  by using file names only, separated by the pipe symbol - &quot;|&quot;. For
+  example: <br>
+  <br>
+  </span><span class=SpellE><samp><span style='font-size:10.0pt;color:black'>wincache.ignorelist</span></samp></span><samp><span
+  style='font-size:10.0pt;color:black'> = &quot;<span class=SpellE>index.php|misc.php|admin.php</span>&quot;</span></samp><span
+  style='font-size:10.0pt;font-family:"Verdana",sans-serif;mso-fareast-font-family:
+  "Times New Roman";color:black'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:15'>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:10.0pt;
+  font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman";
+  color:black'>wincache.namesalt</span></span><span style='font-size:10.0pt;
+  font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman";
+  color:black'><o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>no value<o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>no value<o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>no value<o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>PHP_INI_SYSTEM <o:p></o:p></span></p>
+  </td>
+  <td width="50%" style='width:50.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>Defines a string that
+  will be used when naming the extension specific objects that are stored in
+  shared memory. This is used to avoid conflicts that may be caused if other
+  applications within an IIS worker process tries to access shared memory.<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:16'>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:10.0pt;
+  font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman";
+  color:black'>wincache.ucenabled</span></span><span style='font-size:10.0pt;
+  font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman";
+  color:black'><o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>0 (Off)<o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>1 (On)<o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>1 (On)<o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>PHP_INI_SYSTEM<o:p></o:p></span></p>
+  </td>
+  <td width="50%" style='width:50.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>Enables or disables
+  the user cache functionality.<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:17'>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:10.0pt;
+  font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman";
+  color:black'>wincache.ucachesize</span></span><span style='font-size:10.0pt;
+  font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman";
+  color:black'><o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>5<o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>85<o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>8<o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>PHP_INI_SYSTEM<o:p></o:p></span></p>
+  </td>
+  <td width="50%" style='width:50.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>Defines the maximum
+  memory size (in megabytes) that is allocated for the user cache. If the total
+  size of variables stored in the user cache exceeds the specified value, then
+  the <span class=GramE>most stale</span> variables will be removed from the
+  cache.<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:18'>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span class=SpellE><span class=GramE><span
+  style='font-size:10.0pt;font-family:"Verdana",sans-serif;mso-fareast-font-family:
+  "Times New Roman";color:black'>wincache</span></span></span><span
+  style='font-size:10.0pt;font-family:"Verdana",sans-serif;mso-fareast-font-family:
+  "Times New Roman";color:black'>.</span> <span class=SpellE><span
+  style='font-size:10.0pt;font-family:"Verdana",sans-serif;mso-fareast-font-family:
+  "Times New Roman";color:black'>reroute_enabled</span></span><span
+  style='font-size:10.0pt;font-family:"Verdana",sans-serif;mso-fareast-font-family:
+  "Times New Roman";color:black'><o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>0 (Off)<o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>0 (Off)<o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>1 (On)<o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>PHP_INI_SYSTEM |
+  PHP_INI_PERDIR<o:p></o:p></span></p>
+  </td>
+  <td width="50%" style='width:50.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>Enables or disables
+  the rerouting of certain file I/O functions through the file cache.<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:19'>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:10.0pt;
+  font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman";
+  color:black'>wincache.filemapdir</span></span><span style='font-size:10.0pt;
+  font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman";
+  color:black'><o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>No value<o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>No value<o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>No value<o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>PHP_INI_SYSTEM<o:p></o:p></span></p>
+  </td>
+  <td width="50%" style='width:50.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>Specifies an absolute
+  path to a directory where WinCache will store the temporary files used for
+  shared memory segments.<span style='mso-spacerun:yes'>   </span>This
+  directory must be on the local machine and not on a networked file
+  system.<span style='mso-spacerun:yes'>   </span>If the directory is not
+  specified, WinCache will use the Windows System Page File for all shared
+  memory segments.<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:20'>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:10.0pt;
+  font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman";
+  color:black'>wincache.internedsize</span></span><span style='font-size:10.0pt;
+  font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman";
+  color:black'><o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>4<o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>4<o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>32<o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>PHP_INI_SYSTEM<o:p></o:p></span></p>
+  </td>
+  <td width="50%" style='width:50.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>Specifies the size, in
+  MB, of the interned strings cache.<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:21;mso-yfti-lastrow:yes'>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span class=SpellE><span style='font-size:10.0pt;
+  font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman";
+  color:black'>wincache.srwlocks</span></span><span style='font-size:10.0pt;
+  font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman";
+  color:black'><o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>1 (On)<o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>0 (Off)<o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>1 (On)<o:p></o:p></span></p>
+  </td>
+  <td width="10%" style='width:10.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>PHP_INI_SYSTEM<o:p></o:p></span></p>
+  </td>
+  <td width="50%" style='width:50.0%;background:#DDDDDD;padding:3.0pt 3.0pt 3.0pt 3.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+  mso-fareast-font-family:"Times New Roman";color:black'>Enables or disables
+  the use of shared reader/writer locks. Disabling is useful when troubleshooting
+  deadlock conditions in WinCache.<o:p></o:p></span></p>
+  </td>
+ </tr>
+</table>
+
+<h3><a name="Extension_Statistics_Functions"><span style='font-family:"Verdana",sans-serif;
+mso-fareast-font-family:"Times New Roman";color:black'>Extension Statistics
+Functions</span></a><span style='font-family:"Verdana",sans-serif;mso-fareast-font-family:
+"Times New Roman";color:black'><o:p></o:p></span></h3>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;color:black'>The
+Windows Cache Extension for PHP provides several functions that can be called
+from a PHP script in order to return extension-specific information about the
+cache internals. Refer to <a
+href="http://www.php.net/manual/en/ref.wincache.php">WinCache Functions</a> for
+detailed description and API usage examples.<o:p></o:p></span></p>
+
+<h3><a name="User_Cache_API_"><span style='font-family:"Verdana",sans-serif;
+mso-fareast-font-family:"Times New Roman";color:black'>User Cache API</span></a><span
+style='font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman";
+color:black'><o:p></o:p></span></h3>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;color:black'>Windows
+Cache Extension 1.1 provides API's that can be used by PHP applications to
+store variables and objects in shared memory user cache. Refer to <a
+href="http://www.php.net/manual/en/ref.wincache.php">WinCache Functions</a> for
+detailed description and API usage examples.<o:p></o:p></span></p>
+
+<h3><a name="WinCache_Session_Handler"><span style='font-family:"Verdana",sans-serif;
+mso-fareast-font-family:"Times New Roman";color:black'>WinCache Session Handler</span></a><span
+style='font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman";
+color:black'><o:p></o:p></span></h3>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;color:black'>Windows
+Cache Extension 1.1 includes a PHP session handler that can be used to
+configure PHP to store the session data in shared memory user cache. Using
+shared memory instead of default file session storage helps improve performance
+of PHP applications that store large amount of data in session objects. To
+configure PHP to use WinCache session handler set the <var><span
+style='font-family:"Verdana",sans-serif'>php.ini</span></var> setting <a
+href="http://www.php.net/manual/en/session.configuration.php#ini.session.save-handler"><span
+class=SpellE>session.save_handler</span></a> to <span class=SpellE><strong><span
+style='font-family:"Verdana",sans-serif'>wincache</span></strong></span>. By
+default the Windows temporary file location is used for storing the session
+data. To change the location of the session file use <a
+href="http://www.php.net/manual/en/session.configuration.php#ini.session.save-path"><span
+class=SpellE>session.save_path</span></a> directive. <o:p></o:p></span></p>
+
+<div style='margin-left:3.75pt;margin-top:3.75pt;margin-right:3.75pt;
+margin-bottom:3.75pt'><pre style='background:#DDDDDD'><span style='color:black'><o:p>&nbsp;</o:p></span></pre><pre
+style='background:#DDDDDD'><span class=SpellE><span style='color:black'>sesion.save_handler</span></span><span
+style='color:black'> = <span class=SpellE>wincache</span><o:p></o:p></span></pre><pre
+style='background:#DDDDDD'><span class=SpellE><span style='color:black'>session.save_path</span></span><span
+style='color:black'> = C:\inetpub\tmp\session\<o:p></o:p></span></pre></div>
+
+<h3 style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><a
+name="WinCache_Functions_Reroutes"><span style='font-family:"Verdana",sans-serif;
+mso-fareast-font-family:"Times New Roman";color:black'>WinCache Functions
+Reroutes</span></a><span style='font-family:"Verdana",sans-serif;mso-fareast-font-family:
+"Times New Roman";color:black'><o:p></o:p></span></h3>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+style='font-size:10.0pt;font-family:"Verdana",sans-serif;color:black'>The
+WinCache functions reroutes (available since WinCache 1.3.7) can be used to
+replace built-in PHP functions with their equivalents that are optimized for a
+particular purpose. WinCache extension includes Windows-optimized
+implementation of PHP file functions that may improve performance of PHP
+applications in cases when PHP has to access files on network shares. The
+optimized implementation is provided for the following functions:<o:p></o:p></span></p>
+
+<p style='margin-left:63.75pt;text-indent:-45.75pt;mso-list:l2 level1 lfo6;
+tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><![if !supportLists]><span
+style='font-size:10.0pt;font-family:"Verdana",sans-serif;mso-fareast-font-family:
+Verdana;mso-bidi-font-family:Verdana;color:black'><span style='mso-list:Ignore'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span class=SpellE><span style='font-size:10.0pt;
+font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman";
+color:black'>file_exists</span></span><span style='font-size:10.0pt;font-family:
+"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman";color:black'><o:p></o:p></span></p>
+
+<p style='margin-left:63.75pt;text-indent:-45.75pt;mso-list:l2 level1 lfo6;
+tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><![if !supportLists]><span
+style='font-size:10.0pt;font-family:"Verdana",sans-serif;mso-fareast-font-family:
+Verdana;mso-bidi-font-family:Verdana;color:black'><span style='mso-list:Ignore'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span class=SpellE><span style='font-size:10.0pt;
+font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman";
+color:black'>file_get_contents</span></span><span style='font-size:10.0pt;
+font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman";
+color:black'><o:p></o:p></span></p>
+
+<p style='margin-left:63.75pt;text-indent:-45.75pt;mso-list:l2 level1 lfo6;
+tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><![if !supportLists]><span
+style='font-size:10.0pt;font-family:"Verdana",sans-serif;mso-fareast-font-family:
+Verdana;mso-bidi-font-family:Verdana;color:black'><span style='mso-list:Ignore'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span class=SpellE><span style='font-size:10.0pt;
+font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman";
+color:black'>filesize</span></span><span style='font-size:10.0pt;font-family:
+"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman";color:black'><o:p></o:p></span></p>
+
+<p style='margin-left:63.75pt;text-indent:-45.75pt;mso-list:l2 level1 lfo6;
+tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><![if !supportLists]><span
+style='font-size:10.0pt;font-family:"Verdana",sans-serif;mso-fareast-font-family:
+Verdana;mso-bidi-font-family:Verdana;color:black'><span style='mso-list:Ignore'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span class=SpellE><span style='font-size:10.0pt;
+font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman";
+color:black'>readfile</span></span><span style='font-size:10.0pt;font-family:
+"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman";color:black'><o:p></o:p></span></p>
+
+<p style='margin-left:63.75pt;text-indent:-45.75pt;mso-list:l2 level1 lfo6;
+tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><![if !supportLists]><span
+style='font-size:10.0pt;font-family:"Verdana",sans-serif;mso-fareast-font-family:
+Verdana;mso-bidi-font-family:Verdana;color:black'><span style='mso-list:Ignore'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span class=SpellE><span style='font-size:10.0pt;
+font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman";
+color:black'>is_writable</span></span><span style='font-size:10.0pt;font-family:
+"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman";color:black'><o:p></o:p></span></p>
+
+<p style='margin-left:63.75pt;text-indent:-45.75pt;mso-list:l2 level1 lfo6;
+tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><![if !supportLists]><span
+style='font-size:10.0pt;font-family:"Verdana",sans-serif;mso-fareast-font-family:
+Verdana;mso-bidi-font-family:Verdana;color:black'><span style='mso-list:Ignore'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span class=SpellE><span style='font-size:10.0pt;
+font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman";
+color:black'>is_writeable</span></span><span style='font-size:10.0pt;
+font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman";
+color:black'> (alias for <span class=SpellE>is_writable</span>)<o:p></o:p></span></p>
+
+<p style='margin-left:63.75pt;text-indent:-45.75pt;mso-list:l2 level1 lfo6;
+tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><![if !supportLists]><span
+style='font-size:10.0pt;font-family:"Verdana",sans-serif;mso-fareast-font-family:
+Verdana;mso-bidi-font-family:Verdana;color:black'><span style='mso-list:Ignore'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span class=SpellE><span style='font-size:10.0pt;
+font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman";
+color:black'>is_readable</span></span><span style='font-size:10.0pt;font-family:
+"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman";color:black'><o:p></o:p></span></p>
+
+<p style='margin-left:63.75pt;text-indent:-45.75pt;mso-list:l2 level1 lfo6;
+tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><![if !supportLists]><span
+style='font-size:10.0pt;font-family:"Verdana",sans-serif;mso-fareast-font-family:
+Verdana;mso-bidi-font-family:Verdana;color:black'><span style='mso-list:Ignore'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span class=SpellE><span style='font-size:10.0pt;
+font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman";
+color:black'>is_file</span></span><span style='font-size:10.0pt;font-family:
+"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman";color:black'><o:p></o:p></span></p>
+
+<p style='margin-left:63.75pt;text-indent:-45.75pt;mso-list:l2 level1 lfo6;
+tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><![if !supportLists]><span
+style='font-size:10.0pt;font-family:"Verdana",sans-serif;mso-fareast-font-family:
+Verdana;mso-bidi-font-family:Verdana;color:black'><span style='mso-list:Ignore'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span class=SpellE><span style='font-size:10.0pt;
+font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman";
+color:black'>is_dir</span></span><span style='font-size:10.0pt;font-family:
+"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman";color:black'><o:p></o:p></span></p>
+
+<p style='margin-left:63.75pt;text-indent:-45.75pt;mso-list:l2 level1 lfo6;
+tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><![if !supportLists]><span
+style='font-size:10.0pt;font-family:"Verdana",sans-serif;mso-fareast-font-family:
+Verdana;mso-bidi-font-family:Verdana;color:black'><span style='mso-list:Ignore'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span class=SpellE><span style='font-size:10.0pt;
+font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman";
+color:black'>realpath</span></span><span style='font-size:10.0pt;font-family:
+"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman";color:black'> <o:p></o:p></span></p>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+style='font-size:10.0pt;font-family:"Verdana",sans-serif;mso-fareast-font-family:
+"Times New Roman";color:black'>The reroutes are not enabled by default.<span
+style='mso-spacerun:yes'>  </span>To enable them, set the <span class=SpellE>reroute_enabled</span>
+directive in either the php.ini or the .user.ini. <o:p></o:p></span></p>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt;
+background:#D0CECE;mso-background-themecolor:background2;mso-background-themeshade:
+230'><span class=SpellE><span style='font-size:10.0pt;font-family:"Courier New";
+mso-fareast-font-family:"Times New Roman";color:black'>wincache.reroute_enabled</span></span><span
+style='font-size:10.0pt;font-family:"Courier New";mso-fareast-font-family:"Times New Roman";
+color:black'> = 1<o:p></o:p></span></p>
+
+<h3 style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><a
+name=MoreInfo><span style='font-family:"Verdana",sans-serif;mso-fareast-font-family:
+"Times New Roman";color:black'>WinCache ETW Support<o:p></o:p></span></a></h3>
+
+<p class=MsoNormal><span style='mso-bookmark:MoreInfo'><span style='font-size:
+10.0pt;font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman"'>Windows
+Cache Extension 1.3.7.6 provides support for ETW tracing of internal events
+which are useful for developer debugging.<o:p></o:p></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:MoreInfo'><span style='font-size:
+10.0pt;font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman"'><o:p>&nbsp;</o:p></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:MoreInfo'><span style='font-size:
+10.0pt;font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman"'>The
+provider GUID for the WinCache ETW provider is </span></span><span
+style='mso-bookmark:MoreInfo'><b style='mso-bidi-font-weight:normal'><span
+style='font-size:10.0pt;font-family:"Courier New";mso-fareast-font-family:"Times New Roman"'>{F7AD0093-D5C3-46B9-BEEA-A9FCEC7E1408}</span></b></span><span
+style='mso-bookmark:MoreInfo'><span style='font-size:10.0pt;font-family:"Verdana",sans-serif;
+mso-fareast-font-family:"Times New Roman"'>.<o:p></o:p></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:MoreInfo'><span style='font-size:
+10.0pt;font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman"'><o:p>&nbsp;</o:p></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:MoreInfo'><span style='font-size:
+10.0pt;font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman"'>To
+register the provider, open an Administrator cmd.exe window, change directories
+to the location of the Windows Cache files and type the following command:<o:p></o:p></span></span></p>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt;
+background:#D0CECE;mso-background-themecolor:background2;mso-background-themeshade:
+230'><span style='mso-bookmark:MoreInfo'><span class=SpellE><span class=GramE><span
+style='font-size:10.0pt;font-family:"Courier New";mso-fareast-font-family:"Times New Roman";
+color:black'>wevtutil</span></span></span></span><span style='mso-bookmark:
+MoreInfo'><span style='font-size:10.0pt;font-family:"Courier New";mso-fareast-font-family:
+"Times New Roman";color:black'> <span class=SpellE>im</span> <span
+class=SpellE>wincache_etw.man</span><o:p></o:p></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:MoreInfo'><span style='font-size:
+10.0pt;font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman"'>If
+you are upgrading, you will first need to unregister the manifest, and
+re-register the manifest:<o:p></o:p></span></span></p>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt;
+background:#D0CECE;mso-background-themecolor:background2;mso-background-themeshade:
+230'><span style='mso-bookmark:MoreInfo'><span class=SpellE><span class=GramE><span
+style='font-size:10.0pt;font-family:"Courier New";mso-fareast-font-family:"Times New Roman";
+color:black'>wevtutil</span></span></span></span><span style='mso-bookmark:
+MoreInfo'><span style='font-size:10.0pt;font-family:"Courier New";mso-fareast-font-family:
+"Times New Roman";color:black'> um <span class=SpellE>wincache_etw.man</span><o:p></o:p></span></span></p>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt;
+background:#D0CECE;mso-background-themecolor:background2;mso-background-themeshade:
+230'><span style='mso-bookmark:MoreInfo'><span class=SpellE><span class=GramE><span
+style='font-size:10.0pt;font-family:"Courier New";mso-fareast-font-family:"Times New Roman";
+color:black'>wevtutil</span></span></span></span><span style='mso-bookmark:
+MoreInfo'><span style='font-size:10.0pt;font-family:"Courier New";mso-fareast-font-family:
+"Times New Roman";color:black'> <span class=SpellE>im</span> <span
+class=SpellE>wincache_etw.man</span><o:p></o:p></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:MoreInfo'><span style='font-size:
+10.0pt;font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman"'>To
+capture ETW traces, you can create a log profile with <span class=SpellE>logman</span>.<span
+style='mso-spacerun:yes'>  </span>The following example assumes the c:\temp
+directory exists and is writeable:<o:p></o:p></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:MoreInfo'><span style='font-size:
+10.0pt;font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman"'><o:p>&nbsp;</o:p></span></span></p>
+
+<p class=MsoNormal style='background:#D0CECE;mso-background-themecolor:background2;
+mso-background-themeshade:230'><span style='mso-bookmark:MoreInfo'><span
+style='font-size:10.0pt;font-family:"Courier New";mso-fareast-font-family:"Times New Roman"'><span
+style='mso-spacerun:yes'>  </span><span class=SpellE><span class=GramE>logman</span></span>
+create trace <span class=SpellE>wincache_etw</span> -p
+&quot;{F7AD0093-D5C3-46B9-BEEA-A9FCEC7E1408}&quot; -o c:\temp\wincache_etw<o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='background:#D0CECE;mso-background-themecolor:background2;
+mso-background-themeshade:230'><span style='mso-bookmark:MoreInfo'><span
+style='font-size:10.0pt;font-family:"Courier New";mso-fareast-font-family:"Times New Roman"'><span
+style='mso-spacerun:yes'>  </span><span class=SpellE><span class=GramE>logman</span></span>
+start <span class=SpellE>wincache_etw</span><o:p></o:p></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:MoreInfo'><span style='font-size:
+10.0pt;font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman"'><span
+style='mso-spacerun:yes'>  </span>&lt;...<i style='mso-bidi-font-style:normal'>do
+your repro</i>...&gt;<o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='background:#D0CECE;mso-background-themecolor:background2;
+mso-background-themeshade:230'><span style='mso-bookmark:MoreInfo'><span
+style='font-size:10.0pt;font-family:"Courier New";mso-fareast-font-family:"Times New Roman"'><span
+style='mso-spacerun:yes'>  </span><span class=SpellE><span class=GramE>logman</span></span>
+stop <span class=SpellE>wincache_etw</span><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='background:#D0CECE;mso-background-themecolor:background2;
+mso-background-themeshade:230'><span style='mso-bookmark:MoreInfo'><span
+style='font-size:10.0pt;font-family:"Courier New";mso-fareast-font-family:"Times New Roman"'><span
+style='mso-spacerun:yes'>  </span><span class=SpellE><span class=GramE>tracerpt</span></span>
+c:\temp\wincache_etw_&lt;<b style='mso-bidi-font-weight:normal'><i
+style='mso-bidi-font-style:normal'>sequence#</i></b><i style='mso-bidi-font-style:
+normal'>&gt;</i>.etl -import &quot;%<span class=SpellE>ProgramFiles</span>(x86)\IIS\Windows
+Cache for PHP\<span class=SpellE>wincache_etw.man</span>&quot;<o:p></o:p></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:MoreInfo'><span style='font-size:
+10.0pt;font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman"'><o:p>&nbsp;</o:p></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:MoreInfo'><span style='font-size:
+10.0pt;font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman"'>You'll
+need to copy the <span class=SpellE>wincache_etw.man</span> to the machine
+where you execute tracerpt.exe, if it is not the same machine as where WinCache
+was installed.<o:p></o:p></span></span></p>
+
+<h3 style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+style='mso-bookmark:MoreInfo'><span style='font-family:"Verdana",sans-serif;
+mso-fareast-font-family:"Times New Roman";color:black'>More Information and
+Support</span></span><span style='font-family:"Verdana",sans-serif;mso-fareast-font-family:
+"Times New Roman";color:black'><o:p></o:p></span></h3>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+style='font-size:10.0pt;font-family:"Verdana",sans-serif;color:black'>For more
+information use the following resources:<o:p></o:p></span></p>
+
+<ul type=disc>
+ <li class=MsoNormal style='color:black;mso-margin-top-alt:auto;mso-margin-bottom-alt:
+     auto;mso-list:l0 level1 lfo7;tab-stops:list .5in'><span style='font-size:
+     10.0pt;font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman"'><a
+     href="http://www.php.net/manual/en/book.wincache.php">Windows Cache
+     Extension for PHP - documentation</a><o:p></o:p></span></li>
+ <li class=MsoNormal style='color:black;mso-margin-top-alt:auto;mso-margin-bottom-alt:
+     auto;mso-list:l0 level1 lfo7;tab-stops:list .5in'><span style='font-size:
+     10.0pt;font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman"'><a
+     href="http://pecl.php.net/package/wincache">Windows Cache Extension -
+     source code</a><o:p></o:p></span></li>
+ <li class=MsoNormal style='color:black;mso-margin-top-alt:auto;mso-margin-bottom-alt:
+     auto;mso-list:l0 level1 lfo7;tab-stops:list .5in'><span style='font-size:
+     10.0pt;font-family:"Verdana",sans-serif;mso-fareast-font-family:"Times New Roman"'><a
+     href="http://go.microsoft.com/fwlink/?LinkId=161834">Windows Cache
+     Extension Forum</a><o:p></o:p></span></li>
+</ul>
+
+<div class=MsoNormal align=center style='text-align:center;tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+style='font-size:10.0pt;font-family:"Verdana",sans-serif;mso-fareast-font-family:
+"Times New Roman";color:black'>
+
+<hr size=1 width="100%" noshade style='color:black' align=center>
+
+</span></div>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+style='font-size:10.0pt;font-family:"Verdana",sans-serif;color:black'>© 2012
+Microsoft Corporation.<o:p></o:p></span></p>
+
+</div>
+
+</body>
+
+</html>
