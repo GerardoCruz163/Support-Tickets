@@ -7,6 +7,11 @@ var suc_id = $('#suc_idx').val();
 var area_id = $('#area_idx').val();
 $(document).ready(function(){
     
+    let audioReady = false;
+
+    
+
+
     if($('#rol_idx').val() == 1){
         $.post("../../controller/usuario.php?op=total", {usu_id: usu_id}, function (data){
             data=JSON.parse(data);

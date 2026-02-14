@@ -86,12 +86,6 @@ $(document).ready(function(){
           ]
     
     });
-
-    // $.post("../../controller/ticket.php?op=combo_usuarios_seg_detalle",function(data, status){ // aqui
-    //     $('#mdltitulo').html('Añade seguidor/es al ticket');
-    //     $('#seguidores').html(data);
-    // });
-
     $('#tickd_descripusu').summernote({
         height: 250,
         lang: "es-ES",

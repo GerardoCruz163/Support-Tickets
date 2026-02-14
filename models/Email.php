@@ -200,10 +200,10 @@ class Email extends PHPMailer{
             //$correo=$row["usu_correo"]; 
         }
 
-        // foreach($datos2 as $row){
-        //     $nom_usu= $row["usu_nom"];
-        //     $ape_usu= $row["usu_ape"];
-        // }
+        foreach($datos2 as $row){
+            $nom_usu= $row["usu_nom"];
+            $ape_usu= $row["usu_ape"];
+        }
 
         $this->isSMTP();
         $this->Host = 'vmail.globalpc.net';//Aqui el server
@@ -228,7 +228,7 @@ class Email extends PHPMailer{
         $cuerpo = str_replace("lblArea", $area, $cuerpo);
         $cuerpo = str_replace("lblTitu", $titulo, $cuerpo);
         $cuerpo = str_replace("lblCate", $categoria, $cuerpo);
-        //$cuerpo = str_replace("lblUsuSop", $nom_usu+' '+$ape_usu, $cuerpo);
+        $cuerpo = str_replace("lblUsuSop", $nom_usu.' '.$ape_usu, $cuerpo);
 
         $this->Body = $cuerpo;
         $this->AltBody = strip_tags("Ticket Cerrado");

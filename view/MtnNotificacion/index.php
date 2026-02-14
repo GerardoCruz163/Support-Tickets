@@ -8,6 +8,7 @@
 <html>
 <?php require_once("../MainHead/head.php");?>
 <title>Notificaciones :. TLA SuTra</title>
+<audio id="notif_sound" src="../../public/sound/bell_not_sutra.wav" preload="auto"></audio>
 <body class="with-side-menu">
 
     <?php require_once("../MainHeader/header.php");?>

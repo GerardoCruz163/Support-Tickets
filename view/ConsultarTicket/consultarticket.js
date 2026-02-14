@@ -117,7 +117,7 @@ $(document).on("click",".btn-inline","url-inline", function(){
     // console.log("ID encriptado:", ciphertext);
     // console.log("ID sin ecriptar:", id);
 
-    console.log(realId);
+    console.log(ciphertext);
     //DATO TEMPORAL (MIENTRAS EL USUARIO ENTRE AL TICKET, EL VALOR EXISTIRÁ)
     sessionStorage.setItem("ticket_id_real", realId); 
     

@@ -8,6 +8,7 @@
 <html>
 <?php require_once("../MainHead/head.php");?>
 <title>Consulta tu ticket: SUTRA</title>
+<audio id="notif_sound" src="../../public/sound/bell_not_sutra.wav" preload="auto"></audio>
 <body class="with-side-menu">
 
     <?php require_once("../MainHeader/header.php");?>
@@ -19,7 +20,7 @@
 	<!-- Contenido -->
 	<div class="page-content">
 		<div class="container-fluid">
-		<span id="realTicketId" data-id=""></span>
+			<span id="realTicketId" data-id=""></span>
 
 			<header class="section-header">
 				<div class="tbl">
@@ -105,9 +106,9 @@
 				</div>
 			</div>
 
-        <section class="activity-line" id="lbldetalle">
-		
+			<section class="activity-line" id="lbldetalle">
 			
+				
 			</section><!--.activity-line-->
 
 			<span class="label label-pill label-default">
@@ -122,7 +123,6 @@
 								<textarea class="summernote" id="tickd_descrip" name="tick_descrip"></textarea>
 							</div>
 						</fieldset>
-						
 					</div>
 
 					<div class="col-lg-12">

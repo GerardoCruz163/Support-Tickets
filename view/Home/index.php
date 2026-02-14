@@ -12,6 +12,7 @@
 	<link rel="stylesheet" href="../../public/css/lib/fullcalendar/fullcalendar.min.css">
 	<link rel="stylesheet" href="../../public/css/separate/pages/calendar.min.css">
 	<title>Home: SUTRA</title>
+	<audio id="notif_sound" src="../../public/sound/bell_not_sutra.wav" preload="auto"></audio>
 </head>
 <body class="with-side-menu">
 
@@ -101,6 +102,9 @@
 			</section>
 		</div><!--.container-fluid-->
 	</div><!--.page-content-->
+
+	
+
 
 	<?php require_once("../MainJS/js.php");?>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>

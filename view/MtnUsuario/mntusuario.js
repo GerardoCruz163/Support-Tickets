@@ -1,6 +1,7 @@
 var tabla;
 
 function init(){
+    //EVENTO QUE ESCUCHA EL BOTON DEL MODAL
     $("#usuario_form").on("submit",function(e){
         guardaryeditar(e);
     });
@@ -104,7 +105,7 @@ $(document).ready(function(){
     }).DataTable(); 
 });
 
-
+//MOSTRAR MODAL CON INFO DEL USUARIO QUE SE VA A EDITAR
 function editar(usu_id){
     $('#mdltitulo').html('Editar datos del usuario');
 
