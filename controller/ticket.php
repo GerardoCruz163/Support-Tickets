@@ -429,23 +429,27 @@
                                                                 <tbody>
                                                                     <?php
                                                                         foreach($datos_det as $row_det){
-
+                                                                            ?>
+                                                                                <tr>
+                                                                                    <td><i class="fa fa-paperclip" aria-hidden="true"></i>
+                                                                            
+                                                                            
+                                                                                        <a href="../../controller/ver_documento_detalle.php?id=<?php echo $row_det["tick_id"]; ?>&archivo=<?php echo urlencode($row_det["det_nom"]); ?>" target="_blank">
+                                                                                            <?php echo $row_det["det_nom"]; ?>
+                                                                                        </a>
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        
+                                                                                        <a href="../../controller/ver_documento_detalle.php?id=<?php echo $row_det["tick_id"]; ?>&archivo=<?php echo urlencode($row_det["det_nom"]); ?>" target="_blank" class="btn btn-inline btn-primary btn-sm">
+                                                                                            <i class="fa fa-eye" aria-hidden="true"></i>
+                                                                                            Ver
+                                                                                        </a>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            <?php
                                                                         }
                                                                     ?>
-                                                                    <td><i class="fa fa-paperclip" aria-hidden="true"></i>
-                                                                        
-                                                                        
-                                                                        <a href="../../controller/ver_documento_detalle.php?id=<?php echo $row_det["tick_id"]; ?>&archivo=<?php echo urlencode($row_det["det_nom"]); ?>" target="_blank">
-                                                                            <?php echo $row_det["det_nom"]; ?>
-                                                                        </a>
-                                                                    </td>
-                                                                    <td>
-                                                                        
-                                                                        <a href="../../controller/ver_documento_detalle.php?id=<?php echo $row_det["tick_id"]; ?>&archivo=<?php echo urlencode($row_det["det_nom"]); ?>" target="_blank" class="btn btn-inline btn-primary btn-sm">
-                                                                            <i class="fa fa-eye" aria-hidden="true"></i>
-                                                                            Ver
-                                                                        </a>
-                                                                    </td>
+                                                                   
 
                                                                 </tbody>
                                                             </table>
