@@ -420,30 +420,35 @@
                                                                 <tbody>
                                                                     <?php
                                                                         foreach($datos_det as $row_det){
+                                                                            ?>
+                                                                            <tr>
+                                                                                <td><i class="fa fa-paperclip" aria-hidden="true"></i>
+                                                                                <!-- <a href="../../public/document_detalle/<?php// echo $row_det["tick_id"];?>/<?php// echo $row_det["det_nom"];?>" target="_blank" class="">   
+                                                                                    <?php// echo $row_det["det_nom"];?>
+                                                                                </a>  -->
 
+                                                                                <a href="../../controller/documento.php?op=ver&tick_id=<?php echo $row_det["tick_id"];?>&file=<?php echo urlencode($row_det["det_nom"]);?>" target="_blank" class="">   
+                                                                                    <?php echo $row_det["det_nom"];?>
+                                                                                </a>
+
+
+                                                                                <!-- <a href="../../controller/documento.php?tick_id=<?php // echo $row_det["tick_id"];?>&file=<?php // echo $row_det["det_nom"];?>" target="_blank" class="">   
+                                                                                    <?php // echo $row_det["det_nom"];?>
+                                                                                </a> -->
+                                                                                </td>
+                                                                                <td>
+                                                                                    
+                                                                                    <a href="../../public/document_detalle/<?php echo $row_det["tick_id"];?>/<?php echo $row_det["det_nom"];?>" target="_blank" class="btn btn-inline btn-primary btn-sm">
+                                                                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                                                                        Ver
+                                                                                    </a>
+                                                                                </td>
+
+                                                                            </tr>
+                                                                            <?php
                                                                         }
                                                                     ?>
-                                                                    <td><i class="fa fa-paperclip" aria-hidden="true"></i>
-                                                                        <!-- <a href="../../public/document_detalle/<?php// echo $row_det["tick_id"];?>/<?php// echo $row_det["det_nom"];?>" target="_blank" class="">   
-                                                                            <?php// echo $row_det["det_nom"];?>
-                                                                        </a>  -->
-
-                                                                        <a href="../../controller/documento.php?op=ver&tick_id=<?php echo $row_det["tick_id"];?>&file=<?php echo urlencode($row_det["det_nom"]);?>" target="_blank" class="">   
-                                                                            <?php echo $row_det["det_nom"];?>
-                                                                        </a>
-
-
-                                                                        <!-- <a href="../../controller/documento.php?tick_id=<?php // echo $row_det["tick_id"];?>&file=<?php // echo $row_det["det_nom"];?>" target="_blank" class="">   
-                                                                            <?php // echo $row_det["det_nom"];?>
-                                                                        </a> -->
-                                                                    </td>
-                                                                    <td>
-                                                                        
-                                                                        <a href="../../public/document_detalle/<?php echo $row_det["tick_id"];?>/<?php echo $row_det["det_nom"];?>" target="_blank" class="btn btn-inline btn-primary btn-sm">
-                                                                            <i class="fa fa-eye" aria-hidden="true"></i>
-                                                                            Ver
-                                                                        </a>
-                                                                    </td>
+                                                                    
 
                                                                 </tbody>
                                                             </table>
