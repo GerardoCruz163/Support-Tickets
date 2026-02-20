@@ -431,7 +431,6 @@
                                                                                     <?php echo $row_det["det_nom"];?>
                                                                                 </a>
 
-
                                                                                 <!-- <a href="../../controller/documento.php?tick_id=<?php // echo $row_det["tick_id"];?>&file=<?php // echo $row_det["det_nom"];?>" target="_blank" class="">   
                                                                                     <?php // echo $row_det["det_nom"];?>
                                                                                 </a> -->
