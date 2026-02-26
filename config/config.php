@@ -163,7 +163,7 @@ class Config {
     }
     
     public function isProduction() {
-        return $this->environment === 'prod';
+        return $this->environment === 'dev';
     }
     
     public function isDevelopment() {

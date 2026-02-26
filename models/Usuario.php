@@ -49,7 +49,7 @@
                                 $_SESSION["area_id"] = $resultado["area_id"];
                                 $_SESSION["pic_num"] = $resultado["pic_num"];
 
-                                header("Location:".Conectar::ruta()."view/Home/");
+                                header("Location:".Conectar::ruta()."/view/Home/");
                                 exit();
                             }else{
                                 header("Location:".Conectar::ruta()."index.php?m=1");

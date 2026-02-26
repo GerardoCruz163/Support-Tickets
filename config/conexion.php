@@ -16,6 +16,7 @@ $config = App\Config::getInstance();
 $dotenv = Dotenv::createImmutable($config->getEnvPath(), '.env.' . $config->getEnvironment());
 $dotenv->load();
 
+
 class Conectar {
     /** @var PDO */
     protected $dbh;
