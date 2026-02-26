@@ -21,7 +21,7 @@ if (file_exists($ruta)) {
     $mime = mime_content_type($ruta);
     header("Content-Type: $mime");
     //echo '<title>'. $archivo.'</title>';
-    header('Content-Disposition: inline; filename="' . basename($archivo) . '"');
+    header('Content-Disposition: inline; filename="' . basename($archivos) . '"');
     readfile($ruta);
     exit;
 } else {
