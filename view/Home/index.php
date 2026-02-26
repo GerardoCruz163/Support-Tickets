@@ -127,7 +127,7 @@
 <?php
 	}else{
 		$URL_DOMAIN = $_ENV['URL_DOMAIN'];
-		header("Location:"."$URL_DOMAIN"."index.php"); 
+		header("Location:"."$URL_DOMAIN"."/index.php"); 
 	}
 
 ?>
