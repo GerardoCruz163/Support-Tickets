@@ -12,7 +12,7 @@ $archivos = $_GET['archivo'];
 
 // Ruta absoluta en el servidor
 $ruta = $_ENV["URL_DOCS"]. "$id/$archivos";
-echo $ruta;
+
 //$ruta = "/var/www/support-tracking-documentos/document/$id/$archivo";
 
 // Verifica si existe
