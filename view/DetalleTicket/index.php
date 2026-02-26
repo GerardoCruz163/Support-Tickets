@@ -166,7 +166,8 @@
 <?php
 	}else{
 		//header("Location:"."http://localhost:80/HelpDesk_Tecno/"."index.php");
-		header("Location:"."https://support-tracking.tecnologisticaaduanal.com/"."index.php");
+		$URL_DOMAIN = $_ENV['URL_DOMAIN'];
+		header("Location:"."$URL_DOMAIN"."index.php"); 
 	}
 
 ?>

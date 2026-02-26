@@ -1,15 +1,20 @@
 <?php
-session_start(); //linea 2
 
-require '/var/www/support-tracking/vendor/autoload.php';
+require_once dirname(__DIR__,1) . "/vendor/autoload.php";
+require_once dirname(__DIR__,1) . "/config/config.php";
+//require '/var/www/support-tracking/vendor/autoload.php';
 
 use Dotenv\Dotenv;
 
+session_start(); 
 // Cargar el archivo .env
-$dotenv = Dotenv::createImmutable('/var/www');
+
+// $dotenv = Dotenv::createImmutable('/var/www');
+// $dotenv->load();
+
+$config = App\Config::getInstance();
+$dotenv = Dotenv::createImmutable($config->getEnvPath(), '.env.' . $config->getEnvironment());
 $dotenv->load();
-
-
 
 class Conectar {
     /** @var PDO */
@@ -48,9 +53,11 @@ class Conectar {
      * Opcional: vuelve a establecer nombres y collation en la sesión activa
      */
     public function set_names() {
-        return $this->dbh->exec(
-            "SET NAMES utf8mb4 COLLATE utf8mb4_general_ci"
-        );
+        // return $this->dbh->exec(
+        //     "SET NAMES utf8mb4 COLLATE utf8mb4_general_ci"
+        // );
+
+        return $this->dbh->query("SET NAMES 'utf8'");
     }
  
     /**

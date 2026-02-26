@@ -1,18 +1,29 @@
 <?php
-    require_once("../config/conexion.php");
-    require_once("../models/Ticket.php");
+     require_once dirname(__DIR__ ,1) . '/config/conexion.php';
+     require_once dirname(__DIR__, 1) . '/config/config.php';
+     require_once dirname(__DIR__ ,1) . '/models/Ticket.php';
+     require_once dirname(__DIR__ ,1) . '/models/Usuario.php';
+     require_once dirname(__DIR__ ,1) . '/models/Documento.php';
+     require_once dirname(__DIR__ ,1) . '/models/Email.php';
+    //require_once("../config/conexion.php");
+    //require_once("../models/Ticket.php");
     $ticket=new Ticket();
 
-    require_once("../models/Usuario.php");
+    //require_once("../models/Usuario.php");
     $usuario= new Usuario();
 
-    require_once("../models/Documento.php");
+    //require_once("../models/Documento.php");
     $documento= new Documento();
 
-    require_once("../models/Email.php");
+    //require_once("../models/Email.php");
     $email= new Email();
 
-    $key = "mi_key_secret";
+    // use Dotenv\Dotenv;
+    // $config = App\Config::getInstance();
+    // $dotenv = Dotenv::createImmutable($config->getEnvPath(), '.env.' . $config->getEnvironment());
+    // $dotenv->load();
+
+    $key = $_ENV['APP_ENCRIPT_KEY'];
     $cipher = "aes-256-cbc";
     $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length($cipher));
 
@@ -29,7 +40,8 @@
                     }else{
                         $countfiles = count($_FILES['files']['name']);
                         //$ruta = "../public/document/".$output["tick_id"]."/";
-                        $ruta = "/var/www/support-tracking-documentos/document/".$output["tick_id"]."/";
+                        //$ruta = "/var/www/support-tracking-documentos/document/".$output["tick_id"]."/";
+                        $ruta = $_ENV['URL_DOCS'].$output["tick_id"]."/";
                         $files_arr = array();
 
                         if (!file_exists($ruta)) {
@@ -608,7 +620,8 @@
         
                         // Ahora la carpeta usa el ID del ticket
                         //$ruta = "../public/document_detalle/" . $output["tick_id"] . "/"; RUTA ANTERIOR
-                        $ruta = "/var/www/support-tracking-documentos/document_detalle/" . $output["tick_id"] . "/";
+                        //$ruta = "/var/www/support-tracking-documentos/document_detalle/" . $output["tick_id"] . "/";
+                        $ruta = $_ENV['URL_DOCSD'] . $output["tick_id"] . "/";
                         if (!file_exists($ruta)) {
                             mkdir($ruta, 0777, true);
                         }

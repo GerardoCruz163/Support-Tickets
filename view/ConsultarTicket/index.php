@@ -1,6 +1,6 @@
 <?php
 	require_once("../../config/conexion.php");
-	require '/var/www/support-tracking/vendor/autoload.php';
+	require_once ('../../vendor/autoload.php');
 
 	use Dotenv\Dotenv;
 	if(isset($_SESSION["usu_id"])){
@@ -148,12 +148,8 @@
 <?php
 	}else{
 	// Cargar el archivo .env
-	$dotenv = Dotenv::createImmutable('/var/www');
-	$dotenv->load();
-	$ruta = $_ENV['URL_DOMAIN'];
-		//header("Location:"."http://localhost:80/HelpDesk_Tecno/"."index.php");
-		//header("Location:"."https://support-tracking.tecnologisticaaduanal.com/"."index.php");
-		header("Location:"."{$ruta}"."index.php");
+	$URL_DOMAIN = $_ENV['URL_DOMAIN'];
+		header("Location:"."$URL_DOMAIN"."index.php"); 
 	}
 
 ?>

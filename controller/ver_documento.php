@@ -1,9 +1,19 @@
 <?php
+require __DIR__ . '/../vendor/autoload.php'; 
+require_once dirname(__DIR__,1) . "/config/config.php";
+
+use Dotenv\Dotenv;
+$config = App\Config::getInstance();
+$dotenv = Dotenv::createImmutable($config->getEnvPath(), '.env.' . $config->getEnvironment());
+$dotenv->load();
+
 $id = $_GET['id'];
-$archivo = $_GET['archivo'];
+$archivos = $_GET['archivo'];
 
 // Ruta absoluta en el servidor
-$ruta = "/var/www/support-tracking-documentos/document/$id/$archivo";
+$ruta = $_ENV["URL_DOCS"]. "$id/$archivos";
+echo $ruta;
+//$ruta = "/var/www/support-tracking-documentos/document/$id/$archivo";
 
 // Verifica si existe
 if (file_exists($ruta)) {

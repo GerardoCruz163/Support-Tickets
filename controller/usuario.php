@@ -1,11 +1,19 @@
 <?php
-    require_once("../config/conexion.php");
-    require_once("../models/Usuario.php");
+    require_once dirname(__DIR__ ,1) . '/config/conexion.php';
+    require_once dirname(__DIR__, 1) . '/config/config.php';
+    require_once dirname(__DIR__ ,1) . '/models/Usuario.php';
+    require_once dirname(__DIR__ ,1) . '/models/Email.php';
+    //require_once("../models/Usuario.php");
     $usuario=new Usuario();
 
-    require_once("../models/Email.php");
+    //require_once("../models/Email.php");
     $email=new Email();
 
+    use Dotenv\Dotenv;
+    $config = App\Config::getInstance();
+    $dotenv = Dotenv::createImmutable($config->getEnvPath(), '.env.' . $config->getEnvironment());
+    $dotenv->load();
+    
     //ENCRIPTADO DE LA CONTRASEÑA 
     $key = "mi_key_secret";
     $cipher = "aes-256-cbc";
@@ -177,6 +185,7 @@
                 echo json_encode($output); 
 
             }
+            
         break;
 
         case "totalabierto";

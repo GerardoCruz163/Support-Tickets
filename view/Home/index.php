@@ -1,5 +1,12 @@
 <?php
 	require_once("../../config/conexion.php");
+	require_once("../../vendor/autoload.php");
+	
+	use Dotenv\Dotenv;
+
+	$config = App\Config::getInstance();
+    $dotenv = Dotenv::createImmutable($config->getEnvPath(), '.env.' . $config->getEnvironment());
+    $dotenv->load();
 	if(isset($_SESSION["usu_id"])){
 
 ?>
@@ -119,8 +126,8 @@
 </html>
 <?php
 	}else{
-		//header("Location:"."http://localhost:80/HelpDesk_Tecno/"."index.php");
-		header("Location:"."https://support-tracking.tecnologisticaaduanal.com/"."index.php"); //linea 122
+		$URL_DOMAIN = $_ENV['URL_DOMAIN'];
+		header("Location:"."$URL_DOMAIN"."index.php"); 
 	}
 
 ?>

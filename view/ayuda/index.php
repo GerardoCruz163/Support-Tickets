@@ -1,5 +1,8 @@
 <?php
     require_once("../../config/conexion.php");
+	require_once ('../../vendor/autoload.php');
+
+	use Dotenv\Dotenv;
 	if(isset($_SESSION["usu_id"])){
 ?>
 
@@ -59,7 +62,8 @@
 	<script src="js/app.js"></script>
 <?php
 	}else{
-		header("Location:"."https://support-tracking.tecnologisticaaduanal.com/"."index.php");
+		$URL_DOMAIN = $_ENV['URL_DOMAIN'];
+		header("Location:"."$URL_DOMAIN"."index.php"); 
 		
 	}
 

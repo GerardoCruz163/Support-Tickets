@@ -1,5 +1,13 @@
 <?php
 
+    require_once dirname(__DIR__, 1) . '/config/config.php';
+    require_once dirname(__DIR__, 1) . '/vendor/autoload.php';
+
+    use Dotenv\Dotenv;
+    $config = App\Config::getInstance();
+    $dotenv = Dotenv::createImmutable($config->getEnvPath(), '.env.' . $config->getEnvironment());
+    $dotenv->load();
+
     $key = "mi_key_secret";
     $cipher = "aes-256-cbc";
     $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length($cipher));
@@ -25,7 +33,7 @@
                     if($resultado){
                         $textocifrado = $resultado["usu_pass"];
 
-                        $key = "mi_key_secret";
+                        $key ="mi_key_secret";
                         $cipher = "aes-256-cbc";
                         $iv_dec = substr(base64_decode($textocifrado), 0, openssl_cipher_iv_length($cipher));
                         $cifradoSinIV = substr(base64_decode($textocifrado), openssl_cipher_iv_length($cipher));
@@ -56,7 +64,7 @@
         public function insert_usuario($usu_nom,$usu_ape,$usu_correo,$usu_pass,$rol_id, $area_id, $suc_id){
 
             //ENCRIPTADO DE LA CONTRASEÑA 
-            $key = "mi_key_secret";
+            $key = $_ENV['APP_ENCRIPT_KEY'];
             $cipher = "aes-256-cbc";
             $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length($cipher));
             $cifrado = openssl_encrypt($usu_pass, $cipher, $key,OPENSSL_RAW_DATA, $iv);
@@ -79,7 +87,7 @@
 
         public function update_usuario($usu_nom,$usu_ape,$usu_correo,$usu_pass,$rol_id,$area_id, $suc_id, $usu_id){
             //ENCRIPTADO DE LA CONTRASEÑA 
-            $key = "mi_key_secret";
+            $key = $_ENV['APP_ENCRIPT_KEY'];
             $cipher = "aes-256-cbc";
             $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length($cipher));
             $cifrado = openssl_encrypt($usu_pass, $cipher, $key,OPENSSL_RAW_DATA, $iv);

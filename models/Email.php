@@ -11,7 +11,7 @@ require __DIR__ . '/../vendor/autoload.php';
 use Dotenv\Dotenv;
 
 // Cargar el archivo .env
-$dotenv = Dotenv::createImmutable('/var/www/');
+$dotenv = Dotenv::createImmutable($config->getEnvPath(), '.env.' . $config->getEnvironment());
 $dotenv->load();
 require '../include/vendor/autoload.php';
 
