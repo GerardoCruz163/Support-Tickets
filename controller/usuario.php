@@ -15,7 +15,7 @@
     $dotenv->load();
     
     //ENCRIPTADO DE LA CONTRASEÑA 
-    $key = "mi_key_secret";
+    $key = $_ENV['APP_ENCRIPT_KEY'];
     $cipher = "aes-256-cbc";
     $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length($cipher));
 
