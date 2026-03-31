@@ -259,7 +259,7 @@
 
         public function encriptar_nueva_contra($usu_pass,$usu_id){
             //ENCRIPTADO DE LA CONTRASEÑA 
-            $key = "mi_key_secret";
+            $key = $_ENV['APP_ENCRIPT_KEY'];
             $cipher = "aes-256-cbc";
             $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length($cipher));
             $cifrado = openssl_encrypt($usu_pass, $cipher, $key,OPENSSL_RAW_DATA, $iv);
