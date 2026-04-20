@@ -31,8 +31,13 @@ function insertarseguidores(e){
 
 const socket = io("https://support-tracking.tecnologisticaaduanal.com:8082"); 
 //const socket = io("http://localhost:8082"); 
-$(document).ready(function(){
-    
+$(document).ready(function() { 
+    //Pedir permiso para activar notificaciones del navegador
+    if (Notification.permission !== "granted") {
+        Notification.requestPermission();
+    }
+
+    console.log(Notification.permission);
     const url = window.location.href;
     const params = new URLSearchParams(new URL(url).search);
     const tick_id = params.get("ID");
@@ -40,11 +45,27 @@ $(document).ready(function(){
     const encodedCiphertext = encodeURIComponent(tick_id);
     const id = decoded_id.replace(/\s/g, '+'); 
 
+    //id del usuario
+    const usu_id = $('#user_idx').val(); 
+
     //AQUI LEO EL SESSION STORAGEs
     const realTicketId = sessionStorage.getItem("ticket_id_real");
 
     socket.on("connect", () => {
+        socket.emit("join_user", String(usu_id));
+    });
 
+    socket.on("nuevo_mensaje", (data) => {
+
+        // 🔔 Notificación Windows
+        if (Notification.permission === "granted") {
+            new Notification("Ticket actualizado", {
+                body: data.mensaje
+            });
+        }
+    
+        // UI update (ejemplo)
+        console.log("Nuevo mensaje en ticket:", data.tick_id);
     });
     socket.emit("join_ticket", realTicketId);
 
@@ -160,8 +181,15 @@ function insertseguidor(e){
 }
 
 $(document).on("click","#btnenviar",function(){
+
+    if (Notification.permission === "default") {
+        Notification.requestPermission().then(permission => {
+            console.log("Permiso:", permission);
+        });
+    }
+
     const url = window.location.href;
-    const params = new URLSearchParams(new URL(url).search);3
+    const params = new URLSearchParams(new URL(url).search);
     const tick_id = params.get("ID");
     const decoded_id =  decodeURIComponent(tick_id);
     const id = decoded_id.replace(/\s/g, '+'); 
@@ -170,6 +198,7 @@ $(document).on("click","#btnenviar",function(){
     const realTicketId = sessionStorage.getItem("ticket_id_real");
 
     var usu_id = $('#user_idx').val();
+    console.log(usu_id);
     var tickd_descrip = $('#tickd_descrip').val();
 
     // VERIFICA SI EL BOTON DE URGENCIA ESTA ACTIVO
