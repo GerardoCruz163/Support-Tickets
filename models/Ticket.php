@@ -85,6 +85,15 @@
             $sql->execute();
             return $resultado=$sql->fetchAll();
         }
+        public function listar_ticket_x_usu_cerrados($usu_id){
+            $conectar= parent::conexion();
+            parent::set_names();
+            $sql="call sp_listar_ticket_x_usu_cerrados(?)";
+            $sql=$conectar->prepare($sql);
+            $sql->bindValue(1, $usu_id);
+            $sql->execute();
+            return $resultado=$sql->fetchAll();
+        }
 
         public function listar_ticket_x_id($tick_id){
             $conectar= parent::conexion();
@@ -102,6 +111,16 @@
             $conectar= parent::conexion();
             parent::set_names();
             $sql="call sp_listar_ticket_asig_x_usu(?)";
+            $sql=$conectar->prepare($sql);
+            $sql->bindValue(1, $usu_id);
+            $sql->execute();
+            return $resultado=$sql->fetchAll();
+        }
+
+        public function listar_ticket_asig_x_usu_cerrados($usu_id){
+            $conectar= parent::conexion();
+            parent::set_names();
+            $sql="call sp_listar_ticket_asig_x_usu_cerrados(?)";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $usu_id);
             $sql->execute();
@@ -258,6 +277,9 @@
             $sql->bindValue(3, $tickd_descrip);
             $sql->execute(); // linea 211
             
+            $mensaje = "Nuevo comentario en ticket $tick_id";
+
+            file_get_contents("https://support-tracking.tecnologisticaaduanal.com:8082/notificar-ticket?tick_id=$tick_id&usu_id=$usu_seg&mensaje=" . urlencode($mensaje));
             // $sql1="select last_insert_id() as 'tickd_id';";
             // $sql1=$conectar->prepare($sql1);
             // $sql1->execute();
@@ -267,9 +289,7 @@
             $sql1->bindValue(1, $tick_id); // reutilizamos el tick_id que entró por parámetro
             $sql1->execute();
 
-            
             return $resultado=$sql1->fetchAll(pdo::FETCH_ASSOC);
-            
         }
 
         public function insert_ticketdetalle_cerrar($tick_id,$usu_id){
@@ -443,6 +463,27 @@
             $sql->execute();
             return $resultado=$sql->fetchAll();
         }
+
+        public function filtrar_ticket_admin_cerrados($tick_titulo,$cat_id,$prio_id,$usu_id){
+            $conectar= parent::conexion();
+            parent::set_names();
+
+           // Limpiar valores antes de pasarlos al SP
+            $cat_id  = ($cat_id === '' || $cat_id === 'Seleccionar') ? null : (int)$cat_id;
+            $prio_id = ($prio_id === '' || $prio_id === 'Seleccionar') ? null : (int)$prio_id;
+            $usu_id  = ($usu_id === '' || $usu_id === 'Seleccionar') ? null : (int)$usu_id;
+            $tick_titulo = ($tick_titulo === '') ? null : $tick_titulo;
+
+            $sql="call filtrar_ticket_admin_cerrados(?,?,?,?)";
+            $sql=$conectar->prepare($sql);
+            $sql->bindValue(1, '%'.$tick_titulo.'%');
+            $sql->bindValue(2, $cat_id);
+            $sql->bindValue(3, $prio_id);
+            $sql->bindValue(4, $usu_id);
+
+            $sql->execute();
+            return $resultado=$sql->fetchAll();
+        }
         //VERA SOLAMENTE LOS DEL AREA Y SUCURSAL (SUPERVISOR)
         public function filtrar_ticket($tick_titulo,$cat_id,$prio_id, $usu_id, $suc_id, $area_id){
             $conectar= parent::conexion();
@@ -453,6 +494,26 @@
             $usu_id = !empty($_POST['usu_id']) ? (int)$_POST['usu_id'] : null;
 
             $sql="call filtrar_ticket_sup (?,?,?,?,?,?)";
+            $sql=$conectar->prepare($sql);
+            $sql->bindValue(1, '%'.$tick_titulo.'%');
+            $sql->bindValue(2, $cat_id);
+            $sql->bindValue(3, $prio_id);
+            $sql->bindValue(4, $usu_id);
+            $sql->bindValue(5, $suc_id);
+            $sql->bindValue(6, $area_id);
+            $sql->execute();
+            return $resultado=$sql->fetchAll();
+        }
+        //CERRADOS
+        public function filtrar_ticket_cerrados($tick_titulo,$cat_id,$prio_id, $usu_id, $suc_id, $area_id){
+            $conectar= parent::conexion();
+            parent::set_names();
+
+            $cat_id = !empty($_POST['cat_id']) ? (int)$_POST['cat_id'] : null;
+            $prio_id = !empty($_POST['prio_id']) ? (int)$_POST['prio_id'] : null;
+            $usu_id = !empty($_POST['usu_id']) ? (int)$_POST['usu_id'] : null;
+
+            $sql="call filtrar_ticket_sup_cerrado (?,?,?,?,?,?)";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, '%'.$tick_titulo.'%');
             $sql->bindValue(2, $cat_id);
