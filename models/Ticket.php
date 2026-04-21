@@ -279,7 +279,7 @@
             
             $mensaje = "Nuevo comentario en ticket $tick_id";
 
-            file_get_contents("https://support-tracking.tecnologisticaaduanal.com:8082/notificar-ticket?tick_id=$tick_id&usu_id=$usu_seg&mensaje=" . urlencode($mensaje));
+            file_get_contents("http://localhost:3001/notificar-ticket?tick_id=$tick_id&usu_id=$usu_seg&mensaje=" . urlencode($mensaje));
             // $sql1="select last_insert_id() as 'tickd_id';";
             // $sql1=$conectar->prepare($sql1);
             // $sql1->execute();
@@ -290,6 +290,7 @@
             $sql1->execute();
 
             return $resultado=$sql1->fetchAll(pdo::FETCH_ASSOC);
+            
         }
 
         public function insert_ticketdetalle_cerrar($tick_id,$usu_id){
