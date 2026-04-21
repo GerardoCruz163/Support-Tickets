@@ -1,0 +1,4 @@
+```bash
+config/conexion.php
+view/TicketsAsignados/ticketsasignados.js
+controller/usuario.php
