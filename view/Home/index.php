@@ -21,7 +21,7 @@
 	<title>Inicio: TLA Support Tracking</title>
 	<audio id="notif_sound" src="../../public/sound/bell_not_sutra.wav" preload="auto"></audio>
 </head>
-<body class="with-side-menu">
+<body class="with-side-menu ">
 
     <?php require_once("../MainHeader/header.php");?>
 
