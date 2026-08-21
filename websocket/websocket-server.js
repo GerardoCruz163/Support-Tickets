@@ -84,8 +84,6 @@ const fs =  require('fs');
 const app = express();
 // const server = http.createServer(app);
 
-
-
 const server = https.createServer({
     cert: fs.readFileSync('/etc/letsencrypt/live/support-tracking.tecnologisticaaduanal.com/fullchain.pem'),
     key: fs.readFileSync('/etc/letsencrypt/live/support-tracking.tecnologisticaaduanal.com/privkey.pem'),

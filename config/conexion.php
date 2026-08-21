@@ -49,6 +49,7 @@ class Conectar {
         }
     }
  
+    
     /**
      * Opcional: vuelve a establecer nombres y collation en la sesión activa
      */

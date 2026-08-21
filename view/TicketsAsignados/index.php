@@ -42,70 +42,39 @@
 				</div>
 			</header>
 
-			<div class="box-typical box-typical-padding">
+			<section class="tabs-section">
+				<div class="tabs-section-nav tabs-section-nav-icons">
+					<div class="tbl">
+						<ul class="nav" role="tablist">
+							<li class="nav-item">
+								<a class="nav-link active" id="pestPendientes" role="tab" data-toggle="tab" aria-expanded="true">
+									<span class="nav-link-in">
+                                    <i class="fa fa-file-text" aria-hidden="true"></i>
+										Pendientes
+									</span>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" id="pestCerrados" role="tab" data-toggle="tab" aria-expanded="false">
+									<span class="nav-link-in">
+                                    <i class="fa fa-recycle" aria-hidden="true"></i>
+										Tickets Cerrados
+									</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div><!--.tabs-section-nav-->
 
-				<div class="row" id="viewuser">
-					<div class="col-lg-3">
-						<fieldset class="form-group">
-							<label class="form-label" for="tick_titulo">Titulo</label>
-							<input type="text" class="form-control" id="tick_titulo" name="tick_titulo" placeholder="Titulo" required>
-						</fieldset>
-					</div>
+				<div class="box-typical box-typical-padding">
 
-					<div class="col-lg-3">
-						<fieldset class="form-group">
-							<label class="form-label" for="cat_id">Categoria</label>
-							<select class="select2" id="cat_id" name="cat_id" data-placeholder="Seleccionar">
-								<option label="Seleccionar">Seleccionar</option>
-							</select>
-						</fieldset>
-					</div>
-
-					<div class="col-lg-2">
-						<fieldset class="form-group">
-							<label class="form-label" for="prio_id">Prioridad</label>
-							<select class="select2" id="prio_id" name="prio_id">
-								
-							</select>
-						</fieldset>
-					</div>
-					<div class="col-lg-3">
-						<fieldset class="form-group">
-							<label class="form-label" for="usu_id">Usuario</label>
-							<select class="select2" id="usu_id" name="usu_id">
-								
-								</select>
-						</fieldset>
-					</div>
-				</div>
-					
-				<!-- <div class="row" id="viewuser">
-					<div class="col-lg-2">
-						<fieldset class="form-group">
-							<label class="form-label" for="btnfiltrar">&nbsp;</label>
-							<button type="submit" class="btn btn-rounded btn-primary btn-block" id="btnfiltrar" required>
-								Filtrar	
-							</button>
-						</fieldset>
-					</div>
-
-					<div class="col-lg-2">
-						<fieldset class="form-group">
-							<label class="form-label" for="btntodo">&nbsp;</label>
-							<button class="btn btn-rounded btn-primary btn-block" id="btntodo" required>Ver todo</button>
-						</fieldset>
-					</div>
-
-				</div> -->
-				
-				
 				
 
 				<div class="box-typical box-typical-padding" id="table">
 					<table id="ticket_data" class="table table-bordered table-striped table-vcenter js-dataTable-full">
 						<thead>
 							<tr>
-							<th style="width: 2%;">#</th>
+								<th style="width: 2%;">#</th>
 								<th class="d-none d-sm-table-cell" style="width: 26%;">Titulo</th>
 								<th style="width: 10%;">Categoria</th>
 								<th class="d-none d-sm-table-cell" style="width: 8%;">Prioridad</th>
@@ -124,6 +93,7 @@
 
 				</div>
 			</div>
+			</section>
 		</div><!--.container-fluid-->
 	</div><!--.page-content-->
 

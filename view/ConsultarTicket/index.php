@@ -24,7 +24,7 @@
 	<!-- Contenido -->
 	<div class="page-content">
 		<div class="container-fluid">
-			<header class="section-header">
+		<header class="section-header">
 				<div class="tbl">
 					<div class="tbl-row">
 						<div class="tbl-cell">
@@ -42,8 +42,32 @@
 					</div>
 				</div>
 			</header>
+			
+			<section class="tabs-section">
+				<div class="tabs-section-nav tabs-section-nav-icons">
+					<div class="tbl">
+						<ul class="nav" role="tablist">
+							<li class="nav-item">
+								<a class="nav-link active" id="pestPendientes" role="tab" data-toggle="tab" aria-expanded="true">
+									<span class="nav-link-in">
+                                    <i class="fa fa-file-text" aria-hidden="true"></i>
+										Pendientes
+									</span>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" id="pestCerrados" role="tab" data-toggle="tab" aria-expanded="false">
+									<span class="nav-link-in">
+                                    <i class="fa fa-recycle" aria-hidden="true"></i>
+										Tickets Cerrados
+									</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div><!--.tabs-section-nav-->
 
-			<div class="box-typical box-typical-padding">
+				<div class="box-typical box-typical-padding">
 
 				<div class="row" id="viewuser">
 					<div class="col-lg-3">
@@ -131,6 +155,10 @@
 
 				</div>
 			</div>
+			</section>
+			
+
+			
 		</div><!--.container-fluid-->
 	</div><!--.page-content-->
 

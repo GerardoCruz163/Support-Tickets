@@ -80,23 +80,26 @@ $(document).ready(function(){
             }
         }     
     }).DataTable(); 
+
     
-    // if(rol_id == 1){/* SI EL ROL ES USUARIO, SOLO VERA SUS TICKETS GENERADOS */
-
-    // }else{ /* SI EL ROL ES DE SOPORTE, VERA TODOS LOS TICKETS DE LOS USUARIOS */
-    //     var tick_titulo = $('#tick_titulo').val();
-    //     var cat_id = $('#cat_id').val();
-    //     var prio_id = $('#prio_id').val();
-    //     var usu_idt = $('#usu_id').val(); // se utiliza usu_idt para que no haga conflicto con la variable usu_id global
-
-    // }
-    //listardatatable(tick_titulo, cat_id, prio_id, usu_id);
+    
+    
 });
 
-// function ver(tick_id){
-//     console.log(tick_id);
-//     // 
-// }
+$('.nav-link').on('click', function () {
+    let id = $(this).attr('id');
+    
+    if (id === 'pestPendientes') {
+        tabla.ajax
+            .url('../../controller/ticket.php?op=listar_ticket_asig_x_usu')
+            .load();
+    } 
+    else if (id === 'pestCerrados') {
+        tabla.ajax
+            .url('../../controller/ticket.php?op=listar_ticket_asig_x_usu_cerrados')
+            .load();
+    }   
+});
 
 // TODO: Link para ver detalle de ticket a otra ventana
 $(document).on("click",".btn-inline", function(){
@@ -107,10 +110,9 @@ $(document).on("click",".btn-inline", function(){
     sessionStorage.setItem("ticket_id_real", realId); 
     
     //console.log(ciphertext);
-    window.location.href = 'https://support-tracking.tecnologisticaaduanal.com/view/DetalleTicket/?ID='+ciphertext;
-    //window.open('http://localhost:80/HelpDesk_Tecno/view/DetalleTicket/?ID='+ciphertext+'');
-    //window.open('https://support-tracking.tecnologisticaaduanal.com/view/DetalleTicket/?ID='+ciphertext+'');
-    //window.open(`${URL_DOMAIN}view/DetalleTicket/?ID=${ciphertext}`);
+    //window.location.href = 'https://support-tracking.tecnologisticaaduanal.com/view/DetalleTicket/?ID='+ciphertext;
+    window.location.href = 'http://localhost:80/HelpDesk_Tecno/view/DetalleTicket/?ID=' + ciphertext;
+    
 });
 
 // Para enlaces en el título
@@ -126,10 +128,8 @@ $(document).on("click", "a[data-real-id]", function (e) {
     sessionStorage.setItem("ticket_id_real", realId); 
 
     // Abrir la ventana con el ticket
-    window.location.href = 'https://support-tracking.tecnologisticaaduanal.com/view/DetalleTicket/?ID='+ciphertext;
-    //window.open('http://localhost:80/HelpDesk_Tecno/view/DetalleTicket/?ID=' + ciphertext);
-    //window.open('https://support-tracking.tecnologisticaaduanal.com/view/DetalleTicket/?ID=' + ciphertext);
-    //window.open(`${URL_DOMAIN}view/DetalleTicket/?ID=${ciphertext}`);
+    //window.location.href = 'https://support-tracking.tecnologisticaaduanal.com/view/DetalleTicket/?ID='+ciphertext;
+    window.location.href = 'http://localhost:80/HelpDesk_Tecno/view/DetalleTicket/?ID=' + ciphertext;
 });
 
 // function asignar(tick_id){

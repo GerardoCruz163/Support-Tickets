@@ -45,6 +45,7 @@ $(document).ready(function() {
     const encodedCiphertext = encodeURIComponent(tick_id);
     const id = decoded_id.replace(/\s/g, '+'); 
 
+    console.log(tick_id);
     //id del usuario
     const usu_id = $('#user_idx').val(); 
 
@@ -377,6 +378,7 @@ $(document).on("click","#btncerrar",function(){
 });
 
 function mostraryvalidar(id){
+    
     //console.log("mostraryvalidar ejecutado desde WebSocket con ID:", id);
     $.post("../../controller/ticket.php?op=listardetalle", {tick_id: id}, function (data){
         //console.log("Respuesta del detalle:", data);

@@ -41,8 +41,6 @@
                     echo "0"; // correo duplicado en otro usuario
                 }
             }
-
-        
         break;
 
         case "listar":
