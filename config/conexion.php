@@ -6,7 +6,9 @@ require_once dirname(__DIR__,1) . "/config/config.php";
 
 use Dotenv\Dotenv;
 
-session_start(); 
+// NOMBRE PROPIO DE COOKIE DE SESION (comparte dominio con Toolbox; sin esto se pisan las sesiones)
+session_name("SUPPORTSESSID");
+session_start();
 // Cargar el archivo .env
 
 // $dotenv = Dotenv::createImmutable('/var/www');

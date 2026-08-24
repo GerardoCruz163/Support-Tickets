@@ -62,10 +62,11 @@
         exit("No se pudo obtener la información del usuario desde Toolbox.");
     }
 
-    // BUSCAR AL USUARIO LOCAL POR CORREO
+    // BUSCAR AL USUARIO LOCAL POR NOMBRE Y APELLIDO
     $usu_data = $usuario->get_usuario_x_correo($usuario_toolbox["usu_correo"]);
 
     if (!$usu_data) {
+        echo $usu_data;
         exit("Tu usuario no está registrado en Support-Tracking.");
     }
 

@@ -237,6 +237,20 @@
             return $resultado=$sql->fetchAll();
         }
 
+        public function get_usuario_x_nombre_apellido($usu_nom, $usu_ape){
+            $conectar= parent::conexion();
+            parent::set_names();
+            $sql="SELECT *
+                    FROM tm_usuario
+                    WHERE usu_nom = ?
+                    AND usu_ape = ?;";
+            $sql=$conectar->prepare($sql);
+            $sql->bindValue(1, $usu_nom);
+            $sql->bindValue(2, $usu_ape);
+            $sql->execute();
+            return $resultado=$sql->fetchAll();
+        }
+
         public function get_usuario_x_correo($usu_correo){
             $conectar= parent::conexion();
             parent::set_names();
