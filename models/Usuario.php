@@ -261,6 +261,43 @@
             return $resultado=$sql->fetchAll();
         }
 
+        //CREAR USUARIO NUEVO PROVENIENTE DEL SSO DE TOOLBOX (APROVISIONAMIENTO JIT)
+        // SIN ROL (rol_id = 0) NI AREA/SUCURSAL DEFINITIVAS: los asigna un Administrador dentro de Support-Tracking
+        public function crear_usuario_jit($usu_nom, $usu_ape, $usu_correo) {
+            $area_sa = $this->get_area_sin_asignar();
+            $suc_sa  = $this->get_sucursal_sin_asignar();
+
+            $this->insert_usuario(
+                $usu_nom,
+                $usu_ape,
+                $usu_correo,
+                bin2hex(random_bytes(32)),
+                1,
+                $area_sa["area_id"],
+                $suc_sa["suc_id"]
+            );
+        }
+
+        // area_id "Sin asignar" USADO COMO PLACEHOLDER MIENTRAS UN ADMIN DEFINE EL AREA REAL
+        public function get_area_sin_asignar() {
+            $conectar= parent::conexion();
+            parent::set_names();
+            $sql="SELECT area_id FROM tm_area WHERE area_nom = 'Sin asignar' LIMIT 1;";
+            $sql=$conectar->prepare($sql);
+            $sql->execute();
+            return $resultado=$sql->fetch();
+        }
+
+        // suc_id "Sin asignar" USADO COMO PLACEHOLDER MIENTRAS UN ADMIN DEFINE LA SUCURSAL REAL
+        public function get_sucursal_sin_asignar() {
+            $conectar= parent::conexion();
+            parent::set_names();
+            $sql="SELECT suc_id FROM tm_sucursal WHERE suc_nom = 'Sin asignar' LIMIT 1;";
+            $sql=$conectar->prepare($sql);
+            $sql->execute();
+            return $resultado=$sql->fetch();
+        }
+
         public function get_cambiar_contra_recuperar($usu_correo){
             $conectar= parent::conexion();
             parent::set_names();

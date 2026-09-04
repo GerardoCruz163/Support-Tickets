@@ -58,7 +58,7 @@ $(document).ready(function() {
 
     socket.on("nuevo_mensaje", (data) => {
 
-        // 🔔 Notificación Windows
+        // Notificacion Windows
         if (Notification.permission === "granted") {
             new Notification("Ticket actualizado", {
                 body: data.mensaje
@@ -199,7 +199,7 @@ $(document).on("click","#btnenviar",function(){
     const realTicketId = sessionStorage.getItem("ticket_id_real");
 
     var usu_id = $('#user_idx').val();
-    console.log(usu_id);
+    
     var tickd_descrip = $('#tickd_descrip').val();
 
     // VERIFICA SI EL BOTON DE URGENCIA ESTA ACTIVO

@@ -62,12 +62,19 @@
         exit("No se pudo obtener la información del usuario desde Toolbox.");
     }
 
-    // BUSCAR AL USUARIO LOCAL POR NOMBRE Y APELLIDO
+    // BUSCAR AL USUARIO LOCAL POR CORREO
     $usu_data = $usuario->get_usuario_x_correo($usuario_toolbox["usu_correo"]);
 
+    // APROVISIONAMIENTO JIT: primera vez que este usuario de Toolbox entra a Support-Tracking
     if (!$usu_data) {
-        echo $usu_data;
-        exit("Tu usuario no está registrado en Support-Tracking.");
+
+        $usuario->crear_usuario_jit(
+            $usuario_toolbox["usu_nom"],
+            $usuario_toolbox["usu_ape"],
+            $usuario_toolbox["usu_correo"]
+        );
+
+        $usu_data = $usuario->get_usuario_x_correo($usuario_toolbox["usu_correo"]);
     }
 
     $usu = $usu_data[0];
